@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service'
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service'
+import { AnswerService } from '../../services/answer.service'
+import { FlashMessagesService } from 'angular2-flash-messages'
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-question',
@@ -10,16 +14,22 @@ import { AuthService } from '../../services/auth.service'
 })
 export class QuestionComponent implements OnInit {
   question: object
+  answers: Array<Object>
+  questionURL: String
+  answerText: String
 
   constructor(
     private questionService: QuestionService,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private answerService: AnswerService,
+    private flashMsg: FlashMessagesService,
+    private router: Router) { }
 
   ngOnInit() {
-    var questionURL = this.activatedRoute.snapshot.paramMap.get('id');
+    this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
     var response: any = {}
-    this.questionService.getQuestion(questionURL).subscribe(data => {
+    this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       console.log(response)
       this.question = response.question
@@ -27,10 +37,33 @@ export class QuestionComponent implements OnInit {
       console.log(err);
       return false;
     })
+
+    this.answerService.getAnswers(this.questionURL).subscribe(data => {
+      var response: any = {}
+      response = data
+      this.answers = response.answers
+    })
   }
 
-  sendAnswer(){
-
+  sendAnswer(form: NgForm){
+    var answer = {
+      answerText: this.answerText,
+      poster: "Shelby McCowan",
+      votes: 0,
+      questionURL: this.questionURL,
+      views: 1,
+      comments: []
+    }
+    this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
+      var response: any = {}
+      response = data
+      if (response.success){
+        this.flashMsg.show("Answer added.", {cssClass: 'alert-success', timeout: 1500})
+        form.reset();
+      }else{
+        this.flashMsg.show("Something went wrong. Try answering again.", {cssClass: 'alert-danger', timeout: 1500})
+      }
+    })
   }
 
 }

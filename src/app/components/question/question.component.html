@@ -3,10 +3,19 @@
   <p style="{text-align:center;}">Asked by {{question.asker}}</p>
 </div>
 <div>
-  <form *ngIf="authService.loggedIn()" #answerForm="ngForm" id="answer" role="answer" (submit)="sendAnswer()">
+  <form *ngIf="authService.loggedIn()" #answerForm="ngForm" id="answer" role="answer" (submit)="sendAnswer(answerForm)">
     <div class="form-group">
       <input class="form-control col-sm-8" [(ngModel)]="answerText" name="answerText" type="text" placeholder="Share some knowledge!">
       <button class="btn btn-primary" type="submit">Send Answer to the Gods</button>
     </div>
   </form>
+</div>
+
+<div *ngIf="answers">
+  <h2>Answers</h2>
+  <!--
+  <div *ngFor="let answer of answers">
+    <p>{{answer.answerText}}</p>
+    <span>Asked by {{answer.poster}}</span>
+  </div> -->
 </div>
