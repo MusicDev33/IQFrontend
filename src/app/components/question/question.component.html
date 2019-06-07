@@ -1,0 +1,12 @@
+<div *ngIf="question">
+  <h2 class="page-header" style="{text-align:center;}">{{ question.questionText }}</h2>
+  <p style="{text-align:center;}">Asked by {{question.asker}}</p>
+</div>
+<div>
+  <form *ngIf="authService.loggedIn()" #answerForm="ngForm" id="answer" role="answer" (submit)="sendAnswer()">
+    <div class="form-group">
+      <input class="form-control col-sm-8" [(ngModel)]="answerText" name="answerText" type="text" placeholder="Share some knowledge!">
+      <button class="btn btn-primary" type="submit">Send Answer to the Gods</button>
+    </div>
+  </form>
+</div>
