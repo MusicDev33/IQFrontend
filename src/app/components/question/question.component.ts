@@ -7,6 +7,21 @@ import { FlashMessagesService } from 'angular2-flash-messages'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
 
+interface Answer {
+  answerText: String,
+  votes: number,
+  poster: String,
+  views: number,
+  comments: Array<Object>,
+  questionURL: String,
+  posterID: String
+}
+
+interface user {
+  name: String,
+  _id: String
+}
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -14,9 +29,11 @@ import { Router } from '@angular/router'
 })
 export class QuestionComponent implements OnInit {
   question: object
-  answers: Array<Object>
+  answers: Array<Answer>
   questionURL: String
   answerText: String
+  hasAnswered: boolean
+  userHasAnswered: boolean = false
 
   constructor(
     private questionService: QuestionService,
@@ -31,7 +48,6 @@ export class QuestionComponent implements OnInit {
     var response: any = {}
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
-      console.log(response)
       this.question = response.question
     }, err => {
       console.log(err);
@@ -40,8 +56,17 @@ export class QuestionComponent implements OnInit {
 
     this.answerService.getAnswers(this.questionURL).subscribe(data => {
       var response: any = {}
+      var user: user
       response = data
       this.answers = response.answers
+
+      user = this.authService.getUserID()
+
+      this.answers.forEach( (answer) => {
+        if (answer.poster == user.name){
+          this.userHasAnswered = true
+        }
+      })
     })
   }
 

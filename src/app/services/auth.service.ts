@@ -3,15 +3,18 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Http, Headers } from '@angular/http'
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt'
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient) { }
 
   registerUser(user){
     let headers = new HttpHeaders();
@@ -45,6 +48,12 @@ export class AuthService {
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  getUserID(): any{
+    let jwtHelper: JwtHelper = new JwtHelper();
+    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
+
   }
 
   loggedIn(){
