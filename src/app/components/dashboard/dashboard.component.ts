@@ -12,6 +12,7 @@ import { QuestionService } from '../../services/question.service'
 export class DashboardComponent implements OnInit {
   user: Object
   questions: Array<Object>
+  topics: Array<String>
 
   constructor(
     private authService: AuthService,
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit {
     private qService: QuestionService) { }
 
   ngOnInit() {
+    this.topics = ["Physics", "Chemistry", "Biology", "Psychology"]
 
     var response: any = {}
     this.authService.getProfile().subscribe(data => {

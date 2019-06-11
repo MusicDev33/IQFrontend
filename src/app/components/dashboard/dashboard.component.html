@@ -4,6 +4,12 @@
     <li class="list-group-item">Email: {{user.email}}</li>
   </ul>
 </div>
+
+<div class="horizontal">
+  <ng-container *ngFor="let topic of topics">
+    <a href="#">{{ topic }}</a>
+  </ng-container>
+</div>
 <br><br>
 <div *ngIf="questions">
   <h2>Questions</h2>
