@@ -74,6 +74,7 @@ export class QuestionComponent implements OnInit {
     var answer = {
       answerText: this.answerText,
       poster: "Shelby McCowan",
+      posterID: "5cf4a0295336b50b9f731b8c",
       votes: 0,
       questionURL: this.questionURL,
       views: 1,
