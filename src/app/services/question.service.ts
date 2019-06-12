@@ -31,21 +31,21 @@ export class QuestionService {
   askQuestion(question){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('http://104.248.68.166:2999/questions/add', question, {headers: headers})
+    return this.http.post('http://104.248.68.166:2999/api/v1/questions/add', question, {headers: headers})
       .pipe(map(res => res));
   }
 
   getQuestion(questionURL){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.get('http://104.248.68.166:2999/questions/'+questionURL, {headers: headers})
+    return this.http.get('http://104.248.68.166:2999/api/v1/questions/'+questionURL, {headers: headers})
       .pipe(map(res => res));
   }
 
   getAllQuestions(){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.get('http://104.248.68.166:2999/questions', {headers: headers})
+    return this.http.get('http://104.248.68.166:2999/api/v1/questions', {headers: headers})
       .pipe(map(res => res));
   }
 }

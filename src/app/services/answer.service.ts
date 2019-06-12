@@ -13,14 +13,14 @@ export class AnswerService {
   getAnswers(questionURL){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.get('http://104.248.68.166:2999/questions/'+questionURL+'/answers', {headers: headers})
+    return this.http.get('http://104.248.68.166:2999/api/v1/questions/'+questionURL+'/answers', {headers: headers})
       .pipe(map(res => res));
   }
 
   sendAnswer(answer, questionURL){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('http://104.248.68.166:2999/questions/'+questionURL+'/answers/add', answer, {headers: headers})
+    return this.http.post('http://104.248.68.166:2999/api/v1/questions/'+questionURL+'/answers/add', answer, {headers: headers})
       .pipe(map(res => res));
 
   }
