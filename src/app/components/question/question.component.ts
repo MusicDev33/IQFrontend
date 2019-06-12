@@ -33,7 +33,7 @@ export class QuestionComponent implements OnInit {
   questionURL: String
   answerText: String
   hasAnswered: boolean
-  userHasAnswered: boolean = false
+  userHasAnswered: boolean
 
   constructor(
     private questionService: QuestionService,

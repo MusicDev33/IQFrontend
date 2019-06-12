@@ -1,13 +1,6 @@
-<div *ngIf="user">
-  <h2 class="page-header">{{user.name}}</h2>
-  <ul class="list-group">
-    <li class="list-group-item">Email: {{user.email}}</li>
-  </ul>
-</div>
-
 <div class="horizontal">
   <ng-container *ngFor="let topic of topics">
-    <a href="#">{{ topic }}</a>
+    <a [routerLink]="">{{ topic }}</a>
   </ng-container>
 </div>
 <br><br>
@@ -16,7 +9,7 @@
   <div class="table-responsive">
     <table class="table" *ngFor="let question of questions">
       <tr>
-        <th (click)="questionClicked(question.questionText)">{{question.questionText}}</th>
+        <th (click)="questionClicked(question.questionText)"><a [routerLink]="">{{question.questionText}}</a></th>
       </tr>
     </table>
   </div>
