@@ -3,7 +3,7 @@
   <p class="lead">Welcome to Inquantir!</p>
   <img src="https://drive.google.com/uc?id=1swZwRLlZowYU3QzhmSaMQAE8TsAYt0sX" alt="Inquantir Logo" height="128" width="128">
   <br><br>
-  <p class="bs-component">
+  <p class="bs-component" *ngIf="!authService.loggedIn()">
     <button type="button" class="btn btn-secondary" [routerLink]="['/register']">Register</button>
     <button type="button" class="btn btn-primary" [routerLink]="['/authenticate']">Login</button>
   </p>
