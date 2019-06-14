@@ -53,7 +53,22 @@ export class AuthService {
   getUserID(): any{
     let jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));
+  }
 
+  getUserNameURL(){
+    if (this.user){
+      var url: String = ""
+      for (var i = 0; i < this.user.name.length; i++) {
+        if (this.user.name[i] == " " || this.user.name[i] == "'"){
+          url += "-"
+        }else{
+          url += this.user.name[i]
+        }
+      }
+      return url
+    }else{
+      return "null"
+    }
   }
 
   loggedIn(){

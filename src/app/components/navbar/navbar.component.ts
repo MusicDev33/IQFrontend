@@ -33,6 +33,11 @@ export class NavbarComponent implements OnInit {
     return false
   }
 
+  onProfileClick(){
+    var profileURL = "/profile/" + this.authService.getUserNameURL()
+    this.router.navigate([profileURL])
+  }
+
   onAskSubmit(form: NgForm){
     const question = {
       question: this.questionText,
