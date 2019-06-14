@@ -1,7 +1,10 @@
-<div *ngIf="user">
-  <h2>{{ this.user.name }}</h2>
+<div *ngIf="user && currentUser">
+  <h2>{{ this.currentUser.name }}</h2>
   <h6>Insert clever bio here, there won't be a credential system outside of
     "I went/go to X University". Maybe you teach at X University. I dunno</h6>
+  <div *ngIf="user._id == currentUser._id">
+    <button type="button" class="btn btn-primary">Edit</button>
+  </div>
 </div>
 
 <div>

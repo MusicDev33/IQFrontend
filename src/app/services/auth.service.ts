@@ -51,7 +51,8 @@ export class AuthService {
   }
 
   getUser(){
-    return localStorage.getItem('user')
+    let jwtHelper: JwtHelper = new JwtHelper();
+    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
   loadToken(){
