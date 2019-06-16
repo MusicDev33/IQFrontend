@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   lastName: String;
   email: String;
   password: String;
+  handle: String;
 
   response: any = {}
 
@@ -32,7 +33,8 @@ export class RegisterComponent implements OnInit {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      password: this.password
+      password: this.password,
+      handle: this.handle
     }
 
     // Required Fields
