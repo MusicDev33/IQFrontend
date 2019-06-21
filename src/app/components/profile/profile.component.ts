@@ -10,18 +10,27 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: Object
   userHandle: String
+
+  // Current user is the user to whom the profile page belongs to
+  // User is the user using the browser
   currentUser: any = {}
+
+  userMatch: Boolean
 
   constructor(private authService: AuthService,
               public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.userMatch = false;
+
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
-    this.currentUser = this.authService.getUserID()
     this.authService.loadUser();
 
     this.authService.getUserByHandle(this.userHandle).subscribe(data => {
-      console.log(data)
+      var res: any = {}
+      res = data
+      this.currentUser = res.user
+      console.log(this.currentUser)
     })
 
     this.authService.getProfile().subscribe(data => {
