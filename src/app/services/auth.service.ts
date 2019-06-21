@@ -37,6 +37,13 @@ export class AuthService {
       .pipe(map(res => res));
   }
 
+  getUserByHandle(handle){
+    this.loadToken();
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    return this.http.get('http://104.248.68.166:2999/api/v1/users/profile/'+handle, {headers: headers})
+      .pipe(map(res => res));
+  }
+
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user))
@@ -46,8 +53,8 @@ export class AuthService {
   }
 
   loadUser(){
-    const user = localStorage.getItem('user');
-    this.user = user;
+    let jwtHelper: JwtHelper = new JwtHelper();
+    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
   getUser(){
@@ -66,6 +73,8 @@ export class AuthService {
   }
 
   getUserNameURL(){
+    this.loadUser();
+    console.log(this.user)
     if (this.user){
       var url: String = ""
       for (var i = 0; i < this.user.name.length; i++) {
