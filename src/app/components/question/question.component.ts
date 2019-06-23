@@ -35,6 +35,8 @@ export class QuestionComponent implements OnInit {
   hasAnswered: boolean
   userHasAnswered: boolean
 
+  answerMode: boolean
+
   constructor(
     private questionService: QuestionService,
     private activatedRoute: ActivatedRoute,
@@ -44,6 +46,7 @@ export class QuestionComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.answerMode = false
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
     var response: any = {}
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
