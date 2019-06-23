@@ -57,6 +57,14 @@ export class AuthService {
     this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
+  userMongoID(){
+    let jwtHelper: JwtHelper = new JwtHelper();
+    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
+    // returns the ObjectId in string form.
+    // for whatever reason, .str and .toString() didn't work.
+    return ""+this.user._id
+  }
+
   getUser(){
     let jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));

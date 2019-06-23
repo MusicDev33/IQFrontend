@@ -73,13 +73,14 @@ export class QuestionComponent implements OnInit {
   sendAnswer(form: NgForm){
     var answer = {
       answerText: this.answerText,
-      poster: "Shelby McCowan",
-      posterID: "5cf4a0295336b50b9f731b8c",
+      poster: this.authService.getUser().name,
+      posterID: this.authService.userMongoID(),
       votes: 0,
       questionURL: this.questionURL,
       views: 1,
       comments: []
     }
+    console.log(answer)
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
       var response: any = {}
       response = data
