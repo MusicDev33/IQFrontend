@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Http, Headers } from '@angular/http'
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt'
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,13 @@ export class QuestionService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
     return this.http.get('http://104.248.68.166:2999/api/v1/questions', {headers: headers})
+      .pipe(map(res => res));
+  }
+
+  getUserQuestions(userID){
+    const token = localStorage.getItem('id_token');
+    let headers = new HttpHeaders().append('Authorization', token).append('Content-Type', 'application/json');
+    return this.http.get('http://104.248.68.166:2999/api/v1/users/' + userID + '/questions', {headers: headers})
       .pipe(map(res => res));
   }
 }

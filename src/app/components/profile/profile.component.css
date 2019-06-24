@@ -1,0 +1,17 @@
+.qaSelectors{
+  font-family:sans-serif;
+  font-size: 30px;
+  border-radius: 10px;
+  padding-right: 2px;
+  padding-left: 2px;
+
+  cursor: pointer;
+}
+
+.selected{
+  background-color: #d2def2;
+}
+
+.qaSelectors:hover{
+  background-color: #d2def2;
+}

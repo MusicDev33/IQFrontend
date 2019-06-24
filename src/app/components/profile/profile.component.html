@@ -8,9 +8,7 @@
 </div>
 
 <div>
-  <h3>Answers</h3>
-</div>
-
-<div>
-  <h3>Questions</h3>
+  <p><span class="qaSelectors" (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">Questions</span>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <span class="qaSelectors" (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">Answers</span></p>
 </div>
