@@ -1,0 +1,12 @@
+.profileCircle {
+  height: 30px;
+  width: 30px;
+  background-color: #73a2ef;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.posterName {
+  padding-left: 5px;
+}
