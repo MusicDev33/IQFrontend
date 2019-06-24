@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
       question: this.questionText,
       subject: "Physics",
       source: "Mastering Physics",
-      asker: "Shelby McCowan",
+      asker: this.authService.getUser().name,
       askerID: this.authService.userMongoID()
     }
 
