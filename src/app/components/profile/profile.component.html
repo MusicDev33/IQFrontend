@@ -26,7 +26,8 @@
   <div *ngIf="userAnswers && view === contentView.answers">
     <div *ngFor="let answer of userAnswers">
       <div class="answerBox">
-        <div><a [routerLink]="">{{answer.answerText}}</a></div>
+        <h4 (click)="onQuestionClicked(answer.questionText)"><a [routerLink]="">{{ answer.questionText }}</a></h4>
+        <div>{{answer.answerText}}</div>
       </div>
       <br>
     </div>

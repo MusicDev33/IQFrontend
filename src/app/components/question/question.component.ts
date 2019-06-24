@@ -28,7 +28,7 @@ interface user {
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  question: object
+  question: any
   answers: Array<Answer>
   questionURL: String
   answerText: String
@@ -81,7 +81,8 @@ export class QuestionComponent implements OnInit {
       votes: 0,
       questionURL: this.questionURL,
       views: 1,
-      comments: []
+      comments: [],
+      questionText: this.question.questionText
     }
     console.log(answer)
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
