@@ -21,8 +21,11 @@
     <h4>Answers ({{ answers.length }})</h4>
 
     <div *ngFor="let answer of answers">
-      <span class="profileCircle"></span><span class="posterName"><b>{{answer.poster}}</b></span>
-      <p>{{answer.answerText}}</p>
+      <div class="answerBox">
+        <span class="profileCircle"></span><span class="posterName"><b>{{answer.poster}}</b></span>
+        <p>{{answer.answerText}}</p>
+      </div>
+      <br>
     </div>
   </div>
 </div>

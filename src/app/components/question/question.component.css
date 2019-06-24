@@ -10,3 +10,12 @@
 .posterName {
   padding-left: 5px;
 }
+
+.answerBox {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid lightgrey;
+  padding: 2px;
+  border-radius: 20px;
+  width: 40%;
+}
