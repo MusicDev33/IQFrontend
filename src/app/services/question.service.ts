@@ -51,8 +51,8 @@ export class QuestionService {
   }
 
   getUserQuestions(userID){
-    const token = localStorage.getItem('id_token');
-    let headers = new HttpHeaders().append('Authorization', token).append('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     return this.http.get('http://104.248.68.166:2999/api/v1/users/' + userID + '/questions', {headers: headers})
       .pipe(map(res => res));
   }

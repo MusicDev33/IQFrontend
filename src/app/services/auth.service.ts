@@ -38,8 +38,8 @@ export class AuthService {
   }
 
   getUserByHandle(handle){
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     return this.http.get('http://104.248.68.166:2999/api/v1/users/profile/'+handle, {headers: headers})
       .pipe(map(res => res));
   }

@@ -45,13 +45,28 @@ export class ProfileComponent implements OnInit {
     this.userMatch = false;
 
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
-    this.authService.loadUser();
 
     this.authService.getUserByHandle(this.userHandle).subscribe(data => {
       var res: any = {}
       res = data
       this.currentUser = res.user
       console.log(res)
+
+      this.qService.getUserQuestions(""+this.currentUser._id).subscribe(data => {
+        var res: any = {}
+        res = data
+        console.log(res)
+        this.userQuestions = res.questions
+        console.log(this.userQuestions)
+      })
+
+      this.ansService.getUserAnswers(""+this.currentUser._id).subscribe(data => {
+        var res: any = {}
+        res = data
+        console.log(res)
+        this.userAnswers = res.answers
+        console.log(this.userAnswers)
+      })
     })
     if (this.authService.hasToken()){
       this.authService.getProfile().subscribe(data => {
@@ -64,22 +79,6 @@ export class ProfileComponent implements OnInit {
         return false
       })
     }
-
-    this.qService.getUserQuestions(this.authService.userMongoID()).subscribe(data => {
-      var res: any = {}
-      res = data
-      console.log(res)
-      this.userQuestions = res.questions
-      console.log(this.userQuestions)
-    })
-
-    this.ansService.getUserAnswers(this.authService.userMongoID()).subscribe(data => {
-      var res: any = {}
-      res = data
-      console.log(res)
-      this.userAnswers = res.answers
-      console.log(this.userAnswers)
-    })
   }
 
   //This is how we will get our enums...kinda hacky
@@ -101,7 +100,7 @@ export class ProfileComponent implements OnInit {
 
   // Not to be confused with onQuestionsClick
   onQuestionClicked(text){
-    var questionURL = this.qService.questionTextToURL(text)
+    var questionURL = ""//this.qService.questionTextToURL(text)
     console.log(questionURL)
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
