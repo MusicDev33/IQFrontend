@@ -1,14 +1,34 @@
-<div *ngIf="user && currentUser">
-  <h2>{{ this.currentUser.name }}</h2>
-  <h6>Insert clever bio here, there won't be a credential system outside of
-    "I went/go to X University". Maybe you teach at X University. I dunno</h6>
-  <div *ngIf="user._id == currentUser._id">
-    <button type="button" class="btn btn-primary">Edit</button>
+<div class="text-center">
+  <div *ngIf="user && currentUser">
+    <h2>{{ this.currentUser.name }}</h2>
+    <h6>Insert clever bio here, there won't be a credential system outside of
+      "I went/go to X University". Maybe you teach at X University. I dunno</h6>
+    <div *ngIf="user._id == currentUser._id">
+      <button type="button" class="btn btn-primary">Edit</button>
+    </div>
   </div>
-</div>
 
-<div>
-  <p><span class="qaSelectors" (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">Questions</span>
-    <span>&nbsp;&nbsp;&nbsp;</span>
-    <span class="qaSelectors" (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">Answers</span></p>
+  <div>
+    <p><span class="qaSelectors" (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">Questions</span>
+      <span>&nbsp;&nbsp;&nbsp;</span>
+      <span class="qaSelectors" (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">Answers</span></p>
+  </div>
+
+  <div *ngIf="userQuestions && view === contentView.questions">
+    <div *ngFor="let question of userQuestions">
+      <div class="questionBox">
+        <div (click)="onQuestionClicked(question.questionText)"><a [routerLink]="">{{question.questionText}}</a></div>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div *ngIf="userAnswers && view === contentView.answers">
+    <div *ngFor="let answer of userAnswers">
+      <div class="answerBox">
+        <div><a [routerLink]="">{{answer.answerText}}</a></div>
+      </div>
+      <br>
+    </div>
+  </div>
 </div>

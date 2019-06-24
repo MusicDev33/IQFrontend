@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service'
 import { QuestionService } from '../../services/question.service'
+import { AnswerService } from '../../services/answer.service'
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router'
 
 
 enum ContentView {
@@ -31,7 +33,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authService: AuthService,
               public activatedRoute: ActivatedRoute,
-              public qService: QuestionService) { }
+              public qService: QuestionService,
+              public router: Router,
+              public ansService: AnswerService) { }
 
   ngOnInit() {
     // Enum hax
@@ -64,6 +68,16 @@ export class ProfileComponent implements OnInit {
       var res: any = {}
       res = data
       console.log(res)
+      this.userQuestions = res.questions
+      console.log(this.userQuestions)
+    })
+
+    this.ansService.getUserAnswers(this.authService.userMongoID()).subscribe(data => {
+      var res: any = {}
+      res = data
+      console.log(res)
+      this.userAnswers = res.answers
+      console.log(this.userAnswers)
     })
   }
 
@@ -82,5 +96,13 @@ export class ProfileComponent implements OnInit {
     if (this.view != ContentView.questions){
       this.view = ContentView.questions
     }
+  }
+
+  // Not to be confused with onQuestionsClick
+  onQuestionClicked(text){
+    var questionURL = this.qService.questionTextToURL(text)
+    console.log(questionURL)
+    var routeURL = '/question/' + questionURL
+    this.router.navigate([routeURL])
   }
 }

@@ -15,3 +15,23 @@
 .qaSelectors:hover{
   background-color: #d2def2;
 }
+
+/* Should probably call this a container, not a box...oh well.*/
+.questionBox {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid lightgrey;
+  padding: 2px;
+  border-radius: 20px;
+  width: 40%;
+}
+
+/* This is the same for now, it'll be different one day*/
+.answerBox {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid lightgrey;
+  padding: 2px;
+  border-radius: 20px;
+  width: 40%;
+}
