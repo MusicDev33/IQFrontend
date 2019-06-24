@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       var res: any = {}
       res = data
       this.currentUser = res.user
-      console.log(this.currentUser)
+      console.log(res)
     })
 
     this.authService.getProfile().subscribe(data => {

@@ -70,6 +70,12 @@ export class AuthService {
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
+  getUserHandle(){
+    let jwtHelper: JwtHelper = new JwtHelper();
+    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
+    return this.user.handle
+  }
+
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;

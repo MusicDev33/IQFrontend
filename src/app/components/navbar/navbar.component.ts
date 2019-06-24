@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onProfileClick(){
-    var profileURL = "/profile/" + this.authService.getUserNameURL()
+    var profileURL = "/profile/" + this.authService.getUserHandle()
     this.router.navigate([profileURL])
   }
 
