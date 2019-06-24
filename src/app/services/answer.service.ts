@@ -18,11 +18,17 @@ export class AnswerService {
   }
 
   sendAnswer(answer, questionURL){
-    console.log(answer)
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
     return this.http.post('http://104.248.68.166:2999/api/v1/questions/'+questionURL+'/answers/add', answer, {headers: headers})
       .pipe(map(res => res));
 
+  }
+
+  getUserAnswers(userID){
+    const token = localStorage.getItem('id_token');
+    let headers = new HttpHeaders().append('Authorization', token).append('Content-Type', 'application/json');
+    return this.http.get('http://104.248.68.166:2999/api/v1/users/' + userID + '/answers', {headers: headers})
+      .pipe(map(res => res));
   }
 }
