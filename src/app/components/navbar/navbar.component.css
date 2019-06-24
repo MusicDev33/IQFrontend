@@ -1,4 +1,9 @@
 #search{
   width: 250px;
   text-align:center;
+  border-radius: 20px;
+}
+
+.searchBar{
+  border-radius: 20px;
 }

@@ -26,7 +26,7 @@
       </li>-->
     </ul>
     <form *ngIf="authService.loggedIn()" #askForm="ngForm" class="form-inline navbar-nav mr-auto" id="search" role="search" (submit)="onAskSubmit(askForm)">
-      <div class="form-group">
+      <div class="form-group searchBar">
         <input class="form-control col-sm-8" [(ngModel)]="questionText" name="questionText" type="text" placeholder="Ask a question">
         <button class="btn btn-primary" type="submit">Ask</button>
       </div>
