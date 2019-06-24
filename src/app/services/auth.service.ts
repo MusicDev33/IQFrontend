@@ -81,6 +81,22 @@ export class AuthService {
     this.authToken = token;
   }
 
+  hasToken(){
+    let jwtHelper: JwtHelper = new JwtHelper();
+
+    if(localStorage.getItem('id_token')){
+      if (this.loggedIn()){
+        return true
+      }else{
+        this.logout()
+        return false;
+      }
+    }else{
+      this.logout()
+      return false;
+    }
+  }
+
   getUserID(): any{
     let jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));

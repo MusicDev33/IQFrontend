@@ -53,16 +53,17 @@ export class ProfileComponent implements OnInit {
       this.currentUser = res.user
       console.log(res)
     })
-
-    this.authService.getProfile().subscribe(data => {
-      var res: any = {}
-      res = data
-      this.user = res.user
-      console.log(this.user)
-    }, err => {
-      console.log(err)
-      return false
-    })
+    if (this.authService.hasToken()){
+      this.authService.getProfile().subscribe(data => {
+        var res: any = {}
+        res = data
+        this.user = res.user
+        console.log(this.user)
+      }, err => {
+        console.log(err)
+        return false
+      })
+    }
 
     this.qService.getUserQuestions(this.authService.userMongoID()).subscribe(data => {
       var res: any = {}
