@@ -10,6 +10,7 @@ import { Inject } from '@angular/core';
 })
 export class SearchpopupComponent implements OnInit {
   description: string;
+  question: string;
   form: FormGroup;
 
   constructor(
@@ -24,6 +25,7 @@ export class SearchpopupComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       description: [this.description, []],
+      question: [this.question, []]
     });
   }
 
@@ -38,6 +40,6 @@ export class SearchpopupComponent implements OnInit {
   autoGrow(element) {
     element.style.height = "5px";
     element.style.height = (element.scrollHeight)+"px";
-}
+  }
 
 }
