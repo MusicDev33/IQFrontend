@@ -15,3 +15,12 @@ textarea {
     min-height: 50px;
     max-height: 100px;
 }
+
+.sectionTitle{
+  color: #a2adbf;
+}
+
+.sectionOpen{
+  color: #383d44;
+  cursor: pointer;
+}
