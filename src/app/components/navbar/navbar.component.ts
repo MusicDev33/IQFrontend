@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service'
 import { QuestionService } from '../../services/question.service'
 import { Router } from '@angular/router'
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material'
+import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +20,8 @@ export class NavbarComponent implements OnInit {
     private flashMsg: FlashMessagesService,
     private authService: AuthService,
     private router: Router,
-    private questionService: QuestionService) { }
+    private questionService: QuestionService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -39,6 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onAskSubmit(form: NgForm){
+    /*
     const question = {
       question: this.questionText,
       subject: "Physics",
@@ -58,7 +62,20 @@ export class NavbarComponent implements OnInit {
         this.flashMsg.show("Something went wrong. Try asking again.", {cssClass: 'alert-danger', timeout: 1500})
       }
     });
+    */
 
+    var dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "500px";
+
+    dialogConfig.data = {
+      description: "A cool test dialog!!!",
+      question: this.questionText
+    }
+    const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( data => {
+      console.log("Dialog output: ", data);
+    })
   }
-
 }

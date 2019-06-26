@@ -19,6 +19,7 @@ export class SearchpopupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data
     ) {
       this.description = data.description
+      this.question = data.question
 
   }
 
