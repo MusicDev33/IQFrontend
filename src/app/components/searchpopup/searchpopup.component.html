@@ -1,15 +1,8 @@
 <div>
   <h2 mat-dialog-title>Ask Question</h2>
-  <hr>
-  <mat-dialog-content>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam maxime cum dolorem officiis assumenda rem alias, omnis nobis nam. Ratione soluta libero architecto cupiditate at fugit consectetur sit dignissimos vitae.
-    <br>
-    <br>
-    <strong>{{data}}</strong>
-  </mat-dialog-content>
-  <hr>
+  <mat-dialog-content>{{ description}}</mat-dialog-content>
+
   <mat-dialog-actions>
-    <button mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>&nbsp;
-    <button mat-raised-button (click)="onCloseCancel()">CANCEL</button>
+    <button class="mat-raised-button" (click)="close()">Close</button>
   </mat-dialog-actions>
 </div>
