@@ -68,6 +68,9 @@ export class NavbarComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
+    dialogConfig.position = {
+      top: "80px"
+    }
 
     dialogConfig.data = {
       description: "A cool test dialog!!!",
