@@ -35,4 +35,9 @@ export class SearchpopupComponent implements OnInit {
     this.dialogRef.close(this.form.value);
   }
 
+  autoGrow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+
 }
