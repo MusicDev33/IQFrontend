@@ -109,18 +109,7 @@ export class ProfileComponent implements OnInit {
     this.router.navigate([routeURL])
   }
 
-  openDialog() {
-    var dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "500px";
-
-    dialogConfig.data = {
-      description: "A cool test dialog!!!"
-    }
-    const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe( data => {
-      console.log("Dialog output: ", data);
-    })
+  editBio(){
+    
   }
 }
