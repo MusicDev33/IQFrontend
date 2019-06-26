@@ -53,6 +53,7 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     QuestionService,
     AnswerService,
     AuthGuard],
+  entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
