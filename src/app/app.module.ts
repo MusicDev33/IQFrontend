@@ -23,6 +23,7 @@ import { AnswerService } from './services/answer.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component'
+import { SearchpopupComponent } from './components/searchpopup/searchpopup.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { QuestionComponent } from './components/question/question.component'
     AuthenticateComponent,
     DashboardComponent,
     QuestionComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchpopupComponent
   ],
   imports: [
     BrowserModule,
