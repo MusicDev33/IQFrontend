@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
+import { MatDialogModule } from '@angular/material'
+import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +24,7 @@ import { AnswerService } from './services/answer.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component'
+import { SearchpopupComponent } from './components/searchpopup/searchpopup.component'
 
 @NgModule({
   declarations: [
@@ -30,14 +35,20 @@ import { QuestionComponent } from './components/question/question.component'
     AuthenticateComponent,
     DashboardComponent,
     QuestionComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchpopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     FlashMessagesModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule ,
+    MatCardModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ValidateService,
@@ -45,6 +56,7 @@ import { QuestionComponent } from './components/question/question.component'
     QuestionService,
     AnswerService,
     AuthGuard],
+  entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,26 @@
+#questionBar {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#askButton {
+  position: absolute;
+  right:    0;
+  bottom:   0;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+.sectionTitle{
+  color: #a2adbf;
+}
+
+.sectionOpen{
+  color: #383d44;
+  cursor: pointer;
+}

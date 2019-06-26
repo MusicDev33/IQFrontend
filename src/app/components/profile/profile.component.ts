@@ -4,7 +4,12 @@ import { QuestionService } from '../../services/question.service'
 import { AnswerService } from '../../services/answer.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
+<<<<<<< HEAD
 import { flatMap } from 'rxjs/operators'
+=======
+import { MatDialog, MatDialogConfig } from '@angular/material'
+import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
+>>>>>>> 7b825fe39a11d7794dde602e9bf9747124dd6018
 
 
 enum ContentView {
@@ -36,7 +41,8 @@ export class ProfileComponent implements OnInit {
               public activatedRoute: ActivatedRoute,
               public qService: QuestionService,
               public router: Router,
-              public ansService: AnswerService) { }
+              public ansService: AnswerService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     // Enum hax
@@ -105,5 +111,9 @@ export class ProfileComponent implements OnInit {
     console.log(questionURL)
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
+  }
+
+  editBio(){
+    
   }
 }
