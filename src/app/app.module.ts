@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
+import { MatDialogModule } from '@angular/material'
+import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +40,10 @@ import { QuestionComponent } from './components/question/question.component'
     AppRoutingModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule ,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [
     ValidateService,
