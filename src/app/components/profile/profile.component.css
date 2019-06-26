@@ -1,3 +1,12 @@
+#profileCircle {
+  height: 70px;
+  width: 70px;
+  background-color: #73a2ef;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .qaSelectors{
   font-family:sans-serif;
   font-size: 30px;
