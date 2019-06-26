@@ -1,8 +1,13 @@
-<div>
-  <h2 mat-dialog-title>Ask Question</h2>
-  <mat-dialog-content>{{ description}}</mat-dialog-content>
-
-  <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">Close</button>
-  </mat-dialog-actions>
+<div class="text-center">
+  <h2>Ask Question</h2>
+  <h4>{{ description }}</h4>
+  <div [formGroup]="form" class="input-group" id="questionBar">
+    <input class="form-control" placeholder="Ask a question!" formControlName="description">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="submit">Ask</button>
+    </span>
+  </div>
+  <div>
+    <button class="btn btn-secondary" (click)="close()">Close</button>
+  </div>
 </div>

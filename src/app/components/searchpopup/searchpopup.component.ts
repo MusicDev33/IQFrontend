@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms'
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-searchpopup',
@@ -6,10 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searchpopup.component.css']
 })
 export class SearchpopupComponent implements OnInit {
+  description: string;
+  form: FormGroup;
 
-  constructor() { }
+  constructor(
+    public fb: FormBuilder,
+    public dialogRef: MatDialogRef<SearchpopupComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+    ) {
+      this.description = data.description
+
+  }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      description: [this.description, []],
+    });
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
+
+  askQuestion(){
+    this.dialogRef.close(this.form.value);
   }
 
 }
