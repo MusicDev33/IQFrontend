@@ -13,6 +13,11 @@ export class SearchpopupComponent implements OnInit {
   question: string;
   form: FormGroup;
 
+  topicMode: boolean;
+  sourceMode: boolean;
+
+  formComplete: boolean;
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -24,6 +29,9 @@ export class SearchpopupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.topicMode = false
+    this.sourceMode = false
+    this.formComplete = false;
     this.form = this.fb.group({
       description: [this.description, []],
       question: [this.question, []]

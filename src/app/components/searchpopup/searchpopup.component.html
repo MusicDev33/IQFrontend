@@ -2,10 +2,21 @@
   <h2>Ask Question</h2>
   <p>Be sure to make the question specific, and make sure any subjects or sources are <em><b>relevant and useful to others</b></em>.</p>
   <div [formGroup]="form" class="input-group" id="questionBar">
-    <textarea class="form-control" placeholder="Ask a question!" formControlName="question" onkeyup=""></textarea>
+    <textarea class="form-control" placeholder="Ask a question!" formControlName="question" ng-keyup="autoGrow(this)"></textarea>
   </div>
+
+  <div *ngIf="topicMode">
+    <div class="input-group">
+      <input class="form-control" placeholder="Enter topic name">
+    </div>
+  </div>
+
+  <div *ngIf="sourceMode">
+
+  </div>
+
   <div style="position:relative;">
     <button class="btn btn-secondary" (click)="close()">Close</button>
-    <div><button class="btn btn-primary" (click)="askQuestion()" id="askButton">Ask</button></div>
+    <div><button class="btn btn-primary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">Ask</button></div>
   </div>
 </div>
