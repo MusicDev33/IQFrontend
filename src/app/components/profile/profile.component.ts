@@ -4,6 +4,7 @@ import { QuestionService } from '../../services/question.service'
 import { AnswerService } from '../../services/answer.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
+import { flatMap } from 'rxjs/operators'
 
 
 enum ContentView {
@@ -100,7 +101,7 @@ export class ProfileComponent implements OnInit {
 
   // Not to be confused with onQuestionsClick
   onQuestionClicked(text){
-    var questionURL = ""//this.qService.questionTextToURL(text)
+    var questionURL = this.qService.questionTextToURL(text)
     console.log(questionURL)
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
