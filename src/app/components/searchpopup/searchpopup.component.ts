@@ -12,6 +12,7 @@ export class SearchpopupComponent implements OnInit {
   description: string;
   question: string;
   topic: string;
+  source: string;
   form: FormGroup;
 
   questionMode: boolean;
@@ -37,12 +38,13 @@ export class SearchpopupComponent implements OnInit {
     this.questionMode = true
     this.topicMode = false
     this.sourceMode = false
-    
+
     this.formComplete = false;
     this.form = this.fb.group({
       description: [this.description, []],
       question: [this.question, []],
-      topic: [this.topic, []]
+      topic: [this.topic, []],
+      source: [this.source, []]
     });
 
     this.questionText = this.question;
@@ -79,6 +81,14 @@ export class SearchpopupComponent implements OnInit {
     this.questionMode = false
     this.topicMode = false
     this.sourceMode = true
+  }
+
+  checkFormComplete(){
+    if (this.questionText.length > 0 && this.topicText.length > 0 && this.sourceText.length > 0){
+      this.formComplete = true
+    }else{
+      this.formComplete = false
+    }
   }
 
 }
