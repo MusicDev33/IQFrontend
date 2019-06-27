@@ -20,7 +20,32 @@ textarea {
   color: #a2adbf;
 }
 
-.sectionOpen{
+.sectionOpenTitle{
   color: #383d44;
   cursor: pointer;
+  padding-top: 10px;
+}
+
+.section-title-animate {
+  animation-fill-mode: forwards;
+  animation-name: text-color-change;
+  animation-duration: 0.4s;
+}
+
+.sectionField{
+  padding-top: 10px;
+}
+
+.hide-element{
+  display:none;
+}
+
+.confirmText {
+  color: #3e7ee6;
+}
+
+/* Animations */
+@keyframes text-color-change {
+  from {color: black;}
+  to {color: #3e7ee6;}
 }

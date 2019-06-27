@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
 
     dialogConfig.data = {
       description: "A cool test dialog!!!",
-      question: this.questionText
+      question: this.questionText,
     }
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( data => {
