@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ElementRef, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms'
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import { Inject } from '@angular/core';
@@ -9,6 +10,10 @@ import { Inject } from '@angular/core';
   styleUrls: ['./searchpopup.component.css']
 })
 export class SearchpopupComponent implements OnInit {
+  @ViewChild('questionInput', {static: false}) qInput: ElementRef;
+  @ViewChild('topicInput', {static: false}) tInput: ElementRef;
+  @ViewChild('sourceInput', {static: false}) sInput: ElementRef;
+
   description: string;
   question: string;
   topic: string;
@@ -89,6 +94,10 @@ export class SearchpopupComponent implements OnInit {
     }else{
       this.formComplete = false
     }
+  }
+
+  focusQuestion(){
+
   }
 
 }
