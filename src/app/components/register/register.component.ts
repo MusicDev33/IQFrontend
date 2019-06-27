@@ -20,10 +20,10 @@ export class RegisterComponent implements OnInit {
   response: any = {}
 
   constructor(
-    private validator: ValidateService,
-    private flashMsg: FlashMessagesService,
-    private authService: AuthService,
-    private router: Router) { }
+    public validator: ValidateService,
+    public flashMsg: FlashMessagesService,
+    public authService: AuthService,
+    public router: Router) { }
 
   ngOnInit() {
   }

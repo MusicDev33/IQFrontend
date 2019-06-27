@@ -17,10 +17,10 @@ export class NavbarComponent implements OnInit {
   questionText: String;
 
   constructor(
-    private flashMsg: FlashMessagesService,
-    private authService: AuthService,
-    private router: Router,
-    private questionService: QuestionService,
+    public flashMsg: FlashMessagesService,
+    public authService: AuthService,
+    public router: Router,
+    public questionService: QuestionService,
     public dialog: MatDialog) { }
 
   ngOnInit() {

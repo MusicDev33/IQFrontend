@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   userQuestions: Array<Object>
   userAnswers: Array<Object>
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               public activatedRoute: ActivatedRoute,
               public qService: QuestionService,
               public router: Router,

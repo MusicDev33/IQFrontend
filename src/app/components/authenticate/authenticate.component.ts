@@ -15,10 +15,10 @@ export class AuthenticateComponent implements OnInit {
   password: String;
 
   constructor(
-    private validator: ValidateService,
-    private flashMsg: FlashMessagesService,
-    private authService: AuthService,
-    private router: Router) { }
+    public validator: ValidateService,
+    public flashMsg: FlashMessagesService,
+    public authService: AuthService,
+    public router: Router) { }
 
   ngOnInit() {
   }

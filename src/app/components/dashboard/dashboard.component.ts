@@ -15,9 +15,9 @@ export class DashboardComponent implements OnInit {
   topics: Array<String>
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private qService: QuestionService) { }
+    public authService: AuthService,
+    public router: Router,
+    public qService: QuestionService) { }
 
   ngOnInit() {
     this.topics = ["Physics", "Chemistry", "Biology", "Psychology"]

@@ -38,12 +38,12 @@ export class QuestionComponent implements OnInit {
   answerMode: boolean
 
   constructor(
-    private questionService: QuestionService,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
-    private answerService: AnswerService,
-    private flashMsg: FlashMessagesService,
-    private router: Router) { }
+    public questionService: QuestionService,
+    public activatedRoute: ActivatedRoute,
+    public authService: AuthService,
+    public answerService: AnswerService,
+    public flashMsg: FlashMessagesService,
+    public router: Router) { }
 
   ngOnInit() {
     this.answerMode = false
