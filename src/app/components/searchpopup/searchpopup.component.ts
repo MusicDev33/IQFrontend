@@ -10,9 +10,6 @@ import { Inject } from '@angular/core';
   styleUrls: ['./searchpopup.component.css']
 })
 export class SearchpopupComponent implements OnInit {
-  @ViewChild('questionInput', {static: false}) qInput: ElementRef;
-  @ViewChild('topicInput', {static: false}) tInput: ElementRef;
-  @ViewChild('sourceInput', {static: false}) sInput: ElementRef;
 
   description: string;
   question: string;
@@ -58,7 +55,7 @@ export class SearchpopupComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close(this.form.value);
+    this.dialogRef.close();
   }
 
   askQuestion(){
@@ -95,9 +92,4 @@ export class SearchpopupComponent implements OnInit {
       this.formComplete = false
     }
   }
-
-  focusQuestion(){
-
-  }
-
 }
