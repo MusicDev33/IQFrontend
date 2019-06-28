@@ -24,6 +24,11 @@ textarea {
   color: #383d44;
   cursor: pointer;
   padding-top: 10px;
+  border-radius: 10px;
+  background-color: white;
+  transition: 0.3s;
+  display: inline-block;
+  line-height: 1;
 }
 
 .section-title-animate {
@@ -42,6 +47,10 @@ textarea {
 
 .confirmText {
   color: #3e7ee6;
+}
+
+.sectionOpenTitle:hover{
+  background-color: #e8b1fc;
 }
 
 /* Animations */
