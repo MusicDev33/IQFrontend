@@ -47,9 +47,9 @@ export class SearchpopupComponent implements OnInit {
     this.formComplete = false;
     this.form = this.fb.group({
       description: [this.description, []],
-      question: [this.question, []],
-      topic: [this.topic, []],
-      source: [this.source, []]
+      question: [this.questionText, []],
+      topic: [this.topicText, []],
+      source: [this.sourceText, []]
     });
 
     this.questionText = this.question;
