@@ -77,6 +77,7 @@ export class QuestionComponent implements OnInit {
     var answer = {
       answerText: this.answerText,
       poster: this.authService.getUser().name,
+      posterHandle: this.authService.getUser().handle,
       posterID: this.authService.userMongoID(),
       votes: 0,
       questionURL: this.questionURL,
