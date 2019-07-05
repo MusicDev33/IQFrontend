@@ -87,7 +87,8 @@ export class NavbarComponent implements OnInit {
         subject: res.topic,
         source: res.source,
         asker: this.authService.getUser().name,
-        askerID: this.authService.userMongoID()
+        askerID: this.authService.userMongoID(),
+        askerHandle: this.authService.getUserHandle()
       }
       console.log(question)
       this.questionService.askQuestion(question).subscribe(data => {

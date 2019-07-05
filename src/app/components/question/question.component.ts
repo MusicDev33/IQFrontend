@@ -52,6 +52,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       this.question = response.question
+      console.log(this.question)
     }, err => {
       console.log(err);
       return false;
@@ -66,11 +67,17 @@ export class QuestionComponent implements OnInit {
       user = this.authService.getUserID()
 
       this.answers.forEach( (answer) => {
+        console.log(answer)
         if (answer.poster == user.name){
           this.userHasAnswered = true
         }
       })
     })
+  }
+
+  toProfileWithHandle(handle: string){
+    var profileURL = "/profile/" + handle
+    this.router.navigate([profileURL])
   }
 
   sendAnswer(form: NgForm){
@@ -97,5 +104,4 @@ export class QuestionComponent implements OnInit {
       }
     })
   }
-
 }

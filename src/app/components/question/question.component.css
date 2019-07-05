@@ -19,3 +19,11 @@
   border-radius: 20px;
   width: 40%;
 }
+
+.profileURL {
+
+}
+
+.profileURL:hover{
+  text-decoration: underline;
+}

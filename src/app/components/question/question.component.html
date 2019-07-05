@@ -1,7 +1,9 @@
 <div class="text-center">
   <div *ngIf="question">
     <h2 class="page-header">{{ question.questionText }}</h2>
-    <p style="{text-align:center;}">Asked by {{question.asker}}</p>
+    <p style="{text-align:center;}">Asked by <span class="profileURL">
+      <a (click)="toProfileWithHandle(question.askerHandle)" style="cursor: pointer;">{{question.asker}}</a></span>
+    </p>
     <div *ngIf="answerMode">
       <div *ngIf="answers">
         <form *ngIf="authService.loggedIn()" #answerForm="ngForm" id="answer" role="answer" (submit)="sendAnswer(answerForm)">
@@ -22,7 +24,9 @@
 
     <div *ngFor="let answer of answers">
       <div class="answerBox">
-        <span class="profileCircle"></span><span class="posterName"><b>{{answer.poster}}</b></span>
+        <span class="profileCircle"></span><span class="posterName profileURL"><b>
+          <a (click)="toProfileWithHandle(answer.posterHandle)" style="cursor: pointer;">{{answer.poster}}</a></b>
+        </span>
         <p>{{answer.answerText}}</p>
       </div>
       <br>
