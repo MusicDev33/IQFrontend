@@ -1,6 +1,6 @@
-<div class="horizontal">
+<div class="horizontal" *ngIf="topics">
   <ng-container *ngFor="let topic of topics">
-    <a [routerLink]="">{{ topic }}</a>
+    <span (click)="subjectClicked(topic)" class="subject-url"><a>{{ topic }}</a></span>
   </ng-container>
 </div>
 <br><br>
@@ -13,4 +13,7 @@
       </tr>
     </table>
   </div>
+</div>
+<div *ngIf="!questions">
+  There are no questions on this topic. Maybe try asking a few!
 </div>

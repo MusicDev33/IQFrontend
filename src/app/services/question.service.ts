@@ -50,6 +50,13 @@ export class QuestionService {
       .pipe(map(res => res));
   }
 
+  getSubjectQuestions(subject: string){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json')
+    return this.http.get('http://104.248.68.166:2999/api/v1/subjects/' + subject + "/questions", {headers: headers})
+      .pipe(map(res => res));
+  }
+
   getUserQuestions(userID){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
