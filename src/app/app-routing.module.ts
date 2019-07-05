@@ -6,11 +6,12 @@ import { AuthenticateComponent } from './components/authenticate/authenticate.co
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { QuestionComponent } from './components/question/question.component'
 import { ProfileComponent } from './components/profile/profile.component'
+import { FakemainComponent } from './components/fakemain/fakemain.component'
 
 import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
+  {path:'', component: FakemainComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'authenticate', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: AuthenticateComponent},

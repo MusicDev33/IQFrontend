@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthenticateComponent } from './components/authenticate/authenticate.component';
 import { ProfileComponent } from './components/profile/profile.component'
+import { FakemainComponent } from './components/fakemain/fakemain.component'
 
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -36,7 +37,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     DashboardComponent,
     QuestionComponent,
     ProfileComponent,
-    SearchpopupComponent
+    SearchpopupComponent,
+    FakemainComponent
   ],
   imports: [
     BrowserModule,

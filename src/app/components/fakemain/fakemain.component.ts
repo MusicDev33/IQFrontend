@@ -10,6 +10,7 @@ export class FakemainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.body.classList.add('bg-pic');
   }
 
 }
