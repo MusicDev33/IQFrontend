@@ -1,4 +1,9 @@
-* {
+.no-pad-mar {
   margin: 0;
   padding: 0;
+  left: 0px;
+}
+
+.hide-element{
+  display:none;
 }
