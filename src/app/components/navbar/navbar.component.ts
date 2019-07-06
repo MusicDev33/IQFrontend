@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
       // Lol this isn't a request response but oh well
       var res: any = {}
       res = data;
-      this.debug.log("Dialog output: ", data);
+      this.debug.log("Dialog output: " + data);
       const question = {
         question: res.question,
         subject: res.topic,
