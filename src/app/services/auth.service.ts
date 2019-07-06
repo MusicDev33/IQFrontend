@@ -104,7 +104,6 @@ export class AuthService {
 
   getUserNameURL(){
     this.loadUser();
-    console.log(this.user)
     if (this.user){
       var url: String = ""
       for (var i = 0; i < this.user.name.length; i++) {
