@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
 import { MatDialog, MatDialogConfig } from '@angular/material'
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
+import { DebugService } from  '../../services/debug.service'
 
 
 enum ContentView {
@@ -33,12 +34,14 @@ export class ProfileComponent implements OnInit {
   userQuestions: Array<Object>
   userAnswers: Array<Object>
 
-  constructor(public authService: AuthService,
-              public activatedRoute: ActivatedRoute,
-              public qService: QuestionService,
-              public router: Router,
-              public ansService: AnswerService,
-              public dialog: MatDialog) { }
+  constructor(
+    public authService: AuthService,
+    public activatedRoute: ActivatedRoute,
+    public qService: QuestionService,
+    public router: Router,
+    public ansService: AnswerService,
+    public dialog: MatDialog,
+    public debug: DebugService) { }
 
   ngOnInit() {
     // Enum hax
@@ -53,22 +56,22 @@ export class ProfileComponent implements OnInit {
       var res: any = {}
       res = data
       this.currentUser = res.user
-      console.log(res)
+      this.debug.log(res)
 
       this.qService.getUserQuestions(""+this.currentUser._id).subscribe(data => {
         var res: any = {}
         res = data
-        console.log(res)
+        this.debug.log(res)
         this.userQuestions = res.questions
-        console.log(this.userQuestions)
+        this.debug.log(this.userQuestions)
       })
 
       this.ansService.getUserAnswers(""+this.currentUser._id).subscribe(data => {
         var res: any = {}
         res = data
-        console.log(res)
+        this.debug.log(res)
         this.userAnswers = res.answers
-        console.log(this.userAnswers)
+        this.debug.log(this.userAnswers)
       })
     })
     if (this.authService.hasToken()){
@@ -76,9 +79,9 @@ export class ProfileComponent implements OnInit {
         var res: any = {}
         res = data
         this.user = res.user
-        console.log(this.user)
+        this.debug.log(this.user)
       }, err => {
-        console.log(err)
+        this.debug.log(err)
         return false
       })
     }
@@ -88,14 +91,14 @@ export class ProfileComponent implements OnInit {
   get contentView() { return ContentView }
 
   onAnswersClick(){
-    console.log("Answers")
+    this.debug.log("Answers")
     if (this.view != ContentView.answers){
       this.view = ContentView.answers
     }
   }
 
   onQuestionsClick(){
-    console.log("Questions")
+    this.debug.log("Questions")
     if (this.view != ContentView.questions){
       this.view = ContentView.questions
     }
@@ -104,7 +107,7 @@ export class ProfileComponent implements OnInit {
   // Not to be confused with onQuestionsClick
   onQuestionClicked(text){
     var questionURL = this.qService.questionTextToURL(text)
-    console.log(questionURL)
+    this.debug.log(questionURL)
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
   }

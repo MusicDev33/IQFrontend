@@ -3,6 +3,7 @@ import { ValidateService } from '../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
+import { DebugService } from  '../../services/debug.service'
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
     public validator: ValidateService,
     public flashMsg: FlashMessagesService,
     public authService: AuthService,
-    public router: Router) { }
+    public router: Router,
+    public debug: DebugService) { }
 
   ngOnInit() {
   }
@@ -45,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
     // Register service
     this.authService.registerUser(user).subscribe(data => {
-      console.log(data)
+      this.debug.log(data)
 
       this.response = data
 

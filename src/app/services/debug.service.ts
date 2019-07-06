@@ -9,7 +9,7 @@ export class DebugService {
   constructor() { }
 
   log(text){
-    if (isDevMode){
+    if (isDevMode()){
       console.log(text)
     }
   }

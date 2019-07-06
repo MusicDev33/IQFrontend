@@ -3,6 +3,7 @@ import {ElementRef, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms'
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import { Inject } from '@angular/core';
+import { DebugService } from  '../../services/debug.service'
 
 @Component({
   selector: 'app-searchpopup',
@@ -30,6 +31,7 @@ export class SearchpopupComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
+    public debug: DebugService,
     @Inject(MAT_DIALOG_DATA) data //This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description

@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material'
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
+import { DebugService } from  '../../services/debug.service'
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,8 @@ export class NavbarComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public questionService: QuestionService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public debug: DebugService) { }
 
   ngOnInit() {
   }
@@ -81,7 +83,7 @@ export class NavbarComponent implements OnInit {
       // Lol this isn't a request response but oh well
       var res: any = {}
       res = data;
-      console.log("Dialog output: ", data);
+      this.debug.log("Dialog output: ", data);
       const question = {
         question: res.question,
         subject: res.topic,
@@ -90,7 +92,7 @@ export class NavbarComponent implements OnInit {
         askerID: this.authService.userMongoID(),
         askerHandle: this.authService.getUserHandle()
       }
-      console.log(question)
+      this.debug.log(question)
       this.questionService.askQuestion(question).subscribe(data => {
         var response: any = {}
         response = data

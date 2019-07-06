@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import { QuestionService } from '../../services/question.service'
 import { ActivatedRoute } from '@angular/router';
+import { DebugService } from  '../../services/debug.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,8 @@ export class DashboardComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public qService: QuestionService,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute,
+    public debug: DebugService) { }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.paramMap.get('subject')){
@@ -28,10 +30,10 @@ export class DashboardComponent implements OnInit {
       this.qService.getSubjectQuestions(this.subject).subscribe(data => {
         var res: any = {}
         res = data
-        console.log(res)
+        this.debug.log(res)
         this.questions = res.questions
       }, err => {
-        console.log(err);
+        this.debug.log(err);
         return false
       })
     }else{
@@ -39,10 +41,10 @@ export class DashboardComponent implements OnInit {
       this.qService.getAllQuestions().subscribe(data => {
         var res: any = {}
         res = data
-        console.log(res)
+        this.debug.log(res)
         this.questions = res.questions
       }, err => {
-        console.log(err);
+        this.debug.log(err);
         return false
       })
     }
@@ -52,9 +54,9 @@ export class DashboardComponent implements OnInit {
       response = data;
       this.user = response.user
       this.topics = this.user.currentSubjects
-      console.log(this.user)
+      this.debug.log(this.user)
     }, err => {
-      console.log(err);
+      this.debug.log(err);
       return false;
     })
   }
@@ -70,10 +72,10 @@ export class DashboardComponent implements OnInit {
       this.qService.getSubjectQuestions(subject).subscribe(data => {
         var res: any = {}
         res = data
-        console.log(res)
+        this.debug.log(res)
         this.questions = res.questions
       }, err => {
-        console.log(err);
+        this.debug.log(err);
         return false
       })
     }
@@ -81,7 +83,7 @@ export class DashboardComponent implements OnInit {
 
   questionClicked(text){
     var questionURL = this.qService.questionTextToURL(text)
-    console.log(questionURL)
+    this.debug.log(questionURL)
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
   }

@@ -3,6 +3,7 @@ import { ValidateService } from '../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
+import { DebugService } from  '../../services/debug.service'
 
 @Component({
   selector: 'app-authenticate',
@@ -18,7 +19,8 @@ export class AuthenticateComponent implements OnInit {
     public validator: ValidateService,
     public flashMsg: FlashMessagesService,
     public authService: AuthService,
-    public router: Router) { }
+    public router: Router,
+    public debug: DebugService) { }
 
   ngOnInit() {
   }
@@ -39,7 +41,7 @@ export class AuthenticateComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe(data => {
       response = data;
-      console.log(data)
+      this.debug.log(data)
       if(response.success){
         this.authService.storeUserData(response.token, response.user)
         this.flashMsg.show("Logged in!", {cssClass: 'alert-success', timeout: 2000})

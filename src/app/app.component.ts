@@ -29,8 +29,8 @@ export class AppComponent {
       }else{
         this.isHomePage = false
       }
-      console.log(this.isHomePage)
-      console.log(this.activatedRoute.outlet)
+      //console.log(this.isHomePage)
+      //console.log(this.activatedRoute.outlet)
     }
   }
 }
