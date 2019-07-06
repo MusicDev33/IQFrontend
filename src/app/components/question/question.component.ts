@@ -6,6 +6,7 @@ import { AnswerService } from '../../services/answer.service'
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
+import { DebugService } from '../../services/debug.service'
 
 interface Answer {
   answerText: String,
@@ -43,7 +44,8 @@ export class QuestionComponent implements OnInit {
     public authService: AuthService,
     public answerService: AnswerService,
     public flashMsg: FlashMessagesService,
-    public router: Router) { }
+    public router: Router,
+    public debug: DebugService) { }
 
   ngOnInit() {
     this.answerMode = false
@@ -52,9 +54,9 @@ export class QuestionComponent implements OnInit {
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       this.question = response.question
-      console.log(this.question)
+      this.debug.log(this.question)
     }, err => {
-      console.log(err);
+      this.debug.log(err);
       return false;
     })
 
@@ -67,7 +69,7 @@ export class QuestionComponent implements OnInit {
       user = this.authService.getUserID()
 
       this.answers.forEach( (answer) => {
-        console.log(answer)
+        this.debug.log(answer)
         if (answer.poster == user.name){
           this.userHasAnswered = true
         }
@@ -92,7 +94,7 @@ export class QuestionComponent implements OnInit {
       comments: [],
       questionText: this.question.questionText
     }
-    console.log(answer)
+    this.debug.log(answer)
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
       var response: any = {}
       response = data
