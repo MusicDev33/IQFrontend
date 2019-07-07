@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([profileURL])
   }
 
-  onAskSubmit(form: NgForm){
+  onAskSubmit(){
     /*
     const question = {
       question: this.questionText,
@@ -76,7 +76,7 @@ export class NavbarComponent implements OnInit {
 
     dialogConfig.data = {
       description: "A cool test dialog!!!",
-      question: this.questionText,
+      question: "",
     }
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( data => {
@@ -98,7 +98,6 @@ export class NavbarComponent implements OnInit {
         response = data
         if (response.success){
           this.flashMsg.show("Question added.", {cssClass: 'alert-success', timeout: 1500})
-          form.reset();
           this.router.navigate(['/dashboard'])
         }else{
           this.flashMsg.show("Something went wrong. Try asking again.", {cssClass: 'alert-danger', timeout: 1500})
