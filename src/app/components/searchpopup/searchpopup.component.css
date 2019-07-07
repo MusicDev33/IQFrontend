@@ -7,13 +7,44 @@
   position: absolute;
   right:    0;
   bottom:   0;
+  border-color: #af00b5;
+  border-radius: 19px;
+  color: #525559;
+}
+
+#askButton:disabled{
+  background-color: #ccc;
+}
+
+#askButton:hover{
+  background-color: #ddd;
+}
+
+#closeButton{
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: #af00b5;
+  transition: 0.5s;
+}
+
+#closeButton:hover{
+  width: 25px;
+  height: 25px;
+  background-color: rgba(175, 0, 181, 0.2);
 }
 
 textarea {
-    resize: none;
-    overflow: hidden;
-    min-height: 50px;
-    max-height: 100px;
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100px;
+  border-radius: 9px;
+}
+
+input{
+  border-radius: 9px;
 }
 
 .sectionTitle{
@@ -24,11 +55,12 @@ textarea {
   color: #383d44;
   cursor: pointer;
   padding-top: 10px;
-  border-radius: 10px;
   background-color: white;
   transition: 0.3s;
   display: inline-block;
   line-height: 1;
+  margin-bottom: 10px;
+  border-bottom: solid 3px rgba(0,0,0,0);
 }
 
 .section-title-animate {
@@ -50,7 +82,12 @@ textarea {
 }
 
 .sectionOpenTitle:hover{
-  background-color: #e8b1fc;
+  border-bottom: solid 3px #af00b5;
+}
+
+.form-control:focus {
+  border-color: #af00b5;
+  box-shadow: inset 0 1px 1px rgba(120, 0, 140, 0.075), 0 0 6px rgba(175, 0, 181, 0.4);
 }
 
 /* Animations */

@@ -22,7 +22,10 @@
   </div>
 
   <div style="position:relative;">
-    <button class="btn btn-secondary" (click)="close()">Close</button>
-    <div><button class="btn btn-primary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">Ask</button></div>
+    <i class="fas fa-times fa-2x" (click)="close()" id="closeButton"></i>
+    <div>
+      <button class="btn btn-secondary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">Ask
+      </button>
+    </div>
   </div>
 </div>
