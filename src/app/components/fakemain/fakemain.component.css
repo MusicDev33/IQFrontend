@@ -4,6 +4,14 @@
   overflow-x: hidden;
 }
 
+.bg {
+  background-color: black;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
 
 .bg-pic {
   top: 0;
@@ -15,5 +23,45 @@
 }
 
 #coming-soon{
-  line-height: normal;
+  line-height: 2;
+  height: 70%;
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  color: #fff;
+  font-family: 'Orbitron';
+  -webkit-animation: neon1 3s ease-in-out infinite alternate;
+  -moz-animation: neon1 3s ease-in-out infinite alternate;
+  animation: neon1 3s ease-in-out infinite alternate;
 }
+
+@-webkit-keyframes neon1 {
+  from {
+    color: #ffffff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 130px #FF1177;
+  }
+  to {
+    color: #ffdddd;
+    text-shadow: 0 0 2px #fff, 0 0 7px #FF1177, 0 0 12px #FF1177, 0 0 14px #FF1177, 0 0 25px #FF1177, 0 0 34px #FF1177, 0 0 40px #FF1155, 0 0 50px #FF1144;
+  }
+}
+/*
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+@-moz-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+*/
