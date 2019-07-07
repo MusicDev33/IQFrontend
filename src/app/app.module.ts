@@ -22,6 +22,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service'
 import { QuestionService } from './services/question.service';
 import { AnswerService } from './services/answer.service';
+import { IpgenService } from './services/ipgen.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component'
@@ -57,7 +58,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     AuthService,
     QuestionService,
     AnswerService,
-    AuthGuard],
+    AuthGuard,
+    IpgenService],
   entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })
