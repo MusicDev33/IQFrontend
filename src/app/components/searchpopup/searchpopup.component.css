@@ -40,11 +40,6 @@ textarea {
   overflow: hidden;
   min-height: 50px;
   max-height: 100px;
-  border-radius: 9px;
-}
-
-input{
-  border-radius: 9px;
 }
 
 .sectionTitle{
@@ -83,11 +78,6 @@ input{
 
 .sectionOpenTitle:hover{
   border-bottom: solid 3px #af00b5;
-}
-
-.form-control:focus {
-  border-color: #af00b5;
-  box-shadow: inset 0 1px 1px rgba(120, 0, 140, 0.075), 0 0 6px rgba(175, 0, 181, 0.4);
 }
 
 /* Animations */

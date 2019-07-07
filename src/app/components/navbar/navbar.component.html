@@ -13,7 +13,7 @@
         <a class="nav-link" [routerLink]="['/dashboard']">Home</a>
       </li>
     </ul>
-    <button class="btn btn-secondary mx-auto font-weight-bold" (click)="onAskSubmit()" type="button" id="center-button">Ask Inquantir</button>
+    <button *ngIf="authService.loggedIn()" class="btn btn-secondary mx-auto font-weight-bold" (click)="onAskSubmit()" type="button" id="center-button">Ask Inquantir</button>
     <ul class="navbar-nav">
       <li *ngIf="!authService.loggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Register</a>
