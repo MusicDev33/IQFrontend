@@ -13,9 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "ssl": true,
-            "sslKey": "/etc/letsencrypt/live/inquantir.com/privkey.pem",
-            "sslCert": "/etc/letsencrypt/live/inquantir.com/cert.pem",
             "outputPath": "../public",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -60,6 +57,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "ssl": true,
+            "sslKey": "/etc/letsencrypt/live/inquantir.com/privkey.pem",
+            "sslCert": "/etc/letsencrypt/live/inquantir.com/cert.pem",
             "browserTarget": "ang-src:build"
           },
           "configurations": {
