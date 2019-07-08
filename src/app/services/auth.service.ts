@@ -19,28 +19,28 @@ export class AuthService {
   registerUser(user){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('http://104.248.68.166:2999/api/v1/users/register', user, {headers: headers})
+    return this.http.post('https://inquantir.com/api/v1/users/register', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('http://104.248.68.166:2999/api/v1/users/authenticate', user, {headers: headers})
+    return this.http.post('https://inquantir.com/api/v1/users/authenticate', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   getProfile(){
     this.loadToken();
     let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('http://104.248.68.166:2999/api/v1/users/profile', {headers: headers})
+    return this.http.get('https://inquantir.com/api/v1/users/profile', {headers: headers})
       .pipe(map(res => res));
   }
 
   getUserByHandle(handle){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://104.248.68.166:2999/api/v1/users/profile/'+handle, {headers: headers})
+    return this.http.get('https://inquantir.com/api/v1/users/profile/'+handle, {headers: headers})
       .pipe(map(res => res));
   }
 
