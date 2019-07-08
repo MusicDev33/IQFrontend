@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "ssl": true,
             "sslKey": "/etc/letsencrypt/live/inquantir.com/privkey.pem",
             "sslCert": "/etc/letsencrypt/live/inquantir.com/cert.pem",
             "outputPath": "../public",
