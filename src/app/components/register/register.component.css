@@ -11,3 +11,12 @@
   border-color: #fa3e3e;
   box-shadow: inset 0 1px 3px rgba(212, 49, 49, 0.4), 0 0 5px rgba(250, 62, 62, 0.7);
 }
+
+#login{
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+#login:hover{
+  color: #af00b5;
+}
