@@ -4,6 +4,16 @@
     flex-wrap:wrap;
 }
 
+.container{
+  padding-top: 1em;
+  padding-left: 0;
+}
+
+.jumbotron{
+  height: 100vh;
+  width: 100vw;
+}
+
 .h-component {
     display: inline-block;
     flex-grow: 1;
@@ -21,6 +31,13 @@
 .subject-url:hover{
   border-bottom: solid 3px #af00b5;
   cursor: pointer;
+}
+
+.question-box{
+  border-radius: 10px;
+  border: 1px solid #af00b5;
+  height: 100px;
+  margin-bottom: 1em;
 }
 
 .question-url{

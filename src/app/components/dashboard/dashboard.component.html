@@ -1,19 +1,22 @@
-<div class="row">
-  <div *ngIf="subjects" class="col-lg-2">
-    <div *ngFor="let subject of subjects">
-      <div>
-        <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
-        <div class="detail-view">
 
+<div class="container">
+  <div class="row">
+    <div *ngIf="subjects" class="col-lg-2">
+      <div *ngFor="let subject of subjects">
+        <div>
+          <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
+          <div class="detail-view">
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
-    <h2 class="text-center">Questions</h2>
-    <div *ngFor="let question of questions" class="text-center">
-      <div (click)="questionClicked(question.questionText)">
-        <span class="question-url">{{question.questionText}}</span>
+    <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
+      <h2 class="text-center">Questions</h2>
+      <div *ngFor="let question of questions" class="text-center">
+        <div class="question-box">
+          <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>
+        </div>
       </div>
     </div>
   </div>
