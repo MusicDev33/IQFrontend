@@ -12,10 +12,20 @@
 }
 
 .subject-url {
-
+  transition: 0.3s;
+  border-bottom: solid 3px rgba(0,0,0,0);
 }
 
 .subject-url:hover{
-  text-decoration: underline;
+  border-bottom: solid 3px #af00b5;
   cursor: pointer;
+}
+
+.question-url{
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.question-url:hover{
+  text-decoration: underline;
 }

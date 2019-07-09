@@ -1,6 +1,8 @@
-<div class="horizontal" *ngIf="topics">
-  <ng-container *ngFor="let topic of topics">
-    <span (click)="subjectClicked(topic)" class="subject-url"><a>{{ topic }}</a></span>
+<div class="horizontal" *ngIf="subjects">
+  <ng-container *ngFor="let subject of subjects">
+    <div class="subject-url">
+      <span (click)="subjectClicked(subject)">{{ subject }}</span>
+    </div>
   </ng-container>
 </div>
 <br><br>
@@ -9,7 +11,7 @@
   <div class="table-responsive">
     <table class="table" *ngFor="let question of questions">
       <tr>
-        <th (click)="questionClicked(question.questionText)"><a [routerLink]="">{{question.questionText}}</a></th>
+        <th (click)="questionClicked(question.questionText)"><span class="question-url">{{question.questionText}}</span></th>
       </tr>
     </table>
   </div>

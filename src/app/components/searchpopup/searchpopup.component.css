@@ -58,6 +58,10 @@ textarea {
   border-bottom: solid 3px rgba(0,0,0,0);
 }
 
+.sectionOpenTitle:hover{
+  border-bottom: solid 3px #af00b5;
+}
+
 .section-title-animate {
   animation-fill-mode: forwards;
   animation-name: text-color-change;
@@ -74,10 +78,6 @@ textarea {
 
 .confirmText {
   color: #3e7ee6;
-}
-
-.sectionOpenTitle:hover{
-  border-bottom: solid 3px #af00b5;
 }
 
 /* Animations */

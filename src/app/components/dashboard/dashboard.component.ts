@@ -14,7 +14,7 @@ import { DebugService } from  '../../services/debug.service'
 export class DashboardComponent implements OnInit {
   user: any
   questions: Array<Object>
-  topics: Array<String>
+  subjects: Array<String>
   subject: string
 
   constructor(
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     this.authService.getProfile().subscribe(data => {
       response = data;
       this.user = response.user
-      this.topics = this.user.currentSubjects
+      this.subjects = this.user.currentSubjects
       this.debug.log(this.user)
     }, err => {
       this.debug.log(err);
