@@ -1,21 +1,20 @@
-<div class="horizontal" *ngIf="subjects">
-  <ng-container *ngFor="let subject of subjects">
-    <div class="subject-url">
-      <span (click)="subjectClicked(subject)">{{ subject }}</span>
+<div class="row">
+  <div *ngIf="subjects" class="col-lg-2">
+    <div *ngFor="let subject of subjects">
+      <div>
+        <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
+        <div class="detail-view">
+
+        </div>
+      </div>
     </div>
-  </ng-container>
-</div>
-<br><br>
-<div *ngIf="questions">
-  <h2>Questions</h2>
-  <div class="table-responsive">
-    <table class="table" *ngFor="let question of questions">
-      <tr>
-        <th (click)="questionClicked(question.questionText)"><span class="question-url">{{question.questionText}}</span></th>
-      </tr>
-    </table>
   </div>
-</div>
-<div *ngIf="!questions">
-  There are no questions on this topic. Maybe try asking a few!
+  <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
+    <h2 class="text-center">Questions</h2>
+    <div *ngFor="let question of questions" class="text-center">
+      <div (click)="questionClicked(question.questionText)">
+        <span class="question-url">{{question.questionText}}</span>
+      </div>
+    </div>
+  </div>
 </div>

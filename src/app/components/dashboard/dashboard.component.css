@@ -14,6 +14,8 @@
 .subject-url {
   transition: 0.3s;
   border-bottom: solid 3px rgba(0,0,0,0);
+  display: inline;
+  line-height: 1.5em;
 }
 
 .subject-url:hover{
@@ -24,8 +26,13 @@
 .question-url{
   transition: 0.3s;
   cursor: pointer;
+  font-size: 1.3em;
 }
 
 .question-url:hover{
   text-decoration: underline;
+}
+
+.bigbox{
+  border: 1px solid #af00b5;
 }
