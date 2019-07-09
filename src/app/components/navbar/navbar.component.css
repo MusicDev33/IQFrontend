@@ -4,7 +4,7 @@
 }
 
 .navbar-custom {
-    background-color: #fff;
+    background-color: #fff!important;
 }
 
 @media only screen and (max-width: 768px) {
