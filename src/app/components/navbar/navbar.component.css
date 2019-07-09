@@ -3,6 +3,10 @@
   margin-right: 18%;
 }
 
+.navbar-custom {
+    background-color: #fff;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-margins{
     margin-left: 0px;
