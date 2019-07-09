@@ -19,6 +19,12 @@
   border-radius: 19px;
   color: #525559;
   position: absolute;
+  transition: 0.4s;
+}
+
+#center-button:hover{
+  background-color: #af00b5;
+  color: #fff;
 }
 
 
