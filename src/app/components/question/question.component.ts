@@ -38,6 +38,9 @@ export class QuestionComponent implements OnInit {
 
   answerMode: boolean
 
+  answerUpvoted: boolean = false
+  answerDownvoted: boolean = false
+
   constructor(
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
@@ -105,5 +108,15 @@ export class QuestionComponent implements OnInit {
         this.flashMsg.show("Something went wrong. Try answering again.", {cssClass: 'alert-danger', timeout: 1500})
       }
     })
+  }
+
+  upvoteAnswer(){
+    this.answerUpvoted = true
+    this.answerDownvoted = false
+  }
+
+  downvoteAnswer(){
+    this.answerUpvoted = false
+    this.answerDownvoted = true
   }
 }

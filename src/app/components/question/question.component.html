@@ -27,7 +27,11 @@
         <span class="profileCircle"></span><span class="posterName profileURL"><b>
           <a (click)="toProfileWithHandle(answer.posterHandle)" style="cursor: pointer;">{{answer.poster}}</a></b>
         </span>
-        <p>{{answer.answerText}}</p>
+        <p>{{answer.answerText}}</p><div class="spacer"></div>
+        <span class="action-bar">
+          <i class="fas fa-chevron-circle-up fa-lg vote-button" [ngClass]="{'highlighted': answerUpvoted}" (click)="upvoteAnswer()"></i>
+          <i class="fas fa-chevron-circle-down fa-lg vote-button" [ngClass]="{'highlighted': answerDownvoted}" (click)="downvoteAnswer()"></i>
+        </span>
       </div>
       <br>
     </div>

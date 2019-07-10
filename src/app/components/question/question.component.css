@@ -12,12 +12,38 @@
 }
 
 .answerBox {
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid lightgrey;
   padding: 2px;
   border-radius: 20px;
   width: 40%;
+}
+
+.spacer{
+  height: 1.4em;
+  background: transparent;
+}
+
+.vote-button{
+  cursor: pointer;
+  margin-right: 0.5em;
+}
+
+.highlighted{
+  color: #af00b5;
+}
+
+.action-bar{
+  text-align: left;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.7em;
 }
 
 .profileURL {
