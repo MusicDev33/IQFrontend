@@ -111,12 +111,20 @@ export class QuestionComponent implements OnInit {
   }
 
   upvoteAnswer(){
-    this.answerUpvoted = true
+    if (this.answerUpvoted){
+      this.answerUpvoted = false
+    }else{
+      this.answerUpvoted = true
+    }
     this.answerDownvoted = false
   }
 
   downvoteAnswer(){
+    if (this.answerDownvoted){
+      this.answerDownvoted = false
+    }else{
+      this.answerDownvoted = true
+    }
     this.answerUpvoted = false
-    this.answerDownvoted = true
   }
 }
