@@ -7,6 +7,7 @@ import { FlashMessagesService } from 'angular2-flash-messages'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
 import { DebugService } from '../../services/debug.service'
+import { VotesService } from '../../services/votes.service';
 
 interface Answer {
   answerText: String,
@@ -39,9 +40,6 @@ export class QuestionComponent implements OnInit {
 
   answerMode: boolean
 
-  answerUpvoted: boolean = false
-  answerDownvoted: boolean = false
-
   constructor(
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
@@ -49,7 +47,8 @@ export class QuestionComponent implements OnInit {
     public answerService: AnswerService,
     public flashMsg: FlashMessagesService,
     public router: Router,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public votesService: VotesService) { }
 
   ngOnInit() {
     this.answerMode = false
@@ -115,12 +114,24 @@ export class QuestionComponent implements OnInit {
     if (answer.posterID in this.votedAnswers){
       if (this.votedAnswers[answer.posterID] === 1){
         answer.votes -= this.votedAnswers[answer.posterID]
+        this.votesService.sendVote(answer.posterID, answer._id, 0).subscribe(data => {
+          var response: any = {}
+          console.log(data)
+        })
         delete this.votedAnswers[answer.posterID]
       }else if(this.votedAnswers[answer.posterID] === -1){
         answer.votes += 2
+        this.votesService.sendVote(answer.posterID, answer._id, 1).subscribe(data => {
+          var response: any = {}
+          console.log(data)
+        })
         this.votedAnswers[answer.posterID] = 1
       }
     }else{
+      this.votesService.sendVote(answer.posterID, answer._id, 1).subscribe(data => {
+        var response: any = {}
+        console.log(data)
+      })
       answer.votes += 1
       this.votedAnswers[answer.posterID] = 1
     }
@@ -130,13 +141,25 @@ export class QuestionComponent implements OnInit {
     if (answer.posterID in this.votedAnswers){
       if (this.votedAnswers[answer.posterID] === -1){
         answer.votes -= this.votedAnswers[answer.posterID]
+        this.votesService.sendVote(answer.posterID, answer._id, 0).subscribe(data => {
+          var response: any = {}
+          console.log(data)
+        })
         delete this.votedAnswers[answer.posterID]
       }else if(this.votedAnswers[answer.posterID] === 1){
         answer.votes -= 2
+        this.votesService.sendVote(answer.posterID, answer._id, -1).subscribe(data => {
+          var response: any = {}
+          console.log(data)
+        })
         this.votedAnswers[answer.posterID] = -1
       }
     }else{
       answer.votes -= 1
+      this.votesService.sendVote(answer.posterID, answer._id, -1).subscribe(data => {
+        var response: any = {}
+        console.log(data)
+      })
       this.votedAnswers[answer.posterID] = -1
     }
   }
