@@ -29,9 +29,10 @@
         </span>
         <p>{{answer.answerText}}</p><div class="spacer"></div>
         <span class="action-bar">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button noselect" [ngClass]="{'highlighted': answerUpvoted}" (click)="upvoteAnswer()"></i>
-          <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': answerDownvoted}" (click)="downvoteAnswer()"></i>
-          <span class="view-text noselect">{{ question.views }} views </span>
+          <i class="fas fa-chevron-circle-up fa-lg vote-button noselect" [ngClass]="{'highlighted': answerUpvoted}" (click)="upvoteAnswer(answer)"></i>
+          <b>{{ answer.votes }}</b>
+          <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': answerDownvoted}" (click)="downvoteAnswer(answer)"></i>
+          <span class="view-text noselect">{{ answer.views }} views </span>
         </span>
       </div>
       <br>
