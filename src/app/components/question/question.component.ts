@@ -31,6 +31,7 @@ interface user {
 export class QuestionComponent implements OnInit {
   question: any
   answers: Array<Answer>
+  votedAnswers: any = {}
   questionURL: String
   answerText: String
   hasAnswered: boolean
@@ -110,21 +111,41 @@ export class QuestionComponent implements OnInit {
     })
   }
 
-  upvoteAnswer(){
-    if (this.answerUpvoted){
-      this.answerUpvoted = false
+  upvoteAnswer(answer){
+    if (answer.posterID in this.votedAnswers){
+      if (this.votedAnswers[answer.posterID] === 1){
+        answer.votes -= this.votedAnswers[answer.posterID]
+        delete this.votedAnswers[answer.posterID]
+      }else if(this.votedAnswers[answer.posterID] === -1){
+        answer.votes += 2
+        this.votedAnswers[answer.posterID] = 1
+      }
     }else{
-      this.answerUpvoted = true
+      answer.votes += 1
+      this.votedAnswers[answer.posterID] = 1
     }
-    this.answerDownvoted = false
   }
 
-  downvoteAnswer(){
-    if (this.answerDownvoted){
-      this.answerDownvoted = false
+  downvoteAnswer(answer){
+    if (answer.posterID in this.votedAnswers){
+      if (this.votedAnswers[answer.posterID] === -1){
+        answer.votes -= this.votedAnswers[answer.posterID]
+        delete this.votedAnswers[answer.posterID]
+      }else if(this.votedAnswers[answer.posterID] === 1){
+        answer.votes -= 2
+        this.votedAnswers[answer.posterID] = -1
+      }
     }else{
-      this.answerDownvoted = true
+      answer.votes -= 1
+      this.votedAnswers[answer.posterID] = -1
     }
-    this.answerUpvoted = false
+  }
+
+  getVote(answer){
+    if (answer.posterID in this.votedAnswers){
+      return this.votedAnswers[answer.posterID]
+    }else{
+      return 0;
+    }
   }
 }
