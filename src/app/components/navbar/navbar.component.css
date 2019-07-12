@@ -33,7 +33,7 @@
   height: 1px;
   border-bottom: 1px solid rgba(181, 0, 189,.3);
   position: absolute;
-  box-shadow: 0 2px 7px 1px #bbb;
+  box-shadow: 0 3px 5px 1px #bbb;
 }
 
 .active-line{
