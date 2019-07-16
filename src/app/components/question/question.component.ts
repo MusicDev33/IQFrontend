@@ -114,21 +114,21 @@ export class QuestionComponent implements OnInit {
     if (answer.posterID in this.votedAnswers){
       if (this.votedAnswers[answer.posterID] === 1){
         answer.votes -= this.votedAnswers[answer.posterID]
-        this.votesService.sendVote(answer.posterID, answer._id, 0).subscribe(data => {
+        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 0).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
         delete this.votedAnswers[answer.posterID]
       }else if(this.votedAnswers[answer.posterID] === -1){
         answer.votes += 2
-        this.votesService.sendVote(answer.posterID, answer._id, 1).subscribe(data => {
+        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 1).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
         this.votedAnswers[answer.posterID] = 1
       }
     }else{
-      this.votesService.sendVote(answer.posterID, answer._id, 1).subscribe(data => {
+      this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 1).subscribe(data => {
         var response: any = {}
         console.log(data)
       })
@@ -141,14 +141,14 @@ export class QuestionComponent implements OnInit {
     if (answer.posterID in this.votedAnswers){
       if (this.votedAnswers[answer.posterID] === -1){
         answer.votes -= this.votedAnswers[answer.posterID]
-        this.votesService.sendVote(answer.posterID, answer._id, 0).subscribe(data => {
+        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 0).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
         delete this.votedAnswers[answer.posterID]
       }else if(this.votedAnswers[answer.posterID] === 1){
         answer.votes -= 2
-        this.votesService.sendVote(answer.posterID, answer._id, -1).subscribe(data => {
+        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, -1).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
@@ -156,7 +156,7 @@ export class QuestionComponent implements OnInit {
       }
     }else{
       answer.votes -= 1
-      this.votesService.sendVote(answer.posterID, answer._id, -1).subscribe(data => {
+      this.votesService.sendVote(this.question._id, answer.posterID, answer._id, -1).subscribe(data => {
         var response: any = {}
         console.log(data)
       })

@@ -12,9 +12,9 @@ export class VotesService {
 
   constructor(private http: HttpClient) { }
 
-  sendVote(userid: string, answerid: string, vote: Number){
+  sendVote(questionid: string, userid: string, answerid: string, vote: Number){
     var votes = vote.toString()
-    var urlString = 'https://inquantir.com/api/v1/questions/' + userid + "/" + answerid + "/votes/" + votes
+    var urlString = 'https://inquantir.com/api/v1/questions/' + questionid + "/" + userid + "/" + answerid + "/votes/" + votes
     let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
     return this.http.post(urlString, {headers: headers})
       .pipe(map(res => res));
