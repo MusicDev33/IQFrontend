@@ -58,6 +58,11 @@ export class QuestionComponent implements OnInit {
       response = data;
       this.question = response.question
       this.debug.log(this.question)
+
+      this.votesService.getVotes(this.question._id, this.authService.userMongoID()).subscribe(data => {
+        this.debug.log(data)
+      })
+
     }, err => {
       this.debug.log(err);
       return false;
@@ -111,62 +116,63 @@ export class QuestionComponent implements OnInit {
   }
 
   upvoteAnswer(answer){
-    if (answer.posterID in this.votedAnswers){
-      if (this.votedAnswers[answer.posterID] === 1){
-        answer.votes -= this.votedAnswers[answer.posterID]
-        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 0).subscribe(data => {
+    if (this.authService.userMongoID() in this.votedAnswers){
+      if (this.votedAnswers[this.authService.userMongoID()] === 1){
+        answer.votes -= this.votedAnswers[this.authService.userMongoID()]
+        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 0).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
-        delete this.votedAnswers[answer.posterID]
-      }else if(this.votedAnswers[answer.posterID] === -1){
+        delete this.votedAnswers[this.authService.userMongoID()]
+      }else if(this.votedAnswers[this.authService.userMongoID()] === -1){
         answer.votes += 2
-        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 1).subscribe(data => {
+        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 1).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
-        this.votedAnswers[answer.posterID] = 1
+        this.votedAnswers[this.authService.userMongoID()] = 1
       }
     }else{
-      this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 1).subscribe(data => {
+      this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 1).subscribe(data => {
         var response: any = {}
         console.log(data)
       })
       answer.votes += 1
-      this.votedAnswers[answer.posterID] = 1
+      this.votedAnswers[this.authService.userMongoID()] = 1
     }
   }
 
   downvoteAnswer(answer){
-    if (answer.posterID in this.votedAnswers){
-      if (this.votedAnswers[answer.posterID] === -1){
-        answer.votes -= this.votedAnswers[answer.posterID]
-        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, 0).subscribe(data => {
+    if (this.authService.userMongoID() in this.votedAnswers){
+      if (this.votedAnswers[this.authService.userMongoID()] === -1){
+        answer.votes -= this.votedAnswers[this.authService.userMongoID()]
+        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 0).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
-        delete this.votedAnswers[answer.posterID]
-      }else if(this.votedAnswers[answer.posterID] === 1){
+        delete this.votedAnswers[this.authService.userMongoID()]
+      }else if(this.votedAnswers[this.authService.userMongoID()] === 1){
         answer.votes -= 2
-        this.votesService.sendVote(this.question._id, answer.posterID, answer._id, -1).subscribe(data => {
+        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, -1).subscribe(data => {
           var response: any = {}
           console.log(data)
         })
-        this.votedAnswers[answer.posterID] = -1
+        this.votedAnswers[this.authService.userMongoID()] = -1
       }
     }else{
       answer.votes -= 1
-      this.votesService.sendVote(this.question._id, answer.posterID, answer._id, -1).subscribe(data => {
+      this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, -1).subscribe(data => {
         var response: any = {}
         console.log(data)
       })
-      this.votedAnswers[answer.posterID] = -1
+      this.votedAnswers[this.authService.userMongoID()] = -1
     }
   }
 
   getVote(answer){
-    if (answer.posterID in this.votedAnswers){
-      return this.votedAnswers[answer.posterID]
+    if (this.authService.userMongoID() in this.votedAnswers){
+      console.log(this.votedAnswers)
+      return this.votedAnswers[this.authService.userMongoID()]
     }else{
       return 0;
     }

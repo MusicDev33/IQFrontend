@@ -19,4 +19,11 @@ export class VotesService {
     return this.http.post(urlString, {headers: headers})
       .pipe(map(res => res));
   }
+
+  getVotes(questionid: string, userid: string){
+    var urlString = 'https://inquantir.com/api/v1/questions/' + questionid + "/answers/votes/" + userid
+    let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
+    return this.http.get(urlString, {headers: headers})
+      .pipe(map(res => res));
+  }
 }
