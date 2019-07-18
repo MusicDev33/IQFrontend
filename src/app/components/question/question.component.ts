@@ -146,6 +146,7 @@ export class QuestionComponent implements OnInit {
         case negCastVote: {
           answer.votes += 2*castVote
           this.votedAnswers[answer._id] = castVote
+          this.sendVote(castVote, answer._id)
           break;
         }
         default: {
@@ -163,65 +164,10 @@ export class QuestionComponent implements OnInit {
   }
 
   sendVote(vote, answerid){
-    console.log(vote)
     this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answerid, vote).subscribe(data => {
       var response: any = {}
       console.log(data)
     })
-  }
-
-  upvoteAnswer(answer){
-    if (this.authService.userMongoID() in this.votedAnswers){
-      if (this.votedAnswers[this.authService.userMongoID()] === 1){
-        answer.votes -= this.votedAnswers[this.authService.userMongoID()]
-        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 0).subscribe(data => {
-          var response: any = {}
-          console.log(data)
-        })
-        delete this.votedAnswers[this.authService.userMongoID()]
-      }else if(this.votedAnswers[this.authService.userMongoID()] === -1){
-        answer.votes += 2
-        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 1).subscribe(data => {
-          var response: any = {}
-          console.log(data)
-        })
-        this.votedAnswers[this.authService.userMongoID()] = 1
-      }
-    }else{
-      this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 1).subscribe(data => {
-        var response: any = {}
-        console.log(data)
-      })
-      answer.votes += 1
-      this.votedAnswers[this.authService.userMongoID()] = 1
-    }
-  }
-
-  downvoteAnswer(answer){
-    if (this.authService.userMongoID() in this.votedAnswers){
-      if (this.votedAnswers[this.authService.userMongoID()] === -1){
-        answer.votes -= this.votedAnswers[this.authService.userMongoID()]
-        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, 0).subscribe(data => {
-          var response: any = {}
-          console.log(data)
-        })
-        delete this.votedAnswers[this.authService.userMongoID()]
-      }else if(this.votedAnswers[this.authService.userMongoID()] === 1){
-        answer.votes -= 2
-        this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, -1).subscribe(data => {
-          var response: any = {}
-          console.log(data)
-        })
-        this.votedAnswers[this.authService.userMongoID()] = -1
-      }
-    }else{
-      answer.votes -= 1
-      this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answer._id, -1).subscribe(data => {
-        var response: any = {}
-        console.log(data)
-      })
-      this.votedAnswers[this.authService.userMongoID()] = -1
-    }
   }
 
   getVote(answer){
