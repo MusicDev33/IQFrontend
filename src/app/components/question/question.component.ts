@@ -32,13 +32,20 @@ interface user {
 export class QuestionComponent implements OnInit {
   question: any
   answers: Array<Answer>
-  votedAnswers: any = {}
   questionURL: String
   answerText: String
   hasAnswered: boolean
   userHasAnswered: boolean
 
   answerMode: boolean
+
+  // This dictionary is in the following format - answerID:vote
+  // Example:
+  // 5d1ea3de81e1ef53f657baf7: 1 this means that the answer has been given an upvote
+  // 5d1ea3de81e1ef53f657baf7: -1 is a downvote
+  // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
+  votedAnswers: any = {}
+
 
   constructor(
     public questionService: QuestionService,
@@ -60,7 +67,15 @@ export class QuestionComponent implements OnInit {
       this.debug.log(this.question)
 
       this.votesService.getVotes(this.question._id, this.authService.userMongoID()).subscribe(data => {
+        var response: any = {}
+        response = data;
         this.debug.log(data)
+        response.votes.forEach((vote: any) => {
+          if (vote.vote != 0){
+            this.votedAnswers[vote.answerid] = vote.vote
+          }
+        })
+        this.debug.log(this.votedAnswers)
       })
 
     }, err => {
@@ -112,6 +127,46 @@ export class QuestionComponent implements OnInit {
       }else{
         this.flashMsg.show("Something went wrong. Try answering again.", {cssClass: 'alert-danger', timeout: 1500})
       }
+    })
+  }
+
+  // Still trying to figure out a good way to do this...
+  voteClicked(answer, castVote){
+    let negCastVote = 0 - castVote
+    if (answer._id in this.votedAnswers){
+      let vote = this.votedAnswers[answer._id]
+      switch(vote){
+        case castVote: {
+          // Cancelling upvote
+          answer.votes -= castVote
+          delete this.votedAnswers[answer._id]
+          this.sendVote(0, answer._id)
+          break;
+        }
+        case negCastVote: {
+          answer.votes += 2*castVote
+          this.votedAnswers[answer._id] = castVote
+          break;
+        }
+        default: {
+          this.debug.log("Voting got broken somehow...")
+          this.debug.log(vote)
+          break;
+        }
+      }
+    }else{
+      // Send upvote
+      answer.votes += castVote
+      this.votedAnswers[answer._id] = castVote
+      this.sendVote(castVote, answer._id)
+    }
+  }
+
+  sendVote(vote, answerid){
+    console.log(vote)
+    this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answerid, vote).subscribe(data => {
+      var response: any = {}
+      console.log(data)
     })
   }
 
@@ -170,9 +225,9 @@ export class QuestionComponent implements OnInit {
   }
 
   getVote(answer){
-    if (this.authService.userMongoID() in this.votedAnswers){
+    if (answer._id in this.votedAnswers){
       console.log(this.votedAnswers)
-      return this.votedAnswers[this.authService.userMongoID()]
+      return this.votedAnswers[answer._id]
     }else{
       return 0;
     }
