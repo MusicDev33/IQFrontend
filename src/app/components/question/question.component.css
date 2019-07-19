@@ -41,6 +41,11 @@
   margin-left: 0.3em;
 }
 
+.vote-button.inactive{
+  cursor: default;
+  color: #ccc
+}
+
 .highlighted{
   color: #af00b5;
 }

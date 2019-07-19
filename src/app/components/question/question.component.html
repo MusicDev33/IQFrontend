@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div *ngIf="!answerMode && !userHasAnswered">
+      <div *ngIf="!answerMode && !userHasAnswered && authService.loggedIn()">
         <button class="btn btn-primary" type="button" (click)="answerMode=true" >Answer</button>
       </div>
     </div>
@@ -32,10 +32,16 @@
           <a (click)="toProfileWithHandle(answer.posterHandle)" style="cursor: pointer;">{{answer.poster}}</a></b>
         </span>
         <p class="answer-text">{{answer.answerText}}</p><div class="spacer"></div>
-        <span class="action-bar">
+        <span class="action-bar" *ngIf="authService.loggedIn()">
           <i class="fas fa-chevron-circle-up fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === 1}" (click)="voteClicked(answer, 1)"></i>
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
+          <span class="view-text noselect">{{ answer.views }} views </span>
+        </span>
+        <span class="action-bar" *ngIf="!authService.loggedIn()">
+          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect"></i>
+          <b>{{ answer.votes }}</b>
+          <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
         </span>
       </div>
