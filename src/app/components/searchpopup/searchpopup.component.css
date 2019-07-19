@@ -10,14 +10,15 @@
   border-color: #af00b5;
   border-radius: 19px;
   color: #525559;
+  background-color: #fff;
 }
 
 #askButton:disabled{
-  background-color: #ccc;
+  border-color: #ccc;
 }
 
 #askButton:hover{
-  background-color: #ddd;
+  background-color: #fcfcfc;
 }
 
 #closeButton{

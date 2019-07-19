@@ -2,10 +2,10 @@
 <div class="text-center">
   <div *ngIf="currentUser">
     <span><span id="profileCircle"></span><h2>{{ this.currentUser.name }}</h2></span>
-    <h6>Insert clever bio here, there won't be a credential system outside of
-      "I went/go to X University". Maybe you teach at X University. I dunno</h6>
-    <div *ngIf="user && user._id == currentUser._id">
-      <button type="button" class="btn btn-primary" (click)="editBio()">Edit</button>
+    <div class="bio">
+      <h6>Insert clever bio here, there won't be a credential system outside of
+        "I went/go to X University". Maybe you teach at X University. I dunno
+        <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
     </div>
   </div>
 

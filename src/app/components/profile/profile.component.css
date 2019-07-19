@@ -17,6 +17,15 @@
   cursor: pointer;
 }
 
+.bio-icon{
+  color: #fff;
+}
+
+.bio:hover .bio-icon{
+  color: #aaa;
+  cursor: pointer;
+}
+
 .selected{
   background-color: #d2def2;
 }
