@@ -26,6 +26,10 @@
   font-size: 15px;
 }
 
+.answer-textarea{
+  margin-bottom: 1em;
+}
+
 .spacer{
   height: 1.4em;
   background: transparent;

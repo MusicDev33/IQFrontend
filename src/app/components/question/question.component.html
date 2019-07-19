@@ -1,21 +1,25 @@
-<div class="text-center question-container">
+<div class="text-center question-container container">
   <div *ngIf="question">
-    <h2 class="page-header">{{ question.questionText }}</h2>
-    <p style="{text-align:center;}">Asked by <span class="profileURL">
-      <a (click)="toProfileWithHandle(question.askerHandle)" style="cursor: pointer;">{{question.asker}}</a></span>
-    </p>
-    <div *ngIf="answerMode">
-      <div *ngIf="answers">
-        <form *ngIf="authService.loggedIn()" #answerForm="ngForm" id="answer" role="answer" (submit)="sendAnswer(answerForm)">
-          <div class="form-group">
-            <input class="form-control" [(ngModel)]="answerText" name="answerText" type="text" placeholder="Share some knowledge!">
-            <button class="btn btn-primary" type="submit">Send Answer to the Gods</button>
-          </div>
-        </form>
+    <div class="row justify-content-center">
+      <h2 class="page-header">{{ question.questionText }}</h2>
+    </div>
+    <div class="row justify-content-center">
+      <p style="{text-align:center;}">Asked by <span class="profileURL">
+        <a (click)="toProfileWithHandle(question.askerHandle)" style="cursor: pointer;">{{question.asker}}</a></span>
+      </p>
+    </div>
+    <div *ngIf="answerMode && answers && authService.loggedIn()">
+      <div class="row justify-content-center">
+        <textarea class="answer-textarea col-sm-4" [(ngModel)]="answerText" name="answerText" type="password" placeholder="Share some knowledge!"></textarea>
+      </div>
+      <div class="row justify-content-center">
+        <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
     </div>
-    <div *ngIf="!answerMode && !userHasAnswered">
-      <button class="btn btn-primary" type="button" (click)="answerMode=true" >Answer</button>
+    <div class="row justify-content-center">
+      <div *ngIf="!answerMode && !userHasAnswered">
+        <button class="btn btn-primary" type="button" (click)="answerMode=true" >Answer</button>
+      </div>
     </div>
   </div>
 

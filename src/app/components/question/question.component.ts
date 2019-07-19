@@ -105,7 +105,7 @@ export class QuestionComponent implements OnInit {
     this.router.navigate([profileURL])
   }
 
-  sendAnswer(form: NgForm){
+  sendAnswer(){
     var answer = {
       answerText: this.answerText,
       poster: this.authService.getUser().name,
@@ -118,6 +118,7 @@ export class QuestionComponent implements OnInit {
       questionText: this.question.questionText
     }
     this.debug.log(answer)
+    /*
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
       var response: any = {}
       response = data
@@ -127,7 +128,7 @@ export class QuestionComponent implements OnInit {
       }else{
         this.flashMsg.show("Something went wrong. Try answering again.", {cssClass: 'alert-danger', timeout: 1500})
       }
-    })
+    })*/
   }
 
   // Still trying to figure out a good way to do this...
