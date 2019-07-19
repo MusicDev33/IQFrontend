@@ -8,16 +8,21 @@
 }
 
 .qaSelectors{
+  transition: all 0.3s;
   font-family:sans-serif;
   font-size: 30px;
   border-radius: 10px;
   padding-right: 2px;
   padding-left: 2px;
 
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+
   cursor: pointer;
 }
 
 .bio-icon{
+  transition: all 0.16s;
   color: #fff;
 }
 
@@ -35,7 +40,13 @@
 }
 
 /* Should probably call this a container, not a box...oh well.*/
+.box-link-text{
+  color: #555;
+}
+
 .questionBox {
+  cursor: pointer;
+  transition: 0.15s;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid lightgrey;
@@ -44,12 +55,22 @@
   width: 40%;
 }
 
+.questionBox:hover{
+  border: 1px solid #af00b5;
+}
+
 /* This is the same for now, it'll be different one day*/
 .answerBox {
+  cursor: pointer;
+  transition: 0.15s;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid lightgrey;
   padding: 2px;
   border-radius: 20px;
   width: 40%;
+}
+
+.answerBox:hover{
+  border: 1px solid #af00b5;
 }

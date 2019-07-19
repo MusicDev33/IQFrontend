@@ -11,14 +11,13 @@
 
   <div>
     <p><span class="qaSelectors" (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">Questions</span>
-      <span>&nbsp;&nbsp;&nbsp;</span>
       <span class="qaSelectors" (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">Answers</span></p>
   </div>
 
   <div *ngIf="userQuestions && view === contentView.questions">
     <div *ngFor="let question of userQuestions">
       <div class="questionBox">
-        <div (click)="onQuestionClicked(question.questionText)"><a [routerLink]="">{{question.questionText}}</a></div>
+        <div (click)="onQuestionClicked(question.questionText)"><a [routerLink]="" class="box-link-text">{{question.questionText}}</a></div>
       </div>
       <br>
     </div>
@@ -26,8 +25,8 @@
 
   <div *ngIf="userAnswers && view === contentView.answers">
     <div *ngFor="let answer of userAnswers">
-      <div class="answerBox">
-        <h4 (click)="onQuestionClicked(answer.questionText)"><a [routerLink]="">{{ answer.questionText }}</a></h4>
+      <div class="answerBox" (click)="onQuestionClicked(answer.questionText)">
+        <h4><a [routerLink]="" class="box-link-text">{{ answer.questionText }}</a></h4>
         <div>{{answer.answerText}}</div>
       </div>
       <br>
