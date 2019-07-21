@@ -1,3 +1,7 @@
+textarea {
+  resize: none;
+}
+
 .profileCircle {
   height: 30px;
   width: 30px;
@@ -85,4 +89,8 @@
 
 .question-container{
   margin-top: 1em;
+}
+
+#answer-container{
+  margin-top: 0.7em;
 }

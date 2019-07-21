@@ -10,10 +10,10 @@
     </div>
     <div *ngIf="answerMode && answers && authService.loggedIn()">
       <div class="row justify-content-center">
-        <textarea class="answer-textarea col-sm-4" [(ngModel)]="answerText" name="answerText" type="password" placeholder="Share some knowledge!"></textarea>
+        <textarea class="answer-textarea col-sm-4 form-control" [(ngModel)]="answerText" name="answerText" type="password" placeholder="Share some knowledge!"></textarea>
       </div>
       <div class="row justify-content-center">
-        <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
+        <button class="btn btn-primary" id="answer-button" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -23,8 +23,11 @@
     </div>
   </div>
 
-  <div *ngIf="answers">
-    <h4>Answers ({{ answers.length }})</h4>
+  <div *ngIf="answers" id="answer-container">
+    <h4 *ngIf="answers.length">Answers ({{ answers.length }})</h4>
+    <div *ngIf="!answers.length">
+      <h4>No answers have been posted yet. You could be the first!</h4>
+    </div>
 
     <div *ngFor="let answer of answers">
       <div class="answerBox">
