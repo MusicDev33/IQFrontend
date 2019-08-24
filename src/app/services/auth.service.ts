@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Http, Headers } from '@angular/http'
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt'
 import { JwtHelper } from 'angular2-jwt';
+import * as devRoutes from '../globals/devroutes';
+import * as prodRoutes from '../globals/prodroutes';
 
 @Injectable({
   providedIn: 'root'
@@ -12,35 +14,42 @@ import { JwtHelper } from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   user: any;
+  routeBase = '';
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient) {
+      if (isDevMode()) {
+        this.routeBase = devRoutes.routeBase
+      } else {
+        this.routeBase = prodRoutes.routeBase
+      }
+    }
 
   registerUser(user){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('https://inquantir.com/api/v1/users/register', user, {headers: headers})
+    return this.http.post(this.routeBase + '/users/register', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post('https://inquantir.com/api/v1/users/authenticate', user, {headers: headers})
+    return this.http.post(this.routeBase + '/users/authenticate', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   getProfile(){
     this.loadToken();
     let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('https://inquantir.com/api/v1/users/profile', {headers: headers})
+    return this.http.get(this.routeBase + '/users/profile', {headers: headers})
       .pipe(map(res => res));
   }
 
   getUserByHandle(handle){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('https://inquantir.com/api/v1/users/profile/'+handle, {headers: headers})
+    return this.http.get(this.routeBase + '/users/profile/'+handle, {headers: headers})
       .pipe(map(res => res));
   }
 

@@ -1,27 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Http, Headers } from '@angular/http'
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt'
 import { JwtHelper } from 'angular2-jwt';
+import * as devRoutes from '../globals/devroutes';
+import * as prodRoutes from '../globals/prodroutes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VotesService {
+  routeBase = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if (isDevMode()) {
+      this.routeBase = devRoutes.routeBase
+    } else {
+      this.routeBase = prodRoutes.routeBase
+    }
+  }
 
   sendVote(questionid: string, userid: string, answerid: string, vote: Number){
     var votes = vote.toString()
-    var urlString = 'https://inquantir.com/api/v1/questions/' + questionid + "/" + userid + "/" + answerid + "/votes/" + votes
+    var urlString = this.routeBase + '/questions/' + questionid + "/" + userid + "/" + answerid + "/votes/" + votes
     let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
     return this.http.post(urlString, {headers: headers})
       .pipe(map(res => res));
   }
 
   getVotes(questionid: string, userid: string){
-    var urlString = 'https://inquantir.com/api/v1/questions/' + questionid + "/answers/votes/" + userid
+    var urlString = this.routeBase + '/questions/' + questionid + "/answers/votes/" + userid
     let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
     return this.http.get(urlString, {headers: headers})
       .pipe(map(res => res));
