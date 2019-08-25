@@ -1,7 +1,12 @@
 <br>
 <div class="text-center">
   <div *ngIf="currentUser">
-    <span><span id="profileCircle"></span><h2>{{ this.currentUser.name }}</h2></span>
+    <div>
+      <div class="profile-circle">
+        <i class="fas fa-user profile-icon"></i>
+      </div>
+      <h2>{{ this.currentUser.name }}</h2>
+    </div>
     <div class="bio">
       <h6>Insert clever bio here, there won't be a credential system outside of
         "I went/go to X University". Maybe you teach at X University. I dunno

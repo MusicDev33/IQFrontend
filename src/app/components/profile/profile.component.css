@@ -1,10 +1,15 @@
-#profileCircle {
+.profile-circle {
   height: 70px;
   width: 70px;
-  background-color: #73a2ef;
+  background-color: #9fc3fc;
   border-radius: 50%;
   display: inline-block;
-  vertical-align: middle;
+}
+
+.profile-icon {
+  font-size: 50px;
+  margin-top: 5px;
+  color: #78a2e3;
 }
 
 .qaSelectors{
