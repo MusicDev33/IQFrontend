@@ -2,19 +2,39 @@
   <h2>Ask Question</h2>
   <p>Be sure to make the question specific, and make sure any subjects or sources are <em><b>relevant and useful to others</b></em>.</p>
   <div [formGroup]="form" class="" id="questionBar">
-    <textarea [ngClass]="{'hide-element': !questionMode}" [(ngModel)]="questionText" class="form-control" placeholder="Ask a question" formControlName="question" (keyup)="checkFormComplete()"></textarea>
+    <textarea [ngClass]="{'hide-element': !questionMode}"
+      [(ngModel)]="questionText"
+      class="form-control input-form"
+      placeholder="Ask a question"
+      formControlName="question"
+      (keyup)="checkFormComplete()">
+    </textarea>
+
     <div [ngClass]="{'hide-element': questionMode}">
       <h4 [ngClass]="{'hide-element': questionText?.length}" class="sectionOpenTitle" (click)="questionModeOn()">Question</h4>
       <h4 [ngClass]="{'hide-element': !questionText?.length, 'section-title-animate': !questionMode}" class="sectionOpenTitle" (click)="questionModeOn()">{{ questionText }}</h4>
     </div>
 
-    <input #topicInput [ngClass]="{'hide-element': !topicMode}" [(ngModel)]="topicText" class="form-control" formControlName="topic" placeholder="Enter topic name" (keyup)="checkFormComplete()">
+    <input [ngClass]="{'hide-element': !topicMode}"
+      [(ngModel)]="topicText"
+      class="form-control input-form"
+      formControlName="topic"
+      placeholder="Enter topic name"
+      (keyup)="checkFormComplete()">
+
     <div [ngClass]="{'hide-element': topicMode}">
       <h4 [ngClass]="{'hide-element': topicText?.length}" class="sectionOpenTitle" (click)="topicModeOn()">Topic</h4>
       <h4 [ngClass]="{'hide-element': !topicText?.length, 'section-title-animate': !topicMode}" class="sectionOpenTitle" (click)="topicModeOn()">{{ topicText }}</h4>
     </div>
 
-    <input id="sourceInput" [ngClass]="{'hide-element': !sourceMode}" [(ngModel)]="sourceText" class="form-control" formControlName="source" placeholder="Enter source" (keyup)="checkFormComplete()">
+    <input id="sourceInput"
+      [ngClass]="{'hide-element': !sourceMode}"
+      [(ngModel)]="sourceText"
+      class="form-control input-form" 
+      formControlName="source"
+      placeholder="Enter source"
+      (keyup)="checkFormComplete()">
+
     <div [ngClass]="{'hide-element': sourceMode}">
       <h4 [ngClass]="{'hide-element': sourceText?.length}" class="sectionOpenTitle" (click)="sourceModeOn()">Source</h4>
       <h4 [ngClass]="{'hide-element': !sourceText?.length, 'section-title-animate': !sourceMode}" class="sectionOpenTitle" (click)="sourceModeOn()">{{ sourceText }}</h4>

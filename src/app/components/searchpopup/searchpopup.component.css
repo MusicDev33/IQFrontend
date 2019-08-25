@@ -81,6 +81,10 @@ textarea {
   color: #3e7ee6;
 }
 
+.input-form {
+  margin-bottom: 3px;
+}
+
 /* Animations */
 @keyframes text-color-change {
   from {color: black;}
