@@ -1,17 +1,33 @@
 <section *ngIf="user && !user.currentSubjects.length">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 text-center">
-        <br>
-        <h2>Follow some topics!</h2>
-      </div>
-    </div>
-    <div class="row" *ngIf="arrayOfSubjects">
-      <div *ngFor="let subject of arrayOfSubjects" class="col text-center">
-        {{ subject.name }}
-      </div>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <br>
+      <h2>Follow some topics!</h2>
     </div>
   </div>
+
+  <div class="row subject-ribbon justify-content-center" *ngIf="arrayOfSubjects">
+    <div class="col-1 text-center my-auto">
+      <i class="fas fa-chevron-left side-arrow disabled"></i>
+    </div>
+
+    <div class="col-10 justify-content-center">
+      <div class="row">
+        <div *ngFor="let subject of arrayOfSubjects" class="col-3 text-center">
+          <div class="col-11 content-box mx-auto">
+            <h4>{{ subject.name }}</h4>
+            <div class="btn btn-secondary follow-button">Follow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-1 text-center my-auto">
+      <i class="fas fa-chevron-right side-arrow disabled"></i>
+    </div>
+  </div>
+
 </section>
 
 <section *ngIf="user && user.currentSubjects.length">

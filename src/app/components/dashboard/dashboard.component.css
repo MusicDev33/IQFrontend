@@ -15,10 +15,10 @@
 }
 
 .h-component {
-    display: inline-block;
-    flex-grow: 1;
-    height:100px;
-    width: calc(100% * (1/4) - 10px - 1px)
+  display: inline-block;
+  flex-grow: 1;
+  height:100px;
+  width: calc(100% * (1/4) - 10px - 1px)
 }
 
 .subject-url {
@@ -52,4 +52,35 @@
 
 .bigbox{
   border: 1px solid #af00b5;
+}
+
+.follow-button {
+  border-color: #af00b5;
+  border-radius: 19px;
+  color: #525559;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.follow-button:hover {
+  background-color: #af00b5;
+  color: #fff;
+}
+
+.subject-ribbon {
+  background-color: #fbfbfb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.side-arrow {
+  font-size: 30px;
+}
+
+.side-arrow.disabled {
+  color: #adadad;
+}
+
+.side-arrow.enabled:hover {
+  color: #af00b5;
 }

@@ -14,3 +14,7 @@
   width: 100vw;
   z-index:99;
 }
+
+.container-fluid {
+  padding: 0 !important;
+}
