@@ -2,6 +2,6 @@
 <app-navbar [ngClass]="{'hide-element': !showNavBar}"></app-navbar>
 
 
-<div class="container" [ngClass]="{'no-pad-mar': isHomePage}">
+<div class="container-fluid" [ngClass]="{'no-pad-mar': isHomePage}">
   <router-outlet><flash-messages class="flash"></flash-messages></router-outlet>
 </div>

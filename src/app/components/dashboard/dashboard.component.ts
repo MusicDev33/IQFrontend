@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { AuthService } from '../../services/auth.service'
+import { SubjectsService } from '../../services/subjects.service'
 import { Router } from '@angular/router'
 import { QuestionService } from '../../services/question.service'
 import { ActivatedRoute } from '@angular/router';
@@ -17,12 +18,15 @@ export class DashboardComponent implements OnInit {
   subjects: Array<String>
   subject: string
 
+  arrayOfSubjects: Array<String>
+
   constructor(
     public authService: AuthService,
     public router: Router,
     public qService: QuestionService,
     public activatedRoute: ActivatedRoute,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public subjectsService: SubjectsService) { }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.paramMap.get('subject')){
@@ -58,6 +62,12 @@ export class DashboardComponent implements OnInit {
     }, err => {
       this.debug.log(err);
       return false;
+    })
+
+    this.subjectsService.getAllSubjects().subscribe(data => {
+      var response: any = {};
+      response = data;
+      this.arrayOfSubjects = response.subjects
     })
   }
 

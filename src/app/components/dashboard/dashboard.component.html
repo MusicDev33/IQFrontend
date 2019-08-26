@@ -1,33 +1,40 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <br>
-      <h2>Topics to Follow</h2>
+<section *ngIf="user && !user.currentSubjects.length">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center">
+        <br>
+        <h2>Follow some topics!</h2>
+      </div>
+    </div>
+    <div class="row" *ngIf="arrayOfSubjects">
+      <div *ngFor="let subject of arrayOfSubjects" class="col text-center">
+        {{ subject.name }}
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Old Dashboard
-<div class="container">
-  <div class="row">
-    <div *ngIf="subjects" class="col-lg-2">
-      <div *ngFor="let subject of subjects">
-        <div>
-          <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
-          <div class="detail-view">
+<section *ngIf="user && user.currentSubjects.length">
+  <div class="container">
+    <div class="row">
+      <div *ngIf="subjects" class="col-lg-2">
+        <div *ngFor="let subject of subjects">
+          <div>
+            <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
+            <div class="detail-view">
 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
+        <h2 class="text-center">Questions</h2>
+        <div *ngFor="let question of questions" class="text-center">
+          <div class="question-box">
+            <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
-      <h2 class="text-center">Questions</h2>
-      <div *ngFor="let question of questions" class="text-center">
-        <div class="question-box">
-          <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
--->
+</section>
