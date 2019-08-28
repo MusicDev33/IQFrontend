@@ -86,6 +86,7 @@
 }
 
 .side-arrow {
+  transition: all 0.43s;
   font-size: 30px;
 }
 
@@ -95,4 +96,5 @@
 
 .side-arrow.enabled:hover {
   color: #af00b5;
+  cursor: pointer;
 }

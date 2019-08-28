@@ -10,8 +10,8 @@
 
   <div class="row subject-ribbon justify-content-center" *ngIf="arrayOfSubjects">
     <div class="col-1 text-center my-auto">
-      <i style="cursor:pointer;" class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === 0}"></i>
+      <i class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
+        [ngClass]="{'disabled': subjectOffset === 0, 'enabled': !(subjectOffset === 0)}"></i>
     </div>
 
     <div class="col-10 justify-content-center">
@@ -57,8 +57,8 @@
     </div>
 
     <div class="col-1 text-center my-auto">
-      <i style="cursor:pointer;" class="fas fa-chevron-right side-arrow disabled" (click)="rightArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === calcMaxOffset() - 1}"></i>
+      <i class="fas fa-chevron-right side-arrow disabled" (click)="rightArrowClicked()"
+        [ngClass]="{'disabled': subjectOffset === calcMaxOffset() - 1, 'enabled': !(subjectOffset === calcMaxOffset() - 1)}"></i>
     </div>
   </div>
 
