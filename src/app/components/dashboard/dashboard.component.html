@@ -1,3 +1,4 @@
+<!-- IF USER DOESN'T FOLLOW ANY SUBJECTS -->
 <section *ngIf="user && !user.currentSubjects.length">
 
   <div class="row">
@@ -22,7 +23,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-1 text-center my-auto">
       <i class="fas fa-chevron-right side-arrow disabled"></i>
     </div>
@@ -30,6 +31,7 @@
 
 </section>
 
+<!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
 <section *ngIf="user && user.currentSubjects.length">
   <div class="container">
     <div class="row">
