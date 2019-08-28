@@ -8,9 +8,9 @@ export class DebugService {
 
   constructor() { }
 
-  log(text){
-    if (isDevMode()){
-      console.log(text)
+  log(text) {
+    if (isDevMode()) {
+      console.log(text);
     }
   }
 }

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     public subjectsService: SubjectsService) { }
 
   ngOnInit() {
-    if (this.activatedRoute.snapshot.paramMap.get('subject')){
+    if (this.activatedRoute.snapshot.paramMap.get('subject')) {
       this.subject = this.activatedRoute.snapshot.paramMap.get('subject');
       this.qService.getSubjectQuestions(this.subject).subscribe(data => {
         var res: any = {}

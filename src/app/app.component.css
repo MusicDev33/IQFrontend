@@ -1,7 +1,7 @@
 .no-pad-mar {
+  left: 0;
   margin: 0;
   padding: 0;
-  left: 0px;
 }
 
 .hide-element{
@@ -9,8 +9,8 @@
 }
 
 .flash {
-  position: fixed;
   left: 0;
+  position: fixed;
   width: 100vw;
   z-index:99;
 }

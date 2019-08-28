@@ -1,6 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { Http, Headers } from '@angular/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -13,29 +13,29 @@ export class AnswerService {
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase
+      this.routeBase = devRoutes.routeBase;
     } else {
-      this.routeBase = prodRoutes.routeBase
+      this.routeBase = prodRoutes.routeBase;
     }
   }
 
-  getAnswers(questionURL){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
-    return this.http.get(this.routeBase + '/questions/'+questionURL+'/answers', {headers: headers})
+  getAnswers(questionURL) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.routeBase + '/questions/' + questionURL + '/answers', {headers: headers})
       .pipe(map(res => res));
   }
 
-  sendAnswer(answer, questionURL){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
-    return this.http.post(this.routeBase + '/questions/'+questionURL+'/answers/add', answer, {headers: headers})
+  sendAnswer(answer, questionURL) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.routeBase + '/questions/' + questionURL + '/answers/add', answer, {headers: headers})
       .pipe(map(res => res));
 
   }
 
-  getUserAnswers(userID){
-    let headers = new HttpHeaders();
+  getUserAnswers(userID) {
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.get(this.routeBase + '/users/' + userID + '/answers', {headers: headers})
       .pipe(map(res => res));

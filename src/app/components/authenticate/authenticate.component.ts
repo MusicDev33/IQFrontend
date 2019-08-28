@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidateService } from '../../services/validate.service'
-import { FlashMessagesService } from 'angular2-flash-messages'
-import { AuthService } from '../../services/auth.service'
-import { Router } from '@angular/router'
-import { DebugService } from  '../../services/debug.service'
+import { ValidateService } from '../../services/validate.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { DebugService } from '../../services/debug.service';
 
 @Component({
   selector: 'app-authenticate',
@@ -25,31 +25,31 @@ export class AuthenticateComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLoginSubmit(){
+  onLoginSubmit() {
     const user = {
       email: this.email,
       password: this.password
-    }
+    };
 
     var response: any = {}
 
     // Required Fields
-    if(!this.validator.validateLogin(user)){
-      this.flashMsg.show("Please fill in all fields!", {cssClass: 'alert-danger', timeout: 2000})
+    if (!this.validator.validateLogin(user)) {
+      this.flashMsg.show('Please fill in all fields!', {cssClass: 'alert-danger', timeout: 2000});
       return false;
     }
 
     this.authService.authenticateUser(user).subscribe(data => {
       response = data;
-      this.debug.log(data)
-      if(response.success){
-        this.authService.storeUserData(response.token, response.user)
-        this.flashMsg.show("Logged in!", {cssClass: 'alert-success', timeout: 2000})
-        this.router.navigate(['/dashboard'])
-      }else{
-        this.flashMsg.show(response.msg, {cssClass: 'alert-danger', timeout: 2000})
-        this.router.navigate(['/authenticate'])
+      this.debug.log(data);
+      if (response.success) {
+        this.authService.storeUserData(response.token, response.user);
+        this.flashMsg.show('Logged in!', {cssClass: 'alert-success', timeout: 2000});
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.flashMsg.show(response.msg, {cssClass: 'alert-danger', timeout: 2000});
+        this.router.navigate(['/authenticate']);
       }
-    })
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DebugService } from  '../../services/debug.service'
-import { IpgenService } from '../../services/ipgen.service'
+import { DebugService } from '../../services/debug.service';
+import { IpgenService } from '../../services/ipgen.service';
 
 @Component({
   selector: 'app-fakemain',
@@ -14,12 +14,12 @@ export class FakemainComponent implements OnInit {
   ngOnInit() {
     document.body.classList.add('bg-pic');
     this.ipgen.getIpAddress().subscribe(data => {
-      var res: any = {}
-      res = data
+      let res: any = {};
+      res = data;
       this.ipgen.sendIpAddress(res).subscribe(returnData => {
 
-      })
-    })
+      });
+    });
   }
 
 }

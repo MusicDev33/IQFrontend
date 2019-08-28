@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service'
-import { QuestionService } from '../../services/question.service'
-import { AnswerService } from '../../services/answer.service'
+import { AuthService } from '../../services/auth.service';
+import { QuestionService } from '../../services/question.service';
+import { AnswerService } from '../../services/answer.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router'
-import { MatDialog, MatDialogConfig } from '@angular/material'
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from  '../../services/debug.service'
+import { DebugService } from '../../services/debug.service';
 
 
 enum ContentView {
@@ -21,18 +21,18 @@ enum ContentView {
 })
 export class ProfileComponent implements OnInit {
 
-  user: Object
-  userHandle: String
+  user: Object;
+  userHandle: String;
 
   // Current user is the user to whom the profile page belongs to
   // User is the user using the browser
-  currentUser: any = {}
+  currentUser: any = {};
 
-  userMatch: Boolean
+  userMatch: Boolean;
   view: ContentView
 
-  userQuestions: Array<Object>
-  userAnswers: Array<Object>
+  userQuestions: Array<Object>;
+  userAnswers: Array<Object>;
 
   constructor(
     public authService: AuthService,
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     // Enum hax
-    this.view = ContentView.questions
+    this.view = ContentView.questions;
 
 
     this.userMatch = false;
@@ -54,65 +54,65 @@ export class ProfileComponent implements OnInit {
 
     this.authService.getUserByHandle(this.userHandle).subscribe(data => {
       var res: any = {}
-      res = data
-      this.currentUser = res.user
-      this.debug.log(res)
+      res = data;
+      this.currentUser = res.user;
+      this.debug.log(res);
 
-      this.qService.getUserQuestions(""+this.currentUser._id).subscribe(data => {
+      this.qService.getUserQuestions('' + this.currentUser._id).subscribe(data => {
         var res: any = {}
-        res = data
-        this.debug.log(res)
-        this.userQuestions = res.questions
-        this.debug.log(this.userQuestions)
-      })
+        res = data;
+        this.debug.log(res);
+        this.userQuestions = res.questions;
+        this.debug.log(this.userQuestions);
+      });
 
-      this.ansService.getUserAnswers(""+this.currentUser._id).subscribe(data => {
-        var res: any = {}
-        res = data
-        this.debug.log(res)
-        this.userAnswers = res.answers
-        this.debug.log(this.userAnswers)
-      })
-    })
-    if (this.authService.hasToken()){
+      this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(data => {
+        var res: any = {};
+        res = data;
+        this.debug.log(res);
+        this.userAnswers = res.answers;
+        this.debug.log(this.userAnswers);
+      });
+    });
+    if (this.authService.hasToken()) {
       this.authService.getProfile().subscribe(data => {
         var res: any = {}
-        res = data
-        this.user = res.user
-        this.debug.log(this.user)
+        res = data;
+        this.user = res.user;
+        this.debug.log(this.user);
       }, err => {
-        this.debug.log(err)
-        return false
-      })
+        this.debug.log(err);
+        return false;
+      });
     }
   }
 
-  //This is how we will get our enums...kinda hacky
+  // This is how we will get our enums...kinda hacky
   get contentView() { return ContentView }
 
-  onAnswersClick(){
-    this.debug.log("Answers")
-    if (this.view != ContentView.answers){
-      this.view = ContentView.answers
+  onAnswersClick() {
+    this.debug.log('Answers');
+    if (this.view !== ContentView.answers) {
+      this.view = ContentView.answers;
     }
   }
 
-  onQuestionsClick(){
-    this.debug.log("Questions")
-    if (this.view != ContentView.questions){
-      this.view = ContentView.questions
+  onQuestionsClick() {
+    this.debug.log('Questions');
+    if (this.view !== ContentView.questions) {
+      this.view = ContentView.questions;
     }
   }
 
   // Not to be confused with onQuestionsClick
-  onQuestionClicked(text){
-    var questionURL = this.qService.questionTextToURL(text)
-    this.debug.log(questionURL)
-    var routeURL = '/question/' + questionURL
-    this.router.navigate([routeURL])
+  onQuestionClicked(text) {
+    const questionURL = this.qService.questionTextToURL(text);
+    this.debug.log(questionURL);
+    const routeURL = '/question/' + questionURL;
+    this.router.navigate([routeURL]);
   }
 
-  editBio(){
+  editBio() {
 
   }
 }

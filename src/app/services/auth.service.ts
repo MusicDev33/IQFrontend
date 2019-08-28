@@ -1,8 +1,8 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { Http, Headers } from '@angular/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { tokenNotExpired } from 'angular2-jwt'
+import { tokenNotExpired } from 'angular2-jwt';
 import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -19,122 +19,122 @@ export class AuthService {
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
-        this.routeBase = devRoutes.routeBase
+        this.routeBase = devRoutes.routeBase;
       } else {
-        this.routeBase = prodRoutes.routeBase
+        this.routeBase = prodRoutes.routeBase;
       }
     }
 
-  registerUser(user){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
+  registerUser(user) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     return this.http.post(this.routeBase + '/users/register', user, {headers: headers})
       .pipe(map(res => res));
   }
 
-  authenticateUser(user){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
+  authenticateUser(user) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     return this.http.post(this.routeBase + '/users/authenticate', user, {headers: headers})
       .pipe(map(res => res));
   }
 
-  getProfile(){
+  getProfile() {
     this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
     return this.http.get(this.routeBase + '/users/profile', {headers: headers})
       .pipe(map(res => res));
   }
 
-  getUserByHandle(handle){
-    let headers = new HttpHeaders();
+  getUserByHandle(handle) {
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.routeBase + '/users/profile/'+handle, {headers: headers})
+    return this.http.get(this.routeBase + '/users/profile/' + handle, {headers: headers})
       .pipe(map(res => res));
   }
 
-  storeUserData(token, user){
+  storeUserData(token, user) {
     localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user', JSON.stringify(user));
 
-    this.authToken = token
-    this.user = user
+    this.authToken = token;
+    this.user = user;
   }
 
-  loadUser(){
-    let jwtHelper: JwtHelper = new JwtHelper();
+  loadUser() {
+    const jwtHelper: JwtHelper = new JwtHelper();
     this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
-  userMongoID(){
-    let jwtHelper: JwtHelper = new JwtHelper();
+  userMongoID() {
+    const jwtHelper: JwtHelper = new JwtHelper();
     this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
     // returns the ObjectId in string form.
     // for whatever reason, .str and .toString() didn't work.
-    return ""+this.user._id
+    return '' + this.user._id;
   }
 
-  getUser(){
-    let jwtHelper: JwtHelper = new JwtHelper();
+  getUser() {
+    const jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
-  getUserHandle(){
-    let jwtHelper: JwtHelper = new JwtHelper();
+  getUserHandle() {
+    const jwtHelper: JwtHelper = new JwtHelper();
     this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
-    return this.user.handle
+    return this.user.handle;
   }
 
-  loadToken(){
+  loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
   }
 
-  hasToken(){
-    let jwtHelper: JwtHelper = new JwtHelper();
+  hasToken() {
+    const jwtHelper: JwtHelper = new JwtHelper();
 
-    if(localStorage.getItem('id_token')){
-      if (this.loggedIn()){
-        return true
-      }else{
-        this.logout()
+    if (localStorage.getItem('id_token')) {
+      if (this.loggedIn()) {
+        return true;
+      } else {
+        this.logout();
         return false;
       }
-    }else{
-      this.logout()
+    } else {
+      this.logout();
       return false;
     }
   }
 
-  getUserID(): any{
-    let jwtHelper: JwtHelper = new JwtHelper();
+  getUserID(): any {
+    const jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(localStorage.getItem('id_token'));
   }
 
-  getUserNameURL(){
+  getUserNameURL() {
     this.loadUser();
-    if (this.user){
-      var url: String = ""
+    if (this.user) {
+      let url: String = '';
       for (var i = 0; i < this.user.name.length; i++) {
-        if (this.user.name[i] == " " || this.user.name[i] == "'"){
-          url += "-"
-        }else{
-          url += this.user.name[i]
+        if (this.user.name[i] === ' ' || this.user.name[i] === '\'') {
+          url += '-';
+        } else {
+          url += this.user.name[i];
         }
       }
-      return url
-    }else{
-      return "null"
+      return url;
+    } else {
+      return 'null';
     }
   }
 
-  loggedIn(){
+  loggedIn() {
     return tokenNotExpired('id_token');
   }
 
-  logout(){
-    this.authToken = null
-    this.user = null
-    localStorage.clear()
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
   }
 }
