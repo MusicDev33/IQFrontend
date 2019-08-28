@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
       }, err => {
         this.debug.log(err);
         return false;
-      })
+      });
     } else {
       this.subject = '';
       this.qService.getAllQuestions().subscribe(data => {
@@ -61,8 +61,8 @@ export class DashboardComponent implements OnInit {
         this.questions = res.questions;
       }, err => {
         this.debug.log(err);
-        return false
-      })
+        return false;
+      });
     }
 
     var response: any = {};
@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
       var response: any = {};
       response = data;
       this.arrayOfSubjects = response.subjects;
-    })
+    });
   }
 
   subjectClicked(subject: string) {
@@ -126,10 +126,37 @@ export class DashboardComponent implements OnInit {
   }
 
   calcMaxOffset(n) {
-    return this.arrayOfSubjects.length / n;
+    const screen = this.returnScreenBreakpoint();
+
+    switch (screen) {
+      case 'xs':
+        return this.arrayOfSubjects.length / 1;
+      case 'sm':
+        return this.arrayOfSubjects.length / 2;
+      case 'md':
+        return this.arrayOfSubjects.length / 3;
+      case 'lg':
+        return this.arrayOfSubjects.length / 4;
+      case 'xl':
+        return this.arrayOfSubjects.length / 4;
+    }
   }
 
   nSubjects(n) {
     return this.arrayOfSubjects.slice(this.subjectOffset * n, n);
+  }
+
+  returnScreenBreakpoint() {
+    if (this.screenWidth < 576) {
+      return 'xs';
+    } else if (this.screenWidth >= 576 && this.screenWidth < 768) {
+      return 'sm';
+    } else if (this.screenWidth >= 768 && this.screenWidth < 992) {
+      return 'md';
+    } else if (this.screenWidth >= 992 && this.screenWidth < 1200) {
+      return 'lg';
+    } else {
+      return 'xl';
+    }
   }
 }
