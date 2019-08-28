@@ -97,4 +97,8 @@ export class DashboardComponent implements OnInit {
     var routeURL = '/question/' + questionURL
     this.router.navigate([routeURL])
   }
+
+  nSubjects(n) {
+    return this.arrayOfSubjects.slice(0, n);
+  }
 }

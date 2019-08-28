@@ -15,12 +15,38 @@
 
     <div class="col-10 justify-content-center">
       <div class="row">
-        <div *ngFor="let subject of arrayOfSubjects" class="col-3 text-center">
+
+        <!-- LAPTOPS AND LARGE SCREENS -->
+        <div *ngFor="let subject of nSubjects(4)" class="col-3 text-center d-none d-lg-block">
           <div class="col-11 content-box mx-auto">
             <h4>{{ subject.name }}</h4>
             <div class="btn btn-secondary follow-button">Follow</div>
           </div>
         </div>
+
+        <!-- MEDIUM SCREENS -->
+        <div *ngFor="let subject of nSubjects(3)" class="col-4 text-center d-none d-md-block d-lg-none">
+          <div class="col-11 content-box mx-auto">
+            <h4>{{ subject.name }}</h4>
+            <div class="btn btn-secondary follow-button">Follow</div>
+          </div>
+        </div>
+
+        <!-- SMALL SCREENS -->
+        <div *ngFor="let subject of nSubjects(2)" class="col-6 text-center d-none d-sm-block d-md-none">
+          <div class="col-11 content-box mx-auto">
+            <h4>{{ subject.name }}</h4>
+            <div class="btn btn-secondary follow-button">Follow</div>
+          </div>
+        </div>
+
+        <div *ngFor="let subject of nSubjects(1)" class="col-10 text-center d-block d-sm-none">
+          <div class="col-11 content-box mx-auto">
+            <h4>{{ subject.name }}</h4>
+            <div class="btn btn-secondary follow-button">Follow</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
