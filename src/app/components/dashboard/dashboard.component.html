@@ -1,5 +1,5 @@
 <!-- IF USER DOESN'T FOLLOW ANY SUBJECTS -->
-<section *ngIf="user && !user.currentSubjects.length">
+<section *ngIf="user">
 
   <div class="row">
     <div class="col-12 text-center">
@@ -18,9 +18,13 @@
 
         <!-- LAPTOPS AND LARGE SCREENS -->
         <div *ngFor="let subject of nSubjects(4)" class="col-3 text-center d-none d-lg-block">
-          <div class="col-11 content-box mx-auto">
+          <div class="col-11 content-box mx-auto text-center">
             <h4>{{ subject.name }}</h4>
-            <div class="btn btn-secondary follow-button">Follow</div>
+            <div class="btn btn-secondary follow-button"
+            *ngIf="!user.currentSubjects.includes(subject.name)"
+            (click)="followButtonClicked(subject)">Follow</div>
+
+            <div class="text-followed" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -72,6 +76,7 @@
           </div>
         </div>
       </div>
+
       <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
         <h2 class="text-center">Questions</h2>
         <div *ngFor="let question of questions" class="text-center">

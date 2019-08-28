@@ -22,10 +22,11 @@
 }
 
 .subject-url {
-  transition: 0.3s;
+  border-bottom: solid 3px rgb(0,0,0);
   border-bottom: solid 3px rgba(0,0,0,0);
   display: inline;
   line-height: 1.5em;
+  transition: 0.3s;
 }
 
 .subject-url:hover{
@@ -50,7 +51,7 @@
   text-decoration: underline;
 }
 
-.bigbox{
+.bigbox {
   border: 1px solid #af00b5;
 }
 
@@ -60,11 +61,22 @@
   color: #525559;
   transition: 0.4s;
   cursor: pointer;
+  width: 90px;
+  height: 36px;
+  box-sizing: border-box;
 }
 
 .follow-button:hover {
   background-color: #af00b5;
   color: #fff;
+}
+
+.text-followed {
+  color: rgb(186,186,186);
+  cursor: default;
+  padding-top: 10px;
+  height: 36px;
+  box-sizing: border-box;
 }
 
 .subject-ribbon {

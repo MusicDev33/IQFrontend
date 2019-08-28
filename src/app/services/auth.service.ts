@@ -128,6 +128,14 @@ export class AuthService {
     }
   }
 
+  followSubject(subjectURL) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(route, {}, {headers: headers})
+      .pipe(map(res => res));
+  }
+
   loggedIn() {
     return tokenNotExpired('id_token');
   }
