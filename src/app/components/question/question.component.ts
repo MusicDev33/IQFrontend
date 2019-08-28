@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../services/question.service'
+import { QuestionService } from '../../services/question.service';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service'
-import { AnswerService } from '../../services/answer.service'
-import { FlashMessagesService } from 'angular2-flash-messages'
+import { AuthService } from '../../services/auth.service';
+import { AnswerService } from '../../services/answer.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router'
-import { DebugService } from '../../services/debug.service'
+import { Router } from '@angular/router';
+import { DebugService } from '../../services/debug.service';
 import { VotesService } from '../../services/votes.service';
 
 interface Answer {
@@ -30,21 +30,21 @@ interface user {
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  question: any
-  answers: Array<Answer>
-  questionURL: String
-  answerText: String
-  hasAnswered: boolean
-  userHasAnswered: boolean
+  question: any;
+  answers: Array<Answer>;
+  questionURL: String;
+  answerText: String;
+  hasAnswered: boolean;
+  userHasAnswered: boolean;
 
-  answerMode: boolean
+  answerMode: boolean;
 
   // This dictionary is in the following format - answerID:vote
   // Example:
   // 5d1ea3de81e1ef53f657baf7: 1 this means that the answer has been given an upvote
   // 5d1ea3de81e1ef53f657baf7: -1 is a downvote
   // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
-  votedAnswers: any = {}
+  votedAnswers: any = {};
 
 
   constructor(
@@ -58,55 +58,55 @@ export class QuestionComponent implements OnInit {
     public votesService: VotesService) { }
 
   ngOnInit() {
-    this.answerMode = false
+    this.answerMode = false;
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
-    var response: any = {}
+    var response: any = {};
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
-      this.question = response.question
-      this.debug.log(this.question)
+      this.question = response.question;
+      this.debug.log(this.question);
 
       this.votesService.getVotes(this.question._id, this.authService.userMongoID()).subscribe(data => {
-        var response: any = {}
+        var response: any = {};
         response = data;
-        this.debug.log(data)
+        this.debug.log(data);
         response.votes.forEach((vote: any) => {
-          if (vote.vote != 0){
-            this.votedAnswers[vote.answerid] = vote.vote
+          if (vote.vote !== 0) {
+            this.votedAnswers[vote.answerid] = vote.vote;
           }
-        })
-        this.debug.log(this.votedAnswers)
-      })
+        });
+        this.debug.log(this.votedAnswers);
+      });
 
     }, err => {
       this.debug.log(err);
       return false;
-    })
+    });
 
     this.answerService.getAnswers(this.questionURL).subscribe(data => {
-      var response: any = {}
-      var user: user
-      response = data
-      this.answers = response.answers
+      var response: any = {};
+      var user: user;
+      response = data;
+      this.answers = response.answers;
 
-      user = this.authService.getUserID()
+      user = this.authService.getUserID();
 
       this.answers.forEach( (answer) => {
-        this.debug.log(answer)
-        if (answer.poster == user.name){
-          this.userHasAnswered = true
+        this.debug.log(answer);
+        if (answer.poster === user.name) {
+          this.userHasAnswered = true;
         }
-      })
-    })
+      });
+    });
   }
 
-  toProfileWithHandle(handle: string){
-    var profileURL = "/profile/" + handle
-    this.router.navigate([profileURL])
+  toProfileWithHandle(handle: string) {
+    const profileURL = '/profile/' + handle;
+    this.router.navigate([profileURL]);
   }
 
-  sendAnswer(){
-    var answer = {
+  sendAnswer() {
+    const answer = {
       answerText: this.answerText,
       poster: this.authService.getUser().name,
       posterHandle: this.authService.getUser().handle,
@@ -116,8 +116,8 @@ export class QuestionComponent implements OnInit {
       views: 1,
       comments: [],
       questionText: this.question.questionText
-    }
-    this.debug.log(answer)
+    };
+    this.debug.log(answer);
     /*
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
       var response: any = {}
@@ -132,50 +132,50 @@ export class QuestionComponent implements OnInit {
   }
 
   // Still trying to figure out a good way to do this...
-  voteClicked(answer, castVote){
-    let negCastVote = 0 - castVote
-    if (answer._id in this.votedAnswers){
-      let vote = this.votedAnswers[answer._id]
-      switch(vote){
+  voteClicked(answer, castVote) {
+    const negCastVote = 0 - castVote;
+    if (answer._id in this.votedAnswers) {
+      const vote = this.votedAnswers[answer._id];
+      switch (vote) {
         case castVote: {
           // Cancelling upvote
-          answer.votes -= castVote
-          delete this.votedAnswers[answer._id]
-          this.sendVote(0, answer._id)
+          answer.votes -= castVote;
+          delete this.votedAnswers[answer._id];
+          this.sendVote(0, answer._id);
           break;
         }
         case negCastVote: {
-          answer.votes += 2*castVote
-          this.votedAnswers[answer._id] = castVote
-          this.sendVote(castVote, answer._id)
+          answer.votes += 2 * castVote;
+          this.votedAnswers[answer._id] = castVote;
+          this.sendVote(castVote, answer._id);
           break;
         }
         default: {
-          this.debug.log("Voting got broken somehow...")
-          this.debug.log(vote)
+          this.debug.log('Voting got broken somehow...');
+          this.debug.log(vote);
           break;
         }
       }
-    }else{
+    } else {
       // Send upvote
-      answer.votes += castVote
-      this.votedAnswers[answer._id] = castVote
-      this.sendVote(castVote, answer._id)
+      answer.votes += castVote;
+      this.votedAnswers[answer._id] = castVote;
+      this.sendVote(castVote, answer._id);
     }
   }
 
-  sendVote(vote, answerid){
+  sendVote(vote, answerid) {
     this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answerid, vote).subscribe(data => {
-      var response: any = {}
-      console.log(data)
-    })
+      var response: any = {};
+      console.log(data);
+    });
   }
 
-  getVote(answer){
-    if (answer._id in this.votedAnswers){
-      console.log(this.votedAnswers)
-      return this.votedAnswers[answer._id]
-    }else{
+  getVote(answer) {
+    if (answer._id in this.votedAnswers) {
+      console.log(this.votedAnswers);
+      return this.votedAnswers[answer._id];
+    } else {
       return 0;
     }
   }

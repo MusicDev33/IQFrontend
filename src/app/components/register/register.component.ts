@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidateService } from '../../services/validate.service'
-import { FlashMessagesService } from 'angular2-flash-messages'
-import { AuthService } from '../../services/auth.service'
-import { Router } from '@angular/router'
-import { DebugService } from  '../../services/debug.service'
+import { ValidateService } from '../../services/validate.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { DebugService } from '../../services/debug.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   password: String;
   handle: String;
 
-  response: any = {}
+  response: any = {};
 
   constructor(
     public validator: ValidateService,
@@ -30,35 +30,35 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onRegisterSubmit(){
+  onRegisterSubmit() {
     const user = {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
       password: this.password,
       handle: this.handle
-    }
+    };
 
     // Required Fields
-    if(!this.validator.validateRegister(user)){
-      this.flashMsg.show("Please fill in all fields!", {cssClass: 'alert-danger', timeout: 2000})
+    if (!this.validator.validateRegister(user)) {
+      this.flashMsg.show('Please fill in all fields!', {cssClass: 'alert-danger', timeout: 2000});
       return false;
     }
 
     // Register service
     this.authService.registerUser(user).subscribe(data => {
-      this.debug.log(data)
+      this.debug.log(data);
 
-      this.response = data
+      this.response = data;
 
-      if(this.response.success){
-        this.flashMsg.show("You're now registered!", {cssClass: 'alert-success', timeout: 2000})
-        this.router.navigate(['/authenticate'])
-      }else{
-        this.flashMsg.show(this.response.msg, {cssClass: 'alert-danger', timeout: 2000})
-        this.router.navigate(['/register'])
+      if (this.response.success) {
+        this.flashMsg.show('You\'re now registered!', {cssClass: 'alert-success', timeout: 2000});
+        this.router.navigate(['/authenticate']);
+      } else {
+        this.flashMsg.show(this.response.msg, {cssClass: 'alert-danger', timeout: 2000});
+        this.router.navigate(['/register']);
       }
-    })
+    });
   }
 
 }

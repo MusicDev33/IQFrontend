@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ElementRef, ViewChild} from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms'
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import { FormGroup, FormBuilder } from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { Inject } from '@angular/core';
-import { DebugService } from  '../../services/debug.service'
+import { DebugService } from '../../services/debug.service';
 
 @Component({
   selector: 'app-searchpopup',
@@ -32,16 +32,16 @@ export class SearchpopupComponent implements OnInit {
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
     public debug: DebugService,
-    @Inject(MAT_DIALOG_DATA) data //This is used to access the data PASSED IN from the previous component
+    @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
     ) {
-      this.description = data.description
-      this.question = data.question
+      this.description = data.description;
+      this.question = data.question;
   }
 
   ngOnInit() {
-    this.questionMode = true
-    this.topicMode = false
-    this.sourceMode = false
+    this.questionMode = true;
+    this.topicMode = false;
+    this.sourceMode = false;
 
     this.formComplete = false;
     this.form = this.fb.group({
@@ -52,46 +52,46 @@ export class SearchpopupComponent implements OnInit {
     });
 
     this.questionText = this.question;
-    this.topicText = ""
-    this.sourceText = ""
+    this.topicText = '';
+    this.sourceText = '';
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  askQuestion(){
+  askQuestion() {
     this.dialogRef.close(this.form.value);
   }
 
   autoGrow(element) {
-    element.style.height = "5px";
-    element.style.height = (element.scrollHeight)+"px";
+    element.style.height = '5px';
+    element.style.height = (element.scrollHeight) + 'px';
   }
 
-  questionModeOn(){
-    this.questionMode = true
-    this.topicMode = false
-    this.sourceMode = false
+  questionModeOn() {
+    this.questionMode = true;
+    this.topicMode = false;
+    this.sourceMode = false;
   }
 
-  topicModeOn(){
-    this.questionMode = false
-    this.topicMode = true
-    this.sourceMode = false
+  topicModeOn() {
+    this.questionMode = false;
+    this.topicMode = true;
+    this.sourceMode = false;
   }
 
-  sourceModeOn(){
-    this.questionMode = false
-    this.topicMode = false
-    this.sourceMode = true
+  sourceModeOn() {
+    this.questionMode = false;
+    this.topicMode = false;
+    this.sourceMode = true;
   }
 
-  checkFormComplete(){
-    if (this.questionText.length > 0 && this.topicText.length > 0 && this.sourceText.length > 0){
-      this.formComplete = true
-    }else{
-      this.formComplete = false
+  checkFormComplete() {
+    if (this.questionText.length > 0 && this.topicText.length > 0 && this.sourceText.length > 0) {
+      this.formComplete = true;
+    } else {
+      this.formComplete = false;
     }
   }
 }
