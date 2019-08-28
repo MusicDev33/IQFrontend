@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { SubjectsService } from '../../services/subjects.service';
@@ -19,6 +19,10 @@ export class DashboardComponent implements OnInit {
   subject: string;
 
   arrayOfSubjects: Array<String>;
+  subjectOffset = 0;
+
+  screenHeight: any;
+  screenWidth: any;
 
   constructor(
     public authService: AuthService,
@@ -26,7 +30,15 @@ export class DashboardComponent implements OnInit {
     public qService: QuestionService,
     public activatedRoute: ActivatedRoute,
     public debug: DebugService,
-    public subjectsService: SubjectsService) { }
+    public subjectsService: SubjectsService) {
+      this.getScreenSize();
+    }
+
+  @HostListener('window:resize', ['$event'])
+    getScreenSize(event?) {
+      this.screenHeight = window.innerHeight;
+      this.screenWidth = window.innerWidth;
+  }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.paramMap.get('subject')) {
@@ -105,7 +117,19 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  leftArrowClicked() {
+    this.subjectOffset -= 1;
+  }
+
+  rightArrowClicked() {
+    this.subjectOffset += 1;
+  }
+
+  calcMaxOffset(n) {
+    return this.arrayOfSubjects.length / n;
+  }
+
   nSubjects(n) {
-    return this.arrayOfSubjects.slice(0, n);
+    return this.arrayOfSubjects.slice(this.subjectOffset * n, n);
   }
 }
