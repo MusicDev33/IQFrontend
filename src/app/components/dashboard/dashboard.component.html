@@ -58,7 +58,7 @@
 
     <div class="col-1 text-center my-auto">
       <i style="cursor:pointer;" class="fas fa-chevron-right side-arrow disabled" (click)="rightArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === calcMaxOffset()}"></i>
+        [ngClass]="{'disabled': subjectOffset === calcMaxOffset() - 1}"></i>
     </div>
   </div>
 

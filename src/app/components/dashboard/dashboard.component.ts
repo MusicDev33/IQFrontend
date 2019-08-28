@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
   }
 
   rightArrowClicked() {
-    if (this.subjectOffset < Math.floor(this.calcMaxOffset())) {
+    if (this.subjectOffset < this.calcMaxOffset() - 1) {
       this.subjectOffset += 1;
     }
   }
@@ -134,15 +134,15 @@ export class DashboardComponent implements OnInit {
 
     switch (screen) {
       case 'xs':
-        return Math.floor(this.arrayOfSubjects.length / 1);
+        return Math.ceil(this.arrayOfSubjects.length / 1);
       case 'sm':
-        return Math.floor(this.arrayOfSubjects.length / 2);
+        return Math.ceil(this.arrayOfSubjects.length / 2);
       case 'md':
-        return Math.floor(this.arrayOfSubjects.length / 3);
+        return Math.ceil(this.arrayOfSubjects.length / 3);
       case 'lg':
-        return Math.floor(this.arrayOfSubjects.length / 4);
+        return Math.ceil(this.arrayOfSubjects.length / 4);
       case 'xl':
-        return Math.floor(this.arrayOfSubjects.length / 4);
+        return Math.ceil(this.arrayOfSubjects.length / 4);
     }
   }
 
