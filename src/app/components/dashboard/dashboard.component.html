@@ -40,7 +40,8 @@
           </div>
         </div>
 
-        <div *ngFor="let subject of nSubjects(1)" class="col-10 text-center d-block d-sm-none">
+        <!-- EXTRA SMALL SCREENS -->
+        <div *ngFor="let subject of nSubjects(1)" class="col-12 text-center d-block d-sm-none">
           <div class="col-11 content-box mx-auto">
             <h4>{{ subject.name }}</h4>
             <div class="btn btn-secondary follow-button">Follow</div>
