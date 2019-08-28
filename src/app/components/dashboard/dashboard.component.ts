@@ -118,32 +118,41 @@ export class DashboardComponent implements OnInit {
   }
 
   leftArrowClicked() {
-    this.subjectOffset -= 1;
+    if (this.subjectOffset > 0) {
+      this.subjectOffset -= 1;
+    }
   }
 
   rightArrowClicked() {
-    this.subjectOffset += 1;
+    if (this.subjectOffset < Math.floor(this.calcMaxOffset())) {
+      this.subjectOffset += 1;
+    }
   }
 
-  calcMaxOffset(n) {
+  calcMaxOffset() {
     const screen = this.returnScreenBreakpoint();
 
     switch (screen) {
       case 'xs':
-        return this.arrayOfSubjects.length / 1;
+        return Math.floor(this.arrayOfSubjects.length / 1);
       case 'sm':
-        return this.arrayOfSubjects.length / 2;
+        return Math.floor(this.arrayOfSubjects.length / 2);
       case 'md':
-        return this.arrayOfSubjects.length / 3;
+        return Math.floor(this.arrayOfSubjects.length / 3);
       case 'lg':
-        return this.arrayOfSubjects.length / 4;
+        return Math.floor(this.arrayOfSubjects.length / 4);
       case 'xl':
-        return this.arrayOfSubjects.length / 4;
+        return Math.floor(this.arrayOfSubjects.length / 4);
     }
   }
 
   nSubjects(n) {
-    return this.arrayOfSubjects.slice(this.subjectOffset * n, n);
+    const end = this.arrayOfSubjects.length;
+    if (this.arrayOfSubjects.length - (this.subjectOffset * n) < n) {
+      return this.arrayOfSubjects.slice(this.subjectOffset * n, end);
+    } else {
+      return this.arrayOfSubjects.slice(this.subjectOffset * n, (this.subjectOffset * n) + n);
+    }
   }
 
   returnScreenBreakpoint() {
