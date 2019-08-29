@@ -1,12 +1,12 @@
 .horizontal {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    flex-wrap:wrap;
 }
 
 .container{
-  padding-top: 1em;
   padding-left: 0;
+  padding-top: 1em;
 }
 
 .jumbotron{
@@ -29,22 +29,22 @@
   transition: 0.3s;
 }
 
-.subject-url:hover{
+.subject-url:hover {
   border-bottom: solid 3px #af00b5;
   cursor: pointer;
 }
 
-.question-box{
-  border-radius: 10px;
+.question-box {
   border: 1px solid #af00b5;
+  border-radius: 10px;
   height: 100px;
   margin-bottom: 1em;
 }
 
-.question-url{
-  transition: 0.3s;
+.question-url {
   cursor: pointer;
   font-size: 1.3em;
+  transition: 0.3s;
 }
 
 .question-url:hover{
@@ -58,12 +58,12 @@
 .follow-button {
   border-color: #af00b5;
   border-radius: 19px;
-  color: #525559;
-  transition: 0.4s;
-  cursor: pointer;
-  width: 90px;
-  height: 36px;
   box-sizing: border-box;
+  color: #525559;
+  cursor: pointer;
+  height: 36px;
+  transition: 0.4s;
+  width: 90px;
 }
 
 .follow-button:hover {
@@ -81,8 +81,8 @@
 
 .subject-ribbon {
   background-color: #fbfbfb;
-  padding-top: 15px;
   padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 .side-arrow {
