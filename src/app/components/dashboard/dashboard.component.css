@@ -85,6 +85,10 @@
   padding-top: 15px;
 }
 
+.subject-ribbon.overflow {
+  
+}
+
 .side-arrow {
   transition: all 0.43s;
   font-size: 30px;
