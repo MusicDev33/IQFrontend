@@ -21,7 +21,8 @@ export class SubjectsService {
   }
 
   getAllSubjects() {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     headers.append('Content-Type', 'application/json');
     return this.http.get(this.routeBase + '/subjects/', {headers: headers})
       .pipe(map(res => res));

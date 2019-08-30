@@ -26,29 +26,33 @@ export class AuthService {
     }
 
   registerUser(user) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.post(this.routeBase + '/users/register', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    console.log(headers)
     return this.http.post(this.routeBase + '/users/authenticate', user, {headers: headers})
       .pipe(map(res => res));
   }
 
   getProfile() {
     this.loadToken();
-    const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/users/profile', {headers: headers})
       .pipe(map(res => res));
   }
 
   getUserByHandle(handle) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/users/profile/' + handle, {headers: headers})
       .pipe(map(res => res));
   }

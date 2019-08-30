@@ -38,36 +38,41 @@ export class QuestionService {
   }
 
   askQuestion(question) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.post(this.routeBase + '/questions/add', question, {headers: headers})
       .pipe(map(res => res));
   }
 
   getQuestion(questionURL) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/questions/' + questionURL, {headers: headers})
       .pipe(map(res => res));
   }
 
   getAllQuestions() {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/questions', {headers: headers})
       .pipe(map(res => res));
   }
 
   getSubjectQuestions(subject: string) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/subjects/' + subject + '/questions', {headers: headers})
       .pipe(map(res => res));
   }
 
   getUserQuestions(userID) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/users/' + userID + '/questions', {headers: headers})
       .pipe(map(res => res));
   }

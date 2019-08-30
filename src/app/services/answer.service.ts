@@ -20,23 +20,26 @@ export class AnswerService {
   }
 
   getAnswers(questionURL) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/questions/' + questionURL + '/answers', {headers: headers})
       .pipe(map(res => res));
   }
 
   sendAnswer(answer, questionURL) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.post(this.routeBase + '/questions/' + questionURL + '/answers/add', answer, {headers: headers})
       .pipe(map(res => res));
 
   }
 
   getUserAnswers(userID) {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(this.routeBase + '/users/' + userID + '/answers', {headers: headers})
       .pipe(map(res => res));
   }

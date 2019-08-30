@@ -24,14 +24,16 @@ export class VotesService {
   sendVote(questionid: string, userid: string, answerid: string, vote: Number) {
     const votes = vote.toString();
     const urlString = this.routeBase + '/questions/' + questionid + '/' + userid + '/' + answerid + '/votes/' + votes;
-    const headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.post(urlString, {headers: headers})
       .pipe(map(res => res));
   }
 
   getVotes(questionid: string, userid: string) {
     const urlString = this.routeBase + '/questions/' + questionid + '/answers/votes/' + userid;
-    const headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.get(urlString, {headers: headers})
       .pipe(map(res => res));
   }
