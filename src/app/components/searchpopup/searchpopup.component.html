@@ -20,7 +20,12 @@
       class="form-control input-form"
       formControlName="topic"
       placeholder="Enter topic name"
-      (keyup)="checkFormComplete()">
+      (keyup)="subjectKeyup()"
+      [typeahead]="subjectSearchResults"
+      typeaheadOptionField="name"
+      [typeaheadOptionsLimit]="5"
+      [typeaheadMinLength]="4"
+      (typeaheadOnSelect)="taSubjectSelected($event)">
 
     <div [ngClass]="{'hide-element': topicMode}">
       <h4 [ngClass]="{'hide-element': topicText?.length}" class="sectionOpenTitle" (click)="topicModeOn()">Topic</h4>
@@ -30,7 +35,7 @@
     <input id="sourceInput"
       [ngClass]="{'hide-element': !sourceMode}"
       [(ngModel)]="sourceText"
-      class="form-control input-form" 
+      class="form-control input-form"
       formControlName="source"
       placeholder="Enter source"
       (keyup)="checkFormComplete()">

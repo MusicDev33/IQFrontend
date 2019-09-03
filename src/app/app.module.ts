@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { AnswerService } from './services/answer.service';
 import { IpgenService } from './services/ipgen.service';
 import { VotesService } from './services/votes.service';
 import { SubjectsService } from './services/subjects.service';
+import { SearchService } from './services/search.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component';
@@ -53,7 +55,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     MatDialogModule ,
     MatCardModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TypeaheadModule.forRoot()
   ],
   providers: [
     ValidateService,
@@ -63,7 +66,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     AuthGuard,
     IpgenService,
     VotesService,
-    SubjectsService],
+    SubjectsService,
+    SearchService],
   entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })

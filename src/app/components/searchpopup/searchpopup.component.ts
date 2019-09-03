@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ElementRef, ViewChild} from '@angular/core';
+import { ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Inject } from '@angular/core';
 import { DebugService } from '../../services/debug.service';
+import { SearchService } from '../../services/search.service';
+
+import { Observable, of } from 'rxjs';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-searchpopup',
@@ -28,10 +33,15 @@ export class SearchpopupComponent implements OnInit {
   topicText: string;
   sourceText: string;
 
+  questionSearchResults = [];
+  subjectSearchResults = [];
+  sourceSearchResults = [];
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
     public debug: DebugService,
+    public search: SearchService,
     @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description;
@@ -93,5 +103,22 @@ export class SearchpopupComponent implements OnInit {
     } else {
       this.formComplete = false;
     }
+  }
+
+  // Search stuff
+  subjectKeyup() {
+    this.checkFormComplete();
+    if (this.topicText.length > 2 && this.subjectSearchResults.length === 0) {
+      this.search.subjectSearch(this.topicText).subscribe(data => {
+        const res: any = data;
+        this.subjectSearchResults = res.sources;
+      });
+    } else if (this.topicText.length <= 2) {
+      this.subjectSearchResults = [];
+    }
+  }
+
+  taSubjectSelected(subject) {
+
   }
 }
