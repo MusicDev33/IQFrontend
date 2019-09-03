@@ -37,6 +37,9 @@ export class SearchpopupComponent implements OnInit {
   subjectSearchResults = [];
   sourceSearchResults = [];
 
+  selectedSubjectURL = '';
+  selectedSourceId = '';
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -119,7 +122,7 @@ export class SearchpopupComponent implements OnInit {
   }
 
   taSubjectSelected(subject) {
-
+    this.selectedSubjectURL = subject.item.subjectURL;
   }
 
   sourceKeyup() {
@@ -135,6 +138,6 @@ export class SearchpopupComponent implements OnInit {
   }
 
   taSourceSelected(source) {
-
+    this.selectedSourceId = source.item._id;
   }
 }
