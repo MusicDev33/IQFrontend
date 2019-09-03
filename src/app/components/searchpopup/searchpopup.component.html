@@ -38,7 +38,12 @@
       class="form-control input-form"
       formControlName="source"
       placeholder="Enter source"
-      (keyup)="checkFormComplete()">
+      (keyup)="sourceKeyup()"
+      [typeahead]="sourceSearchResults"
+      typeaheadOptionField="name"
+      [typeaheadOptionsLimit]="5"
+      [typeaheadMinLength]="4"
+      (typeaheadOnSelect)="taSourceSelected($event)">
 
     <div [ngClass]="{'hide-element': sourceMode}">
       <h4 [ngClass]="{'hide-element': sourceText?.length}" class="sectionOpenTitle" (click)="sourceModeOn()">Source</h4>

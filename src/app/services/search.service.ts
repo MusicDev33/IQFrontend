@@ -26,4 +26,12 @@ export class SearchService {
     return this.http.get(this.routeBase + '/subjects/search/' + searchTerm, {headers: headers})
       .pipe(map(res => res));
   }
+
+  sourceSearch(searchTerm) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers: headers})
+      .pipe(map(res => res));
+  }
 }
