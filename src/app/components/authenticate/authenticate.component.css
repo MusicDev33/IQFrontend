@@ -3,12 +3,12 @@
   background-color: white;
 }
 
-#register{
+.register{
   transition: 0.4s;
   cursor: pointer;
 }
 
-#register:hover{
+.register:hover{
   color: #af00b5;
 }
 

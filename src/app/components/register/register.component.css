@@ -17,12 +17,12 @@
   color: #adadad;
 }
 
-#login{
+.login{
   transition: 0.4s;
   cursor: pointer;
 }
 
-#login:hover{
+.login:hover{
   color: #af00b5;
 }
 
