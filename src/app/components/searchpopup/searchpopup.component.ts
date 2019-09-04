@@ -40,6 +40,9 @@ export class SearchpopupComponent implements OnInit {
   selectedSubjectURL = '';
   selectedSourceId = '';
 
+  selectedSubject = '';
+  selectedSource = '';
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -101,10 +104,11 @@ export class SearchpopupComponent implements OnInit {
   }
 
   checkFormComplete() {
-    if (this.questionText.length > 0 && this.topicText.length > 0 && this.sourceText.length > 0) {
+    if (this.questionText.length > 0 && this.selectedSubject.length > 0 && this.selectedSource.length > 0) {
       this.formComplete = true;
     } else {
       this.formComplete = false;
+      console.log("h")
     }
   }
 
@@ -123,6 +127,8 @@ export class SearchpopupComponent implements OnInit {
 
   taSubjectSelected(subject) {
     this.selectedSubjectURL = subject.item.subjectURL;
+    this.selectedSubject = subject.item.name;
+    this.checkFormComplete();
   }
 
   sourceKeyup() {
@@ -139,5 +145,8 @@ export class SearchpopupComponent implements OnInit {
 
   taSourceSelected(source) {
     this.selectedSourceId = source.item._id;
+    this.selectedSource = source.item.name;
+    this.checkFormComplete();
+    console.log(this.selectedSource)
   }
 }

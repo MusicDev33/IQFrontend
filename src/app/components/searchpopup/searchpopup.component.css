@@ -48,7 +48,6 @@ textarea {
 }
 
 .sectionOpenTitle{
-  color: #383d44;
   cursor: pointer;
   padding-top: 10px;
   background-color: white;
@@ -59,13 +58,27 @@ textarea {
   border-bottom: solid 3px rgba(0,0,0,0);
 }
 
+.sectionOpenTitle.verified {
+  color: #383d44;
+}
+
+.sectionOpenTitle.error {
+  color: #cd4918;
+}
+
 .sectionOpenTitle:hover{
   border-bottom: solid 3px #af00b5;
 }
 
-.section-title-animate {
+.section-title-animate.verified {
   animation-fill-mode: forwards;
-  animation-name: text-color-change;
+  animation-name: text-color-change-blue;
+  animation-duration: 0.4s;
+}
+
+.section-title-animate.error {
+  animation-fill-mode: forwards;
+  animation-name: text-color-change-red;
   animation-duration: 0.4s;
 }
 
@@ -86,7 +99,12 @@ textarea {
 }
 
 /* Animations */
-@keyframes text-color-change {
+@keyframes text-color-change-blue {
   from {color: black;}
   to {color: #3e7ee6;}
+}
+
+@keyframes text-color-change-red {
+  from {color: black;}
+  to {color: #cd4918;}
 }

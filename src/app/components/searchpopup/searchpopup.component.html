@@ -17,7 +17,7 @@
       <h4 [ngClass]="{'hide-element': !questionText?.length, 'section-title-animate': !questionMode}" class="sectionOpenTitle" (click)="questionModeOn()">{{ questionText }}</h4>
     </div>
 
-    <input [ngClass]="{'hide-element': !topicMode}"
+    <input [ngClass]="{'hide-element': !topicMode}" #subjectField
       [(ngModel)]="topicText"
       class="form-control input-form"
       formControlName="topic"
@@ -30,11 +30,14 @@
       (typeaheadOnSelect)="taSubjectSelected($event)">
 
     <div [ngClass]="{'hide-element': topicMode}">
-      <h4 [ngClass]="{'hide-element': topicText?.length}" class="sectionOpenTitle" (click)="topicModeOn()">Topic</h4>
-      <h4 [ngClass]="{'hide-element': !topicText?.length, 'section-title-animate': !topicMode}" class="sectionOpenTitle" (click)="topicModeOn()">{{ topicText }}</h4>
+      <h4 [ngClass]="{'hide-element': topicText?.length}" class="sectionOpenTitle verified" (click)="topicModeOn()">Topic</h4>
+      <h4 [ngClass]="{'hide-element': !topicText?.length,
+                      'section-title-animate': !topicMode,
+                      'verified': selectedSubject.length,
+                      'error': !selectedSubject.length}" class="sectionOpenTitle" (click)="topicModeOn()">{{ topicText }}</h4>
     </div>
 
-    <input id="sourceInput"
+    <input id="sourceInput" #sourceField
       [ngClass]="{'hide-element': !sourceMode}"
       [(ngModel)]="sourceText"
       class="form-control input-form"
@@ -49,7 +52,10 @@
 
     <div [ngClass]="{'hide-element': sourceMode}">
       <h4 [ngClass]="{'hide-element': sourceText?.length}" class="sectionOpenTitle" (click)="sourceModeOn()">Source</h4>
-      <h4 [ngClass]="{'hide-element': !sourceText?.length, 'section-title-animate': !sourceMode}" class="sectionOpenTitle" (click)="sourceModeOn()">{{ sourceText }}</h4>
+      <h4 [ngClass]="{'hide-element': !sourceText?.length,
+                      'section-title-animate': !sourceMode,
+                      'verified': selectedSource.length,
+                      'error': !selectedSource.length}" class="sectionOpenTitle" (click)="sourceModeOn()">{{ sourceText }}</h4>
     </div>
   </div>
 
