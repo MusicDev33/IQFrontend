@@ -33,6 +33,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSignIn(user) {
+    console.log(user);
+  }
+
   onRegisterSubmit() {
     const user = {
       firstName: this.firstName,
