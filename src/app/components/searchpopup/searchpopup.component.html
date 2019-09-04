@@ -1,6 +1,8 @@
 <div class="text-center">
   <h2>Ask Question</h2>
-  <p>Be sure to make the question specific, and make sure any subjects or sources are <em><b>relevant and useful to others</b></em>.</p>
+  <p>Be sure to make the question specific, and make sure any subjects or sources are
+    <em><b>relevant and useful to others</b></em>.
+  </p>
   <div [formGroup]="form" class="" id="questionBar">
     <textarea [ngClass]="{'hide-element': !questionMode}"
       [(ngModel)]="questionText"
@@ -54,7 +56,8 @@
   <div style="position:relative;">
     <i class="fas fa-times fa-2x" (click)="close()" id="closeButton"></i>
     <div>
-      <button class="btn btn-secondary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">Ask
+      <button class="btn btn-secondary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">
+        Ask
       </button>
     </div>
   </div>
