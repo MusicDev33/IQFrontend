@@ -81,28 +81,30 @@ export class NavbarComponent implements OnInit {
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( data => {
       // Lol this isn't a request response but oh well
-      var res: any = {}
-      res = data;
-      this.debug.log('Dialog output: ' + data);
-      const question = {
-        question: res.question,
-        subject: res.topic,
-        source: res.source,
-        asker: this.authService.getUser().name,
-        askerID: this.authService.userMongoID(),
-        askerHandle: this.authService.getUserHandle()
-      };
-      this.debug.log(question);
-      this.questionService.askQuestion(question).subscribe(data => {
-        var response: any = {};
-        response = data;
-        if (response.success) {
-          this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500});
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.flashMsg.show('Something went wrong. Try asking again.', {cssClass: 'alert-danger', timeout: 1500});
-        }
-      });
+      if (data) {
+        var res: any = {}
+        res = data;
+        this.debug.log('Dialog output: ' + data);
+        const question = {
+          question: res.question,
+          subject: res.topic,
+          source: res.source,
+          asker: this.authService.getUser().name,
+          askerID: this.authService.userMongoID(),
+          askerHandle: this.authService.getUserHandle()
+        };
+        this.debug.log(question);
+        this.questionService.askQuestion(question).subscribe(data => {
+          var response: any = {};
+          response = data;
+          if (response.success) {
+            this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500});
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.flashMsg.show('Something went wrong. Try asking again.', {cssClass: 'alert-danger', timeout: 1500});
+          }
+        });
+      }
     });
   }
 }
