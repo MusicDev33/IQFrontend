@@ -44,29 +44,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onAskSubmit() {
-    /*
-    const question = {
-      question: this.questionText,
-      subject: 'Physics',
-      source: 'Mastering Physics',
-      asker: this.authService.getUser().name,
-      askerID: this.authService.userMongoID()
-    }
-
-    this.questionService.askQuestion(question).subscribe(data => {
-      var response: any = {}
-      response = data
-      if (response.success){
-        this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500})
-        form.reset();
-        this.router.navigate(['/dashboard'])
-      }else{
-        this.flashMsg.show('Something went wrong. Try asking again.', {cssClass: 'alert-danger', timeout: 1500})
-      }
-    });
-    */
-
-    var dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
