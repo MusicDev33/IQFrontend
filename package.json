@@ -24,6 +24,7 @@
     "@angular/router": "~8.0.0",
     "angular2-flash-messages": "^3.0.1",
     "angular2-jwt": "^0.2.3",
+    "angularx-social-login": "^1.2.7",
     "ngx-bootstrap": "^5.1.1",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.2",
