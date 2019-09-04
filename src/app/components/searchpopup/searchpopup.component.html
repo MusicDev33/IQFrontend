@@ -3,7 +3,7 @@
   <p>Be sure to make the question specific, and make sure any subjects or sources are
     <em><b>relevant and useful to others</b></em>.
   </p>
-  <div [formGroup]="form" class="" id="questionBar">
+  <div [formGroup]="form" class="questionBar">
     <textarea [ngClass]="{'hide-element': !questionMode}"
       [(ngModel)]="questionText"
       class="form-control input-form"
@@ -37,10 +37,10 @@
                       'error': !selectedSubject.length}" class="sectionOpenTitle" (click)="topicModeOn()">{{ topicText }}</h4>
     </div>
 
-    <input id="sourceInput" #sourceField
+    <input #sourceField
       [ngClass]="{'hide-element': !sourceMode}"
       [(ngModel)]="sourceText"
-      class="form-control input-form"
+      class="form-control input-form sourceInput"
       formControlName="source"
       placeholder="Enter source"
       (keyup)="sourceKeyup()"
@@ -60,9 +60,9 @@
   </div>
 
   <div style="position:relative;">
-    <i class="fas fa-times fa-2x" (click)="close()" id="closeButton"></i>
+    <i class="fas fa-times fa-2x closeButton" (click)="close()"></i>
     <div>
-      <button class="btn btn-secondary" (click)="askQuestion()" id="askButton" [disabled]="!formComplete">
+      <button class="btn btn-secondary askButton" (click)="askQuestion()" [disabled]="!formComplete">
         Ask
       </button>
     </div>
