@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
@@ -25,7 +25,10 @@ export class RegisterComponent implements OnInit {
     public flashMsg: FlashMessagesService,
     public authService: AuthService,
     public router: Router,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public ngZone: NgZone) {
+      window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
+    }
 
   ngOnInit() {
   }
