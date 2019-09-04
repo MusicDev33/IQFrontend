@@ -147,6 +147,5 @@ export class SearchpopupComponent implements OnInit {
     this.selectedSourceId = source.item._id;
     this.selectedSource = source.item.name;
     this.checkFormComplete();
-    console.log(this.selectedSource)
   }
 }
