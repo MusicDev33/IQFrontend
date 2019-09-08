@@ -29,6 +29,13 @@
       [typeaheadMinLength]="3"
       (typeaheadOnSelect)="taSubjectSelected($event)">
 
+    <div [ngClass]="{'hide-element': !topicMode}" class="add-subject-div">
+      Can't find a subject?<br>
+      <button class="btn btn-secondary add-subject-button" (click)="askQuestion()" [disabled]="!topicText.length">
+        Add Subject
+      </button>
+    </div>
+
     <div [ngClass]="{'hide-element': topicMode}">
       <h4 [ngClass]="{'hide-element': topicText?.length}" class="sectionOpenTitle verified" (click)="topicModeOn()">Topic</h4>
       <h4 [ngClass]="{'hide-element': !topicText?.length,

@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Inject } from '@angular/core';
 import { DebugService } from '../../services/debug.service';
 import { SearchService } from '../../services/search.service';
+import { SubjectsService } from '../../services/subjects.service';
 
 import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -48,6 +49,7 @@ export class SearchpopupComponent implements OnInit {
     public dialogRef: MatDialogRef<SearchpopupComponent>,
     public debug: DebugService,
     public search: SearchService,
+    public subjectService: SubjectsService,
     @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description;
@@ -108,8 +110,13 @@ export class SearchpopupComponent implements OnInit {
       this.formComplete = true;
     } else {
       this.formComplete = false;
-      console.log("h")
     }
+  }
+
+  addSubject(subject: string) {
+    this.subjectService.addNewSubject(subject).subscribe(data => {
+      console.log(data);
+    });
   }
 
   // Search stuff

@@ -27,4 +27,13 @@ export class SubjectsService {
     return this.http.get(this.routeBase + '/subjects/', {headers: headers})
       .pipe(map(res => res));
   }
+
+  addNewSubject(subject: string) {
+    subject = subject.replace(/\s+/g, '-').toLowerCase();
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.post(this.routeBase + '/subjects/' + subject, {}, {headers})
+      .pipe(map(res => res));
+  }
 }
