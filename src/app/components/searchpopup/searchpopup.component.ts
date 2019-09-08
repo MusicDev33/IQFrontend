@@ -114,13 +114,14 @@ export class SearchpopupComponent implements OnInit {
 
   // Search stuff
   subjectKeyup() {
+    const minLength = 1;
     this.checkFormComplete();
-    if (this.topicText.length > 2 && this.subjectSearchResults.length === 0) {
+    if (this.topicText.length > minLength && this.subjectSearchResults.length === 0) {
       this.search.subjectSearch(this.topicText).subscribe(data => {
         const res: any = data;
         this.subjectSearchResults = res.subjects;
       });
-    } else if (this.topicText.length <= 2) {
+    } else if (this.topicText.length <= minLength) {
       this.subjectSearchResults = [];
     }
   }
@@ -132,13 +133,14 @@ export class SearchpopupComponent implements OnInit {
   }
 
   sourceKeyup() {
+    const minLength = 1;
     this.checkFormComplete();
-    if (this.sourceText.length > 2 && this.sourceSearchResults.length === 0) {
+    if (this.sourceText.length > minLength && this.sourceSearchResults.length === 0) {
       this.search.sourceSearch(this.sourceText).subscribe(data => {
         const res: any = data;
         this.sourceSearchResults = res.sources;
       });
-    } else if (this.sourceText.length <= 2) {
+    } else if (this.sourceText.length <= minLength) {
       this.sourceSearchResults = [];
     }
   }

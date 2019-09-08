@@ -38,7 +38,8 @@
 
 textarea {
   resize: none;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   min-height: 50px;
   max-height: 100px;
 }
@@ -97,6 +98,21 @@ textarea {
 .input-form {
   margin-bottom: 3px;
 }
+
+/*
+textarea::-webkit-scrollbar {
+  width: 2px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: rgb(241, 214, 255);
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: rgb(175, 0, 181);
+  border-radius: 10px;
+}*/
 
 /* Animations */
 @keyframes text-color-change-blue {
