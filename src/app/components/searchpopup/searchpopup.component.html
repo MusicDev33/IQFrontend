@@ -61,20 +61,13 @@
       (typeaheadOnSelect)="taSourceSelected($event)">
 
     <div [ngClass]="{'hide-element': !sourceMode}" class="add-subject-div text-center justify-content-center">
-      Can't find your homework software/textbook?<br>
+      Can't find your homework software/textbook? Don't forget to include an edition!<br>
       <button class="btn btn-secondary add-source-button"
               (click)="addSource()"
               [disabled]="sourceText.length < 4"
               [ngClass]="{'enabled': sourceText.length > 3}">
         Add Source
       </button>
-
-      <input
-        [ngClass]="{'hide-element': !sourceMode && sourceText.length > 4}"
-        [(ngModel)]="editionText"
-        formControlName="edition"
-        class="form-control input-form col-6 offset-3"
-        placeholder="Edition, if applicable (e.g. 2)">
     </div>
 
     <div [ngClass]="{'hide-element': sourceMode}">

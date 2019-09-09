@@ -34,7 +34,6 @@ export class SearchpopupComponent implements OnInit {
   questionText: string;
   topicText: string;
   sourceText: string;
-  editionText: string;
 
   questionSearchResults = [];
   subjectSearchResults = [];
@@ -45,8 +44,6 @@ export class SearchpopupComponent implements OnInit {
 
   selectedSubject = '';
   selectedSource = '';
-
-  sourceReadyToAdd = false;
 
   constructor(
     public fb: FormBuilder,
@@ -71,14 +68,12 @@ export class SearchpopupComponent implements OnInit {
       description: [this.description, []],
       question: [this.questionText, []],
       topic: [this.topicText, []],
-      source: [this.sourceText, []],
-      edition: [this.editionText, []]
+      source: [this.sourceText, []]
     });
 
     this.questionText = this.question;
     this.topicText = '';
     this.sourceText = '';
-    this.editionText = '';
   }
 
   close() {
@@ -134,17 +129,9 @@ export class SearchpopupComponent implements OnInit {
   addSource() {
     // Trim isn't supported by IE 8 so this is a workaround
     const sourceName = this.sourceText.replace(/^\s+|\s+$/g, '');
-    let edition: string;
 
-    if (this.editionText.length && /^\d+$/.test(this.editionText) && this.editionText !== '0') {
-      edition = this.editionText;
-    } else {
-      edition = '1';
-    }
-
-    this.sourceService.addNewSource(sourceName, edition).subscribe(data => {
+    this.sourceService.addNewSource(sourceName).subscribe(data => {
       this.sourceText = '';
-      this.editionText = '';
     });
   }
 

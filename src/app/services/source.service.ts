@@ -28,11 +28,11 @@ export class SourceService {
       .pipe(map(res => res));
   }
 
-  addNewSource(name: string, edition: string) {
+  addNewSource(name: string) {
     let headers = new HttpHeaders();
     headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     headers = headers.set('Content-Type', 'application/json');
-    return this.http.post(this.routeBase + '/sources/add', {name, edition}, {headers})
+    return this.http.post(this.routeBase + '/sources/add', {name}, {headers})
       .pipe(map(res => res));
   }
 }
