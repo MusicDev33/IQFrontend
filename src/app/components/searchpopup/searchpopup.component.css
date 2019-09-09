@@ -13,15 +13,15 @@
   background-color: #fff;
 }
 
-.askButton:disabled{
+.askButton:disabled {
   border-color: #ccc;
 }
 
-.askButton:hover{
+.askButton:hover {
   background-color: #fcfcfc;
 }
 
-.closeButton{
+.closeButton {
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -30,7 +30,7 @@
   transition: 0.5s;
 }
 
-.closeButton:hover{
+.closeButton:hover {
   width: 25px;
   height: 25px;
   background-color: rgba(175, 0, 181, 0.2);
@@ -44,11 +44,11 @@ textarea {
   max-height: 100px;
 }
 
-.sectionTitle{
+.sectionTitle {
   color: #a2adbf;
 }
 
-.sectionOpenTitle{
+.sectionOpenTitle {
   cursor: pointer;
   padding-top: 10px;
   background-color: white;
@@ -67,7 +67,7 @@ textarea {
   color: #cd4918;
 }
 
-.sectionOpenTitle:hover{
+.sectionOpenTitle:hover {
   border-bottom: solid 3px #af00b5;
 }
 
@@ -83,11 +83,11 @@ textarea {
   animation-duration: 0.4s;
 }
 
-.sectionField{
+.sectionField {
   padding-top: 10px;
 }
 
-.hide-element{
+.hide-element {
   display:none;
 }
 
@@ -108,6 +108,28 @@ textarea {
   border-color: #af00b5;
   border-radius: 19px;
   color: #525559;
+  margin-top: 5px;
+  transition: all 0.4s;
+}
+
+.add-subject-button.enabled:hover {
+  background-color: #af00b5;
+  color: #fff;
+}
+
+.add-source-button {
+  background-color: #fff;
+  border-color: #af00b5;
+  border-radius: 19px;
+  color: #525559;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  transition: all 0.4s;
+}
+
+.add-source-button.enabled:hover {
+  background-color: #af00b5;
+  color: #fff;
 }
 
 /*

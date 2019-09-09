@@ -6,6 +6,7 @@ import { Inject } from '@angular/core';
 import { DebugService } from '../../services/debug.service';
 import { SearchService } from '../../services/search.service';
 import { SubjectsService } from '../../services/subjects.service';
+import { SourceService } from '../../services/source.service';
 
 import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -33,6 +34,7 @@ export class SearchpopupComponent implements OnInit {
   questionText: string;
   topicText: string;
   sourceText: string;
+  editionText: string;
 
   questionSearchResults = [];
   subjectSearchResults = [];
@@ -44,12 +46,15 @@ export class SearchpopupComponent implements OnInit {
   selectedSubject = '';
   selectedSource = '';
 
+  sourceReadyToAdd = false;
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
     public debug: DebugService,
     public search: SearchService,
     public subjectService: SubjectsService,
+    public sourceService: SourceService,
     @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description;
@@ -66,12 +71,14 @@ export class SearchpopupComponent implements OnInit {
       description: [this.description, []],
       question: [this.questionText, []],
       topic: [this.topicText, []],
-      source: [this.sourceText, []]
+      source: [this.sourceText, []],
+      edition: [this.editionText, []]
     });
 
     this.questionText = this.question;
     this.topicText = '';
     this.sourceText = '';
+    this.editionText = '';
   }
 
   close() {
@@ -113,9 +120,31 @@ export class SearchpopupComponent implements OnInit {
     }
   }
 
-  addSubject(subject: string) {
+  addSubject() {
+    // Trim isn't supported by IE 8 so this is a workaround
+    let subject = this.topicText.replace(/^\s+|\s+$/g, '');
+    // Replace spaces with dashes
+    subject = subject.replace(/\s/g, '-');
+
     this.subjectService.addNewSubject(subject).subscribe(data => {
-      console.log(data);
+      this.topicText = '';
+    });
+  }
+
+  addSource() {
+    // Trim isn't supported by IE 8 so this is a workaround
+    const sourceName = this.sourceText.replace(/^\s+|\s+$/g, '');
+    let edition: string;
+
+    if (this.editionText.length && /^\d+$/.test(this.editionText) && this.editionText !== '0') {
+      edition = this.editionText;
+    } else {
+      edition = '1';
+    }
+
+    this.sourceService.addNewSource(sourceName, edition).subscribe(data => {
+      this.sourceText = '';
+      this.editionText = '';
     });
   }
 

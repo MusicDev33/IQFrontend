@@ -26,6 +26,7 @@ import { AnswerService } from './services/answer.service';
 import { IpgenService } from './services/ipgen.service';
 import { VotesService } from './services/votes.service';
 import { SubjectsService } from './services/subjects.service';
+import { SourceService } from './services/source.service';
 import { SearchService } from './services/search.service';
 
 import { AuthGuard } from './guards/auth.guard';
@@ -67,7 +68,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     IpgenService,
     VotesService,
     SubjectsService,
-    SearchService],
+    SearchService,
+    SourceService],
   entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })
