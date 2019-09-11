@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthenticateComponent } from './components/authenticate/authenticate.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
+import { SupportComponent } from './components/support/support.component';
 
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -32,7 +33,6 @@ import { SearchService } from './services/search.service';
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
-import { SupportComponent } from './components/support/support/support.component';
 
 @NgModule({
   declarations: [
