@@ -1,3 +1,5 @@
+@import '~src/sass/variables';
+
 .no-pad-mar {
   left: 0;
   margin: 0;
@@ -17,4 +19,8 @@
 
 .container-fluid {
   padding: 0 !important;
+}
+
+.apply-bg {
+  background-color: $main-bg-color;
 }

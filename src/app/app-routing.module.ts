@@ -7,18 +7,20 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { QuestionComponent } from './components/question/question.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
+import { SupportComponent } from './components/support/support.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: FakemainComponent},
+  { path: '', component: FakemainComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'authenticate', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: AuthenticateComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'dashboard/:subject', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'question/:id', component: QuestionComponent},
-  { path: 'profile/:handle', component: ProfileComponent}
+  { path: 'profile/:handle', component: ProfileComponent},
+  { path: 'support', component: SupportComponent}
 ];
 
 @NgModule({
