@@ -17,9 +17,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthenticateComponent } from './components/authenticate/authenticate.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
-import { SupportComponent } from './components/support/support.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
+
+// Support
+import { SupportComponent } from './components/support/support.component';
 import { AboutComponent } from './components/about/about.component';
 import { IntroComponent } from './components/support/intro/intro.component';
 import { HowtoComponent } from './components/support/howto/howto.component';
