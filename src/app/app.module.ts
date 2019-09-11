@@ -18,6 +18,13 @@ import { AuthenticateComponent } from './components/authenticate/authenticate.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { SupportComponent } from './components/support/support.component';
+import { QuestionComponent } from './components/question/question.component';
+import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
+import { AboutComponent } from './components/about/about.component';
+import { IntroComponent } from './components/support/intro/intro.component';
+import { HowtoComponent } from './components/support/howto/howto.component';
+import { PolicyComponent } from './components/policy/policy.component';
+import { MathComponent } from './components/support/math/math.component';
 
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -31,8 +38,6 @@ import { SourceService } from './services/source.service';
 import { SearchService } from './services/search.service';
 
 import { AuthGuard } from './guards/auth.guard';
-import { QuestionComponent } from './components/question/question.component';
-import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,12 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     ProfileComponent,
     SearchpopupComponent,
     FakemainComponent,
-    SupportComponent
+    SupportComponent,
+    AboutComponent,
+    IntroComponent,
+    HowtoComponent,
+    PolicyComponent,
+    MathComponent
   ],
   imports: [
     BrowserModule,
