@@ -1,5 +1,16 @@
+@import '~src/sass/variables';
+
 textarea {
   resize: none;
+}
+
+.icon {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.icon:hover {
+  color: $color-primary;
 }
 
 .profileCircle {
@@ -26,39 +37,39 @@ textarea {
   width: 40%;
 }
 
-.answer-text{
+.answer-text {
   font-size: 15px;
 }
 
-.answer-textarea{
+.answer-textarea {
   margin-bottom: 1em;
 }
 
-.spacer{
+.spacer {
   height: 1.4em;
   background: transparent;
 }
 
-.vote-button{
+.vote-button {
   cursor: pointer;
   margin-right: 0.3em;
   margin-left: 0.3em;
 }
 
-.vote-button.inactive{
+.vote-button.inactive {
   cursor: default;
   color: #ccc
 }
 
-.highlighted{
+.highlighted {
   color: #af00b5;
 }
 
-.view-text{
+.view-text {
   color: #b4b4b4;
 }
 
-.action-bar{
+.action-bar {
   text-align: left;
   position: absolute;
   width: 100%;
@@ -73,7 +84,7 @@ textarea {
 
 }
 
-.profileURL:hover{
+.profileURL:hover {
   text-decoration: underline;
 }
 
@@ -87,10 +98,10 @@ textarea {
                                   supported by Chrome and Opera */
 }
 
-.question-container{
+.question-container {
   margin-top: 1em;
 }
 
-#answer-container{
+#answer-container {
   margin-top: 0.7em;
 }

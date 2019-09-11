@@ -32,6 +32,7 @@ import { SearchService } from './services/search.service';
 import { AuthGuard } from './guards/auth.guard';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
+import { SupportComponent } from './components/support/support/support.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SearchpopupComponent } from './components/searchpopup/searchpopup.compo
     QuestionComponent,
     ProfileComponent,
     SearchpopupComponent,
-    FakemainComponent
+    FakemainComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
