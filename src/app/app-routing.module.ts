@@ -19,10 +19,14 @@ import { MathComponent } from './components/support/math/math.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
+/* Don't forget these
+{ path: 'policy', component: PolicyComponent},
+
+*/
+
 const routes: Routes = [
   { path: '', component: FakemainComponent},
   { path: 'about', component: AboutComponent},
-  { path: 'policy', component: PolicyComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'authenticate', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: AuthenticateComponent},
