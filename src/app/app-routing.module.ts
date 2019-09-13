@@ -37,7 +37,8 @@ const routes: Routes = [
   { path: 'support', component: SupportComponent},
   { path: 'support/intro', component: IntroComponent},
   { path: 'support/howto', component: HowtoComponent},
-  { path: 'support/math', component: MathComponent}
+  { path: 'support/math', component: MathComponent},
+  { path: 'policy', component: PolicyComponent},
 ];
 
 @NgModule({
