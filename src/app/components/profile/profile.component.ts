@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     // Enum hax
-    this.view = ContentView.questions;
+    this.view = ContentView.knowledge;
 
 
     this.userMatch = false;
