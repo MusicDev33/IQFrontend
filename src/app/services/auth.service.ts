@@ -134,9 +134,28 @@ export class AuthService {
 
   followSubject(subjectURL) {
     const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     return this.http.post(route, {}, {headers: headers})
+      .pipe(map(res => res));
+  }
+
+  addKnowledge(subjectURL: string) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.post(route, {}, {headers: headers})
+      .pipe(map(res => res));
+  }
+
+  deleteKnowledge(subjectURL: string) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.delete(route, {headers: headers})
       .pipe(map(res => res));
   }
 

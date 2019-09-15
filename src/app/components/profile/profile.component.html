@@ -18,15 +18,15 @@
   </section>
 
   <section class="row justify-content-center mb-3">
-    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+    <div class="col-md-2 col-sm-3 col-7 text-center qa-selectors"
       (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">
       Questions
     </div>
-    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+    <div class="col-md-2 col-sm-3 col-7 text-center qa-selectors"
       (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">
       Answers
     </div>
-    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+    <div class="col-md-2 col-sm-3 col-7 text-center qa-selectors"
       (click)="onKnowledgeClick()" [ngClass]="{'selected': view === contentView.knowledge}">
       Knowledge
     </div>
@@ -34,7 +34,7 @@
 
   <section *ngIf="userQuestions && view === contentView.questions">
     <div *ngFor="let question of userQuestions" class="row justify-content-center">
-      <div class="col-sm-6 text-center question-box mb-2">
+      <div class="col-md-6 col-sm-10 col-11 text-center question-box mb-2">
         <div (click)="onQuestionClicked(question.questionText)"><a [routerLink]="" class="box-link-text">{{question.questionText}}</a></div>
       </div>
     </div>
@@ -42,9 +42,58 @@
 
   <section *ngIf="userAnswers && view === contentView.answers">
     <div *ngFor="let answer of userAnswers" class="row justify-content-center">
-      <div class="col-sm-6text-center answer-box mb-2" (click)="onQuestionClicked(answer.questionText)">
+      <div class="col-md-6 col-sm-10 col-11 text-center answer-box mb-2" (click)="onQuestionClicked(answer.questionText)">
         <h4><a [routerLink]="" class="box-link-text">{{ answer.questionText }}</a></h4>
         <div>{{answer.answerText}}</div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="view === contentView.knowledge">
+    <div class="row justify-content-center mb-3">
+      <div class="col-sm-8 text-center">
+        <font size="3">
+          This is where you tell Inquantir what <em>you</em> know! To add an area of knowledge,
+          start typing into the field until the subject of interest shows up. The first subject
+          you add will be the one we assume you know most about. You can always change the order later!
+        </font>
+      </div>
+    </div>
+
+    <div class="row justify-content-center" *ngIf="!addKnowledgeEnabled">
+      <input [(ngModel)]="knowledgeText"
+        class="form-control input-form col-md-6 col-sm-8 col-10"
+        placeholder="Enter subject name"
+        (keyup)="subjectKeyup()"
+        [typeahead]="subjectSearchResults"
+        typeaheadOptionField="name"
+        [typeaheadOptionsLimit]="5"
+        [typeaheadMinLength]="3"
+        (typeaheadOnSelect)="subjectSelected($event)">
+    </div>
+
+    <div class="row justify-content-center" *ngIf="addKnowledgeEnabled">
+      <div class="col-sm-6 text-center">
+        <font size="5" class="ml-2"><b>{{ selectedSubjectName }}</b></font>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-sm-6 text-center">
+        <button class="btn btn-secondary add-subject-button"
+                (click)="addKnowledge()"
+                [disabled]="!addKnowledgeEnabled"
+                [ngClass]="{'enabled': addKnowledgeEnabled}">
+          I Know This!
+        </button>
+      </div>
+    </div>
+
+    <div class="row justify-content-center" *ngIf="addKnowledgeEnabled">
+      <div class="col-sm-6 text-center">
+        <button class="btn btn-secondary add-subject-button enabled" (click)="disableKnowledge()">
+          Clear
+        </button>
       </div>
     </div>
   </section>

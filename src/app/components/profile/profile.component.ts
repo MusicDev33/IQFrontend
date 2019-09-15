@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
 import { DebugService } from '../../services/debug.service';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { SearchService } from '../../services/search.service';
 
 
 enum ContentView {
@@ -35,6 +37,13 @@ export class ProfileComponent implements OnInit {
   userQuestions: Array<object>;
   userAnswers: Array<object>;
 
+  knowledgeText = '';
+  subjectSearchResults = [];
+
+  addKnowledgeEnabled = false;
+  selectedSubjectURL = '';
+  selectedSubjectName = '';
+
   constructor(
     public authService: AuthService,
     public activatedRoute: ActivatedRoute,
@@ -42,7 +51,8 @@ export class ProfileComponent implements OnInit {
     public router: Router,
     public ansService: AnswerService,
     public dialog: MatDialog,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public search: SearchService) { }
 
   ngOnInit() {
     // Enum hax
@@ -122,5 +132,45 @@ export class ProfileComponent implements OnInit {
 
   editBio() {
 
+  }
+
+  subjectKeyup() {
+    const minLength = 1;
+    if (this.knowledgeText.length > minLength && this.subjectSearchResults.length === 0) {
+      this.search.subjectSearch(this.knowledgeText).subscribe(data => {
+        const res: any = data;
+        this.subjectSearchResults = res.subjects;
+      });
+    } else if (this.knowledgeText.length <= minLength) {
+      this.subjectSearchResults = [];
+    }
+  }
+
+  subjectSelected(subject) {
+    this.selectedSubjectURL = subject.item.subjectURL;
+    this.selectedSubjectName = subject.item.name;
+    this.addKnowledgeEnabled = true;
+    this.knowledgeText = '';
+  }
+
+  addKnowledge() {
+    this.authService.addKnowledge(this.selectedSubjectURL).subscribe(data => {
+      const res: any = data;
+      this.debug.log(res);
+      this.selectedSubjectURL = '';
+      this.selectedSubjectName = '';
+      this.addKnowledgeEnabled = false;
+    });
+  }
+
+deleteKnowledge() {
+    this.authService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
+      const res: any = data;
+      this.debug.log(res);
+    });
+  }
+
+  disableKnowledge() {
+    this.addKnowledgeEnabled = false;
   }
 }
