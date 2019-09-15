@@ -38,7 +38,7 @@ export class AuthenticateComponent implements OnInit {
       password: this.password
     };
 
-    var response: any = {}
+    let response: any = {}
 
     // Required Fields
     if (!this.validator.validateLogin(user)) {

@@ -14,11 +14,11 @@ import { DebugService } from '../../services/debug.service';
 })
 export class DashboardComponent implements OnInit {
   user: any;
-  questions: Array<Object>;
-  subjects: Array<String>;
+  questions: Array<object>;
+  subjects: Array<string>;
   subject: string;
 
-  arrayOfSubjects: Array<String>;
+  arrayOfSubjects: Array<string>;
   subjectOffset = 0;
 
   screenHeight: any;
@@ -54,11 +54,11 @@ export class DashboardComponent implements OnInit {
       });
     } else {
       this.subject = '';
-      this.qService.getAllQuestions().subscribe(data => {
+      this.authService.getFeed().subscribe(data => {
         var res: any = {};
         res = data;
         this.debug.log(res);
-        this.questions = res.questions;
+        this.questions = res.feed;
       }, err => {
         this.debug.log(err);
         return false;

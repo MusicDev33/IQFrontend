@@ -108,7 +108,7 @@ export class SearchpopupComponent implements OnInit {
   }
 
   checkFormComplete() {
-    if (this.questionText.length > 0 && this.selectedSubject.length > 0 && this.selectedSource.length > 0) {
+    if (this.questionText.length > 0 && this.selectedSubject.length > 0) {
       this.formComplete = true;
     } else {
       this.formComplete = false;

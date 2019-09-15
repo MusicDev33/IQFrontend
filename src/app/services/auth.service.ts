@@ -159,6 +159,15 @@ export class AuthService {
       .pipe(map(res => res));
   }
 
+  getFeed() {
+    const route = this.routeBase + '/feed/' + this.userMongoID();
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.get(route, {headers: headers})
+      .pipe(map(res => res));
+  }
+
   loggedIn() {
     return tokenNotExpired('id_token');
   }
