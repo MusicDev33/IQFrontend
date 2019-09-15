@@ -13,13 +13,14 @@ export class FakemainComponent implements OnInit {
 
   ngOnInit() {
     document.body.classList.add('bg-pic');
+    /*
     this.ipgen.getIpAddress().subscribe(data => {
       let res: any = {};
       res = data;
       this.ipgen.sendIpAddress(res).subscribe(returnData => {
 
       });
-    });
+    });*/
   }
 
 }
