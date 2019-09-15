@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('subject')) {
       this.subject = this.activatedRoute.snapshot.paramMap.get('subject');
       this.qService.getSubjectQuestions(this.subject).subscribe(data => {
-        var res: any = {};
+        let res: any = {};
         res = data;
         this.debug.log(res);
         this.questions = res.questions;
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.subject = '';
       this.authService.getFeed().subscribe(data => {
-        var res: any = {};
+        let res: any = {};
         res = data;
         this.debug.log(res);
         this.questions = res.feed;
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
       });
     }
 
-    var response: any = {};
+    let response: any = {};
     this.authService.getProfile().subscribe(data => {
       response = data;
       this.user = response.user;
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.subjectsService.getAllSubjects().subscribe(data => {
-      var response: any = {};
+      let response: any = {};
       response = data;
       this.arrayOfSubjects = response.subjects;
     });

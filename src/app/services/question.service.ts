@@ -23,7 +23,7 @@ export class QuestionService {
 
   questionTextToURL(questionText) {
     let urlText = '';
-    const specialChars = '!@#$%^&*()>< \'';
+    const specialChars = '!@#$%^&*()>< \'/\\';
 
     for (var i = 0; i < questionText.length; i++) {
       if (specialChars.indexOf(questionText[i]) > -1) {

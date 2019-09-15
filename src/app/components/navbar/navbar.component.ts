@@ -15,7 +15,7 @@ import { DebugService } from '../../services/debug.service';
 })
 export class NavbarComponent implements OnInit {
 
-  questionText: String;
+  questionText: string;
 
   constructor(
     public flashMsg: FlashMessagesService,
@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe( data => {
       // Lol this isn't a request response but oh well
       if (data) {
-        var res: any = {}
+        let res: any = {}
         res = data;
         this.debug.log('Dialog output: ' + data);
         const question = {
@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit {
         };
         this.debug.log(question);
         this.questionService.askQuestion(question).subscribe(data => {
-          var response: any = {};
+          let response: any = {};
           response = data;
           if (response.success) {
             this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500});

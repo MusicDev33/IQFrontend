@@ -10,18 +10,18 @@ import { DebugService } from '../../services/debug.service';
 import { VotesService } from '../../services/votes.service';
 
 interface Answer {
-  answerText: String,
-  votes: number,
-  poster: String,
-  views: number,
-  comments: Array<Object>,
-  questionURL: String,
-  posterID: String
+  answerText: string;
+  votes: number;
+  poster: string;
+  views: number;
+  comments: Array<object>;
+  questionURL: string;
+  posterID: string;
 }
 
-interface user {
-  name: String,
-  _id: String
+interface IUser {
+  name: string;
+  _id: string;
 }
 
 @Component({
@@ -32,8 +32,8 @@ interface user {
 export class QuestionComponent implements OnInit {
   question: any;
   answers: Array<Answer>;
-  questionURL: String;
-  answerText: String;
+  questionURL: string;
+  answerText: string;
   hasAnswered: boolean;
   userHasAnswered: boolean;
 
@@ -60,22 +60,24 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.answerMode = false;
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
-    var response: any = {};
+    let response: any = {};
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       this.question = response.question;
       this.debug.log(this.question);
 
       this.votesService.getVotes(this.question._id, this.authService.userMongoID()).subscribe(data => {
-        var response: any = {};
+        let response: any = {};
         response = data;
         this.debug.log(data);
-        response.votes.forEach((vote: any) => {
-          if (vote.vote !== 0) {
-            this.votedAnswers[vote.answerid] = vote.vote;
-          }
-        });
-        this.debug.log(this.votedAnswers);
+        if (response.votes) {
+          response.votes.forEach((vote: any) => {
+            if (vote.vote !== 0) {
+              this.votedAnswers[vote.answerid] = vote.vote;
+            }
+          });
+          this.debug.log(this.votedAnswers);
+        }
       });
 
     }, err => {
@@ -84,8 +86,8 @@ export class QuestionComponent implements OnInit {
     });
 
     this.answerService.getAnswers(this.questionURL).subscribe(data => {
-      var response: any = {};
-      var user: user;
+      let response: any = {};
+      let user: IUser;
       response = data;
       this.answers = response.answers;
 
@@ -118,17 +120,18 @@ export class QuestionComponent implements OnInit {
       questionText: this.question.questionText
     };
     this.debug.log(answer);
-    /*
+
     this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
-      var response: any = {}
-      response = data
-      if (response.success){
-        this.flashMsg.show("Answer added.", {cssClass: 'alert-success', timeout: 1500})
-        form.reset();
-      }else{
-        this.flashMsg.show("Something went wrong. Try answering again.", {cssClass: 'alert-danger', timeout: 1500})
+      const response: any = data;
+      if (response.success) {
+        this.flashMsg.show('Answer added.', {cssClass: 'alert-success', timeout: 1500});
+        this.answerText = '';
+        this.answerMode = false;
+        this.answers.unshift(answer);
+      } else {
+        this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});
       }
-    })*/
+    });
   }
 
   // Still trying to figure out a good way to do this...
@@ -166,14 +169,13 @@ export class QuestionComponent implements OnInit {
 
   sendVote(vote, answerid) {
     this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answerid, vote).subscribe(data => {
-      var response: any = {};
-      console.log(data);
+      const response: any = {};
     });
   }
 
   getVote(answer) {
     if (answer._id in this.votedAnswers) {
-      console.log(this.votedAnswers);
+      this.debug.log(this.votedAnswers);
       return this.votedAnswers[answer._id];
     } else {
       return 0;
