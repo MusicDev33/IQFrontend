@@ -12,8 +12,8 @@ import { DebugService } from '../../services/debug.service';
 })
 export class AuthenticateComponent implements OnInit {
 
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 
   constructor(
     public validator: ValidateService,
@@ -38,7 +38,7 @@ export class AuthenticateComponent implements OnInit {
       password: this.password
     };
 
-    let response: any = {}
+    let response: any = {};
 
     // Required Fields
     if (!this.validator.validateLogin(user)) {

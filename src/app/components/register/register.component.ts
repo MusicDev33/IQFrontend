@@ -12,11 +12,11 @@ import { DebugService } from '../../services/debug.service';
 })
 
 export class RegisterComponent implements OnInit {
-  firstName: String;
-  lastName: String;
-  email: String;
-  password: String;
-  handle: String;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  handle: string;
 
   response: any = {};
 
