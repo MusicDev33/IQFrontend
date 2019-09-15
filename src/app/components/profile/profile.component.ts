@@ -11,7 +11,8 @@ import { DebugService } from '../../services/debug.service';
 
 enum ContentView {
   answers,
-  questions
+  questions,
+  knowledge
 }
 
 @Component({
@@ -21,18 +22,18 @@ enum ContentView {
 })
 export class ProfileComponent implements OnInit {
 
-  user: Object;
-  userHandle: String;
+  user: object;
+  userHandle: string;
 
   // Current user is the user to whom the profile page belongs to
   // User is the user using the browser
   currentUser: any = {};
 
-  userMatch: Boolean;
-  view: ContentView
+  userMatch: boolean;
+  view: ContentView;
 
-  userQuestions: Array<Object>;
-  userAnswers: Array<Object>;
+  userQuestions: Array<object>;
+  userAnswers: Array<object>;
 
   constructor(
     public authService: AuthService,
@@ -53,13 +54,13 @@ export class ProfileComponent implements OnInit {
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
 
     this.authService.getUserByHandle(this.userHandle).subscribe(data => {
-      var res: any = {}
+      let res: any = {}
       res = data;
       this.currentUser = res.user;
       this.debug.log(res);
 
       this.qService.getUserQuestions('' + this.currentUser._id).subscribe(data => {
-        var res: any = {}
+        let res: any = {}
         res = data;
         this.debug.log(res);
         this.userQuestions = res.questions;
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit {
       });
 
       this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(data => {
-        var res: any = {};
+        let res: any = {};
         res = data;
         this.debug.log(res);
         this.userAnswers = res.answers;
@@ -76,7 +77,7 @@ export class ProfileComponent implements OnInit {
     });
     if (this.authService.hasToken()) {
       this.authService.getProfile().subscribe(data => {
-        var res: any = {}
+        let res: any = {}
         res = data;
         this.user = res.user;
         this.debug.log(this.user);
@@ -101,6 +102,13 @@ export class ProfileComponent implements OnInit {
     this.debug.log('Questions');
     if (this.view !== ContentView.questions) {
       this.view = ContentView.questions;
+    }
+  }
+
+  onKnowledgeClick() {
+    this.debug.log('Questions');
+    if (this.view !== ContentView.knowledge) {
+      this.view = ContentView.knowledge;
     }
   }
 

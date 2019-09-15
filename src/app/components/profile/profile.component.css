@@ -12,11 +12,10 @@
   color: #78a2e3;
 }
 
-.qaSelectors{
+.qa-selectors {
   transition: all 0.3s;
   font-family:sans-serif;
   font-size: 30px;
-  border-radius: 10px;
   padding-right: 2px;
   padding-left: 2px;
 
@@ -24,32 +23,39 @@
   margin-right: 0.5em;
 
   cursor: pointer;
+
+  border-bottom: solid 3px rgb(0,0,0);
+  border-bottom: solid 3px rgba(0,0,0,0);
 }
 
-.bio-icon{
+.qa-selectors:hover {
+  border-bottom: solid 3px rgba(252, 166, 255, 0.7);
+}
+
+.qa-selectors.selected:hover {
+  border-bottom: solid 3px #af00b5;
+}
+
+.bio-icon {
   transition: all 0.16s;
   color: #fff;
 }
 
-.bio:hover .bio-icon{
+.bio:hover .bio-icon {
   color: #aaa;
   cursor: pointer;
 }
 
-.selected{
-  background-color: #d2def2;
-}
-
-.qaSelectors:hover{
-  background-color: #d2def2;
+.selected {
+  border-bottom: solid 3px #af00b5;
 }
 
 /* Should probably call this a container, not a box...oh well.*/
-.box-link-text{
+.box-link-text {
   color: #555;
 }
 
-.questionBox {
+.question-box {
   cursor: pointer;
   transition: 0.15s;
   margin-left: auto;
@@ -60,12 +66,12 @@
   width: 40%;
 }
 
-.questionBox:hover{
+.question-box:hover{
   border: 1px solid #af00b5;
 }
 
 /* This is the same for now, it'll be different one day*/
-.answerBox {
+.answer-box {
   cursor: pointer;
   transition: 0.15s;
   margin-left: auto;
@@ -76,6 +82,6 @@
   width: 40%;
 }
 
-.answerBox:hover{
+.answer-box:hover {
   border: 1px solid #af00b5;
 }

@@ -1,42 +1,51 @@
-<br>
-<div class="text-center">
-  <div *ngIf="currentUser">
-    <div>
+<div class="container mt-3">
+  <section class="row justify-content-center" *ngIf="currentUser">
+    <div class="col-sm-12 text-center">
       <div class="profile-circle">
         <i class="fas fa-user profile-icon"></i>
       </div>
+    </div>
+
+    <div class="col-sm-12 text-center">
       <h2>{{ this.currentUser.name }}</h2>
     </div>
-    <div class="bio">
+
+    <div class="col-sm-12 text-center bio">
       <h6>Insert clever bio here, there won't be a credential system outside of
         "I went/go to X University". Maybe you teach at X University. I dunno
         <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
     </div>
-  </div>
+  </section>
 
-  <div>
-    <p><span class="qaSelectors" (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">Questions</span>
-      <span class="qaSelectors" (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">Answers</span></p>
-  </div>
+  <section class="row justify-content-center mb-3">
+    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+      (click)="onQuestionsClick()" [ngClass]="{'selected': view === contentView.questions}">
+      Questions
+    </div>
+    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+      (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">
+      Answers
+    </div>
+    <div class="col-md-2 col-sm-3 col-xs-12 text-center qa-selectors"
+      (click)="onKnowledgeClick()" [ngClass]="{'selected': view === contentView.knowledge}">
+      Knowledge
+    </div>
+  </section>
 
-  <div *ngIf="userQuestions && view === contentView.questions">
-    <div *ngFor="let question of userQuestions">
-      <div class="questionBox">
+  <section *ngIf="userQuestions && view === contentView.questions">
+    <div *ngFor="let question of userQuestions" class="row justify-content-center">
+      <div class="col-sm-6 text-center question-box mb-2">
         <div (click)="onQuestionClicked(question.questionText)"><a [routerLink]="" class="box-link-text">{{question.questionText}}</a></div>
       </div>
-      <br>
     </div>
-  </div>
+  </section>
 
-  <div *ngIf="userAnswers && view === contentView.answers">
-    <div *ngFor="let answer of userAnswers">
-      <div class="answerBox" (click)="onQuestionClicked(answer.questionText)">
+  <section *ngIf="userAnswers && view === contentView.answers">
+    <div *ngFor="let answer of userAnswers" class="row justify-content-center">
+      <div class="col-sm-6text-center answer-box mb-2" (click)="onQuestionClicked(answer.questionText)">
         <h4><a [routerLink]="" class="box-link-text">{{ answer.questionText }}</a></h4>
         <div>{{answer.answerText}}</div>
       </div>
-      <br>
     </div>
-  </div>
-
-
+  </section>
 </div>
