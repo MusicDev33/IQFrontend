@@ -3,6 +3,9 @@
 @import './variables';
 @import './mixins';
 
+*:focus {
+  outline: none;
+}
 
 /* These will all be Bootstrap overrides*/
 input {
