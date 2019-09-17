@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   userQuestions: Array<object>;
   userAnswers: Array<object>;
+  knowledgeArray: Array<object>;
 
   knowledgeText = '';
   subjectSearchResults = [];
@@ -60,6 +61,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     // Enum hax
     this.view = ContentView.knowledge;
+    this.knowledgeArray = [];
 
 
     this.userMatch = false;
@@ -71,6 +73,15 @@ export class ProfileComponent implements OnInit {
       res = data;
       this.currentUser = res.user;
       this.debug.log(res);
+
+      if (this.currentUser.knowledge) {
+        for (const knowledgeIndex of Object.keys(this.currentUser.knowledge)) {
+          const knowledgeObject = {};
+          knowledgeObject['index'] = knowledgeIndex;
+          knowledgeObject['subject'] = this.currentUser.knowledge[knowledgeIndex];
+          this.knowledgeArray.push(knowledgeObject);
+        }
+      }
 
       this.qService.getUserQuestions('' + this.currentUser._id).subscribe(data => {
         let res: any = {}

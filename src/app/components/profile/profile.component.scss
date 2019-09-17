@@ -129,3 +129,27 @@
 .bio-edit-button.cancel:hover {
   color: #ee6666;
 }
+
+.knowledge-subject {
+  transition: all 0.3s;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.knowledge-subject:hover {
+  border-color: $color-primary;
+}
+
+.knowledge-subject:hover > .knowledge-grip {
+  color: #555;
+}
+
+.knowledge-grip {
+  transition: all 0.4s;
+  color: #fff;
+}
+
+.knowledge-grip:hover {
+  color: $color-primary!important;
+}

@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <section class="row justify-content-center" *ngIf="currentUser">
+  <section class="row justify-content-center mb-3" *ngIf="currentUser">
     <div class="col-sm-12 text-center">
       <div class="profile-circle">
         <i class="fas fa-user profile-icon"></i>
@@ -10,11 +10,11 @@
       <h2>{{ this.currentUser.name }}</h2>
     </div>
 
-    <div class="col-sm-12 text-center bio" *ngIf="currentUser.bio && !bioMode">
+    <div class="col-sm-8 text-center bio" *ngIf="currentUser.bio && !bioMode">
       <h6>{{ this.currentUser.bio }}
         <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
     </div>
-    <div class="col-sm-12 text-center bio" *ngIf="!currentUser.bio && user && user._id == currentUser._id && !bioMode">
+    <div class="col-sm-8 text-center bio" *ngIf="!currentUser.bio && user && user._id == currentUser._id && !bioMode">
       <h6>You don't currently have a bio
         <i class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
     </div>
@@ -61,7 +61,19 @@
     </div>
   </section>
 
-  <section *ngIf="view === contentView.knowledge">
+  <section *ngIf="view === contentView.knowledge && this.currentUser">
+    <div class="mb-3" *ngFor="let knowledge of knowledgeArray">
+      <div class="row justify-content-center">
+        <div class="offset-sm-5 col-sm-7 text-left">
+          <font size="5"><b class="mr-2">{{ knowledge.index }}</b></font>
+          <span class="knowledge-subject pt-2 pr-2 pb-1 pl-2">
+            <font size="5" class="mr-2">{{ knowledge.subject }}</font>
+            <i class="fas fa-grip-lines fa-lg knowledge-grip"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div class="row justify-content-center mb-3">
       <div class="col-sm-8 text-center">
         <font size="3">
