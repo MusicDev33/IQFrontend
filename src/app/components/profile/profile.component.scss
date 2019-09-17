@@ -1,3 +1,5 @@
+@import '~src/sass/variables';
+
 .profile-circle {
   height: 70px;
   width: 70px;
@@ -113,4 +115,17 @@
   width: 25px;
   height: 25px;
   background-color: rgba(175, 0, 181, 0.2);
+}
+
+.bio-edit-button {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.bio-edit-button.confirm:hover {
+  color: $color-primary;
+}
+
+.bio-edit-button.cancel:hover {
+  color: #ee6666;
 }

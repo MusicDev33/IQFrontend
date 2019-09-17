@@ -159,6 +159,16 @@ export class AuthService {
       .pipe(map(res => res));
   }
 
+  changeBio(bio: string) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/bio';
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    // Shorthand...I'm not sure how I feel about it
+    return this.http.post(route, {bio}, {headers})
+      .pipe(map(res => res));
+  }
+
   getFeed() {
     const route = this.routeBase + '/feed/' + this.userMongoID();
     let headers = new HttpHeaders();

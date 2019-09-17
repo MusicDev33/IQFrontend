@@ -20,7 +20,7 @@ enum ContentView {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 
@@ -43,6 +43,9 @@ export class ProfileComponent implements OnInit {
   addKnowledgeEnabled = false;
   selectedSubjectURL = '';
   selectedSubjectName = '';
+
+  bioText = '';
+  bioMode = false;
 
   constructor(
     public authService: AuthService,
@@ -131,7 +134,19 @@ export class ProfileComponent implements OnInit {
   }
 
   editBio() {
+    this.bioMode = true;
+    if (this.currentUser.bio) {
+      this.bioText = this.currentUser.bio;
+    }
+  }
 
+  sendBio() {
+    this.bioMode = false;
+    this.currentUser['bio'] = this.bioText;
+    this.authService.changeBio(this.bioText).subscribe(data => {
+      const res: any = data;
+      this.debug.log(res);
+    });
   }
 
   subjectKeyup() {
@@ -163,7 +178,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-deleteKnowledge() {
+  deleteKnowledge() {
     this.authService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
       const res: any = data;
       this.debug.log(res);

@@ -10,10 +10,22 @@
       <h2>{{ this.currentUser.name }}</h2>
     </div>
 
-    <div class="col-sm-12 text-center bio">
-      <h6>Insert clever bio here, there won't be a credential system outside of
-        "I went/go to X University". Maybe you teach at X University. I dunno
+    <div class="col-sm-12 text-center bio" *ngIf="currentUser.bio && !bioMode">
+      <h6>{{ this.currentUser.bio }}
         <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
+    </div>
+    <div class="col-sm-12 text-center bio" *ngIf="!currentUser.bio && user && user._id == currentUser._id && !bioMode">
+      <h6>You don't currently have a bio
+        <i class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
+    </div>
+    <div class="col-sm-4 justify-content-center text-center" *ngIf="bioMode">
+      <textarea class=" form-control"
+      [(ngModel)]="bioText"
+      name="bioText"
+      placeholder="Who are you?">
+      </textarea>
+      <font size="4" class="col-sm-6 bio-edit-button cancel" (click)="bioMode=false">Cancel</font>
+      <font size="4" class="col-sm-6 bio-edit-button confirm" (click)="sendBio()">Confirm</font>
     </div>
   </section>
 
