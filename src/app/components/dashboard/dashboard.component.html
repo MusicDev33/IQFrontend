@@ -65,10 +65,10 @@
 </section>
 
 <!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
-<section *ngIf="user && user.currentSubjects.length">
+<section *ngIf="user">
   <div class="container">
     <div class="row">
-      <div *ngIf="subjects" class="col-lg-2">
+      <div *ngIf="subjects && user.currentSubjects.length" class="col-lg-2">
         <div *ngFor="let subject of subjects">
           <div>
             <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
