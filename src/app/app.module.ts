@@ -40,6 +40,7 @@ import { SourceService } from './services/source.service';
 import { SearchService } from './services/search.service';
 
 import { AuthGuard } from './guards/auth.guard';
+import { LibraryComponent } from './components/library/library.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AuthGuard } from './guards/auth.guard';
     IntroComponent,
     HowtoComponent,
     PolicyComponent,
-    MathComponent
+    MathComponent,
+    LibraryComponent
   ],
   imports: [
     BrowserModule,

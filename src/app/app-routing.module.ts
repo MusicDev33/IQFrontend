@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { QuestionComponent } from './components/question/question.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
+import { LibraryComponent } from './components/library/library.component';
 
 import { AboutComponent } from './components/about/about.component';
 import { PolicyComponent } from './components/policy/policy.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'support/howto', component: HowtoComponent},
   { path: 'support/math', component: MathComponent},
   { path: 'policy', component: PolicyComponent},
+  { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

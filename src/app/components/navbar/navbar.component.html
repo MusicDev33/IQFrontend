@@ -20,6 +20,9 @@
         <a class="nav-link" [routerLink]="['/authenticate']">Login</a>
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item">
+        <a class="nav-link navbar-text-purple" [routerLink]="['/library']" style="cursor: pointer;">My Library</a>
+      </li>
+      <li *ngIf="authService.loggedIn()" class="nav-item">
         <a class="nav-link navbar-text-purple" (click)="onProfileClick()" style="cursor: pointer;">Profile</a>
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item">

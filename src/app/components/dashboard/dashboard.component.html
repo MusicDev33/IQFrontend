@@ -78,9 +78,12 @@
           </div>
         </div>
       </div>
+      <div *ngIf="!user.currentSubjects.length" class="col-lg-2">
+
+      </div>
 
       <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
-        <h2 class="text-center">Questions</h2>
+        <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
           <div class="question-box">
             <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>

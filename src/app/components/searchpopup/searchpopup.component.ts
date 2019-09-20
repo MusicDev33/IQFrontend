@@ -15,7 +15,7 @@ import { mergeMap } from 'rxjs/operators';
 @Component({
   selector: 'app-searchpopup',
   templateUrl: './searchpopup.component.html',
-  styleUrls: ['./searchpopup.component.css']
+  styleUrls: ['./searchpopup.component.scss']
 })
 export class SearchpopupComponent implements OnInit {
 

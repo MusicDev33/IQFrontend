@@ -8,7 +8,7 @@ import { DebugService } from '../../services/debug.service';
 @Component({
   selector: 'app-authenticate',
   templateUrl: './authenticate.component.html',
-  styleUrls: ['./authenticate.component.css']
+  styleUrls: ['./authenticate.component.scss']
 })
 export class AuthenticateComponent implements OnInit {
 
