@@ -1,0 +1,24 @@
+<section *ngIf="user" class="container mt-3">
+  <div class="row">
+    <div class="col-sm-3">
+      <h4 class="hvr-icon-rotate pl-2">Sources
+        <i class="fas fa-plus fa-sm source-plus ml-2"
+          (click)="findSourceMode = !findSourceMode"
+          [ngClass]="{'hvr-icon red': findSourceMode, 'color-primary': !findSourceMode}"></i>
+      </h4>
+      <input [ngClass]="{'hide-element': !findSourceMode}"
+        [(ngModel)]="findSourceText"
+        class="form-control input-form"
+        placeholder="Enter source name"
+        (keyup)="findSourceKeyUp()"
+        [typeahead]="sourceSearchResults"
+        typeaheadOptionField="name"
+        [typeaheadOptionsLimit]="5"
+        [typeaheadMinLength]="3"
+        (typeaheadOnSelect)="sourceSelected($event)">
+    </div>
+    <div class="col-sm-9">
+      Mastering Physics
+    </div>
+  </div>
+</section>
