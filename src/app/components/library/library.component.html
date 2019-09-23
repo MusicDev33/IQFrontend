@@ -1,24 +1,60 @@
 <section *ngIf="user" class="container mt-3">
   <div class="row">
     <div class="col-sm-3">
-      <h4 class="hvr-icon-rotate pl-2">Sources
-        <i class="fas fa-plus fa-sm source-plus ml-2"
-          (click)="findSourceMode = !findSourceMode"
-          [ngClass]="{'hvr-icon red': findSourceMode, 'color-primary': !findSourceMode}"></i>
-      </h4>
-      <input [ngClass]="{'hide-element': !findSourceMode}"
-        [(ngModel)]="findSourceText"
-        class="form-control input-form"
-        placeholder="Enter source name"
-        (keyup)="findSourceKeyUp()"
-        [typeahead]="sourceSearchResults"
-        typeaheadOptionField="name"
-        [typeaheadOptionsLimit]="5"
-        [typeaheadMinLength]="3"
-        (typeaheadOnSelect)="sourceSelected($event)">
+      <div class="underline mb-2">
+        <h3 class="hvr-icon-rotate pl-2">Sources
+          <i class="fas fa-plus fa-sm source-plus ml-2"
+            (click)="findSourceMode = !findSourceMode"
+            [ngClass]="{'hvr-icon red': findSourceMode, 'color-primary': !findSourceMode}"></i>
+        </h3>
+      </div>
+      <div [collapse]="!findSourceMode" [isAnimated]="true" class="p-1 text-center">
+        <input [(ngModel)]="findSourceText"
+          class="form-control input-form"
+          placeholder="Enter source name"
+          (keyup)="findSourceKeyUp()"
+          [typeahead]="sourceSearchResults"
+          typeaheadOptionField="name"
+          [typeaheadOptionsLimit]="5"
+          [typeaheadMinLength]="3"
+          (typeaheadOnSelect)="sourceSelected($event)">
+        <button class="btn btn-secondary ask-button mt-2" (click)="addSourceToUser()" [disabled]="!selectedSource">
+          Add Source
+        </button>
+      </div>
+
+      <div *ngIf="authService.user.currentSources.length">
+        <div *ngFor="let source of authService.user.currentSources">
+          <h5>
+            <span class="source-text"
+              [ngClass]="{'blank-underline': source !== openedSource, 'purple-underline': source === openedSource}"
+              (click)="openSource(source)">
+              {{ source }}
+            </span>
+          </h5>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-9">
-      Mastering Physics
-    </div>
+    <section class="col-sm-9" *ngIf="openedSource">
+      <div class="row justify-content-center mb-2">
+        <div class="col-sm-2">
+          <h4>Tags</h4>
+        </div>
+
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
+            <div class="col-sm-4 text-center subnav-item"><span class="delete-text">Delete</span></div>
+          </div>
+
+          <div class="row" *ngIf="questions.length">
+            <div *ngFor="let question of questions" class="col-sm-8 question-box text-center">
+              <span class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </div>
 </section>

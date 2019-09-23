@@ -178,6 +178,24 @@ export class AuthService {
       .pipe(map(res => res));
   }
 
+  addSourceToUser(sourceName: string) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.post(route, {}, {headers})
+      .pipe(map(res => res));
+  }
+
+  removeSourceFromUser(sourceName: string) {
+    const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    return this.http.post(route, {}, {headers})
+      .pipe(map(res => res));
+  }
+
   loggedIn() {
     return tokenNotExpired('id_token');
   }

@@ -35,4 +35,36 @@ export class SourceService {
     return this.http.post(this.routeBase + '/sources/add', {name}, {headers})
       .pipe(map(res => res));
   }
+
+  getQuestionsFromSource(sourceId: string) {
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.get(this.routeBase + '/sources/' + sourceId + '/questions', {headers})
+      .pipe(map(res => res));
+  }
+
+  getQuestionsFromSourceByName(sourceName: string) {
+    let urlText = '';
+    const specialChars = '!@#$%^&*()>< \'';
+
+    for (let i = 0; i < sourceName.length; i++) {
+      if (specialChars.indexOf(sourceName[i]) > -1) {
+        urlText += '-';
+      } else if (sourceName[i] === '?') {
+
+      } else {
+        urlText += sourceName[i];
+      }
+    }
+
+    const totalUrl = this.routeBase + '/sources/url/' + urlText + '/questions';
+    console.log(totalUrl)
+
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.get(totalUrl, {headers})
+      .pipe(map(res => res));
+  }
 }
