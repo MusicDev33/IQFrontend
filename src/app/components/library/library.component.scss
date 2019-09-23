@@ -40,6 +40,19 @@
   transition: all 0.3s;
 }
 
+.source-text:hover {
+  border-bottom: solid 3px $color-primary;
+}
+
+.tag-text {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.tag-text:hover {
+  border-bottom: solid 2px $color-primary;
+}
+
 .blank-underline {
   border-bottom: solid 3px rgba(0,0,0,0);
 }
@@ -48,8 +61,12 @@
   border-bottom: solid 3px $color-primary;
 }
 
-.source-text:hover {
-  border-bottom: solid 3px $color-primary;
+.blank-underline-1 {
+  border-bottom: solid 2px rgba(0,0,0,0);
+}
+
+.purple-underline-1 {
+  border-bottom: solid 2px $color-primary;
 }
 
 .hvr-icon-float {

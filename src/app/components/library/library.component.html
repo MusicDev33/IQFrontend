@@ -24,7 +24,7 @@
       </div>
 
       <div *ngIf="authService.user.currentSources.length">
-        <div *ngFor="let source of authService.user.currentSources">
+        <div *ngFor="let source of authService.user.currentSources" class="mb-3">
           <h5>
             <span class="source-text"
               [ngClass]="{'blank-underline': source !== openedSource, 'purple-underline': source === openedSource}"
@@ -35,13 +35,38 @@
         </div>
       </div>
     </div>
+
     <section class="col-sm-9" *ngIf="openedSource">
-      <div class="row justify-content-center mb-2">
-        <div class="col-sm-2">
-          <h4>Tags</h4>
+      <div class="row justify-content-center">
+        <div class="col-sm-3">
+          <h4 class="hvr-icon-rotate pl-2">
+            Tags <i class="fas fa-plus fa-sm source-plus"
+            (click)="addTagMode = !addTagMode"
+            [ngClass]="{'hvr-icon red': addTagMode, 'color-primary': !addTagMode}"></i>
+          </h4>
+          <div [collapse]="!addTagMode" [isAnimated]="true" class="p-1 text-center">
+            <input [(ngModel)]="tagText"
+              class="form-control input-form"
+              placeholder="Add a tag">
+            <button class="btn btn-secondary ask-button mt-2" (click)="addTagToSource()"
+              [disabled]="!tagText.length && openedSource !== openedSourceObject.name">
+              Add Tag
+            </button>
+          </div>
+          <div *ngIf="openedSourceObject.tags && openedSourceObject.tags.length">
+            <div *ngFor="let tag of openedSourceObject.tags" class="mb-1">
+              <h6>
+                <span class="tag-text"
+                  [ngClass]="{'blank-underline-1': tag !== selectedTag, 'purple-underline-1': tag === selectedTag}"
+                  (click)="selectedTag = tag">
+                  {{ tag }}
+                </span>
+              </h6>
+            </div>
+          </div>
         </div>
 
-        <div class="col-sm-10">
+        <div class="col">
           <div class="row">
             <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
             <div class="col-sm-4 text-center subnav-item"><span class="delete-text">Delete</span></div>

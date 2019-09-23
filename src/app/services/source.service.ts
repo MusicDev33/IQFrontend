@@ -59,12 +59,53 @@ export class SourceService {
     }
 
     const totalUrl = this.routeBase + '/sources/url/' + urlText + '/questions';
-    console.log(totalUrl)
 
     let headers = new HttpHeaders();
     headers = headers.set('IQ-User-Agent', 'IQAPIv1');
     headers = headers.set('Content-Type', 'application/json');
     return this.http.get(totalUrl, {headers})
+      .pipe(map(res => res));
+  }
+
+  getSourceByName(sourceName: string) {
+    let urlText = '';
+    const specialChars = '!@#$%^&*()>< \'';
+
+    for (let i = 0; i < sourceName.length; i++) {
+      if (specialChars.indexOf(sourceName[i]) > -1) {
+        urlText += '-';
+      } else if (sourceName[i] === '?') {
+
+      } else {
+        urlText += sourceName[i];
+      }
+    }
+
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.get(this.routeBase + '/sources/name/' + urlText, {headers})
+      .pipe(map(res => res));
+  }
+
+  addTag(tagName: string, sourceId: string) {
+    let tagUrl = '';
+    const specialChars = '!@#$%^&*()>< \'';
+
+    for (let i = 0; i < tagName.length; i++) {
+      if (specialChars.indexOf(tagName[i]) > -1) {
+        tagUrl += '-';
+      } else if (tagName[i] === '?') {
+
+      } else {
+        tagUrl += tagName[i];
+      }
+    }
+
+    let headers = new HttpHeaders();
+    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.post(this.routeBase + '/sources/' + sourceId + '/tags/' + tagUrl, {}, {headers})
       .pipe(map(res => res));
   }
 }

@@ -25,9 +25,15 @@ export class LibraryComponent implements OnInit {
   selectedSource = '';
   selectedSourceID = '';
 
+  // A result of poor planning
   openedSource = '';
+  openedSourceObject: any = {};
 
   questions = [];
+
+  addTagMode = false;
+  tagText = '';
+  selectedTag = '';
 
   constructor(
     public authService: AuthService,
@@ -82,11 +88,18 @@ export class LibraryComponent implements OnInit {
   }
 
   openSource(sourceName: string) {
+    this.selectedTag = '';
     this.openedSource = sourceName;
     this.sourceService.getQuestionsFromSourceByName(sourceName).subscribe(data => {
       this.debug.log(data);
       const res: any = data;
       this.questions = res.questions;
+    });
+
+    this.sourceService.getSourceByName(sourceName).subscribe(data => {
+      const res: any = data;
+      this.openedSourceObject = res.source;
+      this.debug.log(this.openedSourceObject.tags);
     });
   }
 
@@ -95,5 +108,13 @@ export class LibraryComponent implements OnInit {
     this.debug.log(questionURL);
     const routeURL = '/question/' + questionURL;
     this.router.navigate([routeURL]);
+  }
+
+  addTagToSource() {
+    this.sourceService.addTag(this.tagText, this.openedSourceObject._id).subscribe(data => {
+      const res: any = data;
+      this.openedSourceObject = res.source;
+    });
+    this.tagText = '';
   }
 }

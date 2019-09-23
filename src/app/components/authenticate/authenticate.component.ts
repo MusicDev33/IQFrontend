@@ -51,7 +51,6 @@ export class AuthenticateComponent implements OnInit {
       this.debug.log(data);
       if (response.success) {
         this.authService.storeUserData(response.token, response.user);
-        this.flashMsg.show('Logged in!', {cssClass: 'alert-success', timeout: 2000});
         this.router.navigate(['/dashboard']);
       } else {
         this.flashMsg.show(response.msg, {cssClass: 'alert-danger', timeout: 2000});
