@@ -132,6 +132,18 @@ textarea {
   color: #fff;
 }
 
+.subject-form {
+  border-radius: 0!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+}
+
+.subject-prepend {
+  border-radius: 0!important;
+  border-top-left-radius: 9px!important;
+  border-bottom-left-radius: 9px!important;
+}
+
 /*
 textarea::-webkit-scrollbar {
   width: 2px;
