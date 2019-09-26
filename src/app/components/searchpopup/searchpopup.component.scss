@@ -196,6 +196,22 @@ textarea {
   border-bottom: solid 1px #ddd;
 }
 
+.tag-container {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.tag {
+  color: #aaa;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag.selected {
+  transition: all 0.2s;
+  color: $color-primary;
+}
+
 /* Animations */
 @keyframes text-color-change-blue {
   from {color: black;}

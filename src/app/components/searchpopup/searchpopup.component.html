@@ -73,10 +73,18 @@
           Add Source
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" (click)="selectTagMode = !selectTagMode">
         <div class="bubble">
           Add Tag
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedSourceTags.length && selectTagMode">
+    <div class="row tag-container">
+      <div class="col-sm-12" *ngFor="let tag of selectedSourceTags" (click)="addTag(tag)">
+        <h5 class="tag" [ngClass]="{'selected': addedTags.indexOf(tag) > -1}">{{ tag }}</h5>
       </div>
     </div>
   </div>

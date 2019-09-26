@@ -51,6 +51,11 @@ export class SearchpopupComponent implements OnInit {
   subjectPlaceholder = 'Enter a subject name';
   sourcePlaceholder = 'Enter a source name';
 
+  addedTags = [];
+  selectedSourceTags = [];
+
+  selectTagMode = false;
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -127,6 +132,10 @@ export class SearchpopupComponent implements OnInit {
     this.selectedSourceId = '';
   }
 
+  tagModeToggle() {
+    this.addedTags = [];
+  }
+
   setSubjectDropdown(mode: number) {
     if (mode === 1) {
       this.subjectDropdownText = 'Add Subject';
@@ -152,6 +161,15 @@ export class SearchpopupComponent implements OnInit {
       this.formComplete = true;
     } else {
       this.formComplete = false;
+    }
+  }
+
+  addTag(tag: string) {
+    const index = this.addedTags.indexOf(tag);
+    if (index <= -1) {
+      this.addedTags.push(tag);
+    } else {
+      this.addedTags.splice(index, 1);
     }
   }
 
@@ -209,6 +227,8 @@ export class SearchpopupComponent implements OnInit {
   }
 
   taSourceSelected(source) {
+    this.selectedSourceTags = source.item.tags;
+    console.log(source)
     this.selectedSourceId = source.item._id;
     this.selectedSource = source.item.name;
     this.checkFormComplete();
