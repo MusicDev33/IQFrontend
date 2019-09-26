@@ -121,7 +121,7 @@ export class SearchpopupComponent implements OnInit {
     this.sourceMode = !this.sourceMode;
     this.sourceText = '';
     this.selectedSource = '';
-    this.selectedSourceID = '';
+    this.selectedSourceId = '';
   }
 
   checkFormComplete() {
