@@ -15,20 +15,20 @@
       <div class="col-sm-12 line mt-2 mb-2"></div>
     </div>
 
-    <div class="row" [ngClass]="{'hide-element': !topicMode}">
+    <div class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend">
           <button class="iq-prepend dropdown-toggle" data-toggle="dropdown">{{ subjectDropdownText }}</button>
           <div class="dropdown-menu" style="border-radius: 9px;">
-            <span class="dropdown-item" (click)="subjectDropdownText = 'Add Subject'">Add Subject</span>
-            <span class="dropdown-item" (click)="subjectDropdownText = 'Create Subject'">Create Subject</span>
+            <span class="dropdown-item" (click)="setSubjectDropdown(1)">Add Subject</span>
+            <span class="dropdown-item" (click)="setSubjectDropdown(2)">Create Subject</span>
           </div>
         </div>
         <input #subjectField
           [(ngModel)]="topicText"
           class="form-control iq-form"
           formControlName="topic"
-          placeholder="Enter subject name"
+          placeholder="{{ subjectPlaceholder }}"
           (keyup)="subjectKeyup()"
           [typeahead]="subjectSearchResults"
           typeaheadOptionField="name"
@@ -38,28 +38,13 @@
       </div>
     </div>
 
-    <div [ngClass]="{'hide-element': !topicMode}" class="add-subject-div row mb-3">
-      <div class="col-sm-12">
-        Can't find a subject? Try creating one!
-      </div>
-    </div>
-
-    <div [ngClass]="{'hide-element': topicMode}" class="row">
-      <div class="col-sm-12">
-        <h4 [ngClass]="{'hide-element': !topicText?.length,
-                        'section-title-animate': !topicMode,
-                        'verified': selectedSubject.length,
-                        'error': !selectedSubject.length}" class="sectionOpenTitle" (click)="topicModeOn()">{{ topicText }}</h4>
-      </div>
-    </div>
-
-    <div class="row" [ngClass]="{'hide-element': !sourceMode}">
+    <div class="row mb-2" [ngClass]="{'hide-element': !sourceMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend">
           <button class="iq-prepend dropdown-toggle" data-toggle="dropdown">{{ sourceDropdownText }}</button>
           <div class="dropdown-menu" style="border-radius: 9px;">
-            <span class="dropdown-item" (click)="sourceDropdownText = 'Add Source'">Add Source</span>
-            <span class="dropdown-item" (click)="sourceDropdownText = 'Create Source'">Create Source</span>
+            <span class="dropdown-item" (click)="setSourceDropdown(1)">Add Source</span>
+            <span class="dropdown-item" (click)="setSourceDropdown(2)">Create Source</span>
           </div>
         </div>
         <input #sourceField
@@ -67,7 +52,7 @@
           [(ngModel)]="sourceText"
           class="form-control iq-form col-sm-12"
           formControlName="source"
-          placeholder="Enter source"
+          placeholder="{{ sourcePlaceholder }}"
           (keyup)="sourceKeyup()"
           [typeahead]="sourceSearchResults"
           typeaheadOptionField="name"
@@ -77,22 +62,7 @@
       </div>
     </div>
 
-    <div [ngClass]="{'hide-element': !sourceMode}" class="add-subject-div text-center justify-content-center row mb-3">
-      <div class="col-sm-12">
-        Can't find your homework software/textbook? Don't forget to include an edition!
-      </div>
-    </div>
-
-    <div [ngClass]="{'hide-element': sourceMode}" class="row">
-      <div class="col-sm-12">
-        <h4 [ngClass]="{'hide-element': !sourceText?.length,
-                        'section-title-animate': !sourceMode,
-                        'verified': selectedSource.length,
-                        'error': !selectedSource.length}" class="sectionOpenTitle" (click)="sourceModeOn()">{{ sourceText }}</h4>
-      </div>
-    </div>
-
-    <div class="row justify-content-center mt-2 mb-3">
+    <div class="row justify-content-center mb-3">
       <div class="col-sm-4" (click)="topicModeToggle()">
         <div class="bubble" [ngClass]="{'bubble-selected': topicMode}">
           Add Subject

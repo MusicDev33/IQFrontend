@@ -48,6 +48,9 @@ export class SearchpopupComponent implements OnInit {
   subjectDropdownText = 'Add Subject';
   sourceDropdownText = 'Add Source';
 
+  subjectPlaceholder = 'Enter a subject name';
+  sourcePlaceholder = 'Enter a source name';
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -122,6 +125,26 @@ export class SearchpopupComponent implements OnInit {
     this.sourceText = '';
     this.selectedSource = '';
     this.selectedSourceId = '';
+  }
+
+  setSubjectDropdown(mode: number) {
+    if (mode === 1) {
+      this.subjectDropdownText = 'Add Subject';
+      this.subjectPlaceholder = 'Enter a subject name';
+    } else {
+      this.subjectDropdownText = 'Create Subject';
+      this.subjectPlaceholder = 'Insert subject name to be created';
+    }
+  }
+
+  setSourceDropdown(mode: number) {
+    if (mode === 1) {
+      this.sourceDropdownText = 'Add Source';
+      this.sourcePlaceholder = 'Enter a source name';
+    } else {
+      this.sourceDropdownText = 'Create Source';
+      this.sourcePlaceholder = 'Enter source name and edition';
+    }
   }
 
   checkFormComplete() {
