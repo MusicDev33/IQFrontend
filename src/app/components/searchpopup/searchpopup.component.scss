@@ -1,3 +1,5 @@
+@import '~src/sass/variables';
+
 .questionBar {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -37,7 +39,7 @@
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
   overflow-x: hidden;
   overflow-y: scroll;
   min-height: 50px;
@@ -132,32 +134,67 @@ textarea {
   color: #fff;
 }
 
-.subject-form {
+.iq-form {
+  border-radius: 0!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+  border-left-color: $color-primary;
+}
+
+.iq-prepend {
+  transition: all 0.4s;
+  border-radius: 0!important;
+  border-top-left-radius: 9px!important;
+  border-bottom-left-radius: 9px!important;
+  border-color: $color-primary;
+  color: $color-primary;
+  outline: none;
+}
+
+.iq-prepend:hover {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: $color-primary!important;
+  color: #fff;
+}
+
+.source-form {
   border-radius: 0!important;
   border-top-right-radius: 9px!important;
   border-bottom-right-radius: 9px!important;
 }
 
-.subject-prepend {
+.source-prepend {
   border-radius: 0!important;
   border-top-left-radius: 9px!important;
   border-bottom-left-radius: 9px!important;
 }
 
-/*
-textarea::-webkit-scrollbar {
-  width: 2px;
+.bubble {
+  border-radius: 9px;
+  background-color: $color-primary-grey;
+  cursor: pointer;
+  color: $font-main;
 }
 
-textarea::-webkit-scrollbar-track {
-  background-color: rgb(241, 214, 255);
-  border-radius: 10px;
+.bubble-selected {
+  background-color: $color-primary-grey-highlighted;
 }
 
-textarea::-webkit-scrollbar-thumb {
-  background: rgb(175, 0, 181);
-  border-radius: 10px;
-}*/
+.bubble:hover {
+  background-color: $color-primary-grey-highlighted;
+}
+
+.line {
+  border-bottom: solid 1px #ddd;
+}
 
 /* Animations */
 @keyframes text-color-change-blue {

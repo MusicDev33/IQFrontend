@@ -25,9 +25,9 @@ export class SearchpopupComponent implements OnInit {
   source: string;
   form: FormGroup;
 
-  questionMode: boolean;
-  topicMode: boolean;
-  sourceMode: boolean;
+  questionMode = false;
+  topicMode = false;
+  sourceMode = false;
 
   formComplete: boolean;
 
@@ -44,6 +44,9 @@ export class SearchpopupComponent implements OnInit {
 
   selectedSubject = '';
   selectedSource = '';
+
+  subjectDropdownText = 'Add Subject';
+  sourceDropdownText = 'Add Source';
 
   constructor(
     public fb: FormBuilder,
@@ -105,6 +108,20 @@ export class SearchpopupComponent implements OnInit {
     this.questionMode = false;
     this.topicMode = false;
     this.sourceMode = true;
+  }
+
+  topicModeToggle() {
+    this.topicMode = !this.topicMode;
+    this.topicText = '';
+    this.selectedSubject = '';
+    this.selectedSubjectURL = '';
+  }
+
+  sourceModeToggle() {
+    this.sourceMode = !this.sourceMode;
+    this.sourceText = '';
+    this.selectedSource = '';
+    this.selectedSourceID = '';
   }
 
   checkFormComplete() {

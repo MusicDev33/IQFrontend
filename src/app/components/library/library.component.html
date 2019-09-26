@@ -37,9 +37,10 @@
     </div>
 
     <section class="col-sm-9" *ngIf="openedSource">
+      
       <div class="row justify-content-center">
         <div class="col-sm-3">
-          <h4 class="hvr-icon-rotate pl-2">
+          <h4 class="hvr-icon-rotate pl-1">
             Tags <i class="fas fa-plus fa-sm source-plus"
             (click)="addTagMode = !addTagMode"
             [ngClass]="{'hvr-icon red': addTagMode, 'color-primary': !addTagMode}"></i>
@@ -80,6 +81,7 @@
         </div>
 
       </div>
+
     </section>
   </div>
 </section>
