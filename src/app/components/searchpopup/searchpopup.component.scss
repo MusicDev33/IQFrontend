@@ -19,8 +19,8 @@
   border-color: #ccc;
 }
 
-.askButton:hover {
-  background-color: #fcfcfc;
+.askButton:hover.enabled {
+  background-color: #eee;
 }
 
 .closeButton {
@@ -147,11 +147,18 @@ textarea {
   border-top-left-radius: 9px!important;
   border-bottom-left-radius: 9px!important;
   border-color: $color-primary;
-  color: $color-primary;
   outline: none;
 }
 
-.iq-prepend:hover {
+.iq-prepend.enabled {
+  color: $color-primary;
+}
+
+.iq-prepend.disabled {
+  color: #ccc;
+}
+
+.iq-prepend:hover.enabled {
   background-color: $color-primary;
   color: #fff;
 }
@@ -205,6 +212,10 @@ textarea {
   color: #aaa;
   cursor: pointer;
   transition: all 0.2s;
+}
+
+.tag.created:hover {
+  color: $iq-red;
 }
 
 .tag.selected {

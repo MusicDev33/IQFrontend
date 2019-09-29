@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -75,7 +76,8 @@ import { LibraryComponent } from './components/library/library.component';
     MatButtonModule,
     BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     ValidateService,

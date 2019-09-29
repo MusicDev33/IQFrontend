@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Inject } from '@angular/core';
 import { DebugService } from '../../services/debug.service';
@@ -32,8 +33,9 @@ export class SearchpopupComponent implements OnInit {
   formComplete: boolean;
 
   questionText: string;
-  topicText: string;
-  sourceText: string;
+  topicText = '';
+  sourceText = '';
+  tagText = '';
 
   questionSearchResults = [];
   subjectSearchResults = [];
@@ -56,12 +58,22 @@ export class SearchpopupComponent implements OnInit {
 
   selectTagMode = false;
 
+  // A string in the format tag&tag&tag that acts as an array because I'm dumb and
+  // can't be bothered to re-write the stupid formgroup
+  addedTagsString = new FormControl('');
+
+  sourceHasNoResults = false;
+  subjectHasNoResults = false;
+
+  createdTags = [];
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
     public debug: DebugService,
     public search: SearchService,
     public subjectService: SubjectsService,
+    public flashMsg: FlashMessagesService,
     public sourceService: SourceService,
     @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
     ) {
@@ -79,7 +91,8 @@ export class SearchpopupComponent implements OnInit {
       description: [this.description, []],
       question: [this.questionText, []],
       topic: [this.topicText, []],
-      source: [this.sourceText, []]
+      source: [this.sourceText, []],
+      tags: [this.addedTagsString, []]
     });
 
     this.questionText = this.question;
@@ -92,6 +105,7 @@ export class SearchpopupComponent implements OnInit {
   }
 
   askQuestion() {
+    this.addedTagsString.setValue(this.addedTags.concat(this.createdTags).join('&'));
     this.dialogRef.close(this.form.value);
   }
 
@@ -134,6 +148,7 @@ export class SearchpopupComponent implements OnInit {
 
   tagModeToggle() {
     this.addedTags = [];
+    this.selectTagMode = !this.selectTagMode;
   }
 
   setSubjectDropdown(mode: number) {
@@ -173,6 +188,7 @@ export class SearchpopupComponent implements OnInit {
     }
   }
 
+  // Create new subject
   addSubject() {
     // Trim isn't supported by IE 8 so this is a workaround
     let subject = this.topicText.replace(/^\s+|\s+$/g, '');
@@ -180,17 +196,41 @@ export class SearchpopupComponent implements OnInit {
     subject = subject.replace(/\s/g, '-');
 
     this.subjectService.addNewSubject(subject).subscribe(data => {
-      this.topicText = '';
+      const res: any = data;
+      this.topicText = res.subject.name;
+      this.selectedSubject = res.subject.name;
+      this.selectedSubjectURL = res.subject.subjectURL;
     });
   }
 
+  // Create new source
   addSource() {
     // Trim isn't supported by IE 8 so this is a workaround
     const sourceName = this.sourceText.replace(/^\s+|\s+$/g, '');
 
     this.sourceService.addNewSource(sourceName).subscribe(data => {
-      this.sourceText = '';
+      const res: any = data;
+      this.sourceText = res.source.name;
+      this.selectedSource = res.source.name;
+      this.selectedSourceId = '' + res.source._id;
     });
+  }
+
+  addTagToCreatedTags(tagName: string) {
+    const index = this.createdTags.indexOf(tagName);
+    const indexInSourceTags = this.selectedSourceTags.indexOf(tagName);
+
+    if (index < 0 && indexInSourceTags < 0) {
+      this.createdTags.push(tagName);
+      this.tagText = '';
+    } else {
+      this.tagText = '';
+    }
+  }
+
+  deleteTagFromCreatedTags(tagName: string) {
+    const index = this.createdTags.indexOf(tagName);
+    if (index !== -1) { this.createdTags.splice(index, 1); }
   }
 
   // Search stuff
@@ -204,6 +244,11 @@ export class SearchpopupComponent implements OnInit {
       });
     } else if (this.topicText.length <= minLength) {
       this.subjectSearchResults = [];
+    }
+
+    if (this.selectedSubject !== this.topicText) {
+      this.selectedSubject = '';
+      this.selectedSubjectURL = '';
     }
   }
 
@@ -224,13 +269,25 @@ export class SearchpopupComponent implements OnInit {
     } else if (this.sourceText.length <= minLength) {
       this.sourceSearchResults = [];
     }
+    if (this.sourceText !== this.selectedSource) {
+      this.selectedSource = '';
+      this.selectedSourceId = '';
+      this.selectedSourceTags = [];
+    }
   }
 
   taSourceSelected(source) {
     this.selectedSourceTags = source.item.tags;
-    console.log(source)
     this.selectedSourceId = source.item._id;
     this.selectedSource = source.item.name;
     this.checkFormComplete();
+  }
+
+  subjectNoResults(noResults: boolean) {
+    this.subjectHasNoResults = noResults;
+  }
+
+  sourceNoResults(noResults: boolean) {
+    this.sourceHasNoResults = noResults;
   }
 }

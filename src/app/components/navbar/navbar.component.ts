@@ -60,18 +60,20 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe( data => {
       // Lol this isn't a request response but oh well
       if (data) {
-        let res: any = {}
+        let res: any = {};
         res = data;
-        this.debug.log('Dialog output: ' + data);
+        this.debug.log('Dialog output: ' + res);
         const question = {
           question: res.question,
           subject: res.topic,
           source: res.source,
           asker: this.authService.getUser().name,
           askerID: this.authService.userMongoID(),
-          askerHandle: this.authService.getUserHandle()
+          askerHandle: this.authService.getUserHandle(),
+          tags: res.tags.value.split('&')
         };
         this.debug.log(question);
+
         this.questionService.askQuestion(question).subscribe(data => {
           let response: any = {};
           response = data;
