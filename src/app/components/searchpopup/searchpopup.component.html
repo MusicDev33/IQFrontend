@@ -18,7 +18,7 @@
     <div class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend">
-          <button class="iq-prepend" (click)="addNewSubject()"
+          <button class="iq-prepend" (click)="addSubject()"
             tooltip="Don't see your subject? Click here to add it to Inquantir!"
             [disabled]="topicText.length < 3 || selectedSubject"
             [ngClass]="{'enabled': topicText.length > 2 && !selectedSubject, 'disabled': topicText.length < 3 || selectedSubject}">
@@ -43,7 +43,7 @@
     <div class="row mb-2" [ngClass]="{'hide-element': !sourceMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend">
-          <button class="iq-prepend" (click)="addNewSource()"
+          <button class="iq-prepend" (click)="addSource()"
             tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
             [disabled]="sourceText.length < 3 || selectedSource"
             [ngClass]="{'enabled': sourceText.length > 2 || !selectedSource, 'disabled': sourceText.length < 3 || selectedSource}">
