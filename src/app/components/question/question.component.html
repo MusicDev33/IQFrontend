@@ -1,18 +1,18 @@
-<div class="text-center question-container container">
-  <div *ngIf="question">
+<article class="container">
+  <section *ngIf="question">
     <div class="row justify-content-center">
-      <h2 class="page-header">{{ question.questionText }}</h2>
+      <h2>{{ question.questionText }}</h2>
     </div>
     <div class="row justify-content-center">
-      <p style="{text-align:center;}">Asked by <span class="profileURL">
-        <a (click)="toProfileWithHandle(question.askerHandle)" style="cursor: pointer;">{{question.asker}}</a></span>
+      <p class="text-center">Asked by <span class="profile-url">
+        <a (click)="toProfileWithHandle(question.askerHandle)">{{question.asker}}</a></span>
       </p>
     </div>
 
     <!-- Answer Box -->
     <div *ngIf="answerMode && answers && authService.loggedIn()">
-      <div class="row">
-        <div class="col-sm-4 answerBox" style="margin-bottom:10px;">
+      <div class="row justify-content-center mb-2">
+        <div class="col-sm-4 answer-box">
           <i class="fas fa-square-root-alt fa-lg icon"></i>
         </div>
       </div>
@@ -25,43 +25,49 @@
         </textarea>
       </div>
       <div class="row justify-content-center">
-        <button class="btn btn-primary" id="answer-button" (click)="sendAnswer()">Send Answer to the Gods</button>
+        <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
     </div>
 
     <div class="row justify-content-center">
       <div *ngIf="!answerMode && !userHasAnswered && authService.loggedIn()">
-        <button class="btn btn-primary" type="button" (click)="answerMode=true" >Answer</button>
+        <button class="btn btn-primary" (click)="answerMode=true">Answer</button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div *ngIf="answers" id="answer-container">
-    <h4 *ngIf="answers.length">Answers ({{ answers.length }})</h4>
-    <div *ngIf="!answers.length">
+  <section *ngIf="answers">
+    <div class="row justify-content-center" *ngIf="answers.length">
+      <h4>Answers ({{ answers.length }})</h4>
+    </div>
+    <div class="row justify-content-center" *ngIf="!answers.length">
       <h4>No answers have been posted yet. You could be the first!</h4>
     </div>
 
-    <div *ngFor="let answer of answers">
-      <div class="answerBox">
-        <span class="profileCircle"></span><span class="posterName profileURL"><b>
-          <a (click)="toProfileWithHandle(answer.posterHandle)" style="cursor: pointer;">{{answer.poster}}</a></b>
-        </span>
-        <p class="answer-text">{{answer.answerText}}</p><div class="spacer"></div>
-        <span class="action-bar" *ngIf="authService.loggedIn()">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === 1}" (click)="voteClicked(answer, 1)"></i>
+    <div *ngFor="let answer of answers" class="row justify-content-center">
+      <div class="answer-box pl-3 pr-3 pt-2 col-sm-5">
+        <div class="row mb-2">
+          <span class="profile-circle ml-3"></span>
+          <span class="poster-name profile-url"><b>
+            <a (click)="toProfileWithHandle(answer.posterHandle)">{{answer.poster}}</a></b>
+          </span>
+        </div>
+        <div class="row">
+          <p class="answer-text text-left mb-2 ml-3 mr-3">{{answer.answerText}}</p>
+        </div>
+        <div class="row mb-2 mt-2" *ngIf="authService.loggedIn()">
+          <i class="fas fa-chevron-circle-up fa-lg vote-button noselect ml-3" [ngClass]="{'highlighted': getVote(answer) === 1}" (click)="voteClicked(answer, 1)"></i>
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
-        </span>
-        <span class="action-bar" *ngIf="!authService.loggedIn()">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect"></i>
+        </div>
+        <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn()">
+          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
-        </span>
+        </div>
       </div>
-      <br>
     </div>
-  </div>
-</div>
+  </section>
+</article>

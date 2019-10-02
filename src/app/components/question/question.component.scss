@@ -13,28 +13,23 @@ textarea {
   color: $color-primary;
 }
 
-.profileCircle {
+.profile-circle {
   height: 30px;
   width: 30px;
   background-color: #73a2ef;
   border-radius: 50%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align:baseline;
 }
 
-.posterName {
+.poster-name {
   padding-left: 5px;
   font-size: 15px;
 }
 
-.answerBox {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+.answer-box {
   border: 1px solid lightgrey;
-  padding: 2px;
   border-radius: 20px;
-  width: 40%;
 }
 
 .answer-text {
@@ -44,11 +39,6 @@ textarea {
 .answer-textarea {
   margin-bottom: 1em;
   height: 120px;
-}
-
-.spacer {
-  height: 1.4em;
-  background: transparent;
 }
 
 .vote-button {
@@ -70,22 +60,11 @@ textarea {
   color: #b4b4b4;
 }
 
-.action-bar {
-  text-align: left;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 0.7em;
+.profile-url {
+  cursor: pointer;
 }
 
-.profileURL {
-
-}
-
-.profileURL:hover {
+.profile-url:hover {
   text-decoration: underline;
 }
 
@@ -97,12 +76,4 @@ textarea {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
-}
-
-.question-container {
-  margin-top: 1em;
-}
-
-#answer-container {
-  margin-top: 0.7em;
 }

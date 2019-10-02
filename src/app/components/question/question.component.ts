@@ -127,6 +127,7 @@ export class QuestionComponent implements OnInit {
         this.flashMsg.show('Answer added.', {cssClass: 'alert-success', timeout: 1500});
         this.answerText = '';
         this.answerMode = false;
+        this.userHasAnswered = true;
         this.answers.unshift(answer);
       } else {
         this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});

@@ -85,7 +85,7 @@
       <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
         <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
-          <div class="question-box">
+          <div class="question-box pl-2 pr-2">
             <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>
           </div>
         </div>
