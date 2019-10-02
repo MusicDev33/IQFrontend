@@ -37,7 +37,7 @@
     </div>
 
     <section class="col-sm-9" *ngIf="openedSource">
-      
+
       <div class="row justify-content-center">
         <div class="col-sm-3">
           <h4 class="hvr-icon-rotate pl-1">
@@ -59,7 +59,7 @@
               <h6>
                 <span class="tag-text"
                   [ngClass]="{'blank-underline-1': tag !== selectedTag, 'purple-underline-1': tag === selectedTag}"
-                  (click)="selectedTag = tag">
+                  (click)="selectTag(tag)">
                   {{ tag }}
                 </span>
               </h6>
@@ -74,7 +74,7 @@
           </div>
 
           <div class="row" *ngIf="questions.length">
-            <div *ngFor="let question of questions" class="col-sm-8 question-box text-center">
+            <div *ngFor="let question of currentQuestions" class="col-sm-8 question-box text-center">
               <span class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</span>
             </div>
           </div>

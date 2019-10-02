@@ -30,6 +30,8 @@ export class LibraryComponent implements OnInit {
   openedSourceObject: any = {};
 
   questions = [];
+  // Questions that are currently visible
+  currentQuestions = [];
 
   addTagMode = false;
   tagText = '';
@@ -94,6 +96,7 @@ export class LibraryComponent implements OnInit {
       this.debug.log(data);
       const res: any = data;
       this.questions = res.questions;
+      this.currentQuestions = this.questions;
     });
 
     this.sourceService.getSourceByName(sourceName).subscribe(data => {
@@ -116,5 +119,12 @@ export class LibraryComponent implements OnInit {
       this.openedSourceObject = res.source;
     });
     this.tagText = '';
+  }
+
+  selectTag(tag: string) {
+    this.selectedTag = tag;
+    this.currentQuestions = this.questions.filter(question => {
+      return question.tags.includes(this.selectedTag);
+    });
   }
 }
