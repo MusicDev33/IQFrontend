@@ -19,15 +19,22 @@
       <li *ngIf="!authService.loggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['/authenticate']">Login</a>
       </li>
-      <li *ngIf="authService.loggedIn()" class="nav-item">
-        <a class="nav-link navbar-text-purple" [routerLink]="['/library']" style="cursor: pointer;">My Library</a>
+
+      <li class="dropdown nav-item" *ngIf="authService.loggedIn()">
+        <a href="#" class="dropdown-toggle nav-link navbar-text-purple" data-toggle="dropdown">
+          Profile <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-box text-left">
+          <li class="mt-2 dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
+            <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> Profile
+          </span></li>
+          <li class="dropdown-row" [routerLink]="['/library']"><span class="dropdown-text normal">
+            <i class="fas fa-book mr-1 pl-3 mt-3 mb-3"></i> My Library
+          </span></li>
+          <li class="dropdown-row" (click)="onLogoutClick()"><span class="dropdown-text red pl-3">Logout</span></li>
+        </ul>
       </li>
-      <li *ngIf="authService.loggedIn()" class="nav-item">
-        <a class="nav-link navbar-text-purple" (click)="onProfileClick()" style="cursor: pointer;">Profile</a>
-      </li>
-      <li *ngIf="authService.loggedIn()" class="nav-item">
-        <a class="nav-link" (click)="onLogoutClick()" href="#">Log Out</a>
-      </li>
+
     </ul>
   </div>
 </nav>
