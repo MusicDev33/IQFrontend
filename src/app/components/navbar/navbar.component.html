@@ -21,12 +21,12 @@
       </li>
 
       <li class="dropdown nav-item" *ngIf="authService.loggedIn()">
-        <a href="#" class="dropdown-toggle nav-link navbar-text-purple" data-toggle="dropdown">
+        <div class="dropdown-toggle nav-link navbar-text-purple" data-toggle="dropdown" style="cursor:pointer;">
           Profile <span class="caret"></span>
-        </a>
+        </div>
         <ul class="dropdown-menu dropdown-box text-left">
-          <li class="mt-2 dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
-            <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> Profile
+          <li class="dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
+            <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> {{ this.authService.getUser().name.split(" ")[0] }}
           </span></li>
           <li class="dropdown-row" [routerLink]="['/library']"><span class="dropdown-text normal">
             <i class="fas fa-book mr-1 pl-3 mt-3 mb-3"></i> My Library
