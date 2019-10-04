@@ -16,6 +16,8 @@ import { DebugService } from '../../services/debug.service';
 export class NavbarComponent implements OnInit {
 
   questionText: string;
+  searchText = '';
+  searchResults = [];
 
   constructor(
     public flashMsg: FlashMessagesService,
@@ -41,6 +43,18 @@ export class NavbarComponent implements OnInit {
   onProfileClick() {
     const profileURL = '/profile/' + this.authService.getUserHandle();
     this.router.navigate([profileURL]);
+  }
+
+  onSearchKeyup() {
+
+  }
+
+  searchNoResults(noResults: boolean) {
+
+  }
+
+  searchResultSelected(selectedObject: any) {
+
   }
 
   onAskSubmit() {

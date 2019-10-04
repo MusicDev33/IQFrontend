@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center" style="background-color: #fff;">
-  <a class="navbar-brand d-flex w-50 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center" style="background-color: #fff;">
+  <a class="navbar-brand d-flex w-25 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
   <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">Ask Inquantir
   </button>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle">
@@ -7,6 +7,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbartoggle">
     <ul class="navbar-nav ml-auto">
+
+      <input class="form-control mr-2" placeholder="Search Inquantir" style="width: 240px!important;"
+        [(ngModel)]="searchText"
+        (keyup)="onSearchKeyup()"
+        [typeahead]="searchResults"
+        typeaheadOptionField="name"
+        [typeaheadOptionsLimit]="5"
+        [typeaheadMinLength]="3"
+        (typeaheadOnSelect)="searchResultSelected($event)"
+        (typeaheadNoResults)="searchNoResults($event)">
+
       <li class="nav-item" *ngIf="!authService.loggedIn()">
         <a class="nav-link navbar-text-purple" [routerLink]="['/']">Home</a>
       </li>
@@ -38,4 +49,4 @@
     </ul>
   </div>
 </nav>
-<div class="line"></div>
+<div class="line fixed-top"></div>
