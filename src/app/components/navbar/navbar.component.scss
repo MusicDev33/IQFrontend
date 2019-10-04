@@ -34,10 +34,6 @@
   border-bottom: 1px solid rgba(181, 0, 189,.3);
 }
 
-.fixed-top.line {
-  top: 75px;
-}
-
 .active-line {
   height: 1px;
   border-bottom: 2px solid #af00b5;
@@ -60,6 +56,8 @@
 
 .dropdown-box {
   border-radius: 9px;
+  background-color: #fff;
+  z-index: 9999;
 }
 
 .dropdown-row {
