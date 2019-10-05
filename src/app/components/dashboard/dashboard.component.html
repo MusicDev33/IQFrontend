@@ -67,6 +67,7 @@
 <section *ngIf="user">
   <div class="container">
     <div class="row">
+
       <div *ngIf="subjects && user.currentSubjects.length" class="col-lg-2">
         <div *ngFor="let subject of subjects">
           <div>
@@ -89,6 +90,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
