@@ -15,6 +15,8 @@ export class UserService {
   user: any;
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
@@ -22,6 +24,9 @@ export class UserService {
       } else {
         this.routeBase = prodRoutes.routeBase;
       }
+
+      this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+      this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
     }
 
     getUser() {
@@ -40,79 +45,63 @@ export class UserService {
     }
 
     getProfile() {
-      let headers = new HttpHeaders().append('Authorization', this.getToken()).append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      let headers = this.headersTemplate;
+      headers = headers.set('Authorization', this.getToken());
       return this.http.get(this.routeBase + '/users/profile', {headers})
         .pipe(map(res => res));
     }
 
     getUserByHandle(handle) {
-      let headers = new HttpHeaders();
-      headers = headers.set('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.get(this.routeBase + '/users/profile/' + handle, {headers})
         .pipe(map(res => res));
     }
 
     getFeed() {
       const route = this.routeBase + '/feed/' + this.userMongoID();
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.get(route, {headers})
         .pipe(map(res => res));
     }
 
     addSourceToUser(sourceName: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.post(route, {}, {headers})
         .pipe(map(res => res));
     }
 
     removeSourceFromUser(sourceName: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.post(route, {}, {headers})
         .pipe(map(res => res));
     }
 
     followSubject(subjectURL) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.post(route, {}, {headers})
         .pipe(map(res => res));
     }
 
     addKnowledge(subjectURL: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.post(route, {}, {headers})
         .pipe(map(res => res));
     }
 
     deleteKnowledge(subjectURL: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-      let headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       return this.http.delete(route, {headers})
         .pipe(map(res => res));
     }
 
     changeBio(bio: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/bio';
-      let headers = new HttpHeaders();
-      headers = headers.set('Content-Type', 'application/json');
-      headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+      const headers = this.headersTemplate;
       // Shorthand...I'm not sure how I feel about it
       return this.http.post(route, {bio}, {headers})
         .pipe(map(res => res));

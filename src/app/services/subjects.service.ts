@@ -12,27 +12,28 @@ export class SubjectsService {
 
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
+
+    this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+    this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
   getAllSubjects() {
-    let headers = new HttpHeaders();
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    headers.append('Content-Type', 'application/json');
-    return this.http.get(this.routeBase + '/subjects/', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/subjects/', {headers})
       .pipe(map(res => res));
   }
 
   addNewSubject(subject: string) {
     subject = subject.replace(/\s+/g, '-').toLowerCase();
-    let headers = new HttpHeaders();
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    headers = headers.set('Content-Type', 'application/json');
+    const headers = this.headersTemplate;
     return this.http.post(this.routeBase + '/subjects/' + subject, {}, {headers})
       .pipe(map(res => res));
   }

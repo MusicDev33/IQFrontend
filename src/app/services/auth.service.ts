@@ -16,6 +16,8 @@ export class AuthService {
   user: any;
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
@@ -23,20 +25,19 @@ export class AuthService {
       } else {
         this.routeBase = prodRoutes.routeBase;
       }
+
+      this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+      this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
     }
 
   registerUser(user) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    const headers = this.headersTemplate;
     return this.http.post(this.routeBase + '/users/register', user, {headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
+    const headers = this.headersTemplate;
     return this.http.post(this.routeBase + '/users/authenticate', user, {headers})
       .pipe(map(res => res));
   }

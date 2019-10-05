@@ -12,6 +12,7 @@ import * as prodRoutes from '../globals/prodroutes';
 })
 export class QuestionService {
   routeBase = '';
+  headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
@@ -19,6 +20,9 @@ export class QuestionService {
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
+
+    this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+    this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
   questionTextToURL(questionText) {
@@ -38,42 +42,32 @@ export class QuestionService {
   }
 
   askQuestion(question) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(this.routeBase + '/questions/add', question, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/questions/add', question, {headers})
       .pipe(map(res => res));
   }
 
   getQuestion(questionURL) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/questions/' + questionURL, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/questions/' + questionURL, {headers})
       .pipe(map(res => res));
   }
 
   getAllQuestions() {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/questions', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/questions', {headers})
       .pipe(map(res => res));
   }
 
   getSubjectQuestions(subject: string) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/subjects/' + subject + '/questions', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/subjects/' + subject + '/questions', {headers})
       .pipe(map(res => res));
   }
 
   getUserQuestions(userID) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/users/' + userID + '/questions', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/users/' + userID + '/questions', {headers})
       .pipe(map(res => res));
   }
 }

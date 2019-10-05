@@ -13,28 +13,33 @@ import * as prodRoutes from '../globals/prodroutes';
 export class VotesService {
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
+
+    this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+    this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  sendVote(questionid: string, userid: string, answerid: string, vote: Number) {
+  sendVote(questionid: string, userid: string, answerid: string, vote: number) {
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const votes = vote.toString();
     const urlString = this.routeBase + '/questions/' + questionid + '/' + userid + '/' + answerid + '/votes/' + votes;
-    let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(urlString, {headers: headers})
+    return this.http.post(urlString, {headers})
       .pipe(map(res => res));
   }
 
   getVotes(questionid: string, userid: string) {
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const urlString = this.routeBase + '/questions/' + questionid + '/answers/votes/' + userid;
-    let headers = new HttpHeaders().append('Authorization', localStorage.getItem('id_token')).append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(urlString, {headers: headers})
+    return this.http.get(urlString, {headers})
       .pipe(map(res => res));
   }
 }

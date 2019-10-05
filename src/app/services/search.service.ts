@@ -11,27 +11,28 @@ import * as prodRoutes from '../globals/prodroutes';
 export class SearchService {
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
+
+    this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+    this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
   subjectSearch(searchTerm) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/subjects/search/' + searchTerm, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/subjects/search/' + searchTerm, {headers})
       .pipe(map(res => res));
   }
 
   sourceSearch(searchTerm) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers})
       .pipe(map(res => res));
   }
 }
