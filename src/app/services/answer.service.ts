@@ -11,36 +11,35 @@ import * as prodRoutes from '../globals/prodroutes';
 export class AnswerService {
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
+
+    this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+    this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
   getAnswers(questionURL) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/questions/' + questionURL + '/answers', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/questions/' + questionURL + '/answers', {headers})
       .pipe(map(res => res));
   }
 
   sendAnswer(answer, questionURL) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(this.routeBase + '/questions/' + questionURL + '/answers/add', answer, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/questions/' + questionURL + '/answers/add', answer, {headers})
       .pipe(map(res => res));
 
   }
 
   getUserAnswers(userID) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/users/' + userID + '/answers', {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/users/' + userID + '/answers', {headers})
       .pipe(map(res => res));
   }
 }

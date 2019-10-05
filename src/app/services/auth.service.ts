@@ -16,6 +16,8 @@ export class AuthService {
   user: any;
   routeBase = '';
 
+  headersTemplate = new HttpHeaders();
+
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
@@ -23,37 +25,20 @@ export class AuthService {
       } else {
         this.routeBase = prodRoutes.routeBase;
       }
+
+      this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
+      this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
     }
 
   registerUser(user) {
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(this.routeBase + '/users/register', user, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/users/register', user, {headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    console.log(headers)
-    return this.http.post(this.routeBase + '/users/authenticate', user, {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  getProfile() {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/users/profile', {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  getUserByHandle(handle) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(this.routeBase + '/users/profile/' + handle, {headers: headers})
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/users/authenticate', user, {headers})
       .pipe(map(res => res));
   }
 
@@ -65,30 +50,6 @@ export class AuthService {
     this.user = user;
   }
 
-  loadUser() {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
-  }
-
-  userMongoID() {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
-    // returns the ObjectId in string form.
-    // for whatever reason, .str and .toString() didn't work.
-    return '' + this.user._id;
-  }
-
-  getUser() {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
-  }
-
-  getUserHandle() {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    this.user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
-    return this.user.handle;
-  }
-
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
@@ -98,102 +59,14 @@ export class AuthService {
     const jwtHelper: JwtHelper = new JwtHelper();
 
     if (localStorage.getItem('id_token')) {
-      if (this.loggedIn()) {
-        return true;
-      } else {
+      if (!this.loggedIn()) {
         this.logout();
-        return false;
       }
+      return this.loggedIn();
     } else {
       this.logout();
       return false;
     }
-  }
-
-  getUserID(): any {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
-  }
-
-  getUserNameURL() {
-    this.loadUser();
-    if (this.user) {
-      let url: String = '';
-      for (var i = 0; i < this.user.name.length; i++) {
-        if (this.user.name[i] === ' ' || this.user.name[i] === '\'') {
-          url += '-';
-        } else {
-          url += this.user.name[i];
-        }
-      }
-      return url;
-    } else {
-      return 'null';
-    }
-  }
-
-  followSubject(subjectURL) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(route, {}, {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  addKnowledge(subjectURL: string) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(route, {}, {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  deleteKnowledge(subjectURL: string) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.delete(route, {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  changeBio(bio: string) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/bio';
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    // Shorthand...I'm not sure how I feel about it
-    return this.http.post(route, {bio}, {headers})
-      .pipe(map(res => res));
-  }
-
-  getFeed() {
-    const route = this.routeBase + '/feed/' + this.userMongoID();
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.get(route, {headers: headers})
-      .pipe(map(res => res));
-  }
-
-  addSourceToUser(sourceName: string) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(route, {}, {headers})
-      .pipe(map(res => res));
-  }
-
-  removeSourceFromUser(sourceName: string) {
-    const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers = headers.set('IQ-User-Agent', 'IQAPIv1');
-    return this.http.post(route, {}, {headers})
-      .pipe(map(res => res));
   }
 
   loggedIn() {

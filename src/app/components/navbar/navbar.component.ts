@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { QuestionService } from '../../services/question.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public flashMsg: FlashMessagesService,
     public authService: AuthService,
+    public userService: UserService,
     public router: Router,
     public questionService: QuestionService,
     public dialog: MatDialog,
@@ -41,7 +43,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onProfileClick() {
-    const profileURL = '/profile/' + this.authService.getUserHandle();
+    const profileURL = '/profile/' + this.userService.getUser().handle;
     this.router.navigate([profileURL]);
   }
 
@@ -81,9 +83,9 @@ export class NavbarComponent implements OnInit {
           question: res.question,
           subject: res.topic,
           source: res.source,
-          asker: this.authService.getUser().name,
-          askerID: this.authService.userMongoID(),
-          askerHandle: this.authService.getUserHandle(),
+          asker: this.userService.getUser().name,
+          askerID: this.userService.userMongoID(),
+          askerHandle: this.userService.getUser().handle,
           tags: res.tags.value.split('&')
         };
         this.debug.log(question);

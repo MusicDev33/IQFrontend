@@ -21,6 +21,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
+import { LibraryComponent } from './components/library/library.component';
 
 // Support
 import { SupportComponent } from './components/support/support.component';
@@ -30,6 +31,7 @@ import { HowtoComponent } from './components/support/howto/howto.component';
 import { PolicyComponent } from './components/policy/policy.component';
 import { MathComponent } from './components/support/math/math.component';
 
+// Services
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
@@ -40,9 +42,9 @@ import { VotesService } from './services/votes.service';
 import { SubjectsService } from './services/subjects.service';
 import { SourceService } from './services/source.service';
 import { SearchService } from './services/search.service';
+import { UserService } from './services/user.service';
 
 import { AuthGuard } from './guards/auth.guard';
-import { LibraryComponent } from './components/library/library.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,8 @@ import { LibraryComponent } from './components/library/library.component';
     VotesService,
     SubjectsService,
     SearchService,
-    SourceService],
+    SourceService,
+    UserService],
   entryComponents: [SearchpopupComponent],
   bootstrap: [AppComponent]
 })
