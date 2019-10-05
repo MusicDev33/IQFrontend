@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { SubjectsService } from '../../services/subjects.service';
 import { Router } from '@angular/router';
 import { QuestionService } from '../../services/question.service';
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     public router: Router,
     public qService: QuestionService,
     public activatedRoute: ActivatedRoute,
@@ -54,7 +56,7 @@ export class DashboardComponent implements OnInit {
       });
     } else {
       this.subject = '';
-      this.authService.getFeed().subscribe(data => {
+      this.userService.getFeed().subscribe(data => {
         let res: any = {};
         res = data;
         this.debug.log(res);
@@ -66,7 +68,7 @@ export class DashboardComponent implements OnInit {
     }
 
     let response: any = {};
-    this.authService.getProfile().subscribe(data => {
+    this.userService.getProfile().subscribe(data => {
       response = data;
       this.user = response.user;
       this.subjects = this.user.currentSubjects;
@@ -112,7 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   followButtonClicked(subject) {
-    this.authService.followSubject(subject.subjectURL).subscribe(data => {
+    this.userService.followSubject(subject.subjectURL).subscribe(data => {
       this.subjects.push(subject.name);
     });
   }

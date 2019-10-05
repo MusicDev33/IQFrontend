@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { QuestionService } from '../../services/question.service';
 import { AnswerService } from '../../services/answer.service';
 import { ActivatedRoute } from '@angular/router';
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     public activatedRoute: ActivatedRoute,
     public qService: QuestionService,
     public router: Router,
@@ -68,7 +70,7 @@ export class ProfileComponent implements OnInit {
 
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
 
-    this.authService.getUserByHandle(this.userHandle).subscribe(data => {
+    this.userService.getUserByHandle(this.userHandle).subscribe(data => {
       let res: any = {}
       res = data;
       this.currentUser = res.user;
@@ -100,7 +102,7 @@ export class ProfileComponent implements OnInit {
       });
     });
     if (this.authService.hasToken()) {
-      this.authService.getProfile().subscribe(data => {
+      this.userService.getProfile().subscribe(data => {
         let res: any = {}
         res = data;
         this.user = res.user;
@@ -113,7 +115,7 @@ export class ProfileComponent implements OnInit {
   }
 
   // This is how we will get our enums...kinda hacky
-  get contentView() { return ContentView }
+  get contentView() { return ContentView; }
 
   onAnswersClick() {
     this.debug.log('Answers');
@@ -154,7 +156,7 @@ export class ProfileComponent implements OnInit {
   sendBio() {
     this.bioMode = false;
     this.currentUser['bio'] = this.bioText;
-    this.authService.changeBio(this.bioText).subscribe(data => {
+    this.userService.changeBio(this.bioText).subscribe(data => {
       const res: any = data;
       this.debug.log(res);
     });
@@ -180,7 +182,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addKnowledge() {
-    this.authService.addKnowledge(this.selectedSubjectURL).subscribe(data => {
+    this.userService.addKnowledge(this.selectedSubjectURL).subscribe(data => {
       const res: any = data;
       this.debug.log(res);
       this.selectedSubjectURL = '';
@@ -190,7 +192,7 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteKnowledge() {
-    this.authService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
+    this.userService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
       const res: any = data;
       this.debug.log(res);
     });

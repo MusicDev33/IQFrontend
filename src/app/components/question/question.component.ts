@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { AnswerService } from '../../services/answer.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { NgForm } from '@angular/forms';
@@ -51,6 +52,7 @@ export class QuestionComponent implements OnInit {
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
     public authService: AuthService,
+    public userService: UserService,
     public answerService: AnswerService,
     public flashMsg: FlashMessagesService,
     public router: Router,
@@ -66,7 +68,7 @@ export class QuestionComponent implements OnInit {
       this.question = response.question;
       this.debug.log(this.question);
 
-      this.votesService.getVotes(this.question._id, this.authService.userMongoID()).subscribe(data => {
+      this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(data => {
         let response: any = {};
         response = data;
         this.debug.log(data);
@@ -91,7 +93,7 @@ export class QuestionComponent implements OnInit {
       response = data;
       this.answers = response.answers;
 
-      user = this.authService.getUserID();
+      user = this.userService.getUser();
 
       this.answers.forEach( (answer) => {
         this.debug.log(answer);
@@ -110,9 +112,9 @@ export class QuestionComponent implements OnInit {
   sendAnswer() {
     const answer = {
       answerText: this.answerText,
-      poster: this.authService.getUser().name,
-      posterHandle: this.authService.getUser().handle,
-      posterID: this.authService.userMongoID(),
+      poster: this.userService.getUser().name,
+      posterHandle: this.userService.getUser().handle,
+      posterID: this.userService.userMongoID(),
       votes: 0,
       questionURL: this.questionURL,
       views: 1,
@@ -169,7 +171,7 @@ export class QuestionComponent implements OnInit {
   }
 
   sendVote(vote, answerid) {
-    this.votesService.sendVote(this.question._id, this.authService.userMongoID(), answerid, vote).subscribe(data => {
+    this.votesService.sendVote(this.question._id, this.userService.userMongoID(), answerid, vote).subscribe(data => {
       const response: any = {};
     });
   }
