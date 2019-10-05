@@ -25,6 +25,9 @@ export class DashboardComponent implements OnInit {
   screenHeight: any;
   screenWidth: any;
 
+  // The string that tells a user what to do after they create a profile
+  helpString = '';
+
   constructor(
     public authService: AuthService,
     public userService: UserService,
@@ -169,5 +172,24 @@ export class DashboardComponent implements OnInit {
     } else {
       return 'xl';
     }
+  }
+
+  hasUserFilledProfile(user: any) {
+    if (user.currentSubjects && user.currentSubjects.length >= 3 && Object.keys(user.knowledge).length >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  createHelpText(user: any) {
+    this.helpString = 'You\'ve created an account! ';
+    // If user has followed 3 subjects but hasn't added knowledgeable topics
+    if (user.currentSubjects && user.currentSubjects.length >= 3 && Object.keys(user.knowledge).length < 1) {
+      this.helpString += 'You can now add knowledgeable topics and show the world what you know!';
+    } else {
+      this.helpString += 'Follow some topics and customize your profile to really make Inquantir feel like home!';
+    }
+    return this.helpString;
   }
 }
