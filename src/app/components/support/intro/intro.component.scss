@@ -1,5 +1,7 @@
-.center-button{
-  border-color: #af00b5;
+@import '~src/sass/variables';
+
+.center-button {
+  border-color: $color-primary;
   border-radius: 19px;
   color: #525559;
   transition: 0.4s;

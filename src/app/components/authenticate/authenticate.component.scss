@@ -1,3 +1,5 @@
+@import '~src/sass/variables';
+
 .jumbotron {
   padding-top: 15%;
   background-color: white;
@@ -9,7 +11,7 @@
 }
 
 .register:hover {
-  color: #af00b5;
+  color: $color-primary;
 }
 
 /* Icon Hover */
