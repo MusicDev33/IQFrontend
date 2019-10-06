@@ -9,7 +9,7 @@
   position: absolute;
   right:    0;
   bottom:   0;
-  border-color: #af00b5;
+  border-color: $color-primary;
   border-radius: 19px;
   color: #525559;
   background-color: #fff;
@@ -28,7 +28,7 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
-  color: #af00b5;
+  color: $color-primary;
   transition: 0.5s;
 }
 
@@ -70,7 +70,7 @@ textarea {
 }
 
 .sectionOpenTitle:hover {
-  border-bottom: solid 3px #af00b5;
+  border-bottom: solid 3px $color-primary;
 }
 
 .section-title-animate.verified {
@@ -107,7 +107,7 @@ textarea {
 
 .add-subject-button {
   background-color: #fff;
-  border-color: #af00b5;
+  border-color: $color-primary;
   border-radius: 19px;
   color: #525559;
   margin-top: 5px;
@@ -115,13 +115,13 @@ textarea {
 }
 
 .add-subject-button.enabled:hover {
-  background-color: #af00b5;
+  background-color: $color-primary;
   color: #fff;
 }
 
 .add-source-button {
   background-color: #fff;
-  border-color: #af00b5;
+  border-color: $color-primary;
   border-radius: 19px;
   color: #525559;
   margin-bottom: 5px;
@@ -130,7 +130,7 @@ textarea {
 }
 
 .add-source-button.enabled:hover {
-  background-color: #af00b5;
+  background-color: $color-primary;
   color: #fff;
 }
 

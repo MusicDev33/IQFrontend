@@ -1,10 +1,9 @@
 <!-- IF USER DOESN'T FOLLOW ANY SUBJECTS -->
 <section *ngIf="user">
 
-  <div class="row">
-    <div class="col-12 text-center">
-      <br>
-      <h2>Follow some topics!</h2>
+  <div class="row" *ngIf="!hasUserFilledProfile(user)">
+    <div class="col-12 pt-3 pb-3 text-center profile-alert">
+      {{ createHelpText(this.user) }}
     </div>
   </div>
 
@@ -68,6 +67,7 @@
 <section *ngIf="user">
   <div class="container">
     <div class="row">
+
       <div *ngIf="subjects && user.currentSubjects.length" class="col-lg-2">
         <div *ngFor="let subject of subjects">
           <div>
@@ -90,6 +90,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
