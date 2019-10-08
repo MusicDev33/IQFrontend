@@ -9,6 +9,34 @@
   background-color: #fff!important;
 }
 
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .navbar-searchbar {
+    width: 9vw!important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .navbar-searchbar {
+    width: 8vw!important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .navbar-searchbar {
+    width: 14vw!important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .navbar-searchbar {
+    width: 18vw!important;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .nav-margins{
     margin-left: 0px;
