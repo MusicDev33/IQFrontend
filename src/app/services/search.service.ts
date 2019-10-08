@@ -41,7 +41,11 @@ export class SearchService {
   // do things a little differently
   searchEverythingTypeahead(searchTerm): Observable<any> {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/search/everything/' + searchTerm, {headers})
+    // Turn spaces into dashes
+    let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
+    // Get rid of special characters
+    sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
+    return this.http.get(this.routeBase + '/search/everything/' + sanitizedSearch, {headers})
       .pipe(map((res: any) => res.questions.concat(res.sources, res.subjects, res.users) ));
   }
 }

@@ -70,11 +70,41 @@ export class NavbarComponent implements OnInit {
   }
 
   searchResultSelected(selectedObject: any) {
+    console.log(selectedObject)
+    this.searchText = '';
+    switch (selectedObject.item.type) {
+      case 'user':
+        this.userSelected(selectedObject.item);
+        break;
+      case 'source':
+        this.sourceSelected(selectedObject.item);
+        break;
+      case 'subject':
+        this.subjectSelected(selectedObject.item);
+        break;
+      case 'question':
+        this.questionSelected(selectedObject.item);
+        break;
+    }
+  }
+
+  userSelected(user: any) {
+    const profileURL = '/profile/' + user.handle;
+    this.router.navigate([profileURL]);
+  }
+
+  sourceSelected(source: any) {
+    // Do stuff here
+  }
+
+  subjectSelected(subject: any) {
 
   }
 
-  onSearchTypeahead() {
-
+  questionSelected(question: any) {
+    const questionURL = this.questionService.questionTextToURL(question.name);
+    const routeURL = '/question/' + questionURL;
+    this.router.navigate([routeURL]);
   }
 
   onAskSubmit() {
