@@ -1,3 +1,7 @@
+<ng-template #everythingSearch let-model="item" let-index="index" class="typeahead-container">
+  <span class="typeahead-item">{{model.name}}</span>
+</ng-template>
+
 <nav class="navbar line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center" style="background-color: #fff;">
   <a class="navbar-brand d-flex w-25 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
   <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">Ask Inquantir
@@ -15,6 +19,7 @@
         [typeahead]="searchDataSource"
         typeaheadOptionField="name"
         [typeaheadOptionsLimit]="5"
+        [typeaheadItemTemplate]="everythingSearch"
         [typeaheadMinLength]="3"
         (typeaheadOnSelect)="searchResultSelected($event)"
         (typeaheadNoResults)="searchNoResults($event)">

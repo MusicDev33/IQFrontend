@@ -1,5 +1,23 @@
 @import '~src/sass/variables';
 
+// Typeahead model
+::ng-deep .dropdown-menu { border-radius: 9px!important; }
+::ng-deep .dropdown-item {
+  height: auto;
+  word-wrap: break-word;
+  white-space: normal;
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+::ng-deep .dropdown-item.active {
+  background-color: $color-primary!important;
+  height: auto;
+}
+
+.typeahead-container {
+  border-radius: 9px!important;
+}
+
 .nav-margins {
   padding-left: 18%;
   padding-right: 18%;
@@ -12,8 +30,14 @@
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .navbar-searchbar {
-    width: 9vw!important;
+    width: 5vw!important;
   }
+
+  .typeahead-item {
+    width: 5vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 5vw!important; }
 }
 
 // Medium devices (tablets, 768px and up)
@@ -21,6 +45,13 @@
   .navbar-searchbar {
     width: 8vw!important;
   }
+
+  .typeahead-item {
+    width: 8vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 8vw!important; }
+  ::ng-deep .dropdown-item { width: 8vw!important; }
 }
 
 // Large devices (desktops, 992px and up)
@@ -28,6 +59,13 @@
   .navbar-searchbar {
     width: 14vw!important;
   }
+
+  .typeahead-item {
+    width: 14vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 14vw!important; }
+  ::ng-deep .dropdown-item { width: 14vw!important; }
 }
 
 // Extra large devices (large desktops, 1200px and up)
@@ -35,10 +73,17 @@
   .navbar-searchbar {
     width: 18vw!important;
   }
+
+  .typeahead-item {
+    width: 18vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 18vw!important; }
+  ::ng-deep .dropdown-item { width: 18vw!important; }
 }
 
 @media only screen and (max-width: 768px) {
-  .nav-margins{
+  .nav-margins {
     margin-left: 0px;
     margin-right: 0px;
   }
