@@ -4,6 +4,7 @@ import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,13 @@ export class SearchService {
     const headers = this.headersTemplate;
     return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers})
       .pipe(map(res => res));
+  }
+
+  // This is for the typeahead, it needs the observable so we have to
+  // do things a little differently
+  searchEverythingTypeahead(searchTerm): Observable<any> {
+    const headers = this.headersTemplate;
+    return this.http.get(this.routeBase + '/search/everything/' + searchTerm, {headers})
+      .pipe(map((res: any) => res.questions.concat(res.sources, res.subjects, res.users) ));
   }
 }

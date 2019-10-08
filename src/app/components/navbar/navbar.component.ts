@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Observer } from 'rxjs/Observer';
+import { mergeMap } from 'rxjs/operators';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { SearchService } from '../../services/search.service';
 import { QuestionService } from '../../services/question.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -19,6 +23,8 @@ export class NavbarComponent implements OnInit {
   questionText: string;
   searchText = '';
   searchResults = [];
+  searchDataSource: Observable<any>;
+  asyncSelected: string;
 
   constructor(
     public flashMsg: FlashMessagesService,
@@ -27,7 +33,15 @@ export class NavbarComponent implements OnInit {
     public router: Router,
     public questionService: QuestionService,
     public dialog: MatDialog,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public searchService: SearchService) {
+
+      this.searchDataSource = Observable.create((observer: any) => {
+          observer.next(this.searchText);
+      }).mergeMap((token: string) => {
+          return this.searchService.searchEverythingTypeahead(token);
+      });
+    }
 
   ngOnInit() {
   }
@@ -56,6 +70,10 @@ export class NavbarComponent implements OnInit {
   }
 
   searchResultSelected(selectedObject: any) {
+
+  }
+
+  onSearchTypeahead() {
 
   }
 
