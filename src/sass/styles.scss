@@ -38,6 +38,10 @@ body {
   border-color: rgb(158, 0, 163);
 }
 
+.hide-element {
+  display:none;
+}
+
 .content-box {
   transition: all 0.9s;
   padding: 8px 5px;

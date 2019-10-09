@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="row subject-ribbon justify-content-center" *ngIf="arrayOfSubjects">
+  <div class="row subject-ribbon justify-content-center pt-3 pb-3" *ngIf="arrayOfSubjects">
     <div class="col-1 text-center my-auto">
       <i class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
         [ngClass]="{'disabled': subjectOffset === 0, 'enabled': !(subjectOffset === 0)}"></i>
@@ -24,7 +24,7 @@
             *ngIf="!user.currentSubjects.includes(subject.name)"
             (click)="followButtonClicked(subject)">Follow</div>
 
-            <div class="text-followed" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+            <div class="text-followed pt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
