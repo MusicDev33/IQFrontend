@@ -222,14 +222,3 @@ textarea {
   transition: all 0.2s;
   color: $color-primary;
 }
-
-/* Animations */
-@keyframes text-color-change-blue {
-  from {color: black;}
-  to {color: #3e7ee6;}
-}
-
-@keyframes text-color-change-red {
-  from {color: black;}
-  to {color: #cd4918;}
-}
