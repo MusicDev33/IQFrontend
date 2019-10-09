@@ -1,5 +1,5 @@
 <div class="text-center justify-content-center">
-  <div [formGroup]="form" class="questionBar container">
+  <div [formGroup]="form" class="question-bar container">
     <div class="row mb-2 justify-content-center">
       <div class="col-12-sm text-center">
         <h4>New Question</h4>
@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <textarea [(ngModel)]="questionText"
-        class="form-control input-form col-sm-12"
+        class="form-control col-sm-12 mb-2"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
@@ -126,9 +126,9 @@
   </div>
 
   <div style="position:relative;">
-    <i class="fas fa-times fa-2x closeButton" (click)="close()"></i>
+    <i class="fas fa-times fa-2x close-button" (click)="close()"></i>
     <div>
-      <button class="btn btn-secondary askButton" (click)="askQuestion()" [ngClass]="{'enabled': formComplete}"
+      <button class="btn btn-secondary ask-button" (click)="askQuestion()" [ngClass]="{'enabled': formComplete}"
         [disabled]="!formComplete">
         Ask
       </button>

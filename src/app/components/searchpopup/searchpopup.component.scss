@@ -1,11 +1,11 @@
 @import '~src/sass/variables';
 
-.questionBar {
+.question-bar {
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.askButton {
+.ask-button {
   position: absolute;
   right:    0;
   bottom:   0;
@@ -15,27 +15,27 @@
   background-color: #fff;
 }
 
-.askButton:disabled {
+.ask-button:disabled {
   border-color: #ccc;
 }
 
-.askButton:hover.enabled {
+.ask-button:hover.enabled {
   background-color: #eee;
 }
 
-.closeButton {
+.close-button {
   border-radius: 50%;
   width: 20px;
   height: 20px;
   cursor: pointer;
   color: $color-primary;
-  transition: 0.5s;
+  transition: 0.25s;
 }
 
-.closeButton:hover {
+.close-button:hover {
   width: 25px;
   height: 25px;
-  background-color: rgba(175, 0, 181, 0.2);
+  color: $iq-red;
 }
 
 textarea {
@@ -44,94 +44,6 @@ textarea {
   overflow-y: scroll;
   min-height: 50px;
   max-height: 100px;
-}
-
-.sectionTitle {
-  color: #a2adbf;
-}
-
-.sectionOpenTitle {
-  cursor: pointer;
-  padding-top: 10px;
-  background-color: white;
-  transition: 0.3s;
-  display: inline-block;
-  line-height: 1;
-  margin-bottom: 10px;
-  border-bottom: solid 3px rgba(0,0,0,0);
-}
-
-.sectionOpenTitle.verified {
-  color: #383d44;
-}
-
-.sectionOpenTitle.error {
-  color: #cd4918;
-}
-
-.sectionOpenTitle:hover {
-  border-bottom: solid 3px $color-primary;
-}
-
-.section-title-animate.verified {
-  animation-fill-mode: forwards;
-  animation-name: text-color-change-blue;
-  animation-duration: 0.4s;
-}
-
-.section-title-animate.error {
-  animation-fill-mode: forwards;
-  animation-name: text-color-change-red;
-  animation-duration: 0.4s;
-}
-
-.sectionField {
-  padding-top: 10px;
-}
-
-.hide-element {
-  display:none;
-}
-
-.confirmText {
-  color: #3e7ee6;
-}
-
-.input-form {
-  margin-bottom: 3px;
-}
-
-.add-subject-div {
-  padding: 5px 0;
-}
-
-.add-subject-button {
-  background-color: #fff;
-  border-color: $color-primary;
-  border-radius: 19px;
-  color: #525559;
-  margin-top: 5px;
-  transition: all 0.4s;
-}
-
-.add-subject-button.enabled:hover {
-  background-color: $color-primary;
-  color: #fff;
-}
-
-.add-source-button {
-  background-color: #fff;
-  border-color: $color-primary;
-  border-radius: 19px;
-  color: #525559;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  transition: all 0.4s;
-}
-
-.add-source-button.enabled:hover {
-  background-color: $color-primary;
-  color: #fff;
 }
 
 .iq-form {
@@ -172,18 +84,6 @@ textarea {
   color: #fff;
 }
 
-.source-form {
-  border-radius: 0!important;
-  border-top-right-radius: 9px!important;
-  border-bottom-right-radius: 9px!important;
-}
-
-.source-prepend {
-  border-radius: 0!important;
-  border-top-left-radius: 9px!important;
-  border-bottom-left-radius: 9px!important;
-}
-
 .bubble {
   border-radius: 9px;
   background-color: $color-primary-grey;
@@ -221,15 +121,4 @@ textarea {
 .tag.selected {
   transition: all 0.2s;
   color: $color-primary;
-}
-
-/* Animations */
-@keyframes text-color-change-blue {
-  from {color: black;}
-  to {color: #3e7ee6;}
-}
-
-@keyframes text-color-change-red {
-  from {color: black;}
-  to {color: #cd4918;}
 }
