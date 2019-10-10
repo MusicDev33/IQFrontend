@@ -1,5 +1,23 @@
 @import '~src/sass/variables';
 
+// Typeahead model
+::ng-deep .dropdown-menu { border-radius: 9px!important; }
+::ng-deep .dropdown-item {
+  height: auto;
+  word-wrap: break-word;
+  white-space: normal;
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+::ng-deep .dropdown-item.active {
+  background-color: $color-primary!important;
+  height: auto;
+}
+
+.typeahead-container {
+  border-radius: 9px!important;
+}
+
 .nav-margins {
   padding-left: 18%;
   padding-right: 18%;
@@ -9,15 +27,70 @@
   background-color: #fff!important;
 }
 
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .navbar-searchbar {
+    width: 5vw!important;
+  }
+
+  .typeahead-item {
+    width: 5vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 5vw!important; }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .navbar-searchbar {
+    width: 8vw!important;
+  }
+
+  .typeahead-item {
+    width: 8vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 8vw!important; }
+  ::ng-deep .dropdown-item { width: 8vw!important; }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .navbar-searchbar {
+    width: 14vw!important;
+  }
+
+  .typeahead-item {
+    width: 14vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 14vw!important; }
+  ::ng-deep .dropdown-item { width: 14vw!important; }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .navbar-searchbar {
+    width: 18vw!important;
+  }
+
+  .typeahead-item {
+    width: 18vw!important;
+  }
+
+  ::ng-deep .dropdown-menu { width: 18vw!important; }
+  ::ng-deep .dropdown-item { width: 18vw!important; }
+}
+
 @media only screen and (max-width: 768px) {
-  .nav-margins{
+  .nav-margins {
     margin-left: 0px;
     margin-right: 0px;
   }
 }
 
 #center-button {
-  border-color: #af00b5;
+  border-color: $color-primary;
   border-radius: 19px;
   color: #525559;
   position: absolute;
@@ -25,7 +98,7 @@
 }
 
 #center-button:hover {
-  background-color: #af00b5;
+  background-color: $color-primary;
   color: #fff;
 }
 
@@ -36,7 +109,7 @@
 
 .active-line {
   height: 1px;
-  border-bottom: 2px solid #af00b5;
+  border-bottom: 2px solid $color-primary;
   position: absolute;
   bottom: 0;
 }
@@ -46,12 +119,13 @@
 }
 
 .nav-text-purple {
-  color: rgba(181, 0, 189,.7);
+  color: $color-primary;
   position: relative;
 }
 
 .nav-text-purple:hover {
-  color: rgba(181, 0, 189,.7);
+  opacity: 0.7;
+  color: $color-primary;
 }
 
 .dropdown-box {

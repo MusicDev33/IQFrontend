@@ -1,25 +1,4 @@
-.horizontal {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.container {
-  padding-left: 0;
-  padding-top: 1em;
-}
-
-.jumbotron {
-  height: 100vh;
-  width: 100vw;
-}
-
-.h-component {
-  display: inline-block;
-  flex-grow: 1;
-  height:100px;
-  width: calc(100% * (1/4) - 10px - 1px);
-}
+@import '~src/sass/variables';
 
 .subject-url {
   border-bottom: solid 3px rgb(0,0,0);
@@ -30,12 +9,12 @@
 }
 
 .subject-url:hover {
-  border-bottom: solid 3px #af00b5;
+  border-bottom: solid 3px $color-primary;
   cursor: pointer;
 }
 
 .question-box {
-  border: 1px solid #af00b5;
+  border: 1px solid $color-primary;
   border-radius: 10px;
   height: 100px;
   margin-bottom: 1em;
@@ -54,7 +33,7 @@
 }
 
 .follow-button {
-  border-color: #af00b5;
+  border-color: $color-primary;
   border-radius: 19px;
   box-sizing: border-box;
   color: #525559;
@@ -65,22 +44,19 @@
 }
 
 .follow-button:hover {
-  background-color: #af00b5;
+  background-color: $color-primary;
   color: #fff;
 }
 
 .text-followed {
   color: rgb(186,186,186);
   cursor: default;
-  padding-top: 10px;
   height: 36px;
   box-sizing: border-box;
 }
 
 .subject-ribbon {
   background-color: #fbfbfb;
-  padding-bottom: 15px;
-  padding-top: 15px;
 }
 
 .side-arrow {
@@ -93,6 +69,11 @@
 }
 
 .side-arrow.enabled:hover {
-  color: #af00b5;
+  color: $color-primary;
   cursor: pointer;
+}
+
+.profile-alert {
+  background-color: #eee;
+  color: #666;
 }

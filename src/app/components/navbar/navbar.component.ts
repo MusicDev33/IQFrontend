@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Observer } from 'rxjs/Observer';
+import { mergeMap } from 'rxjs/operators';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { SearchService } from '../../services/search.service';
 import { QuestionService } from '../../services/question.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -19,6 +23,8 @@ export class NavbarComponent implements OnInit {
   questionText: string;
   searchText = '';
   searchResults = [];
+  searchDataSource: Observable<any>;
+  asyncSelected: string;
 
   constructor(
     public flashMsg: FlashMessagesService,
@@ -27,7 +33,15 @@ export class NavbarComponent implements OnInit {
     public router: Router,
     public questionService: QuestionService,
     public dialog: MatDialog,
-    public debug: DebugService) { }
+    public debug: DebugService,
+    public searchService: SearchService) {
+
+      this.searchDataSource = Observable.create((observer: any) => {
+          observer.next(this.searchText);
+      }).mergeMap((token: string) => {
+          return this.searchService.searchEverythingTypeahead(token);
+      });
+    }
 
   ngOnInit() {
   }
@@ -56,7 +70,41 @@ export class NavbarComponent implements OnInit {
   }
 
   searchResultSelected(selectedObject: any) {
+    console.log(selectedObject)
+    this.searchText = '';
+    switch (selectedObject.item.type) {
+      case 'user':
+        this.userSelected(selectedObject.item);
+        break;
+      case 'source':
+        this.sourceSelected(selectedObject.item);
+        break;
+      case 'subject':
+        this.subjectSelected(selectedObject.item);
+        break;
+      case 'question':
+        this.questionSelected(selectedObject.item);
+        break;
+    }
+  }
 
+  userSelected(user: any) {
+    const profileURL = '/profile/' + user.handle;
+    this.router.navigate([profileURL]);
+  }
+
+  sourceSelected(source: any) {
+    // Do stuff here
+  }
+
+  subjectSelected(subject: any) {
+
+  }
+
+  questionSelected(question: any) {
+    const questionURL = this.questionService.questionTextToURL(question.name);
+    const routeURL = '/question/' + questionURL;
+    this.router.navigate([routeURL]);
   }
 
   onAskSubmit() {
