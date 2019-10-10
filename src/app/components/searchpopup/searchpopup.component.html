@@ -17,7 +17,7 @@
 
     <div class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
       <div class="input-group col-sm-12">
-        <div class="input-group-prepend">
+        <div class="input-group-prepend iq-prepend">
           <button class="iq-prepend" (click)="addSubject()"
             tooltip="Don't see your subject? Click here to add it to Inquantir!"
             [disabled]="topicText.length < 3 || selectedSubject"
@@ -46,7 +46,7 @@
           <button class="iq-prepend" (click)="addSource()"
             tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
             [disabled]="sourceText.length < 3 || selectedSource"
-            [ngClass]="{'enabled': sourceText.length > 2 || !selectedSource, 'disabled': sourceText.length < 3 || selectedSource}">
+            [ngClass]="{'enabled': sourceText.length > 2 && !selectedSource, 'disabled': sourceText.length < 3 || selectedSource}">
             {{ sourceDropdownText }}
           </button>
         </div>

@@ -42,7 +42,8 @@ textarea {
 }
 
 .iq-form {
-  border-radius: 0!important;
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
   border-top-right-radius: 9px!important;
   border-bottom-right-radius: 9px!important;
   border-left-color: $color-primary;
@@ -50,7 +51,6 @@ textarea {
 
 .iq-prepend {
   transition: all 0.4s;
-  border-radius: 0!important;
   border-top-left-radius: 9px!important;
   border-bottom-left-radius: 9px!important;
   border-color: $color-primary;
