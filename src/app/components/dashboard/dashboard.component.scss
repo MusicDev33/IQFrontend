@@ -1,5 +1,9 @@
 @import '~src/sass/variables';
 
+.answernum-text {
+  color: #bfbfbf;
+}
+
 .subject-url {
   border-bottom: solid 3px rgb(0,0,0);
   border-bottom: solid 3px rgba(0,0,0,0);
@@ -16,7 +20,6 @@
 .question-box {
   border: 1px solid $color-primary;
   border-radius: 10px;
-  height: 100px;
   margin-bottom: 1em;
   padding-left: 3px;
   padding-right: 3px;
