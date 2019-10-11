@@ -85,8 +85,13 @@
       <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
         <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
-          <div class="question-box pl-2 pr-2">
-            <span (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</span>
+          <div class="row question-box ">
+            <div class="pl-2 pr-2 col-sm-12">
+              <div (click)="questionClicked(question.questionText)" class="question-url">{{question.questionText}}</div>
+            </div>
+            <div class="col-sm-12 answernum-text">
+              Answers: {{ question.answerNum }}
+            </div>
           </div>
         </div>
       </div>
