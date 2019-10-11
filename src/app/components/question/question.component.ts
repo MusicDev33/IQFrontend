@@ -18,6 +18,7 @@ interface Answer {
   comments: Array<object>;
   questionURL: string;
   posterID: string;
+  _id: string;
 }
 
 interface IUser {
@@ -130,10 +131,20 @@ export class QuestionComponent implements OnInit {
         this.answerText = '';
         this.answerMode = false;
         this.userHasAnswered = true;
+        answer['_id'] = '' + response.answer._id;
         this.answers.unshift(answer);
       } else {
         this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});
       }
+    });
+  }
+
+  deleteAnswer(answerID) {
+    this.answerService.deleteAnswer(this.questionURL, answerID).subscribe(data => {
+      const res: any = data;
+      this.answers = this.answers.filter((answer) => {
+        return answer._id !== res.answer._id;
+      });
     });
   }
 

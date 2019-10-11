@@ -42,4 +42,10 @@ export class AnswerService {
     return this.http.get(this.routeBase + '/users/' + userID + '/answers', {headers})
       .pipe(map(res => res));
   }
+
+  deleteAnswer(questionURL, answerID) {
+    const headers = this.headersTemplate;
+    const endpoint = this.routeBase + '/questions/' + questionURL + '/answers/' + answerID;
+    return this.http.delete(endpoint, {headers}).pipe(map(res => res));
+  }
 }

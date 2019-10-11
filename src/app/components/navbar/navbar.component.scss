@@ -127,30 +127,3 @@
   opacity: 0.7;
   color: $color-primary;
 }
-
-.dropdown-box {
-  border-radius: 9px;
-  background-color: #fff;
-}
-
-.dropdown-row {
-  cursor: pointer;
-}
-
-.dropdown-row:hover {
-  background-color: #f9f9f9;
-}
-
-.dropdown-row:hover, .dropdown-row:hover .red {
-  color: $iq-red;
-}
-
-.dropdown-row:hover, .dropdown-row:hover .normal {
-  color: $color-primary;
-}
-
-.dropdown-text {
-  color: #666;
-  cursor: pointer;
-  font-size: 16px;
-}

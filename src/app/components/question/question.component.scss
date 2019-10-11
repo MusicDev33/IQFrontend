@@ -29,7 +29,15 @@ textarea {
 
 .answer-box {
   border: 1px solid lightgrey;
-  border-radius: 20px;
+  border-radius: 9px;
+}
+
+.answer-toolbox {
+  border: 1px solid lightgrey;
+  border-top-left-radius: 9px!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-left-radius: 0!important;
+  border-bottom-right-radius: 0!important;
 }
 
 .answer-text {
@@ -39,6 +47,14 @@ textarea {
 .answer-textarea {
   margin-bottom: 1em;
   height: 120px;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+  border-bottom-left-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+}
+
+.answer-textarea-row {
+  margin-top: 0!important;
 }
 
 .vote-button {
