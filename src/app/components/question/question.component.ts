@@ -120,7 +120,8 @@ export class QuestionComponent implements OnInit {
       questionURL: this.questionURL,
       views: 1,
       comments: [],
-      questionText: this.question.questionText
+      questionText: this.question.questionText,
+
     };
     this.debug.log(answer);
 
@@ -131,8 +132,7 @@ export class QuestionComponent implements OnInit {
         this.answerText = '';
         this.answerMode = false;
         this.userHasAnswered = true;
-        answer['_id'] = '' + response.answer._id;
-        this.answers.unshift(answer);
+        this.answers.unshift(response.answer);
       } else {
         this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});
       }
