@@ -4,6 +4,21 @@ textarea {
   resize: none;
 }
 
+// This is because MathJax doesn't render display: none (you have to make a render call)
+.fake-hide {
+  height: 0px!important;
+  visibility: hidden;
+}
+
+.greekchar-button {
+  border: 1px solid $color-primary;
+  border-radius: 9px;
+}
+
+.math-mode-on {
+  color: $color-primary;
+}
+
 .icon {
   cursor: pointer;
   transition: all 0.3s;

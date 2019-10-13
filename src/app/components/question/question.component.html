@@ -10,15 +10,32 @@
     </div>
 
     <!-- Answer Box -->
-    <div *ngIf="answerMode && answers && authService.loggedIn()">
-      <div class="row justify-content-center">
-        <div class="col-md-7 col-sm-10 col-11 pt-2 pb-2 answer-toolbox">
-          <i class="fas fa-square-root-alt fa-lg icon"></i>
+    <div [ngClass]="{'fake-hide': !answerMode || !answers || !authService.loggedIn()}">
+      <section class="row justify-content-center">
+        <div class="col-md-5 col-sm-10 col-11 pt-2 pb-1 answer-toolbox">
+          <div class="row justify-content-center">
+            <!--<i class="fas fa-bold fa-lg icon mr-2"></i>
+            <i class="fas fa-italic fa-lg icon mr-2"></i>-->
+            <i class="fas fa-square-root-alt fa-lg icon mr-2" (click)="toggleMathMode()"
+              [ngClass]="{'math-mode-on': mathMode}"></i>
+          </div>
+          <div class="row justify-content-center" [ngClass]="{'fake-hide': !mathMode}">
+            <div class="col-10">
+              <div class="row justify-content-center">
+                <span *ngFor="let letter of greekChars"
+                  (mousedown)="preventFocusLoss($event)"
+                  class="col-1 mt-3 greekchar-button icon text-center"
+                  (click)="addToAnswerText(letter)">
+                  {{ letter }}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
       <div class="row justify-content-center">
         <textarea
-          class="answer-textarea col-md-7 col-sm-10 col-11 form-control"
+          class="answer-textarea col-md-5 col-sm-10 col-11 form-control"
           [(ngModel)]="answerText"
           name="answerText"
           placeholder="Share some knowledge!">
@@ -68,7 +85,8 @@
                 <li class="dropdown-row">
                   <span class="dropdown-text red pl-3">Delete</span>
                 </li>
-            </span></li>
+              </span>
+            </li>
           </ul>
         </div>
         <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn()">
