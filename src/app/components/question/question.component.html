@@ -10,21 +10,38 @@
     </div>
 
     <!-- Answer Box -->
-    <div *ngIf="answerMode && answers && authService.loggedIn()">
-      <div class="row justify-content-center mb-2">
-        <div class="col-sm-4 answer-box">
-          <i class="fas fa-square-root-alt fa-lg icon"></i>
+    <div [ngClass]="{'fake-hide': !answerMode || !answers || !authService.loggedIn()}">
+      <section class="row justify-content-center">
+        <div class="col-md-5 col-sm-10 col-11 pt-2 pb-1 answer-toolbox">
+          <div class="row justify-content-center">
+            <!--<i class="fas fa-bold fa-lg icon mr-2"></i>
+            <i class="fas fa-italic fa-lg icon mr-2"></i>-->
+            <i class="fas fa-square-root-alt fa-lg icon mr-2" (click)="toggleMathMode()"
+              [ngClass]="{'math-mode-on': mathMode}"></i>
+          </div>
+          <div class="row justify-content-center" [ngClass]="{'fake-hide': !mathMode}">
+            <div class="col-10">
+              <div class="row justify-content-center">
+                <span *ngFor="let letter of greekChars"
+                  (mousedown)="preventFocusLoss($event)"
+                  class="col-1 mt-3 greekchar-button icon text-center"
+                  (click)="addToAnswerText(letter)">
+                  {{ letter }}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
       <div class="row justify-content-center">
         <textarea
-          class="answer-textarea col-md-7 col-sm-10 col-11 form-control"
+          class="answer-textarea col-md-5 col-sm-10 col-11 form-control"
           [(ngModel)]="answerText"
           name="answerText"
           placeholder="Share some knowledge!">
         </textarea>
       </div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mb-2">
         <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
     </div>
@@ -45,7 +62,7 @@
     </div>
 
     <div *ngFor="let answer of answers" class="row justify-content-center">
-      <div class="answer-box pl-3 pr-3 pt-2 col-sm-5">
+      <div class="answer-box pl-3 pr-3 pt-2 col-sm-5 mb-2">
         <div class="row mb-2">
           <span class="profile-circle ml-3"></span>
           <span class="poster-name profile-url"><b>
@@ -60,6 +77,17 @@
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
+          <i class="fas fa-ellipsis-h fa-lg icon ml-auto mr-2" data-toggle="dropdown"
+            *ngIf="answer.posterID === userService.userMongoID()"></i>
+          <ul class="dropdown-menu dropdown-box text-left">
+            <li class="dropdown-row">
+              <span class="dropdown-text normal" (click)="deleteAnswer('' + answer._id)">
+                <li class="dropdown-row">
+                  <span class="dropdown-text red pl-3">Delete</span>
+                </li>
+              </span>
+            </li>
+          </ul>
         </div>
         <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn()">
           <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>

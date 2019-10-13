@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { DebugService } from '../../services/debug.service';
 import { VotesService } from '../../services/votes.service';
 
+import * as specialChars from '../../globals/specialchars';
+
 interface Answer {
   answerText: string;
   votes: number;
@@ -18,6 +20,7 @@ interface Answer {
   comments: Array<object>;
   questionURL: string;
   posterID: string;
+  _id: string;
 }
 
 interface IUser {
@@ -34,11 +37,13 @@ export class QuestionComponent implements OnInit {
   question: any;
   answers: Array<Answer>;
   questionURL: string;
-  answerText: string;
+  answerText = '';
   hasAnswered: boolean;
   userHasAnswered: boolean;
 
   answerMode: boolean;
+
+  mathMode = false;
 
   // This dictionary is in the following format - answerID:vote
   // Example:
@@ -47,6 +52,7 @@ export class QuestionComponent implements OnInit {
   // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
   votedAnswers: any = {};
 
+  greekChars = specialChars.greekChars;
 
   constructor(
     public questionService: QuestionService,
@@ -88,10 +94,10 @@ export class QuestionComponent implements OnInit {
     });
 
     this.answerService.getAnswers(this.questionURL).subscribe(data => {
-      let response: any = {};
+      let res: any = {};
       let user: IUser;
-      response = data;
-      this.answers = response.answers;
+      res = data;
+      this.answers = res.answers;
 
       user = this.userService.getUser();
 
@@ -119,7 +125,8 @@ export class QuestionComponent implements OnInit {
       questionURL: this.questionURL,
       views: 1,
       comments: [],
-      questionText: this.question.questionText
+      questionText: this.question.questionText,
+
     };
     this.debug.log(answer);
 
@@ -130,10 +137,19 @@ export class QuestionComponent implements OnInit {
         this.answerText = '';
         this.answerMode = false;
         this.userHasAnswered = true;
-        this.answers.unshift(answer);
+        this.answers.unshift(response.answer);
       } else {
         this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});
       }
+    });
+  }
+
+  deleteAnswer(answerID) {
+    this.answerService.deleteAnswer(this.questionURL, answerID).subscribe(data => {
+      const res: any = data;
+      this.answers = this.answers.filter((answer) => {
+        return answer._id !== res.answer._id;
+      });
     });
   }
 
@@ -183,5 +199,17 @@ export class QuestionComponent implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  toggleMathMode() {
+    this.mathMode = !this.mathMode;
+  }
+
+  preventFocusLoss(event) {
+    event.preventDefault();
+  }
+
+  addToAnswerText(text: string) {
+    this.answerText += text;
   }
 }
