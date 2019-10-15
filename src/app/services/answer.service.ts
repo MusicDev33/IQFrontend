@@ -31,7 +31,8 @@ export class AnswerService {
   }
 
   sendAnswer(answer, questionURL) {
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/questions/' + questionURL + '/answers/add', answer, {headers})
       .pipe(map(res => res));
 
@@ -44,7 +45,8 @@ export class AnswerService {
   }
 
   deleteAnswer(questionURL, answerID) {
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const endpoint = this.routeBase + '/questions/' + questionURL + '/answers/' + answerID;
     return this.http.delete(endpoint, {headers}).pipe(map(res => res));
   }

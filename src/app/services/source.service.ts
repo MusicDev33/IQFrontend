@@ -32,7 +32,8 @@ export class SourceService {
   }
 
   addNewSource(name: string) {
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/sources/add', {name}, {headers})
       .pipe(map(res => res));
   }
@@ -97,7 +98,8 @@ export class SourceService {
       }
     }
 
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/sources/' + sourceId + '/tags/' + tagUrl, {}, {headers})
       .pipe(map(res => res));
   }

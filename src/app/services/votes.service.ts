@@ -30,8 +30,8 @@ export class VotesService {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const votes = vote.toString();
-    const urlString = this.routeBase + '/questions/' + questionid + '/' + userid + '/' + answerid + '/votes/' + votes;
-    return this.http.post(urlString, {headers})
+    const urlString = this.routeBase + '/questions/' + '' + questionid + '/' + '' + userid + '/' + '' + answerid + '/vote';
+    return this.http.post(urlString, {vote}, {headers})
       .pipe(map(res => res));
   }
 

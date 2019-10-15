@@ -42,7 +42,8 @@ export class QuestionService {
   }
 
   askQuestion(question) {
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/questions/add', question, {headers})
       .pipe(map(res => res));
   }

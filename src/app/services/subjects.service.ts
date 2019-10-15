@@ -33,7 +33,8 @@ export class SubjectsService {
 
   addNewSubject(subject: string) {
     subject = subject.replace(/\s+/g, '-').toLowerCase();
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/subjects/' + subject, {}, {headers})
       .pipe(map(res => res));
   }
