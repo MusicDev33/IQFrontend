@@ -74,19 +74,10 @@
       </div>
     </div>
 
-    <div class="row justify-content-center mb-3">
-      <div class="col-sm-8 text-center">
-        <font size="3">
-          This is where you tell Inquantir what <em>you</em> know! The first subject
-          you add will be the one we assume you know most about. You can always change the order later!
-        </font>
-      </div>
-    </div>
-
     <div class="row justify-content-center" *ngIf="!addKnowledgeEnabled">
       <input [(ngModel)]="knowledgeText"
         class="form-control input-form col-md-6 col-sm-8 col-10"
-        placeholder="Enter subject name"
+        placeholder="Find a subject you know about!"
         (keyup)="subjectKeyup()"
         [typeahead]="subjectSearchResults"
         typeaheadOptionField="name"
