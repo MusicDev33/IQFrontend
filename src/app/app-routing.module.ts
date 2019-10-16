@@ -19,6 +19,7 @@ import { HowtoComponent } from './components/support/howto/howto.component';
 import { MathComponent } from './components/support/math/math.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 /* Don't forget these
 { path: 'policy', component: PolicyComponent},
@@ -26,7 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
 */
 
 const routes: Routes = [
-  { path: '', component: FakemainComponent},
+  { path: '', component: AuthenticateComponent, canActivate: [LoginGuard]},
   { path: 'about', component: AboutComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'authenticate', redirectTo: 'login', pathMatch: 'full'},
