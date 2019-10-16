@@ -45,6 +45,7 @@ import { SearchService } from './services/search.service';
 import { UserService } from './services/user.service';
 
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { AuthGuard } from './guards/auth.guard';
     QuestionService,
     AnswerService,
     AuthGuard,
+    LoginGuard,
     IpgenService,
     VotesService,
     SubjectsService,
