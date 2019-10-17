@@ -12,7 +12,7 @@ import { DebugService } from '../../services/debug.service';
 })
 export class AuthenticateComponent implements OnInit {
 
-  email: string;
+  login: string;
   password: string;
 
   constructor(
@@ -34,7 +34,7 @@ export class AuthenticateComponent implements OnInit {
 
   onLoginSubmit() {
     const user = {
-      email: this.email,
+      login: this.login,
       password: this.password
     };
 
