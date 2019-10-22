@@ -2,7 +2,7 @@
   <span class="typeahead-item">{{model.name}}</span>
 </ng-template>
 
-<nav class="navbar line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center" style="background-color: #fff;">
+<nav class="navbar navbar-large line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center" style="background-color: #fff;">
   <a class="navbar-brand d-flex w-25 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
   <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">Ask Inquantir
   </button>
@@ -54,4 +54,11 @@
 
     </ul>
   </div>
+</nav>
+
+<nav class="navbar navbar-small line fixed-top navbar-expand-md navbar-light bg-light justify-content-center">
+  <a><i class="fas fa-user mr-5"></i></a>
+  <a><i class="fas fa-book mr-5"></i></a>
+  <a><i class="fas fa-home mr-5"></i></a>
+  <a><i class="fas fa-question mr-5"></i></a>
 </nav>

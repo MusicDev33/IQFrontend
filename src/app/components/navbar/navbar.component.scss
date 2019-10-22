@@ -27,6 +27,18 @@
   background-color: #fff!important;
 }
 
+@media (max-width: 768px) {
+  .navbar-large {
+    display: none;
+  }
+}
+
+@media (min-width: 767px) {
+  .navbar-small {
+    display: none;
+  }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .navbar-searchbar {
@@ -71,15 +83,15 @@
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .navbar-searchbar {
-    width: 18vw!important;
+    width: 16vw!important;
   }
 
   .typeahead-item {
-    width: 18vw!important;
+    width: 16vw!important;
   }
 
-  ::ng-deep .dropdown-menu { width: 18vw!important; }
-  ::ng-deep .dropdown-item { width: 18vw!important; }
+  ::ng-deep .dropdown-menu { width: 16vw!important; }
+  ::ng-deep .dropdown-item { width: 16vw!important; }
 }
 
 @media only screen and (max-width: 768px) {
