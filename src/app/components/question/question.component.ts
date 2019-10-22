@@ -41,6 +41,9 @@ export class QuestionComponent implements OnInit {
   hasAnswered: boolean;
   userHasAnswered: boolean;
 
+  questionSuccess: boolean;
+  questionResponse: any;
+
   answerMode: boolean;
 
   mathMode = false;
@@ -72,6 +75,8 @@ export class QuestionComponent implements OnInit {
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       this.question = response.question;
+      this.questionSuccess = response.success;
+      this.questionResponse = response;
       this.debug.log(this.question);
 
       this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(data => {

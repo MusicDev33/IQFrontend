@@ -1,4 +1,4 @@
-<article class="container mt-4">
+<article class="container mt-4" *ngIf="questionSuccess && questionResponse">
   <section *ngIf="question">
     <div class="row justify-content-center">
       <h2>{{ question.questionText }}</h2>
@@ -100,4 +100,13 @@
       </div>
     </div>
   </section>
+</article>
+
+<article class="container mt-5" *ngIf="!questionSuccess && questionResponse">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>404 Error</b></h3>
+      <h3>The knowledge you seek does not exist</h3>
+    </div>
+  </div>
 </article>
