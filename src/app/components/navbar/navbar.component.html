@@ -56,9 +56,23 @@
   </div>
 </nav>
 
+<!-- MOBILE NAVBAR -->
 <nav class="navbar navbar-small line fixed-top navbar-expand-md navbar-light bg-light justify-content-center">
-  <a><i class="fas fa-user mr-5"></i></a>
-  <a><i class="fas fa-book mr-5"></i></a>
-  <a><i class="fas fa-home mr-5"></i></a>
-  <a><i class="fas fa-question mr-5"></i></a>
+  <a class="mobile-nav-icon"><i [routerLink]="['/']" class="fas fa-home fa-2x mr-5"></i></a>
+
+  <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i [routerLink]="['/library']" class="fas fa-book fa-2x mr-5"></i></a>
+  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-book fa-2x mr-5 icon-disabled"></i></a>
+
+  <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i (click)="onAskSubmit()" class="fas fa-question fa-2x mr-5"></i></a>
+  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-question fa-2x mr-5 icon-disabled"></i></a>
+  <div class="dropdown">
+    <i class="fas fa-user fa-2x mr-5" data-toggle="dropdown" *ngIf="authService.loggedIn()" style="cursor:pointer;"></i>
+    <i class="fas fa-user fa-2x mr-5 icon-disabled" *ngIf="!authService.loggedIn()"></i>
+    <ul class="dropdown-menu dropdown-box text-left" *ngIf="authService.loggedIn()">
+      <li class="dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
+        <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> {{ this.userService.getUser().name.split(" ")[0] }}
+      </span></li>
+      <li class="dropdown-row" (click)="onLogoutClick()"><span class="dropdown-text red pl-3">Logout</span></li>
+    </ul>
+  </div>
 </nav>
