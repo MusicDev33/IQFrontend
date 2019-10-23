@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="userResponse && userResponse.success">
   <section class="row justify-content-center mb-3" *ngIf="currentUser">
     <div class="col-sm-12 text-center">
       <div class="profile-circle">
@@ -112,3 +112,12 @@
     </div>
   </section>
 </div>
+
+<article class="container mt-3" *ngIf="userResponse && !userResponse.success">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>404 Error</b></h3>
+      <h3>The profile you seek does not exist</h3>
+    </div>
+  </div>
+</article>

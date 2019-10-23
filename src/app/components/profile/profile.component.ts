@@ -26,6 +26,7 @@ enum ContentView {
 export class ProfileComponent implements OnInit {
 
   user: object;
+  userResponse: any;
   userHandle: string;
 
   // Current user is the user to whom the profile page belongs to
@@ -74,6 +75,7 @@ export class ProfileComponent implements OnInit {
       let res: any = {}
       res = data;
       this.currentUser = res.user;
+      this.userResponse = res;
       this.debug.log(res);
 
       if (this.currentUser.knowledge) {

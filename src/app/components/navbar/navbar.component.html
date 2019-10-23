@@ -63,7 +63,7 @@
   <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i [routerLink]="['/library']" class="fas fa-book fa-2x mr-5"></i></a>
   <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-book fa-2x mr-5 icon-disabled"></i></a>
 
-  <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i (click)="onAskSubmit()" class="fas fa-question fa-2x mr-5"></i></a>
+  <a class="mobile-nav-icon text-center" *ngIf="authService.loggedIn()"><i (click)="onAskSubmit()" class="fas fa-question fa-2x mr-5"></i></a>
   <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-question fa-2x mr-5 icon-disabled"></i></a>
   <div class="dropdown">
     <i class="fas fa-user fa-2x mr-5" data-toggle="dropdown" *ngIf="authService.loggedIn()" style="cursor:pointer;"></i>
