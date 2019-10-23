@@ -13,6 +13,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
 import { DebugService } from '../../services/debug.service';
 import { ActivatedRoute } from '@angular/router';
+import { BugReportComponent } from '../bugreport/bugreport.component';
 
 @Component({
   selector: 'app-navbar',
@@ -118,7 +119,7 @@ export class NavbarComponent implements OnInit {
     };
 
     dialogConfig.data = {
-      description: 'A cool test dialog!!!',
+      description: '',
       question: '',
     };
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
@@ -150,6 +151,21 @@ export class NavbarComponent implements OnInit {
           }
         });
       }
+    });
+  }
+
+  onFeedbackSubmit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+
+    const dialogRef = this.dialog.open(BugReportComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( feedback => {
+      this.flashMsg.show('Thanks for your feedback!', {cssClass: 'alert-success', timeout: 1500});
     });
   }
 }

@@ -48,6 +48,9 @@
           <li class="dropdown-row" [routerLink]="['/library']"><span class="dropdown-text normal">
             <i class="fas fa-book mr-1 pl-3 mt-3 mb-3"></i> My Library
           </span></li>
+          <li class="dropdown-row" (click)="onFeedbackSubmit()"><span class="dropdown-text normal">
+            <i class="fas fa-comment-dots mr-1 pl-3 mt-3 mb-3"></i> Feedback
+          </span></li>
           <li class="dropdown-row" (click)="onLogoutClick()"><span class="dropdown-text red pl-3">Logout</span></li>
         </ul>
       </li>
@@ -71,6 +74,9 @@
     <ul class="dropdown-menu dropdown-box text-left" *ngIf="authService.loggedIn()">
       <li class="dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
         <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> {{ this.userService.getUser().name.split(" ")[0] }}
+      </span></li>
+      <li class="dropdown-row" (click)="onFeedbackSubmit()"><span class="dropdown-text normal">
+        <i class="fas fa-comment-dots mr-1 pl-3 mt-3 mb-3"></i> Feedback
       </span></li>
       <li class="dropdown-row" (click)="onLogoutClick()"><span class="dropdown-text red pl-3">Logout</span></li>
     </ul>

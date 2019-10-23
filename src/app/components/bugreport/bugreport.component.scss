@@ -1,0 +1,53 @@
+@import '~src/sass/variables';
+
+.error-text {
+  color: $iq-red;
+}
+
+textarea {
+  resize: vertical;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 320px;
+}
+
+.mode-button .unselected{
+  cursor: pointer;
+}
+
+.mode-button {
+  border-color: $color-primary;
+  border-radius: 19px;
+}
+
+.mode-button:disabled {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.mode-button .unselected{
+  color: $font-main;
+}
+
+.mode-button:hover .unselected{
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.mode-button .selected {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.feedback-button {
+  transition: all 0.3s;
+  border-radius: 19px;
+  border-color: $color-primary;
+  color: $font-main;
+}
+
+.feedback-button:hover {
+  background-color: $color-primary;
+  color: white;
+}
