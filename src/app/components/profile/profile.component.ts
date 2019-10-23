@@ -62,6 +62,14 @@ export class ProfileComponent implements OnInit {
     public search: SearchService) { }
 
   ngOnInit() {
+    this.setUpComponent();
+
+    this.activatedRoute.url.subscribe(url => {
+       this.setUpComponent();
+    });
+  }
+
+  setUpComponent() {
     // Enum hax
     this.view = ContentView.knowledge;
     this.knowledgeArray = [];

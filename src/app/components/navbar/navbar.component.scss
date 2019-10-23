@@ -28,6 +28,11 @@
 }
 
 @media (max-width: 768px) {
+  ::ng-deep .dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 100% !important;
+  }
   .navbar-large {
     display: none;
   }
@@ -158,10 +163,4 @@
 
 .icon-disabled {
   color: $font-disabled;
-}
-
-::ng-deep .dropdown-menu {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  top: 100% !important;
 }
