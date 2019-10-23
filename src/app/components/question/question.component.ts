@@ -69,6 +69,14 @@ export class QuestionComponent implements OnInit {
     public votesService: VotesService) { }
 
   ngOnInit() {
+    this.setUpComponent();
+
+    this.activatedRoute.url.subscribe(url => {
+       this.setUpComponent();
+    });
+  }
+
+  setUpComponent() {
     this.answerMode = false;
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
     let response: any = {};
