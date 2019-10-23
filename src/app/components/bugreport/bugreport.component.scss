@@ -1,5 +1,15 @@
 @import '~src/sass/variables';
 
+.close-button {
+  cursor: pointer;
+  transition: all 0.3s;
+  color: $color-primary;
+}
+
+.close-button:hover {
+  color: $iq-red;
+}
+
 .error-text {
   color: $iq-red;
 }
