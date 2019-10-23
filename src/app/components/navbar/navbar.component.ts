@@ -165,7 +165,9 @@ export class NavbarComponent implements OnInit {
 
     const dialogRef = this.dialog.open(BugReportComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( feedback => {
-      this.flashMsg.show('Thanks for your feedback!', {cssClass: 'alert-success', timeout: 1500});
+      if (feedback) {
+        this.flashMsg.show(feedback, {cssClass: 'alert-success', timeout: 1500});
+      }
     });
   }
 }

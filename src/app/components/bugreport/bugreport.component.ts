@@ -24,8 +24,12 @@ export class BugReportComponent implements OnInit {
   ngOnInit() {
   }
 
-  close() {
-    this.dialogRef.close();
+  close(result: string) {
+    if (!result) {
+      this.dialogRef.close();
+    } else {
+      this.dialogRef.close(result);
+    }
   }
 
   changeMode(mode: string) {
@@ -51,7 +55,8 @@ export class BugReportComponent implements OnInit {
     };
 
     this.feedbackService.sendFeedback(feedback).subscribe( data => {
-      this.close();
+      const res: any = data;
+      this.close(res.msg);
     });
   }
 }
