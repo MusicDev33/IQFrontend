@@ -26,6 +26,7 @@ enum ContentView {
 export class ProfileComponent implements OnInit {
 
   user: object;
+  userResponse: any;
   userHandle: string;
 
   // Current user is the user to whom the profile page belongs to
@@ -61,6 +62,14 @@ export class ProfileComponent implements OnInit {
     public search: SearchService) { }
 
   ngOnInit() {
+    this.setUpComponent();
+
+    this.activatedRoute.url.subscribe(url => {
+       this.setUpComponent();
+    });
+  }
+
+  setUpComponent() {
     // Enum hax
     this.view = ContentView.knowledge;
     this.knowledgeArray = [];
@@ -74,6 +83,7 @@ export class ProfileComponent implements OnInit {
       let res: any = {}
       res = data;
       this.currentUser = res.user;
+      this.userResponse = res;
       this.debug.log(res);
 
       if (this.currentUser.knowledge) {

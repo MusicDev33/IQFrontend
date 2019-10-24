@@ -28,6 +28,11 @@
 }
 
 @media (max-width: 768px) {
+  ::ng-deep .dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 100% !important;
+  }
   .navbar-large {
     display: none;
   }
@@ -138,4 +143,24 @@
 .nav-text-purple:hover {
   opacity: 0.7;
   color: $color-primary;
+}
+
+// Mobile
+.mobile-nav-icon {
+  cursor: pointer;
+}
+.mobile-nav-icon:hover {
+  cursor: pointer;
+}
+
+.mobile-nav-icon:active {
+  color: $color-primary
+}
+
+.mobile-nav-icon:focus {
+  color: $color-primary
+}
+
+.icon-disabled {
+  color: $font-disabled;
 }

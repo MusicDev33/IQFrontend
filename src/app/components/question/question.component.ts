@@ -41,6 +41,9 @@ export class QuestionComponent implements OnInit {
   hasAnswered: boolean;
   userHasAnswered: boolean;
 
+  questionSuccess: boolean;
+  questionResponse: any;
+
   answerMode: boolean;
 
   mathMode = false;
@@ -66,12 +69,22 @@ export class QuestionComponent implements OnInit {
     public votesService: VotesService) { }
 
   ngOnInit() {
+    this.setUpComponent();
+
+    this.activatedRoute.url.subscribe(url => {
+       this.setUpComponent();
+    });
+  }
+
+  setUpComponent() {
     this.answerMode = false;
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
     let response: any = {};
     this.questionService.getQuestion(this.questionURL).subscribe(data => {
       response = data;
       this.question = response.question;
+      this.questionSuccess = response.success;
+      this.questionResponse = response;
       this.debug.log(this.question);
 
       this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(data => {

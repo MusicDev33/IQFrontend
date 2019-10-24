@@ -22,6 +22,7 @@ import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
 import { LibraryComponent } from './components/library/library.component';
+import { BugReportComponent } from './components/bugreport/bugreport.component';
 
 // Support
 import { SupportComponent } from './components/support/support.component';
@@ -43,6 +44,7 @@ import { SubjectsService } from './services/subjects.service';
 import { SourceService } from './services/source.service';
 import { SearchService } from './services/search.service';
 import { UserService } from './services/user.service';
+import { FeedbackService } from './services/feedback.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -65,7 +67,8 @@ import { LoginGuard } from './guards/login.guard';
     HowtoComponent,
     PolicyComponent,
     MathComponent,
-    LibraryComponent
+    LibraryComponent,
+    BugReportComponent
   ],
   imports: [
     BrowserModule,
@@ -94,8 +97,9 @@ import { LoginGuard } from './guards/login.guard';
     SubjectsService,
     SearchService,
     SourceService,
-    UserService],
-  entryComponents: [SearchpopupComponent],
+    UserService,
+    FeedbackService],
+  entryComponents: [SearchpopupComponent, BugReportComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

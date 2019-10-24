@@ -12,6 +12,8 @@ import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
 import { DebugService } from '../../services/debug.service';
+import { ActivatedRoute } from '@angular/router';
+import { BugReportComponent } from '../bugreport/bugreport.component';
 
 @Component({
   selector: 'app-navbar',
@@ -34,7 +36,8 @@ export class NavbarComponent implements OnInit {
     public questionService: QuestionService,
     public dialog: MatDialog,
     public debug: DebugService,
-    public searchService: SearchService) {
+    public searchService: SearchService,
+    public activatedService: ActivatedRoute) {
 
       this.searchDataSource = Observable.create((observer: any) => {
           observer.next(this.searchText);
@@ -70,7 +73,6 @@ export class NavbarComponent implements OnInit {
   }
 
   searchResultSelected(selectedObject: any) {
-    console.log(selectedObject)
     this.searchText = '';
     switch (selectedObject.item.type) {
       case 'user':
@@ -117,7 +119,7 @@ export class NavbarComponent implements OnInit {
     };
 
     dialogConfig.data = {
-      description: 'A cool test dialog!!!',
+      description: '',
       question: '',
     };
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
@@ -148,6 +150,23 @@ export class NavbarComponent implements OnInit {
             this.flashMsg.show('Something went wrong. Try asking again.', {cssClass: 'alert-danger', timeout: 1500});
           }
         });
+      }
+    });
+  }
+
+  onFeedbackSubmit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+
+    const dialogRef = this.dialog.open(BugReportComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( feedback => {
+      if (feedback) {
+        this.flashMsg.show(feedback, {cssClass: 'alert-success', timeout: 1500});
       }
     });
   }
