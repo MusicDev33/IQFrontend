@@ -47,6 +47,7 @@ export class QuestionComponent implements OnInit {
   answerMode: boolean;
 
   mathMode = false;
+  answerPreview = false;
 
   // This dictionary is in the following format - answerID:vote
   // Example:
@@ -70,9 +71,11 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.setUpComponent();
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 
     this.activatedRoute.url.subscribe(url => {
        this.setUpComponent();
+       MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     });
   }
 
@@ -216,6 +219,15 @@ export class QuestionComponent implements OnInit {
 
   toggleMathMode() {
     this.mathMode = !this.mathMode;
+    if (this.mathMode) {
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    }
+  }
+
+  toggleAnswerPreview() {
+    this.answerPreview = !this.answerPreview;
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
   }
 
   preventFocusLoss(event) {
@@ -223,6 +235,10 @@ export class QuestionComponent implements OnInit {
   }
 
   addToAnswerText(text: string) {
+    this.answerText += text;
+  }
+
+  formatbarAddToText(text: string) {
     this.answerText += text;
   }
 }

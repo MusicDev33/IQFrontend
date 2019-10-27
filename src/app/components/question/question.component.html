@@ -16,10 +16,10 @@
           <div class="row justify-content-center">
             <!--<i class="fas fa-bold fa-lg icon mr-2"></i>
             <i class="fas fa-italic fa-lg icon mr-2"></i>-->
-            <div tooltip="Greek Symbols" [delay]="400">
-              <i class="fas fa-square-root-alt fa-lg icon mr-2 mt-1" (click)="toggleMathMode()"
-                [ngClass]="{'math-mode-on': mathMode}"></i>
-            </div>
+            <i class="fas fa-square-root-alt fa-lg icon mr-2 mt-1" (click)="toggleMathMode()"
+              [ngClass]="{'icon-activated': mathMode}"></i>
+            <i class="far fa-eye fa-lg icon mr-2 mt-1" (click)="toggleAnswerPreview()"
+              [ngClass]="{'icon-activated': answerPreview}"></i>
           </div>
           <div class="row justify-content-center" [ngClass]="{'fake-hide': !mathMode}">
             <div class="col-10">
@@ -36,13 +36,24 @@
         </div>
       </section>
       <div class="row justify-content-center">
+        <!-- Answer Box -->
         <textarea
+          *ngIf="!answerPreview"
           class="answer-textarea col-md-5 col-sm-10 col-11 form-control"
           [(ngModel)]="answerText"
           name="answerText"
           placeholder="Share some knowledge!">
         </textarea>
+        <div class="preview-box answer-textarea" *ngIf="answerPreview"
+          [ngClass]="{'hidden-box': !answerPreview, 'col-md-5': answerPreview}">
+          <div class="">
+            {{ answerText }}
+          </div>
+        </div>
       </div>
+
+      <app-formatbar (letterClicked)="formatbarAddToText($event)">
+      </app-formatbar>
       <div class="row justify-content-center mb-2">
         <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>

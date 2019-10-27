@@ -2,8 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "types": ["mathjax"],
-    "outDir": "./out-tsc/app",
-    "types": []
+    "outDir": "./out-tsc/app"
   },
   "include": [
     "src/**/*.ts"

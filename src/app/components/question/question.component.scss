@@ -2,6 +2,7 @@
 
 textarea {
   resize: none;
+  caret-color: $color-primary;
 }
 
 // This is because MathJax doesn't render display: none (you have to make a render call)
@@ -15,7 +16,7 @@ textarea {
   border-radius: 9px;
 }
 
-.math-mode-on {
+.icon-activated {
   color: $color-primary;
 }
 
@@ -60,12 +61,14 @@ textarea {
 }
 
 .answer-textarea {
+  transition: all 0.3s;
   margin-bottom: 1em;
   height: 120px;
   border-top-left-radius: 0!important;
   border-top-right-radius: 0!important;
   border-bottom-left-radius: 9px!important;
   border-bottom-right-radius: 9px!important;
+  overflow-y: auto;
 }
 
 .answer-textarea-row {
@@ -97,4 +100,24 @@ textarea {
 
 .profile-url:hover {
   text-decoration: underline;
+}
+
+// Answer preview stuff
+.hidden-box {
+  height: 0px;
+  visibility: hidden;
+}
+
+.preview {
+  display: inline-block;
+  word-wrap: break-word;
+  transition: all 0.3s;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+  border-bottom-left-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+}
+
+.preview-box {
+  border: solid 1px $color-primary;
 }

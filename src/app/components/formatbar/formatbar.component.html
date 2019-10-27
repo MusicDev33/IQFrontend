@@ -1,0 +1,33 @@
+<div class="row justify-content-center mb-2">
+  <div class="col-8 formatbar-container pt-1 pb-1">
+    <div>
+      <div class="row justify-content-center mb-2">
+        <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(0)">
+          <div class="letter-button text-center" (click)="addText(letter)">{{ letter }}</div>
+        </div>
+      </div>
+      <div class="row justify-content-center mb-2">
+        <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(1)">
+          <div class="letter-button text-center" (click)="addText(letter)">{{ letter }}</div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-2 text-center mx-n2">
+          
+          <div class="letter-button text-center" (click)="shiftOn = !shiftOn"
+              [ngClass]="{'letter-button-activated': shiftOn, 'letter-button': !shiftOn}">
+            <i class="fas fa-arrow-up"></i>
+          </div>
+        </div>
+
+        <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(2)">
+          <div class="letter-button text-center" (click)="addText(letter)">{{ letter }}</div>
+        </div>
+
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">
+          <i class="fas fa-backspace"></i>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
