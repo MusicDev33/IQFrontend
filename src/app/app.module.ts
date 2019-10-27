@@ -23,6 +23,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
 import { LibraryComponent } from './components/library/library.component';
 import { BugReportComponent } from './components/bugreport/bugreport.component';
+import { FormatbarComponent } from './components/formatbar/formatbar.component';
 
 // Support
 import { SupportComponent } from './components/support/support.component';
@@ -68,7 +69,8 @@ import { LoginGuard } from './guards/login.guard';
     PolicyComponent,
     MathComponent,
     LibraryComponent,
-    BugReportComponent
+    BugReportComponent,
+    FormatbarComponent
   ],
   imports: [
     BrowserModule,
