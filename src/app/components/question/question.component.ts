@@ -238,7 +238,12 @@ export class QuestionComponent implements OnInit {
     this.answerText += text;
   }
 
+  // FORMATBAR
   formatbarAddToText(text: string) {
     this.answerText += text;
+  }
+
+  formatbarBackspace() {
+    this.answerText = this.answerText.slice(0, -1);
   }
 }
