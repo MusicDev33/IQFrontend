@@ -26,3 +26,24 @@
   cursor: pointer;
   transition: all 0.3s;
 }
+
+.keyboard-type-button {
+  cursor: pointer;
+  border-bottom: solid 3px rgb(0,0,0);
+  border-bottom: solid 3px rgba(0,0,0,0);
+
+  transition: all 0.3s;
+}
+
+.keyboard-type-button:hover {
+  border-bottom: solid 3px rgba(252, 166, 255, 0.7);
+}
+
+.selected {
+  border-bottom: solid 3px $color-primary!important;
+}
+
+.noshow {
+  height: 0;
+  visibility: hidden;
+}
