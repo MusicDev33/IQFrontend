@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap';
+import { KatexModule } from 'ng-katex';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -74,6 +75,7 @@ import { LoginGuard } from './guards/login.guard';
   ],
   imports: [
     BrowserModule,
+    KatexModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

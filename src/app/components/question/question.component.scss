@@ -121,3 +121,14 @@ textarea {
 .preview-box {
   border: solid 1px $color-primary;
 }
+
+.send-button {
+  border-radius: 19px;
+  border-color: $color-primary;
+  transition: all 0.3s;
+}
+
+.send-button:hover {
+  background-color: #fff;
+  color: $color-primary;
+}
