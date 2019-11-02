@@ -50,6 +50,7 @@ import { FeedbackService } from './services/feedback.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { LoginGuard } from './guards/login.guard';
     MathComponent,
     LibraryComponent,
     BugReportComponent,
-    FormatbarComponent
+    FormatbarComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,
