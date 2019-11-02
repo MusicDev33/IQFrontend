@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap';
+import { KatexModule } from 'ng-katex';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { FeedbackService } from './services/feedback.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 @NgModule({
   declarations: [
@@ -70,10 +72,12 @@ import { LoginGuard } from './guards/login.guard';
     MathComponent,
     LibraryComponent,
     BugReportComponent,
-    FormatbarComponent
+    FormatbarComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,
+    KatexModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

@@ -21,18 +21,6 @@
             <i class="far fa-eye fa-lg icon mr-2 mt-1" (click)="toggleAnswerPreview()"
               [ngClass]="{'icon-activated': answerPreview}"></i>
           </div>
-          <div class="row justify-content-center" [ngClass]="{'fake-hide': !mathMode}">
-            <div class="col-10">
-              <div class="row justify-content-center">
-                <span *ngFor="let letter of greekChars"
-                  (mousedown)="preventFocusLoss($event)"
-                  class="col-1 mt-3 greekchar-button icon text-center"
-                  (click)="addToAnswerText(letter)">
-                  {{ letter }}
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       <div class="row justify-content-center">
@@ -55,7 +43,7 @@
       <app-formatbar (letterClicked)="formatbarAddToText($event)" (backspaceClicked)="formatbarBackspace()">
       </app-formatbar>
       <div class="row justify-content-center mb-2">
-        <button class="btn btn-primary" (click)="sendAnswer()">Send Answer to the Gods</button>
+        <button class="btn send-button" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
     </div>
 

@@ -5,21 +5,21 @@
         <h4>
           <span class="keyboard-type-button"
                 [ngClass]="{'selected': keyboardMode === 'Math'}"
-                (click)="keyboardModeChange('Math')">Math</span>
+                (mousedown)="preventFocusLoss($event)" (click)="keyboardModeChange('Math')">Math</span>
         </h4>
       </div>
       <div class="col-3 text-center">
         <h4>
           <span class="keyboard-type-button"
                 [ngClass]="{'selected': keyboardMode === 'Alphabet'}"
-                (click)="keyboardModeChange('Alphabet')">Alphabet</span>
+                (mousedown)="preventFocusLoss($event)" (click)="keyboardModeChange('Alphabet')">Alphabet</span>
         </h4>
       </div>
       <div class="col-3 text-center">
         <h4>
           <span class="keyboard-type-button"
                 [ngClass]="{'selected': keyboardMode === 'Chemistry'}"
-                (click)="keyboardModeChange('Chemistry')">Chemistry</span>
+                (mousedown)="preventFocusLoss($event)" (click)="keyboardModeChange('Chemistry')">Chemistry</span>
         </h4>
       </div>
     </div>
@@ -31,56 +31,82 @@
 
     <div *ngIf="keyboardMode === 'Math'">
       <div class="row justify-content-center mb-2">
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">7</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">8</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">9</div></div>
-        <div class="col-1 text-center mx-n2"><div class="letter-button text-center">\(\div\)</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('7')">7</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('8')">8</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('9')">9</div></div>
+        <div class="col-1 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('\\div')">
+          <ng-katex [equation]="'\\div'"></ng-katex></div>
+      </div>
       </div>
       <div class="row justify-content-center mb-2">
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">4</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">5</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">6</div></div>
-        <div class="col-1 text-center mx-n2"><div class="letter-button text-center">\(\times\)</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('4')">4</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('5')">5</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('6')">6</div></div>
+        <div class="col-1 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('\\times')">
+          <ng-katex [equation]="'\\times'"></ng-katex></div></div>
       </div>
       <div class="row justify-content-center mb-2">
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">1</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">2</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">3</div></div>
-        <div class="col-1 text-center mx-n2"><div class="letter-button text-center">\(-\)</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('1')">1</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('2')">2</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('3')">3</div></div>
+        <div class="col-1 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('-')">
+          <ng-katex [equation]="'-'"></ng-katex></div></div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">0</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">.</div></div>
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center">\(=\)</div></div>
-        <div class="col-1 text-center mx-n2"><div class="letter-button text-center">\(+\)</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('0')">0</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('.')">.</div></div>
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('=')">
+          <ng-katex [equation]="'='"></ng-katex></div></div>
+        <div class="col-1 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="addText('+')">
+          <ng-katex [equation]="'+'"></ng-katex></div></div>
       </div>
     </div>
 
     <div *ngIf="keyboardMode === 'Alphabet' && alphabetMode === 'English'">
       <div class="row justify-content-center mb-2">
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(0)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">{{ letter }}</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="addText(letter)">
+            <ng-katex [equation]="letter"></ng-katex></div>
         </div>
       </div>
       <div class="row justify-content-center mb-2">
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(1)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">{{ letter }}</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="addText(letter)">
+            <ng-katex [equation]="letter"></ng-katex></div>
         </div>
       </div>
       <div class="row justify-content-center mb-2">
 
         <div class="col-2 text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="shiftKeyPressed()"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="shiftKeyPressed()"
               [ngClass]="{'letter-button-activated': shiftOn, 'letter-button': !shiftOn}">
             <i class="fas fa-arrow-up"></i>
           </div>
         </div>
 
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedAlphabetRow(2)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">{{ letter }}</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="addText(letter)">
+            <ng-katex [equation]="letter"></ng-katex></div>
         </div>
 
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect" (click)="backspace()">
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect"
+          (mousedown)="preventFocusLoss($event)" (click)="backspace()">
           <i class="fas fa-backspace"></i>
         </div></div>
       </div>
@@ -88,12 +114,12 @@
 
       <div class="row justify-content-center">
         <div class="col text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="changeAlphabetMode('Greek')"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="changeAlphabetMode('Greek')"
                [ngClass]="{'letter-button-activated': alphabetMode === 'Greek',
                'letter-button': alphabetMode !== 'Greek'}">Greek</div>
         </div>
         <div class="col text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="changeAlphabetMode('English')"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="changeAlphabetMode('English')"
                [ngClass]="{'letter-button-activated': alphabetMode === 'English',
                'letter-button': alphabetMode !== 'English'}">English</div>
         </div>
@@ -103,28 +129,32 @@
     <div *ngIf="keyboardMode === 'Alphabet' && alphabetMode === 'Greek'">
       <div class="row justify-content-center mb-2">
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedGAlphabetRow(0)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">\({{ letter }}\)</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)"
+            (click)="addText(letter)"><ng-katex [equation]="letter"></ng-katex></div>
         </div>
       </div>
       <div class="row justify-content-center mb-2">
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedGAlphabetRow(1)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">\({{ letter }}\)</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)"
+            (click)="addText(letter)"><ng-katex [equation]="letter"></ng-katex></div>
         </div>
       </div>
       <div class="row justify-content-center mb-2">
 
         <div class="col-2 text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="shiftKeyPressed()"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="shiftKeyPressed()"
               [ngClass]="{'letter-button-activated': shiftOn, 'letter-button': !shiftOn}">
             <i class="fas fa-arrow-up"></i>
           </div>
         </div>
 
         <div class="col text-center mx-n2" *ngFor="let letter of returnShiftedGAlphabetRow(2)">
-          <div class="letter-button text-center noselect" (click)="addText(letter)">\({{ letter }}\)</div>
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="addText(letter)">
+            <ng-katex [equation]="letter"></ng-katex></div>
         </div>
 
-        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect" (click)="backspace()">
+        <div class="col-2 text-center mx-n2"><div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)"
+          (click)="backspace()">
           <i class="fas fa-backspace"></i>
         </div></div>
       </div>
@@ -132,12 +162,12 @@
 
       <div class="row justify-content-center">
         <div class="col text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="changeAlphabetMode('Greek')"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="changeAlphabetMode('Greek')"
                [ngClass]="{'letter-button-activated': alphabetMode === 'Greek',
                'letter-button': alphabetMode !== 'Greek'}">Greek</div>
         </div>
         <div class="col text-center mx-n2">
-          <div class="letter-button text-center noselect" (click)="changeAlphabetMode('English')"
+          <div class="letter-button text-center noselect" (mousedown)="preventFocusLoss($event)" (click)="changeAlphabetMode('English')"
                [ngClass]="{'letter-button-activated': alphabetMode === 'English',
                'letter-button': alphabetMode !== 'English'}">English</div>
         </div>
