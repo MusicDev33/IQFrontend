@@ -81,10 +81,10 @@ export class DashboardComponent implements OnInit {
       return false;
     });
 
-    this.subjectsService.getAllSubjects().subscribe(data => {
-      let response: any = {};
-      response = data;
-      this.arrayOfSubjects = response.subjects;
+    this.subjectsService.getAllSubjects().subscribe(subjectData => {
+      let subjectResponse: any = {};
+      subjectResponse = subjectData;
+      this.arrayOfSubjects = subjectResponse.subjects;
     });
   }
 

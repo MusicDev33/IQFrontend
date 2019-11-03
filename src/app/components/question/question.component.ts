@@ -1,32 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../services/question.service';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { QuestionService } from '../../services/question.service';
 import { AnswerService } from '../../services/answer.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DebugService } from '../../services/debug.service';
 import { VotesService } from '../../services/votes.service';
+import { DebugService } from '../../services/debug.service';
+
+import { Question } from '../../classes/question';
+import { Answer } from '../../classes/answer';
+import { Vote } from '../../classes/vote';
+import { IServerResponse } from '../../interfaces/IServerResponse';
 
 import * as specialChars from '../../globals/specialchars';
-
-interface Answer {
-  answerText: string;
-  votes: number;
-  poster: string;
-  views: number;
-  comments: Array<object>;
-  questionURL: string;
-  posterID: string;
-  _id: string;
-}
-
-interface IUser {
-  name: string;
-  _id: string;
-}
 
 @Component({
   selector: 'app-question',
@@ -34,7 +23,7 @@ interface IUser {
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  question: any;
+  question: Question;
   answers: Array<Answer>;
   questionURL: string;
   answerText = '';
@@ -42,7 +31,7 @@ export class QuestionComponent implements OnInit {
   userHasAnswered: boolean;
 
   questionSuccess: boolean;
-  questionResponse: any;
+  questionResponse: IServerResponse;
 
   answerMode: boolean;
 
@@ -80,20 +69,20 @@ export class QuestionComponent implements OnInit {
   setUpComponent() {
     this.answerMode = false;
     this.questionURL = this.activatedRoute.snapshot.paramMap.get('id');
-    let response: any = {};
-    this.questionService.getQuestion(this.questionURL).subscribe(data => {
-      response = data;
-      this.question = response.question;
-      this.questionSuccess = response.success;
-      this.questionResponse = response;
+    this.questionService.getQuestion(this.questionURL).subscribe(questionData => {
+      let qResponse: any = {};
+      qResponse = questionData;
+      this.question = qResponse.question;
+      this.questionSuccess = qResponse.success;
+      this.questionResponse = qResponse;
       this.debug.log(this.question);
 
-      this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(data => {
-        let response: any = {};
-        response = data;
-        this.debug.log(data);
-        if (response.votes) {
-          response.votes.forEach((vote: any) => {
+      this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(voteData => {
+        let vResponse: any = {};
+        vResponse = voteData;
+        this.debug.log(voteData);
+        if (vResponse.votes) {
+          vResponse.votes.forEach((vote: Vote) => {
             if (vote.vote !== 0) {
               this.votedAnswers[vote.answerid] = vote.vote;
             }
@@ -109,7 +98,7 @@ export class QuestionComponent implements OnInit {
 
     this.answerService.getAnswers(this.questionURL).subscribe(data => {
       let res: any = {};
-      let user: IUser;
+      let user: any;
       res = data;
       this.answers = res.answers;
 
@@ -217,9 +206,6 @@ export class QuestionComponent implements OnInit {
 
   toggleMathMode() {
     this.mathMode = !this.mathMode;
-    if (this.mathMode) {
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-    }
   }
 
   toggleAnswerPreview() {
