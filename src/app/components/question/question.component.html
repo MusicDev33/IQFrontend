@@ -78,6 +78,12 @@
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
+        </div>
+        <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
+          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
+          <b>{{ answer.votes }}</b>
+          <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
+          <span class="view-text noselect">{{ answer.views }} views </span>
           <i class="fas fa-ellipsis-h fa-lg icon ml-auto mr-2" data-toggle="dropdown"
             *ngIf="answer.posterID === userService.userMongoID()"></i>
           <ul class="dropdown-menu dropdown-box text-left">
@@ -89,12 +95,6 @@
               </span>
             </li>
           </ul>
-        </div>
-        <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
-          <b>{{ answer.votes }}</b>
-          <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
-          <span class="view-text noselect">{{ answer.views }} views </span>
         </div>
       </div>
     </div>
