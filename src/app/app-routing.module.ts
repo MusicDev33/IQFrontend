@@ -8,6 +8,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { LibraryComponent } from './components/library/library.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 import { AboutComponent } from './components/about/about.component';
 import { PolicyComponent } from './components/policy/policy.component';
@@ -20,6 +21,7 @@ import { MathComponent } from './components/support/math/math.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
+import { ProductionGuard } from './guards/production.guard';
 
 /* Don't forget these
 { path: 'policy', component: PolicyComponent},
@@ -42,6 +44,7 @@ const routes: Routes = [
   { path: 'support/math', component: MathComponent},
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
+  { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]}
 ];
 
 @NgModule({

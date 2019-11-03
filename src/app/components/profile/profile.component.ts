@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
       let userResponse: any = {};
       userResponse = userData;
       this.currentUser = userResponse.user;
-      this.userResponse = reuserResponses;
+      this.userResponse = userResponse;
       this.debug.log(userResponse);
 
       if (this.currentUser.knowledge) {
