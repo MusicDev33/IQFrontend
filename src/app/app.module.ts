@@ -19,7 +19,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthenticateComponent } from './components/authenticate/authenticate.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
 import { LibraryComponent } from './components/library/library.component';
@@ -64,7 +63,6 @@ import { ProductionGuard } from './guards/production.guard';
     QuestionComponent,
     ProfileComponent,
     SearchpopupComponent,
-    FakemainComponent,
     SupportComponent,
     AboutComponent,
     IntroComponent,
