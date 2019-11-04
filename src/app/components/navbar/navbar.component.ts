@@ -140,9 +140,9 @@ export class NavbarComponent implements OnInit {
         };
         this.debug.log(question);
 
-        this.questionService.askQuestion(question).subscribe(data => {
+        this.questionService.askQuestion(question).subscribe(questionData => {
           let response: any = {};
-          response = data;
+          response = questionData;
           if (response.success) {
             this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500});
             this.router.navigate(['/dashboard']);

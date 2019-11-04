@@ -19,12 +19,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthenticateComponent } from './components/authenticate/authenticate.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { FakemainComponent } from './components/fakemain/fakemain.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
 import { LibraryComponent } from './components/library/library.component';
 import { BugReportComponent } from './components/bugreport/bugreport.component';
 import { FormatbarComponent } from './components/formatbar/formatbar.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 // Support
 import { SupportComponent } from './components/support/support.component';
@@ -50,7 +50,7 @@ import { FeedbackService } from './services/feedback.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
-import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { ProductionGuard } from './guards/production.guard';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,6 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
     QuestionComponent,
     ProfileComponent,
     SearchpopupComponent,
-    FakemainComponent,
     SupportComponent,
     AboutComponent,
     IntroComponent,
@@ -98,6 +97,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
     AnswerService,
     AuthGuard,
     LoginGuard,
+    ProductionGuard,
     IpgenService,
     VotesService,
     SubjectsService,

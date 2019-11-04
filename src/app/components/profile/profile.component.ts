@@ -79,12 +79,12 @@ export class ProfileComponent implements OnInit {
 
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
 
-    this.userService.getUserByHandle(this.userHandle).subscribe(data => {
-      let res: any = {}
-      res = data;
-      this.currentUser = res.user;
-      this.userResponse = res;
-      this.debug.log(res);
+    this.userService.getUserByHandle(this.userHandle).subscribe(userData => {
+      let userResponse: any = {};
+      userResponse = userData;
+      this.currentUser = userResponse.user;
+      this.userResponse = userResponse;
+      this.debug.log(userResponse);
 
       if (this.currentUser.knowledge) {
         for (const knowledgeIndex of Object.keys(this.currentUser.knowledge)) {
@@ -95,27 +95,27 @@ export class ProfileComponent implements OnInit {
         }
       }
 
-      this.qService.getUserQuestions('' + this.currentUser._id).subscribe(data => {
-        let res: any = {}
-        res = data;
-        this.debug.log(res);
-        this.userQuestions = res.questions;
+      this.qService.getUserQuestions('' + this.currentUser._id).subscribe(questionData => {
+        let qResponse: any = {};
+        qResponse = questionData;
+        this.debug.log(qResponse);
+        this.userQuestions = qResponse.questions;
         this.debug.log(this.userQuestions);
       });
 
-      this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(data => {
-        let res: any = {};
-        res = data;
-        this.debug.log(res);
-        this.userAnswers = res.answers;
+      this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(answerData => {
+        let answerResponse: any = {};
+        answerResponse = answerData;
+        this.debug.log(answerResponse);
+        this.userAnswers = answerResponse.answers;
         this.debug.log(this.userAnswers);
       });
     });
     if (this.authService.hasToken()) {
-      this.userService.getProfile().subscribe(data => {
-        let res: any = {}
-        res = data;
-        this.user = res.user;
+      this.userService.getProfile().subscribe(userData => {
+        let userResponse: any = {};
+        userResponse = userData;
+        this.user = userResponse.user;
         this.debug.log(this.user);
       }, err => {
         this.debug.log(err);
