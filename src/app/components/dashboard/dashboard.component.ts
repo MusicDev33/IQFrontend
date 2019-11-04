@@ -111,8 +111,12 @@ export class DashboardComponent implements OnInit {
 
   questionClicked(text) {
     const questionURL = this.qService.questionTextToURL(text);
-    this.debug.log(questionURL);
     const routeURL = '/question/' + questionURL;
+    this.router.navigate([routeURL]);
+  }
+
+  userClicked(userHandle: string) {
+    const routeURL = '/profile/' + userHandle;
     this.router.navigate([routeURL]);
   }
 
