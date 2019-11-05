@@ -10,7 +10,7 @@
     </div>
 
     <!-- Answer Box -->
-    <div [ngClass]="{'fake-hide': !answerMode || !answers || !authService.loggedIn()}">
+    <div *ngIf="answerMode && answers && authService.loggedIn()">
       <section class="row justify-content-center">
         <div class="col-md-5 col-sm-10 col-11 pt-2 pb-1 answer-toolbox">
           <div class="row justify-content-center">
@@ -42,8 +42,11 @@
 
       <app-formatbar *ngIf="mathMode" (letterClicked)="formatbarAddToText($event)" (backspaceClicked)="formatbarBackspace()">
       </app-formatbar>
-      <div class="row justify-content-center mb-2">
+      <div class="row justify-content-center mb-2" *ngIf="answerMode && !editMode">
         <button class="btn send-button" (click)="sendAnswer()">Send Answer to the Gods</button>
+      </div>
+      <div class="row justify-content-center mb-2" *ngIf="answerMode && editMode">
+        <button class="btn send-button" (click)="sendEditedAnswer()">Send Edited Answer</button>
       </div>
     </div>
 
@@ -87,6 +90,13 @@
           <i class="fas fa-ellipsis-h fa-lg icon ml-auto mr-2" data-toggle="dropdown"
             *ngIf="answer.posterID === userService.userMongoID()"></i>
           <ul class="dropdown-menu dropdown-box text-left">
+            <li class="dropdown-row">
+              <span class="dropdown-text normal" (click)="editAnswer(answer.answerText, answer._id)">
+                <li class="dropdown-row">
+                  <span class="dropdown-text normal pl-3">Edit Answer</span>
+                </li>
+              </span>
+            </li>
             <li class="dropdown-row">
               <span class="dropdown-text normal" (click)="deleteAnswer('' + answer._id)">
                 <li class="dropdown-row">

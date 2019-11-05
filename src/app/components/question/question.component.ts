@@ -25,15 +25,17 @@ import * as specialChars from '../../globals/specialchars';
 export class QuestionComponent implements OnInit {
   question: Question;
   answers: Array<Answer>;
+  questionID: string;
   questionURL: string;
   answerText = '';
-  hasAnswered: boolean;
   userHasAnswered: boolean;
 
   questionSuccess: boolean;
   questionResponse: IServerResponse;
 
   answerMode: boolean;
+  editMode = false;
+  editAnswerID = '';
 
   mathMode = false;
   answerPreview = false;
@@ -73,6 +75,7 @@ export class QuestionComponent implements OnInit {
       let qResponse: any = {};
       qResponse = questionData;
       this.question = qResponse.question;
+      this.questionID = '' + this.question._id;
       this.questionSuccess = qResponse.success;
       this.questionResponse = qResponse;
       this.debug.log(this.question);
@@ -143,6 +146,21 @@ export class QuestionComponent implements OnInit {
         this.answers.unshift(response.answer);
       } else {
         this.flashMsg.show('Something went wrong. Try answering again.', {cssClass: 'alert-danger', timeout: 1500});
+      }
+    });
+  }
+
+  sendEditedAnswer() {
+    this.answerService.editAnswer(this.questionID, '' + this.editAnswerID, this.answerText).subscribe(editData => {
+      const editResponse: any = editData;
+      if (editResponse.success) {
+        const foundIndex = this.answers.findIndex(x => '' + x._id === this.editAnswerID);
+        this.answers[foundIndex].answerText = this.answerText;
+
+        this.answerText = '';
+        this.answerMode = false;
+        this.editAnswerID = '';
+        this.editMode = false;
       }
     });
   }
@@ -229,5 +247,12 @@ export class QuestionComponent implements OnInit {
 
   formatbarBackspace() {
     this.answerText = this.answerText.slice(0, -1);
+  }
+
+  editAnswer(answerText: string, answerID: string) {
+    this.editAnswerID = '' + answerID;
+    this.answerText = answerText;
+    this.answerMode = true;
+    this.editMode = true;
   }
 }
