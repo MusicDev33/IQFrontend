@@ -50,4 +50,14 @@ export class AnswerService {
     const endpoint = this.routeBase + '/questions/' + questionURL + '/answers/' + answerID;
     return this.http.delete(endpoint, {headers}).pipe(map(res => res));
   }
+
+  editAnswer(questionID, answerID, newText) {
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
+    const sendObject = {
+      newText
+    };
+    const endpoint = this.routeBase + '/questions/' + questionID + '/answers/' + answerID;
+    return this.http.put(endpoint, sendObject, {headers}).pipe(map(res => res));
+  }
 }
