@@ -1,15 +1,54 @@
 @import '~src/sass/variables';
 
 .jumbotron {
-  padding-top: 15%;
   background-color: white;
 }
 
 .register {
   transition: 0.4s;
   cursor: pointer;
+  color: #aaa;
 }
 
 .register:hover {
   color: $color-primary;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.ex-text-title {
+  font-size: 40px;
+}
+
+.ex-text {
+  font-size: 20px;
+}
+
+.card {
+  border: 1px solid $color-primary;
+  border-radius: 15px;
+}
+
+.iq-button {
+  border-radius: 19px;
+  border: 1px solid $color-primary;
+  transition: all 0.3s;
+}
+
+.iq-button:hover {
+  color: #FFF;
+  background-color: $color-primary;
+}
+
+.account-button {
+  border-radius: 19px;
+  color: #FFF;
+  background-color: $color-primary;
+  transition: all 0.3s;
 }
