@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './honorcode.component.html',
   styleUrls: ['./honorcode.component.scss']
 })
-export class HonorcodeComponent implements OnInit {
+export class HonorCodeComponent implements OnInit {
 
   constructor() { }
 

@@ -33,7 +33,7 @@ import { IntroComponent } from './components/support/intro/intro.component';
 import { HowtoComponent } from './components/support/howto/howto.component';
 import { PolicyComponent } from './components/policy/policy.component';
 import { MathComponent } from './components/support/math/math.component';
-import { HonorcodeComponent } from './components/support/honorcode/honorcode.component';
+import { HonorCodeComponent } from './components/support/honorcode/honorcode.component';
 import { AdvintroComponent } from './components/support/advintro/advintro.component';
 
 // Services
@@ -76,7 +76,7 @@ import { ProductionGuard } from './guards/production.guard';
     BugReportComponent,
     FormatbarComponent,
     LandingpageComponent,
-    HonorcodeComponent,
+    HonorCodeComponent,
     AdvintroComponent
   ],
   imports: [
