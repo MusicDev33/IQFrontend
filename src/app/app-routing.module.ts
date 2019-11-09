@@ -17,6 +17,8 @@ import { SupportComponent } from './components/support/support.component';
 import { IntroComponent } from './components/support/intro/intro.component';
 import { HowtoComponent } from './components/support/howto/howto.component';
 import { MathComponent } from './components/support/math/math.component';
+import { HonorCodeComponent } from './components/support/honorcode/honorcode.component';
+import { AdvintroComponent } from './components/support/advintro/advintro.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'support', component: SupportComponent},
   { path: 'support/intro', component: IntroComponent},
   { path: 'support/howto', component: HowtoComponent},
+  { path: 'support/advintro', component: AdvintroComponent},
+  { path: 'support/honorcode', component: HonorCodeComponent},
   { path: 'support/math', component: MathComponent},
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},

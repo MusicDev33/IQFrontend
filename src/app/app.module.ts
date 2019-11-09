@@ -33,6 +33,8 @@ import { IntroComponent } from './components/support/intro/intro.component';
 import { HowtoComponent } from './components/support/howto/howto.component';
 import { PolicyComponent } from './components/policy/policy.component';
 import { MathComponent } from './components/support/math/math.component';
+import { HonorCodeComponent } from './components/support/honorcode/honorcode.component';
+import { AdvintroComponent } from './components/support/advintro/advintro.component';
 
 // Services
 import { ValidateService } from './services/validate.service';
@@ -51,6 +53,7 @@ import { FeedbackService } from './services/feedback.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { ProductionGuard } from './guards/production.guard';
     LibraryComponent,
     BugReportComponent,
     FormatbarComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    HonorCodeComponent,
+    AdvintroComponent
   ],
   imports: [
     BrowserModule,

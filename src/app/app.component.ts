@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       if (url === '/') {
         this.showNavBar = false;
         this.isHomePage = true;
-      } else if (url === '/login' || url === '/register' || url === '/authenticate') {
+      } else if (url === '/register' || url === '/authenticate') {
         this.showNavBar = false;
         this.isHomePage = false;
       } else {
