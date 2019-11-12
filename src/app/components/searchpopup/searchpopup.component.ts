@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ElementRef, ViewChild } from '@angular/core';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Inject } from '@angular/core';
-import { DebugService } from '../../services/utility/debug.service';
+import { Observable, of } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+
+import { DebugService } from '@services/utility/debug.service';
 import { SearchService } from '../../services/search.service';
 import { SubjectsService } from '../../services/subjects.service';
 import { SourceService } from '../../services/source.service';
-
-import { Observable, of } from 'rxjs';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-searchpopup',
