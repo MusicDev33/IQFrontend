@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { AuthService } from '@services/auth.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
 import { QuestionService } from '@services/question.service';
 import { AnswerService } from '@services/answer.service';
@@ -48,7 +48,7 @@ export class QuestionComponent implements OnInit {
   constructor(
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public answerService: AnswerService,
     public flashMsg: FlashMessagesService,

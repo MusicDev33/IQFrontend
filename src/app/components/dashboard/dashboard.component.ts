@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { AuthService } from '@services/auth.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
 import { SubjectsService } from '@services/subjects.service';
 import { QuestionService } from '@services/question.service';
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   helpString = '';
 
   constructor(
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public router: Router,
     public qService: QuestionService,

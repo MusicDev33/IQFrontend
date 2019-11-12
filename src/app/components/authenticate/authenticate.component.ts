@@ -2,9 +2,12 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { ValidateService } from '@services/utility/validate.service';
-import { AuthService } from '@services/auth.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { Router } from '@angular/router';
 import { DebugService } from '@services/utility/debug.service';
+
+// import { GoogleLoginProvider } from 'angularx-social-login';
+// import { AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-authenticate',
@@ -19,7 +22,7 @@ export class AuthenticateComponent implements OnInit {
   constructor(
     public validator: ValidateService,
     public flashMsg: FlashMessagesService,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public router: Router,
     public debug: DebugService,
     public ngZone: NgZone) {

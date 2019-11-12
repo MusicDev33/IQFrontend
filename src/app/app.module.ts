@@ -49,6 +49,7 @@ import { SourceService } from '@services/source.service';
 import { SearchService } from '@services/search.service';
 import { UserService } from '@services/user.service';
 import { FeedbackService } from '@services/feedback.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 
 // Services - UTILITY
 
@@ -56,6 +57,15 @@ import { FeedbackService } from '@services/feedback.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';
+
+// Social Login
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider
+} from 'angularx-social-login';
+
+import googleSocialConfig from './socialLoginConfig';
 
 
 @NgModule({
@@ -96,7 +106,8 @@ import { ProductionGuard } from './guards/production.guard';
     BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
     CollapseModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SocialLoginModule
   ],
   providers: [
     ValidateService,
@@ -112,7 +123,13 @@ import { ProductionGuard } from './guards/production.guard';
     SearchService,
     SourceService,
     UserService,
-    FeedbackService],
+    FeedbackService,
+    IQAuthService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: googleSocialConfig
+    }
+  ],
   entryComponents: [SearchpopupComponent, BugReportComponent],
   bootstrap: [AppComponent]
 })

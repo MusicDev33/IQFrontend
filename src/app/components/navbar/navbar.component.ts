@@ -7,7 +7,7 @@ import { Observer } from 'rxjs/Observer';
 import { mergeMap } from 'rxjs/operators';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { AuthService } from '@services/auth.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
 import { SearchService } from '@services/search.service';
 import { QuestionService } from '@services/question.service';
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public flashMsg: FlashMessagesService,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public router: Router,
     public questionService: QuestionService,

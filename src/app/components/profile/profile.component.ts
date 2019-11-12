@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
-import { AuthService } from '@services/auth.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
 import { QuestionService } from '@services/question.service';
 import { AnswerService } from '@services/answer.service';
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
   bioMode = false;
 
   constructor(
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public activatedRoute: ActivatedRoute,
     public qService: QuestionService,
