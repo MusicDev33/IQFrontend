@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   title = 'ang-src';
   currentRoute = '';
   showNavBar = false;
-  isHomePage = false;
 
   constructor(public activatedRoute: ActivatedRoute, public router: Router) {
 
@@ -27,13 +26,10 @@ export class AppComponent implements OnInit {
       this.currentRoute = url;
       if (url === '/') {
         this.showNavBar = false;
-        this.isHomePage = true;
       } else if (url === '/register' || url === '/authenticate') {
         this.showNavBar = false;
-        this.isHomePage = false;
       } else {
         this.showNavBar = true;
-        this.isHomePage = false;
       }
     }
   }
