@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { QuestionService } from '../../services/question.service';
-import { AnswerService } from '../../services/answer.service';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
+import { QuestionService } from '@services/question.service';
+import { AnswerService } from '@services/answer.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from '../../services/utility/debug.service';
+import { DebugService } from '@services/utility/debug.service';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-import { SearchService } from '../../services/search.service';
+import { SearchService } from '@services/search.service';
 
 
 enum ContentView {

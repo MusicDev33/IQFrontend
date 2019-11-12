@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { DebugService } from '../../services/utility/debug.service';
-import { SourceService } from '../../services/source.service';
-import { SearchService } from '../../services/search.service';
-import { QuestionService } from '../../services/question.service';
+import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
+import { DebugService } from '@services/utility/debug.service';
+import { SourceService } from '@services/source.service';
+import { SearchService } from '@services/search.service';
+import { QuestionService } from '@services/question.service';
 
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 

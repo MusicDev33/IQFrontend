@@ -38,17 +38,17 @@ import { HonorCodeComponent } from './components/support/honorcode/honorcode.com
 import { AdvintroComponent } from './components/support/advintro/advintro.component';
 
 // Services - NETWORK
-import { ValidateService } from './services/utility/validate.service';
-import { AuthService } from './services/auth.service';
-import { QuestionService } from './services/question.service';
-import { AnswerService } from './services/answer.service';
-import { IpgenService } from './services/ipgen.service';
-import { VotesService } from './services/votes.service';
-import { SubjectsService } from './services/subjects.service';
-import { SourceService } from './services/source.service';
-import { SearchService } from './services/search.service';
-import { UserService } from './services/user.service';
-import { FeedbackService } from './services/feedback.service';
+import { ValidateService } from '@services/utility/validate.service';
+import { AuthService } from '@services/auth.service';
+import { QuestionService } from '@services/question.service';
+import { AnswerService } from '@services/answer.service';
+import { IpgenService } from '@services/ipgen.service';
+import { VotesService } from '@services/votes.service';
+import { SubjectsService } from '@services/subjects.service';
+import { SourceService } from '@services/source.service';
+import { SearchService } from '@services/search.service';
+import { UserService } from '@services/user.service';
+import { FeedbackService } from '@services/feedback.service';
 
 // Services - UTILITY
 

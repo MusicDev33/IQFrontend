@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../services/user.service';
-import { FeedbackService } from '../../services/feedback.service';
+import { UserService } from '@services/user.service';
+import { FeedbackService } from '@services/feedback.service';
 
 @Component({
   selector: 'app-bugreport',

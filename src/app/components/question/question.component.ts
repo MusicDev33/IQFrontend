@@ -3,12 +3,12 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { QuestionService } from '../../services/question.service';
-import { AnswerService } from '../../services/answer.service';
-import { VotesService } from '../../services/votes.service';
-import { DebugService } from '../../services/utility/debug.service';
+import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
+import { QuestionService } from '@services/question.service';
+import { AnswerService } from '@services/answer.service';
+import { VotesService } from '@services/votes.service';
+import { DebugService } from '@services/utility/debug.service';
 
 import { Question } from '../../classes/question';
 import { Answer } from '../../classes/answer';

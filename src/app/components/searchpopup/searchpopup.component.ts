@@ -8,9 +8,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { DebugService } from '@services/utility/debug.service';
-import { SearchService } from '../../services/search.service';
-import { SubjectsService } from '../../services/subjects.service';
-import { SourceService } from '../../services/source.service';
+import { SearchService } from '@services/search.service';
+import { SubjectsService } from '@services/subjects.service';
+import { SourceService } from '@services/source.service';
 
 @Component({
   selector: 'app-searchpopup',
