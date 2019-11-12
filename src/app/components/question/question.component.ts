@@ -10,10 +10,10 @@ import { AnswerService } from '@services/answer.service';
 import { VotesService } from '@services/votes.service';
 import { DebugService } from '@services/utility/debug.service';
 
-import { Question } from '../../classes/question';
-import { Answer } from '../../classes/answer';
-import { Vote } from '../../classes/vote';
-import { IServerResponse } from '../../interfaces/IServerResponse';
+import { Question } from '@classes/question';
+import { Answer } from '@classes/answer';
+import { Vote } from '@classes/vote';
+import { IServerResponse } from '@interfaces/IServerResponse';
 
 @Component({
   selector: 'app-question',

@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { ValidateService } from '@services/utility/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { ValidateService } from '@services/utility/validate.service';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { DebugService } from '@services/utility/debug.service';
