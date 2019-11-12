@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, isDevMode } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { ValidateService } from '@services/utility/validate.service';
@@ -8,6 +8,7 @@ import { DebugService } from '@services/utility/debug.service';
 
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-authenticate',
@@ -18,6 +19,10 @@ export class AuthenticateComponent implements OnInit {
 
   login: string;
   password: string;
+  user: SocialUser;
+  loggedIn = false;
+
+  isDevMode = false;
 
   constructor(
     public validator: ValidateService,
@@ -27,10 +32,17 @@ export class AuthenticateComponent implements OnInit {
     public debug: DebugService,
     public ngZone: NgZone,
     public socialAuthService: AuthService) {
+      if (isDevMode()) {
+        this.isDevMode = true;
+      }
 
     }
 
   ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
   }
 
   signInWithGoogle(): void {
