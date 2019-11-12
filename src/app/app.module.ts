@@ -14,28 +14,28 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthenticateComponent } from './components/authenticate/authenticate.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { QuestionComponent } from './components/question/question.component';
-import { SearchpopupComponent } from './components/searchpopup/searchpopup.component';
-import { LibraryComponent } from './components/library/library.component';
-import { BugReportComponent } from './components/bugreport/bugreport.component';
-import { FormatbarComponent } from './components/formatbar/formatbar.component';
-import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { NavbarComponent } from '@components/navbar/navbar.component';
+import { HomeComponent } from '@components/home/home.component';
+import { RegisterComponent } from '@components/register/register.component';
+import { DashboardComponent } from '@components/dashboard/dashboard.component';
+import { AuthenticateComponent } from '@components/authenticate/authenticate.component';
+import { ProfileComponent } from '@components/profile/profile.component';
+import { QuestionComponent } from '@components/question/question.component';
+import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
+import { LibraryComponent } from '@components/library/library.component';
+import { BugReportComponent } from '@components/bugreport/bugreport.component';
+import { FormatbarComponent } from '@components/formatbar/formatbar.component';
+import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 
 // Support
-import { SupportComponent } from './components/support/support.component';
-import { AboutComponent } from './components/about/about.component';
-import { IntroComponent } from './components/support/intro/intro.component';
-import { HowtoComponent } from './components/support/howto/howto.component';
-import { PolicyComponent } from './components/policy/policy.component';
-import { MathComponent } from './components/support/math/math.component';
-import { HonorCodeComponent } from './components/support/honorcode/honorcode.component';
-import { AdvintroComponent } from './components/support/advintro/advintro.component';
+import { SupportComponent } from '@components/support/support.component';
+import { AboutComponent } from '@components/about/about.component';
+import { IntroComponent } from '@components/support/intro/intro.component';
+import { HowtoComponent } from '@components/support/howto/howto.component';
+import { PolicyComponent } from '@components/policy/policy.component';
+import { MathComponent } from '@components/support/math/math.component';
+import { HonorCodeComponent } from '@components/support/honorcode/honorcode.component';
+import { AdvintroComponent } from '@components/support/advintro/advintro.component';
 
 // Services - NETWORK
 import { ValidateService } from '@services/utility/validate.service';
