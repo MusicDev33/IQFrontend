@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { SearchService } from '../../services/search.service';
 

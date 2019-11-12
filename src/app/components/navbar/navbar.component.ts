@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 import { ActivatedRoute } from '@angular/router';
 import { BugReportComponent } from '../bugreport/bugreport.component';
 

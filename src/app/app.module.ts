@@ -10,6 +10,7 @@ import { TypeaheadModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap';
 import { KatexModule } from 'ng-katex';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,9 +37,8 @@ import { MathComponent } from './components/support/math/math.component';
 import { HonorCodeComponent } from './components/support/honorcode/honorcode.component';
 import { AdvintroComponent } from './components/support/advintro/advintro.component';
 
-// Services
-import { ValidateService } from './services/validate.service';
-import { FlashMessagesModule } from 'angular2-flash-messages';
+// Services - NETWORK
+import { ValidateService } from './services/utility/validate.service';
 import { AuthService } from './services/auth.service';
 import { QuestionService } from './services/question.service';
 import { AnswerService } from './services/answer.service';
@@ -50,6 +50,9 @@ import { SearchService } from './services/search.service';
 import { UserService } from './services/user.service';
 import { FeedbackService } from './services/feedback.service';
 
+// Services - UTILITY
+
+// Guards
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';

@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { ValidateService } from '../../services/validate.service';
+import { ValidateService } from '../../services/utility/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 
 @Component({
   selector: 'app-authenticate',

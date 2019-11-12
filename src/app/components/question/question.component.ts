@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service';
 import { QuestionService } from '../../services/question.service';
 import { AnswerService } from '../../services/answer.service';
 import { VotesService } from '../../services/votes.service';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 
 import { Question } from '../../classes/question';
 import { Answer } from '../../classes/answer';

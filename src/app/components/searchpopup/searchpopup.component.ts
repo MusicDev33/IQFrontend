@@ -4,7 +4,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Inject } from '@angular/core';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 import { SearchService } from '../../services/search.service';
 import { SubjectsService } from '../../services/subjects.service';
 import { SourceService } from '../../services/source.service';

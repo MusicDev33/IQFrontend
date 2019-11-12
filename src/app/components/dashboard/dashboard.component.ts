@@ -6,7 +6,7 @@ import { SubjectsService } from '../../services/subjects.service';
 import { Router } from '@angular/router';
 import { QuestionService } from '../../services/question.service';
 import { ActivatedRoute } from '@angular/router';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '../../services/utility/debug.service';
 
 @Component({
   selector: 'app-dashboard',
