@@ -67,6 +67,9 @@ import {
 
 import googleSocialConfig from './socialLoginConfig';
 
+export function provideConfig() {
+  return googleSocialConfig;
+}
 
 @NgModule({
   declarations: [
@@ -127,7 +130,7 @@ import googleSocialConfig from './socialLoginConfig';
     IQAuthService,
     {
       provide: AuthServiceConfig,
-      useFactory: googleSocialConfig
+      useFactory: provideConfig
     }
   ],
   entryComponents: [SearchpopupComponent, BugReportComponent],

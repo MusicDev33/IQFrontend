@@ -6,8 +6,8 @@ import { IQAuthService } from '@services/backend/iqauth.service';
 import { Router } from '@angular/router';
 import { DebugService } from '@services/utility/debug.service';
 
-// import { GoogleLoginProvider } from 'angularx-social-login';
-// import { AuthService } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-authenticate',
@@ -25,11 +25,16 @@ export class AuthenticateComponent implements OnInit {
     public authService: IQAuthService,
     public router: Router,
     public debug: DebugService,
-    public ngZone: NgZone) {
-      window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
+    public ngZone: NgZone,
+    public socialAuthService: AuthService) {
+
     }
 
   ngOnInit() {
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   onSignIn(user) {
@@ -61,5 +66,9 @@ export class AuthenticateComponent implements OnInit {
         this.router.navigate(['/authenticate']);
       }
     });
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }
