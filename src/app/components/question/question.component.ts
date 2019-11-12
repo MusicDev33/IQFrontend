@@ -15,8 +15,6 @@ import { Answer } from '../../classes/answer';
 import { Vote } from '../../classes/vote';
 import { IServerResponse } from '../../interfaces/IServerResponse';
 
-import * as specialChars from '../../globals/specialchars';
-
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -46,8 +44,6 @@ export class QuestionComponent implements OnInit {
   // 5d1ea3de81e1ef53f657baf7: -1 is a downvote
   // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
   votedAnswers: any = {};
-
-  greekChars = specialChars.greekChars;
 
   constructor(
     public questionService: QuestionService,
