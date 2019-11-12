@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { QuestionService } from '../../services/question.service';
-import { AnswerService } from '../../services/answer.service';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from '../../services/debug.service';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-import { SearchService } from '../../services/search.service';
 
+import { IQAuthService } from '@services/backend/iqauth.service';
+import { UserService } from '@services/user.service';
+import { QuestionService } from '@services/question.service';
+import { AnswerService } from '@services/answer.service';
+import { DebugService } from '@services/utility/debug.service';
+import { SearchService } from '@services/search.service';
 
 enum ContentView {
   answers,
@@ -51,7 +49,7 @@ export class ProfileComponent implements OnInit {
   bioMode = false;
 
   constructor(
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public activatedRoute: ActivatedRoute,
     public qService: QuestionService,

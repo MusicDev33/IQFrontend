@@ -1,4 +1,4 @@
-@import '~src/sass/variables';
+@import '~sass/variables';
 
 .jumbotron {
   background-color: white;
@@ -51,4 +51,13 @@
   color: #FFF;
   background-color: $color-primary;
   transition: all 0.3s;
+}
+
+.google-btn {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  opacity: 0.7;
 }

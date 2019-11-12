@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { NgForm } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { Observer } from 'rxjs/Observer';
 import { mergeMap } from 'rxjs/operators';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { SearchService } from '../../services/search.service';
-import { QuestionService } from '../../services/question.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { SearchpopupComponent } from '../searchpopup/searchpopup.component';
-import { DebugService } from '../../services/debug.service';
-import { ActivatedRoute } from '@angular/router';
-import { BugReportComponent } from '../bugreport/bugreport.component';
+
+import { IQAuthService } from '@services/backend/iqauth.service';
+import { UserService } from '@services/user.service';
+import { SearchService } from '@services/search.service';
+import { QuestionService } from '@services/question.service';
+import { DebugService } from '@services/utility/debug.service';
+
+import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
+import { BugReportComponent } from '@components/bugreport/bugreport.component';
 
 @Component({
   selector: 'app-navbar',
@@ -30,7 +31,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public flashMsg: FlashMessagesService,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public router: Router,
     public questionService: QuestionService,

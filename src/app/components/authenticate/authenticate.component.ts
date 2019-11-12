@@ -1,9 +1,14 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { ValidateService } from '../../services/validate.service';
+import { Component, OnInit, NgZone, isDevMode } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { AuthService } from '../../services/auth.service';
+
+import { ValidateService } from '@services/utility/validate.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
 import { Router } from '@angular/router';
-import { DebugService } from '../../services/debug.service';
+import { DebugService } from '@services/utility/debug.service';
+
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-authenticate',
@@ -14,18 +19,34 @@ export class AuthenticateComponent implements OnInit {
 
   login: string;
   password: string;
+  user: SocialUser;
+  loggedIn = false;
+
+  isDevMode = false;
 
   constructor(
     public validator: ValidateService,
     public flashMsg: FlashMessagesService,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public router: Router,
     public debug: DebugService,
-    public ngZone: NgZone) {
-      window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
+    public ngZone: NgZone,
+    public socialAuthService: AuthService) {
+      if (isDevMode()) {
+        this.isDevMode = true;
+      }
+
     }
 
   ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   onSignIn(user) {
@@ -57,5 +78,9 @@ export class AuthenticateComponent implements OnInit {
         this.router.navigate(['/authenticate']);
       }
     });
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

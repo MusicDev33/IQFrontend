@@ -1,9 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { ValidateService } from '../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { DebugService } from '../../services/debug.service';
+
+import { IQAuthService } from '@services/backend/iqauth.service';
+import { ValidateService } from '@services/utility/validate.service';
+import { DebugService } from '@services/utility/debug.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     public validator: ValidateService,
     public flashMsg: FlashMessagesService,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public router: Router,
     public debug: DebugService,
     public ngZone: NgZone) {

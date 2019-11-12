@@ -3,19 +3,17 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { QuestionService } from '../../services/question.service';
-import { AnswerService } from '../../services/answer.service';
-import { VotesService } from '../../services/votes.service';
-import { DebugService } from '../../services/debug.service';
+import { IQAuthService } from '@services/backend/iqauth.service';
+import { UserService } from '@services/user.service';
+import { QuestionService } from '@services/question.service';
+import { AnswerService } from '@services/answer.service';
+import { VotesService } from '@services/votes.service';
+import { DebugService } from '@services/utility/debug.service';
 
-import { Question } from '../../classes/question';
-import { Answer } from '../../classes/answer';
-import { Vote } from '../../classes/vote';
-import { IServerResponse } from '../../interfaces/IServerResponse';
-
-import * as specialChars from '../../globals/specialchars';
+import { Question } from '@classes/question';
+import { Answer } from '@classes/answer';
+import { Vote } from '@classes/vote';
+import { IServerResponse } from '@interfaces/IServerResponse';
 
 @Component({
   selector: 'app-question',
@@ -47,12 +45,10 @@ export class QuestionComponent implements OnInit {
   // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
   votedAnswers: any = {};
 
-  greekChars = specialChars.greekChars;
-
   constructor(
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
-    public authService: AuthService,
+    public authService: IQAuthService,
     public userService: UserService,
     public answerService: AnswerService,
     public flashMsg: FlashMessagesService,
