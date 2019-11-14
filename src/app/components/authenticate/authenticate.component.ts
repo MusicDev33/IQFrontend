@@ -41,7 +41,7 @@ export class AuthenticateComponent implements OnInit {
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
-      console.log(this.user);
+      console.log(user);
       this.loggedIn = (user != null);
     });
   }
