@@ -105,3 +105,14 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
+.iq-button {
+  border-radius: 19px;
+  border: 1px solid $color-primary;
+  transition: all 0.3s;
+}
+
+.iq-button:hover {
+  color: #FFF;
+  background-color: $color-primary;
+}
