@@ -26,7 +26,7 @@ import { LibraryComponent } from '@components/library/library.component';
 import { BugReportComponent } from '@components/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
-import { UsersettingsComponent } from './components/usersettings/usersettings.component';
+import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 
 // Support
 import { SupportComponent } from '@components/support/support.component';
@@ -95,7 +95,7 @@ export function provideConfig() {
     LandingpageComponent,
     HonorCodeComponent,
     AdvintroComponent,
-    UsersettingsComponent
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
