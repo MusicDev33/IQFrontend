@@ -39,10 +39,13 @@ export class AuthenticateComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.socialAuthService.authState.subscribe((user) => {
+    this.socialAuthService.authState.subscribe(user => {
       this.user = user;
       console.log(user);
       this.loggedIn = (user != null);
+      // this.authService.authUserGoogle(user).subscribe(data => {
+      //   this.debug.log(data);
+      // });
     });
   }
 

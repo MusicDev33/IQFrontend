@@ -8,6 +8,7 @@ import { QuestionComponent } from '@components/question/question.component';
 import { ProfileComponent } from '@components/profile/profile.component';
 import { LibraryComponent } from '@components/library/library.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
+import { UserSettingsComponent } from '@components/usersettings/usersettings.component';
 
 import { AboutComponent } from '@components/about/about.component';
 import { PolicyComponent } from '@components/policy/policy.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'dashboard/:subject', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'question/:id', component: QuestionComponent},
   { path: 'profile/:handle', component: ProfileComponent},
+  { path: 'settings', component: UserSettingsComponent, canActivate: [AuthGuard]},
   { path: 'support', component: SupportComponent},
   { path: 'support/intro', component: IntroComponent},
   { path: 'support/howto', component: HowtoComponent},

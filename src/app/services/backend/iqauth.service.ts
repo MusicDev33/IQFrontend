@@ -42,6 +42,19 @@ export class IQAuthService {
       .pipe(map(res => res));
   }
 
+  authUserGoogle(user) {
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/users/google/add', user, {headers})
+      .pipe(map(res => res));
+  }
+
+  addGoogleIDToUser(userid: string, googleID: string) {
+    const headers = this.headersTemplate;
+    const body = { googleID };
+    return this.http.put(this.routeBase + '/users/' + userid + '/googleid/add', body, {headers})
+      .pipe(map(res => res));
+  }
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
