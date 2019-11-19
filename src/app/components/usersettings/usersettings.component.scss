@@ -1,0 +1,12 @@
+@import '~sass/variables';
+@import '~sass/googlelogo';
+
+.google-text {
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.google-text:hover {
+  color: #3568d9;
+}

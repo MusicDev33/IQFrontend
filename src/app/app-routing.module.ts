@@ -8,7 +8,6 @@ import { QuestionComponent } from '@components/question/question.component';
 import { ProfileComponent } from '@components/profile/profile.component';
 import { LibraryComponent } from '@components/library/library.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
-import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@components/usersettings/usersettings.component';
 
 import { AboutComponent } from '@components/about/about.component';
