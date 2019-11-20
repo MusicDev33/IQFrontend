@@ -16,6 +16,8 @@ export class IQAuthService {
   user: any;
   routeBase = '';
 
+  tempGoogleID = '';
+
   headersTemplate = new HttpHeaders();
 
   constructor(
@@ -66,6 +68,18 @@ export class IQAuthService {
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  setTempGoogleID(googleID: string) {
+    this.tempGoogleID = googleID;
+  }
+
+  getTempGoogleID() {
+    return this.tempGoogleID;
+  }
+
+  deleteTempGoogleID() {
+    this.tempGoogleID = '';
   }
 
   hasToken() {

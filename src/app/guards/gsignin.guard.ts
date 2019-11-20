@@ -9,7 +9,7 @@ export class GSigninGuard implements CanActivate {
   }
 
   canActivate() {
-    if (this.authService.loggedIn()) {
+    if (this.authService.getTempGoogleID().length) {
       return true;
     } else {
       this.router.navigate(['/authenticate']);

@@ -25,6 +25,7 @@ import { AdvintroComponent } from '@components/support/advintro/advintro.compone
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';
+import { GSigninGuard } from './guards/gsignin.guard';
 
 /* Don't forget these
 { path: 'policy', component: PolicyComponent},
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
-  { path: 'gsignincb', component: GoogleCBComponent}
+  { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]}
 ];
 
 @NgModule({
