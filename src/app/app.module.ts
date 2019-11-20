@@ -59,6 +59,7 @@ import { IQAuthService } from '@services/backend/iqauth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';
+import { GSigninGuard } from './guards/gsignin.guard';
 
 // Social Login
 import {
@@ -124,6 +125,7 @@ export function provideConfig() {
     AuthGuard,
     LoginGuard,
     ProductionGuard,
+    GSigninGuard,
     IpgenService,
     VotesService,
     SubjectsService,

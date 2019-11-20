@@ -9,6 +9,7 @@ import { ProfileComponent } from '@components/profile/profile.component';
 import { LibraryComponent } from '@components/library/library.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@components/usersettings/usersettings.component';
+import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
 
 import { AboutComponent } from '@components/about/about.component';
 import { PolicyComponent } from '@components/policy/policy.component';
@@ -49,7 +50,8 @@ const routes: Routes = [
   { path: 'support/math', component: MathComponent},
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
-  { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]}
+  { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
+  { path: 'gsignincb', component: GoogleCBComponent}
 ];
 
 @NgModule({
