@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from '@components/navbar/navbar.component';
 import { HomeComponent } from '@components/home/home.component';
 import { RegisterComponent } from '@components/register/register.component';
+import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
 import { AuthenticateComponent } from '@components/authenticate/authenticate.component';
 import { ProfileComponent } from '@components/profile/profile.component';
@@ -95,7 +96,8 @@ export function provideConfig() {
     LandingpageComponent,
     HonorCodeComponent,
     AdvintroComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    GoogleCBComponent
   ],
   imports: [
     BrowserModule,
