@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
-  { path: 'gsignincb', component: GoogleCBComponent/*, canActivate: [GSigninGuard]*/}
+  { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]}
 ];
 
 @NgModule({
