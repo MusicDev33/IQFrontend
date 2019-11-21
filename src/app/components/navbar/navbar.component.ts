@@ -55,13 +55,13 @@ export class NavbarComponent implements OnInit {
   onLogoutClick() {
     this.authService.logout();
     this.socialSignOut();
-    //this.socialAuthService.authState.unsubscribe();
+    // this.socialAuthService.authState.unsubscribe();
     window.location.reload();
     this.flashMsg.show('Successfully logged out.', {
       cssClass: 'alert-success',
       timeout: 2000
     });
-    this.router.navigate(['/authenticate']);
+    // this.router.navigate(['/authenticate']);
     return false;
   }
 
