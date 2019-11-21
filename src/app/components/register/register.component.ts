@@ -27,14 +27,13 @@ export class RegisterComponent implements OnInit {
     public authService: IQAuthService,
     public router: Router,
     public debug: DebugService,
-    public ngZone: NgZone) {
-      window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
-    }
+    public ngZone: NgZone) { }
 
   ngOnInit() {
   }
 
   onSignIn(user) {
+    // this.authService.setTempUser(user);
     console.log(user);
   }
 

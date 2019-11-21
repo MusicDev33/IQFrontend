@@ -1,1 +1,23 @@
-<p>googlecb works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2 class="text-center">Create a username and you're done!</h2>
+      <div class="row justify-content-center">
+        <div class="col-6 text-center error" [ngClass]="{'hidden': !showErrorText}">
+          Username already taken!
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <input [(ngModel)]="usernameText"
+              placeholder="Pick a username!"
+              class="form-control col-6"
+              (keypress)="inputOnKeydown($event)"/>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-4 text-center">
+          <button (click)="submitForm()" class="btn iq-button" [ngClass]="{'hidden': usernameText.length === 0}">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

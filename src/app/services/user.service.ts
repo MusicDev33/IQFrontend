@@ -51,9 +51,15 @@ export class UserService {
         .pipe(map(res => res));
     }
 
-    getUserByHandle(handle) {
+    getUserByHandle(handle: string) {
       const headers = this.headersTemplate;
       return this.http.get(this.routeBase + '/users/profile/' + handle, {headers})
+        .pipe(map(res => res));
+    }
+
+    getIfHandleTaken(handle: string) {
+      const headers = this.headersTemplate;
+      return this.http.get(this.routeBase + '/users/check/handle/' + handle, {headers})
         .pipe(map(res => res));
     }
 

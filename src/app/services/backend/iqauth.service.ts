@@ -17,6 +17,13 @@ export class IQAuthService {
   routeBase = '';
 
   tempGoogleID = '';
+  tempUser = {
+    handle: '',
+    email: '',
+    name: '',
+    photoUrl: '',
+    googleID: ''
+  };
 
   headersTemplate = new HttpHeaders();
 
@@ -38,15 +45,22 @@ export class IQAuthService {
       .pipe(map(res => res));
   }
 
+  registerUserWithGoogle(user: any) {
+    const headers = this.headersTemplate;
+    return this.http.post(this.routeBase + '/users/g/register', user, {headers})
+      .pipe(map(res => res));
+  }
+
   authenticateUser(user) {
     const headers = this.headersTemplate;
     return this.http.post(this.routeBase + '/users/authenticate', user, {headers})
       .pipe(map(res => res));
   }
 
-  authUserGoogle(user) {
+  authUserGoogle(googleID: string) {
     const headers = this.headersTemplate;
-    return this.http.post(this.routeBase + '/users/google/add', user, {headers})
+    const body = { googleID };
+    return this.http.post(this.routeBase + '/users/g/authenticate', body, {headers})
       .pipe(map(res => res));
   }
 
@@ -80,6 +94,28 @@ export class IQAuthService {
 
   deleteTempGoogleID() {
     this.tempGoogleID = '';
+  }
+
+  setTempUser(user: any) {
+    this.tempUser = user;
+  }
+
+  setTempUserHandle(handle: string) {
+    this.tempUser.handle = handle;
+  }
+
+  getTempUser() {
+    return this.tempUser;
+  }
+
+  deleteTempUser() {
+    this.tempUser = {
+      handle: '',
+      email: '',
+      name: '',
+      photoUrl: '',
+      googleID: ''
+    };
   }
 
   hasToken() {
