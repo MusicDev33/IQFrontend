@@ -15,10 +15,6 @@
         <b>or</b>
       </div>
     </div>
-    <div class="row justify-content-center" *ngIf="loggedIn">
-      <h4>{{ user.name }}</h4>
-      <p>{{ user.email }}</p>
-    </div>
     <div class="row justify-content-center">
       <form (submit)="onLoginSubmit()" class="col-lg-4 col-md-6 col-sm-10 col-xs-12">
         <div class="form-group">

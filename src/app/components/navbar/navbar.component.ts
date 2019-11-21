@@ -12,6 +12,7 @@ import { UserService } from '@services/user.service';
 import { SearchService } from '@services/search.service';
 import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
+import { AuthService } from 'angularx-social-login';
 
 import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
 import { BugReportComponent } from '@components/bugreport/bugreport.component';
@@ -38,7 +39,8 @@ export class NavbarComponent implements OnInit {
     public dialog: MatDialog,
     public debug: DebugService,
     public searchService: SearchService,
-    public activatedService: ActivatedRoute) {
+    public activatedService: ActivatedRoute,
+    public socialAuthService: AuthService) {
 
       this.searchDataSource = Observable.create((observer: any) => {
           observer.next(this.searchText);
