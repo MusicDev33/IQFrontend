@@ -54,6 +54,9 @@ export class NavbarComponent implements OnInit {
 
   onLogoutClick() {
     this.authService.logout();
+    this.socialSignOut();
+    //this.socialAuthService.authState.unsubscribe();
+    window.location.reload();
     this.flashMsg.show('Successfully logged out.', {
       cssClass: 'alert-success',
       timeout: 2000
@@ -172,5 +175,9 @@ export class NavbarComponent implements OnInit {
         this.flashMsg.show(feedback, {cssClass: 'alert-success', timeout: 1500});
       }
     });
+  }
+
+  socialSignOut(): void {
+    this.socialAuthService.signOut();
   }
 }

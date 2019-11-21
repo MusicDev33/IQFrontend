@@ -43,7 +43,6 @@ export class AuthenticateComponent implements OnInit {
       if (user) {
         this.user = user;
         this.loggedIn = (user != null);
-
         this.authService.authUserGoogle(user.id).subscribe(data => {
           const res: any = data;
           if (res.success) {

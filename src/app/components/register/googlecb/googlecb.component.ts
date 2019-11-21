@@ -30,6 +30,11 @@ export class GoogleCBComponent implements OnInit {
       } else {
         this.authService.setTempUserHandle(this.usernameText);
         this.authService.registerUserWithGoogle(this.authService.getTempUser()).subscribe(savedUserData => {
+          const response: any = savedUserData;
+          if (response.success) {
+            this.authService.deleteTempGoogleID();
+            this.authService.deleteTempUser();
+          }
           this.router.navigate(['/login']);
         });
       }
