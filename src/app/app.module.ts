@@ -28,6 +28,7 @@ import { BugReportComponent } from '@components/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
+import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 
 // Support
 import { SupportComponent } from '@components/support/support.component';
@@ -98,7 +99,8 @@ export function provideConfig() {
     HonorCodeComponent,
     AdvintroComponent,
     UserSettingsComponent,
-    GoogleCBComponent
+    GoogleCBComponent,
+    QuestionEditComponent
   ],
   imports: [
     BrowserModule,
