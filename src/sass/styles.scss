@@ -119,3 +119,7 @@ body {
   color: #FFF;
   background-color: $color-primary;
 }
+
+.dialog-popup .mat-dialog-container {
+  border-radius: 10px;
+}

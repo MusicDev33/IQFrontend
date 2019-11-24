@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-questionedit',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<QuestionEditComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    console.log(data);
+  }
 
   ngOnInit() {
   }

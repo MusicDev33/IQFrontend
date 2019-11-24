@@ -70,11 +70,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([profileURL]);
   }
 
-  onSearchKeyup() {
+  onSearchKeyup(): void {
 
   }
 
-  searchNoResults(noResults: boolean) {
+  searchNoResults(noResults: boolean): void {
 
   }
 
@@ -122,6 +122,7 @@ export class NavbarComponent implements OnInit {
     dialogConfig.position = {
       top: '80px'
     };
+    dialogConfig.panelClass = 'dialog-popup';
 
     dialogConfig.data = {
       description: '',

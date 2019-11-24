@@ -141,7 +141,7 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  entryComponents: [SearchpopupComponent, BugReportComponent],
+  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
