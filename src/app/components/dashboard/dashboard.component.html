@@ -86,11 +86,19 @@
         <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
           <div class="row question-box ">
-            <div class="pl-2 pr-2 col-sm-12">
-              <div (click)="questionClicked(question.questionText)" class="question-url"><b>{{question.questionText}}</b></div>
+            <div class="px-2 col-sm-12">
+              <div>
+                <span (click)="questionClicked(question.questionText)" class="question-url">
+                  <b>{{question.questionText}}</b>
+                </span>
+              </div>
             </div>
-            <div (click)="userClicked(question.previewAnswer.posterHandle)" class="pl-2 pr-2 col-sm-12 text-left poster-text" *ngIf="question.previewAnswer">
-              <div class="preview-text"><b>{{question.previewAnswer.poster}}</b></div>
+            <div class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
+              <div>
+                <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
+                  <b>{{question.previewAnswer.poster}}</b>
+                </span>
+              </div>
             </div>
             <div class="pl-2 pr-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
               <div class="preview-text">{{question.previewAnswer.answerText}}</div>
