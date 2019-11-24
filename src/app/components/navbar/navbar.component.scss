@@ -27,6 +27,10 @@
   background-color: #fff!important;
 }
 
+.no-mouse-events {
+  pointer-events: none!important;
+}
+
 @media (max-width: 768px) {
   ::ng-deep .dropdown-menu {
     left: 50% !important;

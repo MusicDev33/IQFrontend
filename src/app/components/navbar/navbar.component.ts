@@ -30,6 +30,8 @@ export class NavbarComponent implements OnInit {
   searchDataSource: Observable<any>;
   asyncSelected: string;
 
+  dialogOpen = false;
+
   constructor(
     public flashMsg: FlashMessagesService,
     public authService: IQAuthService,
@@ -55,13 +57,11 @@ export class NavbarComponent implements OnInit {
   onLogoutClick() {
     this.authService.logout();
     this.socialSignOut();
-    // this.socialAuthService.authState.unsubscribe();
     window.location.reload();
     this.flashMsg.show('Successfully logged out.', {
       cssClass: 'alert-success',
       timeout: 2000
     });
-    // this.router.navigate(['/authenticate']);
     return false;
   }
 
@@ -117,7 +117,6 @@ export class NavbarComponent implements OnInit {
 
   onAskSubmit() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
     dialogConfig.position = {
@@ -128,8 +127,11 @@ export class NavbarComponent implements OnInit {
       description: '',
       question: '',
     };
+
+    this.dialogOpen = true;
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( data => {
+      this.dialogOpen = false;
       // Lol this isn't a request response but oh well
       if (data) {
         let res: any = {};
