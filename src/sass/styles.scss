@@ -86,10 +86,13 @@ body {
 
 .dropdown-row {
   cursor: pointer;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .dropdown-row:hover {
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
 }
 
 .dropdown-row:hover, .dropdown-row:hover .red {
