@@ -82,33 +82,52 @@
 
       </div>
 
-      <div *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
+      <article *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
         <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
           <div class="row question-box ">
-            <div class="px-2 col-sm-12">
+            <section class="px-2 col-sm-12">
               <div>
                 <span (click)="questionClicked(question.questionText)" class="question-url">
                   <b>{{question.questionText}}</b>
                 </span>
               </div>
-            </div>
-            <div class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
+            </section>
+            <section class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
               <div>
                 <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
                   <b>{{question.previewAnswer.poster}}</b>
                 </span>
               </div>
-            </div>
-            <div class="pl-2 pr-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
+            </section>
+            <section class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
               <div class="preview-text">{{question.previewAnswer.answerText}}</div>
-            </div>
-            <div class="col-sm-12 answernum-text" *ngIf="question.answerNum === 0">
+            </section>
+            <section class="col-sm-12 answernum-text" *ngIf="question.answerNum === 0">
               No Answers
-            </div>
+            </section>
+            <!-- Question Bar -->
+            <section class="col-12-sm px-2 mb-2">
+              <i class="fas fa-ellipsis-h options-bar-icon" data-toggle="dropdown"></i>
+              <ul class="dropdown-menu dropdown-box text-left">
+                <li class="dropdown-row">
+                  <span class="dropdown-text normal pl-3">
+                    <i class="fas fa-tags my-3"></i> Add Tags
+                  </span>
+                </li>
+                <li class="dropdown-row">
+                  <span class="dropdown-text normal pl-3">
+                    <i class="fas fa-book my-3"></i> Add Source
+                  </span>
+                </li>
+                <li class="dropdown-row">
+                  <span class="dropdown-text red pl-3">Report</span>
+                </li>
+              </ul>
+            </section>
           </div>
         </div>
-      </div>
+      </article>
 
     </div>
   </div>

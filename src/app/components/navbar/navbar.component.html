@@ -5,7 +5,8 @@
 <nav class="navbar navbar-large line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center"
     style="background-color: #fff;" [ngClass]="{'no-mouse-events': dialogOpen}">
   <a class="navbar-brand d-flex w-25 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
-  <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">Ask Inquantir
+  <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">
+    Ask Inquantir
   </button>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle">
     <span class="navbar-toggler-icon"></span>
@@ -44,13 +45,13 @@
         </div>
         <ul class="dropdown-menu dropdown-box text-left">
           <li class="dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
-            <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> {{ this.userService.getUser().name.split(" ")[0] }}
+            <i class="fas fa-user pl-3 mr-1 my-3"></i> {{ this.userService.getUser().name.split(" ")[0] }}
           </span></li>
           <li class="dropdown-row" [routerLink]="['/library']"><span class="dropdown-text normal">
-            <i class="fas fa-book mr-1 pl-3 mt-3 mb-3"></i> My Library
+            <i class="fas fa-book mr-1 pl-3 my-3"></i> My Library
           </span></li>
           <li class="dropdown-row" (click)="onFeedbackSubmit()"><span class="dropdown-text normal">
-            <i class="fas fa-comment-dots mr-1 pl-3 mt-3 mb-3"></i> Feedback
+            <i class="fas fa-comment-dots mr-1 pl-3 my-3"></i> Feedback
           </span></li>
           <li class="dropdown-row" [routerLink]="['/support']"><span class="dropdown-text normal pl-3">Help</span></li>
           <li class="dropdown-row" (click)="onLogoutClick()"><span class="dropdown-text red pl-3">Logout</span></li>
