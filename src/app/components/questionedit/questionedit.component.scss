@@ -26,6 +26,7 @@
   border-top-right-radius: 9px!important;
   border-bottom-right-radius: 9px!important;
   border-left-color: $color-primary;
+  transition: all 0.3s;
 }
 
 .iq-prepend {
@@ -47,4 +48,21 @@
 .iq-prepend:hover.enabled {
   background-color: $color-primary;
   color: #fff;
+}
+
+.animate-plus {
+  transition: 0.4s;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+          transition:         transform .2s ease-in-out;
+}
+
+.add-tag-plus {
+  border: solid 1px $color-primary;
+  border-radius: 19px;
+  cursor: pointer;
+  color: $color-primary;
+}
+
+.add-tag-plus:hover {
+  color: $iq-red;
 }

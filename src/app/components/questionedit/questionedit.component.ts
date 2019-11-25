@@ -9,8 +9,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class QuestionEditComponent implements OnInit {
   question: any;
   sourceName = '';
+  newTagName = '';
 
   testTags = ['animals', 'mario', 'tag9 and long', 'tekken', 'toofast', 'chapter 9', 'chapter 347', 'the bible verse 7'];
+
+  addTagOpen = false;
+  addTagText = '';
 
   constructor(
     public dialogRef: MatDialogRef<QuestionEditComponent>,
@@ -21,6 +25,11 @@ export class QuestionEditComponent implements OnInit {
 
   ngOnInit() {
     this.sourceName = this.question.homeworkSource;
+  }
+
+  toggleOpenTag() {
+    this.addTagOpen = !this.addTagOpen;
+    this.addTagText = 'Add Tag';
   }
 
 }

@@ -1,4 +1,5 @@
 <article class="row justify-content-center">
+
   <section class="col-12 text-center">
     <h4>Edit Question</h4>
   </section>
@@ -8,7 +9,7 @@
     tooltip="Editing the question text is currently not allowed." triggers="click:mouseleave"/>
   </section>
 
-  <section class="col-12 input-group">
+  <section class="col-12 input-group mb-3">
     <div class="input-group-prepend iq-prepend">
       <button class="iq-prepend"
       [ngClass]="{'enabled': sourceName != question.sourceText, 'disabled': sourceName === question.homeworkSource}">
@@ -18,11 +19,28 @@
     <input class="form-control iq-form" [(ngModel)]="sourceName" autofocus/>
   </section>
 
-  <section class="col-12 text-center">
+  <section class="col-12 text-center mb-3">
     <span *ngFor="let tag of testTags">
       <span class="tag my-1 px-2 py-1 ml-2">
         {{ tag }} <i class="fas fa-times tag-icon"></i>
       </span>
     </span>
   </section>
+
+  <section class="col-12 input-group">
+    <div class="input-group-prepend iq-prepend">
+      <button class="hvr-icon-rotate"
+      [ngClass]="{'enabled': sourceName != question.sourceText,
+                  'disabled': sourceName === question.homeworkSource,
+                  'iq-prepend': addTagOpen,
+                  'add-tag-plus': !addTagOpen,
+                  'p-2': !addTagOpen
+                }">
+        <i class="fas fa-plus fa-lg hvr-icon animate-plus" (click)="toggleOpenTag()"
+        [ngClass]="{'hvr-icon': addTagOpen}"></i> {{ addTagText }}
+      </button>
+    </div>
+    <input class="form-control iq-form" [(ngModel)]="newTagName" [ngClass]="{'hide-element': !addTagOpen}"/>
+  </section>
+
 </article>
