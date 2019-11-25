@@ -3,7 +3,26 @@
     <h4>Edit Question</h4>
   </section>
 
-  <section class="col-12">
+  <section class="col-12 mb-2">
+    <input readonly class="form-control" [(ngModel)]="question.questionText"
+    tooltip="Editing the question text is currently not allowed." triggers="click:mouseleave"/>
+  </section>
 
+  <section class="col-12 input-group">
+    <div class="input-group-prepend iq-prepend">
+      <button class="iq-prepend"
+      [ngClass]="{'enabled': sourceName != question.sourceText, 'disabled': sourceName === question.homeworkSource}">
+        Change Source
+      </button>
+    </div>
+    <input class="form-control iq-form" [(ngModel)]="sourceName" autofocus/>
+  </section>
+
+  <section class="col-12 text-center">
+    <span *ngFor="let tag of testTags">
+      <span class="tag my-1 px-2 py-1 ml-2">
+        {{ tag }} <i class="fas fa-times tag-icon"></i>
+      </span>
+    </span>
   </section>
 </article>

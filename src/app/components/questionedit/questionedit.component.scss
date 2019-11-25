@@ -1,0 +1,50 @@
+@import '~sass/variables';
+
+.tag {
+  border-radius: 19px;
+  color: $color-primary;
+  background-color: #fff;
+  display: inline-block;
+  border: solid 1px $color-primary;
+  transition: 0.3s;
+  cursor: default;
+}
+
+.tag-icon {
+  color: $color-primary;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.tag-icon:hover {
+  color: $iq-red;
+}
+
+.iq-form {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+  border-left-color: $color-primary;
+}
+
+.iq-prepend {
+  transition: all 0.4s;
+  border-top-left-radius: 9px!important;
+  border-bottom-left-radius: 9px!important;
+  border-color: $color-primary;
+  outline: none;
+}
+
+.iq-prepend.enabled {
+  color: $color-primary;
+}
+
+.iq-prepend.disabled {
+  color: #ccc;
+}
+
+.iq-prepend:hover.enabled {
+  background-color: $color-primary;
+  color: #fff;
+}
