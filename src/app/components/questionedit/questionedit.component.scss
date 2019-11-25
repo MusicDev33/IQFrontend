@@ -43,6 +43,7 @@
 
 .iq-prepend.disabled {
   color: #ccc;
+  pointer-events: none;
 }
 
 .iq-prepend:hover.enabled {
@@ -61,8 +62,4 @@
   border-radius: 19px;
   cursor: pointer;
   color: $color-primary;
-}
-
-.add-tag-plus:hover {
-  color: $iq-red;
 }

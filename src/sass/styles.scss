@@ -43,6 +43,10 @@ body {
   display:none;
 }
 
+.no-events {
+  pointer-events: none;
+}
+
 .content-box {
   transition: all 0.9s;
   padding: 8px 5px;
