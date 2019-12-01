@@ -5,7 +5,7 @@
 <nav class="navbar navbar-large line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center"
     style="background-color: #fff;" [ngClass]="{'no-mouse-events': dialogOpen}">
   <a class="navbar-brand d-flex w-25 mr-auto" [routerLink]="['/']"><b>Inquantir</b></a>
-  <button *ngIf="authService.loggedIn()" class="btn btn-secondary font-weight-bold" (click)="onAskSubmit()" id="center-button">
+  <button *ngIf="authService.loggedIn()" class="btn iq-button font-weight-bold" (click)="onAskSubmit()" id="center-button">
     Ask Inquantir
   </button>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle">

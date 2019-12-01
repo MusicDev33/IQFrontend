@@ -34,6 +34,10 @@ body {
   box-shadow: inset 0 1px 1px rgba(120, 0, 140, 0.075), 0 0 5px rgba(175, 0, 181, 0.4) !important;
 }
 
+.iq-button {
+  box-shadow: none!important;
+}
+
 .btn-primary {
   background-color: rgb(175, 0, 181);
   border-color: rgb(175, 0, 181);
