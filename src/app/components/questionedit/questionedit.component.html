@@ -5,7 +5,7 @@
   </section>
 
   <section class="col-12 mb-2">
-    <input readonly class="form-control" [(ngModel)]="question.questionText"
+    <input readonly class="form-control iq-form" [(ngModel)]="question.questionText"
     tooltip="Editing the question text is currently not allowed." triggers="click:mouseleave"/>
   </section>
 
@@ -16,7 +16,7 @@
         Change Source
       </button>
     </div>
-    <input class="form-control iq-form" [(ngModel)]="sourceName" autofocus/>
+    <input class="form-control iq-append iq-form" [(ngModel)]="sourceName" autofocus/>
   </section>
 
   <section class="col-12 text-center mb-3" *ngIf="question.tags.length > 1">
@@ -38,13 +38,14 @@
                   'disabled': newTagName === '',
                   'iq-prepend': addTagOpen,
                   'add-tag-plus': !addTagOpen,
-                  'p-2': !addTagOpen
+                  'p-2': !addTagOpen,
+                  'bg-white': newTagName === ''
                 }">
         <i class="fas fa-plus fa-lg hvr-icon animate-plus" (click)="toggleOpenTag()"
         [ngClass]="{'hvr-icon': addTagOpen, 'no-events': addTagOpen}"></i> {{ addTagText }}
       </button>
     </div>
-    <input class="form-control iq-form" [(ngModel)]="newTagName" [ngClass]="{'hide-element': !addTagOpen}"/>
+    <input class="form-control iq-append iq-form" [(ngModel)]="newTagName" [ngClass]="{'hide-element': !addTagOpen}"/>
   </section>
 
 </article>

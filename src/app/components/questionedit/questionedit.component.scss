@@ -10,6 +10,11 @@
   cursor: default;
 }
 
+.bg-white {
+  background-color: $white;
+  outline: none;
+}
+
 .tag-icon {
   color: $color-primary;
   transition: all 0.3s;
@@ -20,13 +25,14 @@
   color: $iq-red;
 }
 
-.iq-form {
+.iq-append {
   border-top-left-radius: 0px!important;
   border-bottom-left-radius: 0px!important;
   border-top-right-radius: 9px!important;
   border-bottom-right-radius: 9px!important;
   border-left-color: $color-primary;
   transition: all 0.3s;
+  outline: none;
 }
 
 .iq-prepend {
@@ -35,6 +41,8 @@
   border-bottom-left-radius: 9px!important;
   border-color: $color-primary;
   outline: none;
+  border-width: 1px;
+  background-color: $white;
 }
 
 .iq-prepend.enabled {
