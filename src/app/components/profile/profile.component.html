@@ -76,7 +76,7 @@
 
     <div class="row justify-content-center" *ngIf="!addKnowledgeEnabled">
       <input [(ngModel)]="knowledgeText"
-        class="form-control input-form col-md-6 col-sm-8 col-10"
+        class="form-control iq-form col-md-6 col-sm-8 col-10"
         placeholder="Find a subject you know about!"
         (keyup)="subjectKeyup()"
         [typeahead]="subjectSearchResults"
