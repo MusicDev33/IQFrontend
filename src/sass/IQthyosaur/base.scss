@@ -45,6 +45,8 @@
 // IQ Form - This applies to textfields and inputs
 .iq-form {
   transition: all $time-fast;
+  border: 1px solid $iq-form-default-grey;
+  caret-color: $color-primary;
 }
 
 .iq-form:hover {
