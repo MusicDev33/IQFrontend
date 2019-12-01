@@ -60,19 +60,8 @@
 }
 
 .follow-button {
-  border-color: $color-primary;
-  border-radius: 19px;
-  box-sizing: border-box;
-  color: #525559;
-  cursor: pointer;
   height: 36px;
-  transition: 0.4s;
   width: 90px;
-}
-
-.follow-button:hover {
-  background-color: $color-primary;
-  color: #fff;
 }
 
 .text-followed {

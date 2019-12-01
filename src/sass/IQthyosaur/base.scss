@@ -1,0 +1,51 @@
+@import '../variables';
+
+// IQthyosaur is going to be a lightweight framework that sits on top
+// of Bootstrap. The main goal is a framework that does two things:
+// 1. Moves IQ away from Bootstrap's default look
+// 2. Makes adding IQ components even easier for 'new hires'
+// I'd also like to pull away from Bootstrap as much as possible, eventually using it only
+// for spacing (rows, columns, responsiveness, and such).
+
+
+// IQ Button
+.iq-btn-1 {
+  border: 1px solid $color-primary;
+  border-radius: 19px;
+  box-shadow: none!important;
+  color: $font-main;
+  transition: all $time-slow;
+}
+
+.iq-btn-1:hover {
+  color: $white;
+  background-color: $color-primary;
+}
+
+
+// For compatibility
+.iq-button {
+  border-radius: 19px;
+  border: 1px solid $color-primary;
+  transition: all $time-slow;
+}
+
+.iq-button:hover {
+  color: #FFF;
+  background-color: $color-primary;
+}
+
+
+// IQ Form - This applies to textfields and inputs
+.iq-form {
+  transition: all $time-fast;
+}
+
+.iq-form:hover {
+  border-color: $iq-form-hover-grey;
+}
+
+.iq-form:focus {
+  border-color: $color-primary !important;
+  box-shadow: none !important;
+}

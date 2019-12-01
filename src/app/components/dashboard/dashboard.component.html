@@ -20,7 +20,7 @@
         <div *ngFor="let subject of nSubjects(4)" class="col-3 text-center d-none d-lg-block">
           <div class="col-11 content-box mx-auto text-center">
             <h4>{{ subject.name }}</h4>
-            <div class="btn btn-secondary follow-button"
+            <div class="btn iq-btn-1 ask-button"
             *ngIf="!user.currentSubjects.includes(subject.name)"
             (click)="followButtonClicked(subject)">Follow</div>
 
