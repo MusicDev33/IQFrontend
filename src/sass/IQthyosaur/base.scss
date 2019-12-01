@@ -22,6 +22,12 @@
   background-color: $color-primary;
 }
 
+.iq-btn-1:disabled {
+  cursor: default;
+  pointer-events: none;
+  color: $font-disabled;
+}
+
 
 // For compatibility
 .iq-button {
