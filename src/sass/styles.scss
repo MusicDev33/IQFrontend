@@ -16,6 +16,12 @@ input {
 
 textarea {
   border-radius: 9px!important;
+  overflow-x: auto;
+  resize: vertical;
+}
+
+.txtarea-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 body {

@@ -6,8 +6,8 @@
       </div>
     </div>
     <div class="row">
-      <textarea [(ngModel)]="questionText"
-        class="form-control col-sm-12 mb-2"
+      <textarea type="text" [(ngModel)]="questionText"
+        class="form-control col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
