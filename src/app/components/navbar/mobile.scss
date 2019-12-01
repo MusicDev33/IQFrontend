@@ -1,0 +1,19 @@
+// SCSS for mobile devices
+.mobile-nav-icon {
+  cursor: pointer;
+}
+.mobile-nav-icon:hover {
+  cursor: pointer;
+}
+
+.mobile-nav-icon:active {
+  color: $color-primary
+}
+
+.mobile-nav-icon:focus {
+  color: $color-primary
+}
+
+.icon-disabled {
+  color: $font-disabled;
+}

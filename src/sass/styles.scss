@@ -4,6 +4,7 @@
 @import './mixins';
 @import './animations';
 @import '~katex/dist/katex.css';
+@import './IQthyosaur/base.scss';
 
 *:focus {
   outline: none;
@@ -16,6 +17,12 @@ input {
 
 textarea {
   border-radius: 9px!important;
+  overflow-x: auto;
+  resize: vertical;
+}
+
+.txtarea-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -23,9 +30,38 @@ body {
   padding-top: 70px;
 }
 
-.form-control:focus {
-  border-color: $color-primary-light !important;
-  box-shadow: inset 0 1px 1px rgba(120, 0, 140, 0.075), 0 0 5px rgba(175, 0, 181, 0.4) !important;
+.iq-append {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+  border-left-color: $color-primary;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.iq-prepend {
+  transition: all 0.4s;
+  border-top-left-radius: 9px!important;
+  border-bottom-left-radius: 9px!important;
+  border-color: $color-primary;
+  outline: none;
+  border-width: 1px;
+  background-color: $white;
+}
+
+.iq-prepend.enabled {
+  color: $color-primary;
+}
+
+.iq-prepend.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.iq-prepend:hover.enabled {
+  background-color: $color-primary;
+  color: #fff;
 }
 
 .btn-primary {
@@ -43,29 +79,8 @@ body {
   display:none;
 }
 
-.content-box {
-  transition: all 0.9s;
-  padding: 8px 5px;
-  border-radius: 5px;
-  background-color: #fff;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.content-box:hover {
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+.no-events {
+  pointer-events: none;
 }
 
 .noselect {
@@ -86,10 +101,14 @@ body {
 
 .dropdown-row {
   cursor: pointer;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  transition: all 0.3s;
 }
 
 .dropdown-row:hover {
-  background-color: #f9f9f9;
+  background-color: #f2f2f2;
 }
 
 .dropdown-row:hover, .dropdown-row:hover .red {
@@ -104,15 +123,9 @@ body {
   color: #666;
   cursor: pointer;
   font-size: 16px;
-}
-
-.iq-button {
-  border-radius: 19px;
-  border: 1px solid $color-primary;
   transition: all 0.3s;
 }
 
-.iq-button:hover {
-  color: #FFF;
-  background-color: $color-primary;
+.dialog-popup .mat-dialog-container {
+  border-radius: 10px;
 }

@@ -4,6 +4,16 @@
   color: #afafaf;
 }
 
+.options-bar-icon {
+  font-size: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.options-bar-icon:hover {
+  color: $color-primary;
+}
+
 .subject-url {
   border-bottom: solid 3px rgb(0,0,0);
   border-bottom: solid 3px rgba(0,0,0,0);
@@ -40,7 +50,7 @@
 }
 
 .poster-text {
-  font-size: 0.9em;
+  font-size: 1.1em;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -50,19 +60,8 @@
 }
 
 .follow-button {
-  border-color: $color-primary;
-  border-radius: 19px;
-  box-sizing: border-box;
-  color: #525559;
-  cursor: pointer;
   height: 36px;
-  transition: 0.4s;
   width: 90px;
-}
-
-.follow-button:hover {
-  background-color: $color-primary;
-  color: #fff;
 }
 
 .text-followed {

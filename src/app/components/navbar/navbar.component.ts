@@ -12,6 +12,7 @@ import { UserService } from '@services/user.service';
 import { SearchService } from '@services/search.service';
 import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
+import { AuthService } from 'angularx-social-login';
 
 import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
 import { BugReportComponent } from '@components/bugreport/bugreport.component';
@@ -29,6 +30,8 @@ export class NavbarComponent implements OnInit {
   searchDataSource: Observable<any>;
   asyncSelected: string;
 
+  dialogOpen = false;
+
   constructor(
     public flashMsg: FlashMessagesService,
     public authService: IQAuthService,
@@ -38,7 +41,8 @@ export class NavbarComponent implements OnInit {
     public dialog: MatDialog,
     public debug: DebugService,
     public searchService: SearchService,
-    public activatedService: ActivatedRoute) {
+    public activatedService: ActivatedRoute,
+    public socialAuthService: AuthService) {
 
       this.searchDataSource = Observable.create((observer: any) => {
           observer.next(this.searchText);
@@ -52,11 +56,12 @@ export class NavbarComponent implements OnInit {
 
   onLogoutClick() {
     this.authService.logout();
+    this.socialSignOut();
+    window.location.reload();
     this.flashMsg.show('Successfully logged out.', {
       cssClass: 'alert-success',
       timeout: 2000
     });
-    this.router.navigate(['/authenticate']);
     return false;
   }
 
@@ -65,11 +70,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([profileURL]);
   }
 
-  onSearchKeyup() {
+  onSearchKeyup(): void {
 
   }
 
-  searchNoResults(noResults: boolean) {
+  searchNoResults(noResults: boolean): void {
 
   }
 
@@ -112,19 +117,22 @@ export class NavbarComponent implements OnInit {
 
   onAskSubmit() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
     dialogConfig.position = {
       top: '80px'
     };
+    dialogConfig.panelClass = 'dialog-popup';
 
     dialogConfig.data = {
       description: '',
       question: '',
     };
+
+    this.dialogOpen = true;
     const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( data => {
+      this.dialogOpen = false;
       // Lol this isn't a request response but oh well
       if (data) {
         let res: any = {};
@@ -170,5 +178,9 @@ export class NavbarComponent implements OnInit {
         this.flashMsg.show(feedback, {cssClass: 'alert-success', timeout: 1500});
       }
     });
+  }
+
+  socialSignOut(): void {
+    this.socialAuthService.signOut();
   }
 }

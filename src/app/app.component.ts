@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   currentRoute = '';
   showNavBar = false;
 
+  noNavbarUrls = ['/', '/register', '/login', '/authenticate', '/gsignincb'];
+
   constructor(public activatedRoute: ActivatedRoute, public router: Router) {
 
   }
@@ -24,9 +26,7 @@ export class AppComponent implements OnInit {
     if (ev instanceof NavigationEnd) {
       const url = ev.url;
       this.currentRoute = url;
-      if (url === '/') {
-        this.showNavBar = false;
-      } else if (url === '/register' || url === '/authenticate') {
+      if (this.noNavbarUrls.indexOf(url) >= 0) {
         this.showNavBar = false;
       } else {
         this.showNavBar = true;

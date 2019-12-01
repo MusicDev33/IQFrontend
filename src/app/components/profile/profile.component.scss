@@ -88,20 +88,6 @@
   border: 1px solid $color-primary;
 }
 
-.add-subject-button {
-  background-color: #fff;
-  border-color: $color-primary;
-  border-radius: 19px;
-  color: #525559;
-  margin-top: 5px;
-  transition: all 0.4s;
-}
-
-.add-subject-button.enabled:hover {
-  background-color: $color-primary;
-  color: #fff;
-}
-
 .close-button {
   border-radius: 50%;
   width: 20px;

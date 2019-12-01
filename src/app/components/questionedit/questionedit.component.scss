@@ -1,0 +1,39 @@
+@import '~sass/variables';
+
+.tag {
+  border-radius: 19px;
+  color: $color-primary;
+  background-color: #fff;
+  display: inline-block;
+  border: solid 1px $color-primary;
+  transition: 0.3s;
+  cursor: default;
+}
+
+.bg-white {
+  background-color: $white;
+  outline: none;
+}
+
+.tag-icon {
+  color: $color-primary;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.tag-icon:hover {
+  color: $iq-red;
+}
+
+.animate-plus {
+  transition: 0.4s;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+          transition:         transform .2s ease-in-out;
+}
+
+.add-tag-plus {
+  border: solid 1px $color-primary;
+  border-radius: 19px;
+  cursor: pointer;
+  color: $color-primary;
+}

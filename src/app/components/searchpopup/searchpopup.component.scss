@@ -37,37 +37,8 @@ textarea {
   resize: vertical;
   overflow-x: hidden;
   overflow-y: scroll;
-  min-height: 50px;
+  min-height: 100px;
   max-height: 100px;
-}
-
-.iq-form {
-  border-top-left-radius: 0px!important;
-  border-bottom-left-radius: 0px!important;
-  border-top-right-radius: 9px!important;
-  border-bottom-right-radius: 9px!important;
-  border-left-color: $color-primary;
-}
-
-.iq-prepend {
-  transition: all 0.4s;
-  border-top-left-radius: 9px!important;
-  border-bottom-left-radius: 9px!important;
-  border-color: $color-primary;
-  outline: none;
-}
-
-.iq-prepend.enabled {
-  color: $color-primary;
-}
-
-.iq-prepend.disabled {
-  color: #ccc;
-}
-
-.iq-prepend:hover.enabled {
-  background-color: $color-primary;
-  color: #fff;
 }
 
 .dropdown-item {
@@ -100,7 +71,7 @@ textarea {
 
 .tag-container {
   height: 150px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .tag {
@@ -116,4 +87,28 @@ textarea {
 .tag.selected {
   transition: all 0.2s;
   color: $color-primary;
+}
+
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $scroll-bg;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scroll-thumb;
+  border-radius: 2px;
+  transition: $time-slow;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $scroll-hover;
 }

@@ -39,22 +39,34 @@ export class AuthenticateComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.socialAuthService.authState.subscribe(user => {
-      this.user = user;
-      console.log(user);
-      this.loggedIn = (user != null);
-      // this.authService.authUserGoogle(user).subscribe(data => {
-      //   this.debug.log(data);
-      // });
+    this.socialAuthService.authState.subscribe((user: any) => {
+      if (user) {
+        this.user = user;
+        this.loggedIn = (user != null);
+        this.authService.authUserGoogle(user.id).subscribe(data => {
+          const res: any = data;
+          if (res.success) {
+            this.authService.storeUserData(res.token, res.user);
+            this.router.navigate(['/dashboard']);
+          } else {
+            const newUser = {
+              name: user.name,
+              email: user.email,
+              handle: '',
+              photoUrl: user.photoUrl,
+              googleID: user.id
+            };
+            this.authService.setTempUser(newUser);
+            this.authService.setTempGoogleID(user.id);
+            this.router.navigate(['/gsignincb']);
+          }
+        });
+      }
     });
   }
 
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  onSignIn(user) {
-    console.log(user);
   }
 
   onLoginSubmit() {

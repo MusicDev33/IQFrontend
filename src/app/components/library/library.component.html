@@ -10,7 +10,7 @@
       </div>
       <div [collapse]="!findSourceMode" [isAnimated]="true" class="p-1 text-center">
         <input [(ngModel)]="findSourceText"
-          class="form-control input-form"
+          class="form-control iq-form"
           placeholder="Enter source name"
           (keyup)="findSourceKeyUp()"
           [typeahead]="sourceSearchResults"
@@ -47,7 +47,7 @@
           </h4>
           <div [collapse]="!addTagMode" [isAnimated]="true" class="p-1 text-center">
             <input [(ngModel)]="tagText"
-              class="form-control input-form"
+              class="form-control iq-form"
               placeholder="Add a tag">
             <button class="btn btn-secondary ask-button mt-2" (click)="addTagToSource()"
               [disabled]="!tagText.length && openedSource !== openedSourceObject.name">

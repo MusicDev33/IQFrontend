@@ -1,0 +1,51 @@
+<article class="row justify-content-center">
+
+  <section class="col-12 text-center">
+    <h4>Edit Question</h4>
+  </section>
+
+  <section class="col-12 mb-2">
+    <input readonly class="form-control iq-form" [(ngModel)]="question.questionText"
+    tooltip="Editing the question text is currently not allowed." triggers="click:mouseleave"/>
+  </section>
+
+  <section class="col-12 input-group mb-3">
+    <div class="input-group-prepend iq-prepend">
+      <button class="iq-prepend"
+      [ngClass]="{'enabled': sourceName != question.sourceText, 'disabled': sourceName === question.homeworkSource}">
+        Change Source
+      </button>
+    </div>
+    <input class="form-control iq-append iq-form" [(ngModel)]="sourceName" autofocus/>
+  </section>
+
+  <section class="col-12 text-center mb-3" *ngIf="question.tags.length > 1">
+    <span *ngFor="let tag of question.tags">
+      <span class="tag my-1 px-2 py-1 ml-2" *ngIf="tag !== ''">
+        {{ tag }} <i class="fas fa-times tag-icon" (click)="deleteTag(tag)"></i>
+      </span>
+    </span>
+  </section>
+
+  <section class="col-12 text-center" *ngIf="question.tags.length === 0 || (question.tags.length === 1 && question.tags[0] === '')">
+     <h4>Question has no tags</h4>
+  </section>
+
+  <section class="col-12 input-group">
+    <div class="input-group-prepend iq-prepend">
+      <button class="hvr-icon-rotate-90" (click)="addTag(newTagName)"
+      [ngClass]="{'enabled': newTagName.length,
+                  'disabled': newTagName === '',
+                  'iq-prepend': addTagOpen,
+                  'add-tag-plus': !addTagOpen,
+                  'p-2': !addTagOpen,
+                  'bg-white': newTagName === ''
+                }">
+        <i class="fas fa-plus fa-lg hvr-icon animate-plus" (click)="toggleOpenTag()"
+        [ngClass]="{'hvr-icon': addTagOpen, 'no-events': addTagOpen}"></i> {{ addTagText }}
+      </button>
+    </div>
+    <input class="form-control iq-append iq-form" [(ngModel)]="newTagName" [ngClass]="{'hide-element': !addTagOpen}"/>
+  </section>
+
+</article>

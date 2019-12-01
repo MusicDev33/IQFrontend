@@ -6,12 +6,28 @@ $color-primary-light: #f953ff;
 $color-primary-grey: #fee8ff;
 $color-primary-grey-highlighted: #fdccff;
 
+$iq-form-hover-grey: #878787;
+$iq-form-default-grey: #ddd;
 
 $main-bg-color: #e4e4e4;
 
 $iq-red: #fa4d14;
 
 
+// Pure colors
+$white: #fff;
+$black: #000;
+
+
 /* TEXT */
-$font-main: #303030;
+$font-main: #505050;
 $font-disabled: #8a8a8a;
+
+$time-slow: 0.4s;
+$time-fast: 0.25s;
+
+
+// Scrollbar
+$scroll-bg: #fdcfff;
+$scroll-thumb: #f953ff;
+$scroll-hover: #f98cff;

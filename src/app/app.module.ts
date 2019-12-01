@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from '@components/navbar/navbar.component';
 import { HomeComponent } from '@components/home/home.component';
 import { RegisterComponent } from '@components/register/register.component';
+import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
 import { AuthenticateComponent } from '@components/authenticate/authenticate.component';
 import { ProfileComponent } from '@components/profile/profile.component';
@@ -27,6 +28,7 @@ import { BugReportComponent } from '@components/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
+import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 
 // Support
 import { SupportComponent } from '@components/support/support.component';
@@ -58,6 +60,7 @@ import { IQAuthService } from '@services/backend/iqauth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductionGuard } from './guards/production.guard';
+import { GSigninGuard } from './guards/gsignin.guard';
 
 // Social Login
 import {
@@ -95,7 +98,9 @@ export function provideConfig() {
     LandingpageComponent,
     HonorCodeComponent,
     AdvintroComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    GoogleCBComponent,
+    QuestionEditComponent
   ],
   imports: [
     BrowserModule,
@@ -122,6 +127,7 @@ export function provideConfig() {
     AuthGuard,
     LoginGuard,
     ProductionGuard,
+    GSigninGuard,
     IpgenService,
     VotesService,
     SubjectsService,
@@ -135,7 +141,7 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  entryComponents: [SearchpopupComponent, BugReportComponent],
+  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

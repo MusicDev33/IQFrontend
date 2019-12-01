@@ -6,8 +6,8 @@
       </div>
     </div>
     <div class="row">
-      <textarea [(ngModel)]="questionText"
-        class="form-control col-sm-12 mb-2"
+      <textarea type="text" [(ngModel)]="questionText"
+        class="form-control iq-form col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
@@ -27,7 +27,7 @@
         </div>
         <input #subjectField
           [(ngModel)]="topicText"
-          class="form-control iq-form"
+          class="form-control iq-form iq-append"
           formControlName="topic"
           placeholder="{{ subjectPlaceholder }}"
           (keyup)="subjectKeyup()"
@@ -53,7 +53,7 @@
         <input #sourceField
           [ngClass]="{'hide-element': !sourceMode}"
           [(ngModel)]="sourceText"
-          class="form-control iq-form col-sm-12"
+          class="form-control iq-form iq-append col-sm-12"
           formControlName="source"
           placeholder="{{ sourcePlaceholder }}"
           (keyup)="sourceKeyup()"
@@ -97,7 +97,7 @@
           </button>
         </div>
         <input [(ngModel)]="tagText" (keydown.enter)="addTagToCreatedTags(tagText)"
-          class="form-control iq-form col-sm-12"
+          class="form-control iq-form iq-append col-sm-12"
           placeholder="Add some tags here!">
       </section>
     </div>

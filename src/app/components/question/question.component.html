@@ -27,7 +27,7 @@
         <!-- Answer Box -->
         <textarea
           *ngIf="!answerPreview"
-          class="answer-textarea col-md-5 col-sm-10 col-11 form-control"
+          class="answer-textarea col-md-5 col-sm-10 col-11 form-control iq-form"
           [(ngModel)]="answerText"
           name="answerText"
           placeholder="Share some knowledge!">
@@ -43,10 +43,10 @@
       <app-formatbar *ngIf="mathMode" (letterClicked)="formatbarAddToText($event)" (backspaceClicked)="formatbarBackspace()">
       </app-formatbar>
       <div class="row justify-content-center mb-2" *ngIf="answerMode && !editMode">
-        <button class="btn send-button" (click)="sendAnswer()">Send Answer to the Gods</button>
+        <button class="btn iq-btn-1" (click)="sendAnswer()">Send Answer to the Gods</button>
       </div>
       <div class="row justify-content-center mb-2" *ngIf="answerMode && editMode">
-        <button class="btn send-button" (click)="sendEditedAnswer()">Send Edited Answer</button>
+        <button class="btn iq-btn-1" (click)="sendEditedAnswer()">Send Edited Answer</button>
       </div>
     </div>
 

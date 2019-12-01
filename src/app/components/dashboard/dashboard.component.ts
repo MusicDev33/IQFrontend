@@ -8,6 +8,9 @@ import { SubjectsService } from '@services/subjects.service';
 import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,13 +25,15 @@ export class DashboardComponent implements OnInit {
   arrayOfSubjects: Array<string>;
   subjectOffset = 0;
 
-  screenHeight: any;
-  screenWidth: any;
+  screenHeight: number;
+  screenWidth: number;
 
   // The string that tells a user what to do after they create a profile
   helpString = '';
+  dialogOpen = false;
 
   constructor(
+    public dialog: MatDialog,
     public authService: IQAuthService,
     public userService: UserService,
     public router: Router,
@@ -85,6 +90,27 @@ export class DashboardComponent implements OnInit {
       let subjectResponse: any = {};
       subjectResponse = subjectData;
       this.arrayOfSubjects = subjectResponse.subjects;
+    });
+  }
+
+  // TODO: Create types for everything...
+  editQuestionClicked(question: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+    dialogConfig.panelClass = 'dialog-popup';
+
+    dialogConfig.data = {
+      question
+    };
+
+    this.dialogOpen = true;
+    const dialogRef = this.dialog.open(QuestionEditComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(editData => {
+      this.dialogOpen = false;
     });
   }
 
