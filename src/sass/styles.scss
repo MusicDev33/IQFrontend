@@ -30,6 +30,40 @@ body {
   padding-top: 70px;
 }
 
+.iq-append {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  border-top-right-radius: 9px!important;
+  border-bottom-right-radius: 9px!important;
+  border-left-color: $color-primary;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.iq-prepend {
+  transition: all 0.4s;
+  border-top-left-radius: 9px!important;
+  border-bottom-left-radius: 9px!important;
+  border-color: $color-primary;
+  outline: none;
+  border-width: 1px;
+  background-color: $white;
+}
+
+.iq-prepend.enabled {
+  color: $color-primary;
+}
+
+.iq-prepend.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.iq-prepend:hover.enabled {
+  background-color: $color-primary;
+  color: #fff;
+}
+
 .btn-primary {
   background-color: rgb(175, 0, 181);
   border-color: rgb(175, 0, 181);
