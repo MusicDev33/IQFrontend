@@ -70,7 +70,9 @@
         <div class="col">
           <div class="row">
             <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
-            <div class="col-sm-4 text-center subnav-item"><span class="delete-text">Delete</span></div>
+            <div class="col-sm-4 text-center subnav-item">
+              <span tooltip="Removes this source from your library" delay="300" class="delete-text">Remove</span>
+            </div>
           </div>
 
           <div class="row" *ngIf="questions.length">
