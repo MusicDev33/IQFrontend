@@ -30,6 +30,9 @@ import { LandingpageComponent } from '@components/landingpage/landingpage.compon
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 
+// Dropins
+import { QuestionBoxComponent } from './components/dropins/questionbox/questionbox.component';
+
 // Support
 import { SupportComponent } from '@components/support/support.component';
 import { AboutComponent } from '@components/about/about.component';
@@ -100,7 +103,8 @@ export function provideConfig() {
     AdvintroComponent,
     UserSettingsComponent,
     GoogleCBComponent,
-    QuestionEditComponent
+    QuestionEditComponent,
+    QuestionBoxComponent
   ],
   imports: [
     BrowserModule,

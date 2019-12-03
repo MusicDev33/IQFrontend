@@ -54,6 +54,11 @@ export class LibraryComponent implements OnInit {
     });
   }
 
+  userClicked(userHandle: string) {
+    const routeURL = '/profile/' + userHandle;
+    this.router.navigate([routeURL]);
+  }
+
   findSource() {
     this.findSourceMode = true;
     this.debug.log(this.findSourceMode);

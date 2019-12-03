@@ -75,11 +75,14 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="questions.length">
-            <div *ngFor="let question of currentQuestions" class="col-sm-8 question-box text-center">
-              <span class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</span>
+          <article class="row" *ngIf="questions.length">
+            <div class="col-sm-8">
+              <app-questionbox *ngFor="let question of questions" [question]="question">
+
+              </app-questionbox>
             </div>
-          </div>
+          </article>
+
         </div>
 
       </div>
