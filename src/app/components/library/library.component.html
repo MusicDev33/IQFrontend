@@ -51,7 +51,7 @@
               class="form-control iq-form"
               placeholder="Add a tag">
             <button class="btn iq-btn-1 mt-2" (click)="addTagToSource()"
-              [disabled]="!tagText.length && openedSource !== openedSourceObject.name">
+              [disabled]="!tagText.length || openedSource !== openedSourceObject.name">
               Add Tag
             </button>
           </div>
