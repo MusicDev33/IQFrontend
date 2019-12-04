@@ -18,7 +18,8 @@
           [typeaheadOptionsLimit]="5"
           [typeaheadMinLength]="3"
           (typeaheadOnSelect)="sourceSelected($event)">
-        <button class="btn btn-secondary ask-button mt-2" (click)="addSourceToUser()" [disabled]="!selectedSource">
+        <button class="btn iq-btn-1 mt-2" (click)="addSourceToUser()"
+          [disabled]="!selectedSource">
           Add Source
         </button>
       </div>

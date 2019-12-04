@@ -84,8 +84,13 @@ export class LibraryComponent implements OnInit {
   }
 
   addSourceToUser() {
+    const source = this.selectedSource;
     this.userService.addSourceToUser(this.selectedSource).subscribe(data => {
+      const res: any = data;
       this.debug.log(data);
+      if (res.success) {
+        this.user.currentSources.push(source);
+      }
     });
     this.findSourceText = '';
     this.selectedSource = '';

@@ -8,7 +8,7 @@
   <div class="row justify-content-center">
     <div class="col-12 text-center mb-3">
 
-      <button class="btn btn-secondary mode-button col-5" (click)="changeMode('Suggestion')"
+      <button class="btn iq-btn-1 col-5" (click)="changeMode('Suggestion')"
       [ngClass]="{'unselected': selectedMode !== 'Suggestion', 'selected': selectedMode === 'Suggestion'}"
       [disabled]="selectedMode === 'Suggestion'">
         Suggestion
@@ -16,7 +16,7 @@
 
       <span class="col-2"></span>
 
-      <button class="btn btn-secondary mode-button col-5" (click)="changeMode('Bug Report')"
+      <button class="btn iq-btn-1 col-5" (click)="changeMode('Bug Report')"
         [ngClass]="{'unselected': selectedMode !== 'Bug Report', 'selected': selectedMode === 'Bug Report'}"
         [disabled]="selectedMode === 'Bug Report'">
         Bug Report
@@ -28,10 +28,10 @@
     <span class="error-text text-center">Must provide real feedback!</span>
   </div>
   <div class="row mb-2">
-    <textarea placeholder="{{ placeholderText }}" class="col-12 form-control" [(ngModel)]="feedbackText"></textarea>
+    <textarea placeholder="{{ placeholderText }}" class="col-12 form-control iq-form" [(ngModel)]="feedbackText"></textarea>
   </div>
   <div class="row justify-content-center mb-2">
-    <button class="btn btn-secondary feedback-button" (click)="sendFeedback()">Send Feedback</button>
+    <button class="btn iq-btn-1" (click)="sendFeedback()" [disabled]="feedbackText.length < 10">Send Feedback</button>
   </div>
   <div class="row justify-content-center">
     <i class="fas fa-times fa-2x close-button" (click)="close('')"></i>
