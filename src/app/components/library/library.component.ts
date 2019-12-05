@@ -54,6 +54,11 @@ export class LibraryComponent implements OnInit {
     });
   }
 
+  userClicked(userHandle: string) {
+    const routeURL = '/profile/' + userHandle;
+    this.router.navigate([routeURL]);
+  }
+
   findSource() {
     this.findSourceMode = true;
     this.debug.log(this.findSourceMode);
@@ -79,8 +84,13 @@ export class LibraryComponent implements OnInit {
   }
 
   addSourceToUser() {
+    const source = this.selectedSource;
     this.userService.addSourceToUser(this.selectedSource).subscribe(data => {
+      const res: any = data;
       this.debug.log(data);
+      if (res.success) {
+        this.user.currentSources.push(source);
+      }
     });
     this.findSourceText = '';
     this.selectedSource = '';

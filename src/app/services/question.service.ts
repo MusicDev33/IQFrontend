@@ -25,7 +25,7 @@ export class QuestionService {
     this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  questionTextToURL(questionText) {
+  questionTextToURL(questionText: string) {
     let urlText = '';
     const specialChars = '!@#$%^&*()>< \'/\\';
 
@@ -41,14 +41,14 @@ export class QuestionService {
     return urlText;
   }
 
-  askQuestion(question) {
+  askQuestion(question: any) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
     return this.http.post(this.routeBase + '/questions/add', question, {headers})
       .pipe(map(res => res));
   }
 
-  getQuestion(questionURL) {
+  getQuestion(questionURL: string) {
     const headers = this.headersTemplate;
     return this.http.get(this.routeBase + '/questions/' + questionURL, {headers})
       .pipe(map(res => res));
@@ -66,9 +66,30 @@ export class QuestionService {
       .pipe(map(res => res));
   }
 
-  getUserQuestions(userID) {
+  getUserQuestions(userID: string) {
     const headers = this.headersTemplate;
     return this.http.get(this.routeBase + '/users/' + userID + '/questions', {headers})
+      .pipe(map(res => res));
+  }
+
+  // Edit Question
+  editQuestionTags(question: any) {
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
+    const body = {
+      tags: question.tags
+    };
+    return this.http.put(this.routeBase + '/questions/' + question._id + '/tags', body, {headers})
+      .pipe(map(res => res));
+  }
+
+  editQuestionSource(question: any) {
+    let headers = this.headersTemplate;
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
+    const body = {
+      source: question.homeworkSource
+    };
+    return this.http.put(this.routeBase + '/questions/' + question._id + '/source', body, {headers})
       .pipe(map(res => res));
   }
 }

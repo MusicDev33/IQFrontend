@@ -11,12 +11,20 @@
 
   <section class="col-12 input-group mb-3">
     <div class="input-group-prepend iq-prepend">
-      <button class="iq-prepend"
-      [ngClass]="{'enabled': sourceName != question.sourceText, 'disabled': sourceName === question.homeworkSource}">
+      <button class="iq-prepend" (click)="changeQuestionSource()"
+      [ngClass]="{'enabled': sourceSelected, 'disabled': !sourceSelected}">
         Change Source
       </button>
     </div>
-    <input class="form-control iq-append iq-form" [(ngModel)]="sourceName" autofocus/>
+    <input [(ngModel)]="sourceName" autofocus
+      class="form-control iq-append iq-form"
+      placeholder="Enter source name"
+      (keyup)="findSourceKeyUp()"
+      [typeahead]="sourceSearchResults"
+      typeaheadOptionField="name"
+      [typeaheadOptionsLimit]="5"
+      [typeaheadMinLength]="3"
+      (typeaheadOnSelect)="onSourceSelected($event)" >
   </section>
 
   <section class="col-12 text-center mb-3" *ngIf="question.tags.length > 1">

@@ -10,6 +10,14 @@
   outline: none;
 }
 
+.btn:focus {
+  outline: none;
+}
+
+.iq-prepend:focus {
+  outline: none;
+}
+
 /* These will all be Bootstrap overrides*/
 input {
   border-radius: 9px!important;
@@ -94,6 +102,22 @@ body {
 }
 
 // Bootstrap
+::ng-deep .dropdown-menu {
+  border-radius: 9px!important;
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+
+::ng-deep .dropdown {
+  border-radius: 9px!important;
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+
+.dropdown-item {
+  border-radius: 9px!important;
+}
+
 .dropdown-box {
   border-radius: 9px;
   background-color: #fff;
@@ -108,7 +132,7 @@ body {
 }
 
 .dropdown-row:hover {
-  background-color: #f2f2f2;
+  background-color: #ececec;
 }
 
 .dropdown-row:hover, .dropdown-row:hover .red {

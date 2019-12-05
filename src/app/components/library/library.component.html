@@ -18,7 +18,8 @@
           [typeaheadOptionsLimit]="5"
           [typeaheadMinLength]="3"
           (typeaheadOnSelect)="sourceSelected($event)">
-        <button class="btn btn-secondary ask-button mt-2" (click)="addSourceToUser()" [disabled]="!selectedSource">
+        <button class="btn iq-btn-1 mt-2" (click)="addSourceToUser()"
+          [disabled]="!selectedSource">
           Add Source
         </button>
       </div>
@@ -49,8 +50,8 @@
             <input [(ngModel)]="tagText"
               class="form-control iq-form"
               placeholder="Add a tag">
-            <button class="btn btn-secondary ask-button mt-2" (click)="addTagToSource()"
-              [disabled]="!tagText.length && openedSource !== openedSourceObject.name">
+            <button class="btn iq-btn-1 mt-2" (click)="addTagToSource()"
+              [disabled]="!tagText.length || openedSource !== openedSourceObject.name">
               Add Tag
             </button>
           </div>
@@ -70,14 +71,19 @@
         <div class="col">
           <div class="row">
             <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
-            <div class="col-sm-4 text-center subnav-item"><span class="delete-text">Delete</span></div>
-          </div>
-
-          <div class="row" *ngIf="questions.length">
-            <div *ngFor="let question of currentQuestions" class="col-sm-8 question-box text-center">
-              <span class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</span>
+            <div class="col-sm-4 text-center subnav-item">
+              <span tooltip="Removes this source from your library" delay="300" class="delete-text">Remove</span>
             </div>
           </div>
+
+          <article class="row" *ngIf="questions.length">
+            <div class="col-sm-8">
+              <app-questionbox *ngFor="let question of questions" [question]="question">
+
+              </app-questionbox>
+            </div>
+          </article>
+
         </div>
 
       </div>
