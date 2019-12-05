@@ -165,12 +165,12 @@ export class NavbarComponent implements OnInit {
 
   onFeedbackSubmit() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
     dialogConfig.position = {
       top: '80px'
     };
+    dialogConfig.panelClass = 'dialog-popup';
 
     const dialogRef = this.dialog.open(BugReportComponent, dialogConfig);
     dialogRef.afterClosed().subscribe( feedback => {

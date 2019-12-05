@@ -5,23 +5,17 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-12 text-center mb-3">
+  <div class="row justify-content-center mb-3">
+    <div class="col-5 text-center mode-selector mx-3"
+        [ngClass]="{'selected': selectedMode === 'Suggestion'}"
+        (click)="changeMode('Suggestion')">
+      Suggestion
+    </div>
 
-      <button class="btn iq-btn-1 col-5" (click)="changeMode('Suggestion')"
-      [ngClass]="{'unselected': selectedMode !== 'Suggestion', 'selected': selectedMode === 'Suggestion'}"
-      [disabled]="selectedMode === 'Suggestion'">
-        Suggestion
-      </button>
-
-      <span class="col-2"></span>
-
-      <button class="btn iq-btn-1 col-5" (click)="changeMode('Bug Report')"
-        [ngClass]="{'unselected': selectedMode !== 'Bug Report', 'selected': selectedMode === 'Bug Report'}"
-        [disabled]="selectedMode === 'Bug Report'">
-        Bug Report
-      </button>
-
+    <div class="col-5 text-center mode-selector mx-3"
+        [ngClass]="{'selected': selectedMode === 'Bug Report'}"
+        (click)="changeMode('Bug Report')">
+      Bug Report
     </div>
   </div>
   <div class="row justify-content-center" *ngIf="inputError">
