@@ -128,7 +128,7 @@ export class LibraryComponent implements OnInit {
   }
 
   addTagToSource() {
-    this.sourceService.addTag(this.tagText, this.openedSourceObject._id).subscribe(data => {
+    this.sourceService.addTag(this.tagText.toLowerCase(), this.openedSourceObject._id).subscribe(data => {
       const res: any = data;
       this.openedSourceObject = res.source;
     });
@@ -136,9 +136,13 @@ export class LibraryComponent implements OnInit {
   }
 
   selectTag(tag: string) {
+    if (this.selectedTag === tag) {
+      this.selectedTag = '';
+      return;
+    }
     this.selectedTag = tag;
     this.currentQuestions = this.questions.filter(question => {
-      return question.tags.includes(this.selectedTag);
+      return question.tags.includes(this.selectedTag.toLowerCase());
     });
   }
 }

@@ -76,9 +76,17 @@
             </div>
           </div>
 
-          <article class="row" *ngIf="questions.length">
+          <article class="row" *ngIf="questions.length && selectedTag.length === 0">
             <div class="col-sm-8">
               <app-questionbox *ngFor="let question of questions" [question]="question">
+
+              </app-questionbox>
+            </div>
+          </article>
+
+          <article class="row" *ngIf="questions.length && selectedTag.length > 0">
+            <div class="col-sm-8">
+              <app-questionbox *ngFor="let question of currentQuestions" [question]="question">
 
               </app-questionbox>
             </div>

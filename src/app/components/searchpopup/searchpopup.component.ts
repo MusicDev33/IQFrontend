@@ -220,7 +220,7 @@ export class SearchpopupComponent implements OnInit {
     const indexInSourceTags = this.selectedSourceTags.indexOf(tagName);
 
     if (index < 0 && indexInSourceTags < 0) {
-      this.createdTags.push(tagName);
+      this.createdTags.push(tagName.toLowerCase());
       this.tagText = '';
     } else {
       this.tagText = '';
