@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -54,7 +55,10 @@ export class QuestionComponent implements OnInit {
     public flashMsg: FlashMessagesService,
     public router: Router,
     public debug: DebugService,
-    public votesService: VotesService) { }
+    public votesService: VotesService,
+    public titleService: Title,
+    public metaService: Meta
+  ) { }
 
   ngOnInit() {
     this.setUpComponent();
@@ -75,6 +79,15 @@ export class QuestionComponent implements OnInit {
       this.questionSuccess = qResponse.success;
       this.questionResponse = qResponse;
       this.debug.log(this.question);
+      this.titleService.setTitle(this.question.questionText + ' - Inquantir');
+
+      const keywords = 'Inquantir, Education, ' + this.question.subject;
+
+      this.metaService.addTags([
+        {name: 'keywords', content: keywords},
+        {name: 'description', content: this.question.previewAnswer.answerText},
+        {name: 'robots', content: 'index, follow'}
+      ]);
 
       this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(voteData => {
         let vResponse: any = {};

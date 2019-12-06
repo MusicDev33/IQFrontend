@@ -16,6 +16,7 @@ export class Question implements IServerResponse, IMongoObject {
   time: string;
   tag: Array<string>;
   answerNum: number;
+  previewAnswer: any;
 
   success: boolean;
 }

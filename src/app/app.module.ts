@@ -107,7 +107,7 @@ export function provideConfig() {
     QuestionBoxComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     KatexModule,
     AppRoutingModule,
     FormsModule,
