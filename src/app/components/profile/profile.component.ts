@@ -10,6 +10,8 @@ import { AnswerService } from '@services/answer.service';
 import { DebugService } from '@services/utility/debug.service';
 import { SearchService } from '@services/search.service';
 
+import { User } from '@classes/user';
+
 enum ContentView {
   answers,
   questions,
@@ -23,13 +25,13 @@ enum ContentView {
 })
 export class ProfileComponent implements OnInit {
 
-  user: object;
+  user: User;
   userResponse: any;
   userHandle: string;
 
   // Current user is the user to whom the profile page belongs to
   // User is the user using the browser
-  currentUser: any = {};
+  currentUser: User;
 
   userMatch: boolean;
   view: ContentView;
@@ -80,7 +82,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserByHandle(this.userHandle).subscribe(userData => {
       let userResponse: any = {};
       userResponse = userData;
-      this.currentUser = userResponse.user;
+      this.currentUser = Object.assign(new User(), userResponse.user);
       this.userResponse = userResponse;
       this.debug.log(userResponse);
 
@@ -113,8 +115,8 @@ export class ProfileComponent implements OnInit {
       this.userService.getProfile().subscribe(userData => {
         let userResponse: any = {};
         userResponse = userData;
-        this.user = userResponse.user;
-        this.debug.log(this.user);
+        this.user = Object.assign(new User(), userResponse.user); // Very handy!!!
+        this.debug.log(this.user.getMongoID());
       }, err => {
         this.debug.log(err);
         return false;
