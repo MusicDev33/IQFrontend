@@ -85,11 +85,11 @@ export class QuestionComponent implements OnInit {
 
       this.metaService.addTags([
         {name: 'keywords', content: keywords},
-        {name: 'description', content: this.question.previewAnswer.answerText},
+        {name: 'description', content: this.question.previewAnswer ? this.question.previewAnswer.answerText : ''},
         {name: 'robots', content: 'index, follow'}
       ]);
 
-      this.votesService.getVotes(this.question._id, this.userService.userMongoID()).subscribe(voteData => {
+      this.votesService.getVotes(this.question._id, this.userService.getUser().getMongoID()).subscribe(voteData => {
         let vResponse: any = {};
         vResponse = voteData;
         this.debug.log(voteData);
@@ -135,7 +135,7 @@ export class QuestionComponent implements OnInit {
       answerText: this.answerText,
       poster: this.userService.getUser().name,
       posterHandle: this.userService.getUser().handle,
-      posterID: this.userService.userMongoID(),
+      posterID: this.userService.getUser().getMongoID(),
       votes: 0,
       questionURL: this.questionURL,
       views: 1,
@@ -217,7 +217,7 @@ export class QuestionComponent implements OnInit {
   }
 
   sendVote(vote, answerid) {
-    this.votesService.sendVote(this.question._id, this.userService.userMongoID(), answerid, vote).subscribe(data => {
+    this.votesService.sendVote(this.question._id, this.userService.getUser().getMongoID(), answerid, vote).subscribe(data => {
       const response: any = {};
     });
   }

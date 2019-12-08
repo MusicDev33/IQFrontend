@@ -34,7 +34,7 @@ export class UserService {
     getUser(): User {
       let user: User;
       const jwtHelper: JwtHelper = new JwtHelper();
-      user = jwtHelper.decodeToken(localStorage.getItem('id_token'));
+      user = Object.assign(new User(), jwtHelper.decodeToken(localStorage.getItem('id_token')) );
       return user;
     }
 

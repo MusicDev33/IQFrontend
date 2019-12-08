@@ -88,27 +88,27 @@ export class ProfileComponent implements OnInit {
 
       if (this.currentUser.knowledge) {
         for (const knowledgeIndex of Object.keys(this.currentUser.knowledge)) {
-          const knowledgeObject = {};
-          knowledgeObject['index'] = knowledgeIndex;
-          knowledgeObject['subject'] = this.currentUser.knowledge[knowledgeIndex];
+          const knowledgeObject = {
+            index: '',
+            subject: ''
+          };
+          knowledgeObject.index = knowledgeIndex;
+          knowledgeObject.subject = this.currentUser.knowledge[knowledgeIndex];
           this.knowledgeArray.push(knowledgeObject);
         }
       }
 
-      this.qService.getUserQuestions('' + this.currentUser._id).subscribe(questionData => {
+      this.qService.getUserQuestions(this.currentUser.getMongoID()).subscribe(questionData => {
         let qResponse: any = {};
         qResponse = questionData;
         this.debug.log(qResponse);
         this.userQuestions = qResponse.questions;
-        this.debug.log(this.userQuestions);
       });
 
-      this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(answerData => {
+      this.ansService.getUserAnswers(this.currentUser.getMongoID()).subscribe(answerData => {
         let answerResponse: any = {};
         answerResponse = answerData;
-        this.debug.log(answerResponse);
         this.userAnswers = answerResponse.answers;
-        this.debug.log(this.userAnswers);
       });
     });
     if (this.authService.hasToken()) {
@@ -165,7 +165,7 @@ export class ProfileComponent implements OnInit {
 
   sendBio() {
     this.bioMode = false;
-    this.currentUser['bio'] = this.bioText;
+    this.currentUser.bio = this.bioText;
     this.userService.changeBio(this.bioText).subscribe(data => {
       const res: any = data;
       this.debug.log(res);

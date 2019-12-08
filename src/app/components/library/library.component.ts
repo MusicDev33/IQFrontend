@@ -10,6 +10,8 @@ import { QuestionService } from '@services/question.service';
 
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
+import { User } from '@classes/user';
+
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
@@ -17,7 +19,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 })
 export class LibraryComponent implements OnInit {
 
-  user: any;
+  user: User;
 
   findSourceMode = false;
   findSourceText = '';
@@ -50,7 +52,7 @@ export class LibraryComponent implements OnInit {
   ngOnInit() {
     this.userService.getProfile().subscribe(data => {
       const res: any = data;
-      this.user = res.user;
+      this.user = Object.assign(new User(), res.user);
     });
   }
 
