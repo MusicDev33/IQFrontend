@@ -8,12 +8,12 @@ export interface IUser {
   password: string;
   profileImage: string;
   googleID: string;
-  currentSource: Array<any>;
+  currentSources: Array<any>;
   currentSubjects: Array<any>;
   knowledge: any;
   type: string;
   profileHits: number;
-  credentials: any; // FIX - No Any!!!
+  credentials: any; // FIX - No Any!
   customization: any;
 
   getMongoID();
