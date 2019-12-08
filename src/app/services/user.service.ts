@@ -7,12 +7,14 @@ import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
+import { User } from '@classes/user';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   authToken: any;
-  user: any;
+  user: User;
   routeBase = '';
 
   headersTemplate = new HttpHeaders();
@@ -29,9 +31,11 @@ export class UserService {
       this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
     }
 
-    getUser() {
+    getUser(): User {
+      let user: User;
       const jwtHelper: JwtHelper = new JwtHelper();
-      return jwtHelper.decodeToken(localStorage.getItem('id_token'));
+      user = Object.assign(new User(), jwtHelper.decodeToken(localStorage.getItem('id_token')) );
+      return user;
     }
 
     getToken() {

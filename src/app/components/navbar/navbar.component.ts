@@ -143,7 +143,7 @@ export class NavbarComponent implements OnInit {
           subject: res.topic,
           source: res.source,
           asker: this.userService.getUser().name,
-          askerID: this.userService.userMongoID(),
+          askerID: this.userService.getUser().getMongoID(),
           askerHandle: this.userService.getUser().handle,
           tags: res.tags.value.split('&')
         };

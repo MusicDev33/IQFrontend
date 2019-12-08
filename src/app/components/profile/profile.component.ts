@@ -10,6 +10,8 @@ import { AnswerService } from '@services/answer.service';
 import { DebugService } from '@services/utility/debug.service';
 import { SearchService } from '@services/search.service';
 
+import { User } from '@classes/user';
+
 enum ContentView {
   answers,
   questions,
@@ -23,13 +25,13 @@ enum ContentView {
 })
 export class ProfileComponent implements OnInit {
 
-  user: object;
+  user: User;
   userResponse: any;
   userHandle: string;
 
   // Current user is the user to whom the profile page belongs to
   // User is the user using the browser
-  currentUser: any = {};
+  currentUser: User;
 
   userMatch: boolean;
   view: ContentView;
@@ -80,41 +82,41 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserByHandle(this.userHandle).subscribe(userData => {
       let userResponse: any = {};
       userResponse = userData;
-      this.currentUser = userResponse.user;
+      this.currentUser = Object.assign(new User(), userResponse.user);
       this.userResponse = userResponse;
       this.debug.log(userResponse);
 
       if (this.currentUser.knowledge) {
         for (const knowledgeIndex of Object.keys(this.currentUser.knowledge)) {
-          const knowledgeObject = {};
-          knowledgeObject['index'] = knowledgeIndex;
-          knowledgeObject['subject'] = this.currentUser.knowledge[knowledgeIndex];
+          const knowledgeObject = {
+            index: '',
+            subject: ''
+          };
+          knowledgeObject.index = knowledgeIndex;
+          knowledgeObject.subject = this.currentUser.knowledge[knowledgeIndex];
           this.knowledgeArray.push(knowledgeObject);
         }
       }
 
-      this.qService.getUserQuestions('' + this.currentUser._id).subscribe(questionData => {
+      this.qService.getUserQuestions(this.currentUser.getMongoID()).subscribe(questionData => {
         let qResponse: any = {};
         qResponse = questionData;
         this.debug.log(qResponse);
         this.userQuestions = qResponse.questions;
-        this.debug.log(this.userQuestions);
       });
 
-      this.ansService.getUserAnswers('' + this.currentUser._id).subscribe(answerData => {
+      this.ansService.getUserAnswers(this.currentUser.getMongoID()).subscribe(answerData => {
         let answerResponse: any = {};
         answerResponse = answerData;
-        this.debug.log(answerResponse);
         this.userAnswers = answerResponse.answers;
-        this.debug.log(this.userAnswers);
       });
     });
     if (this.authService.hasToken()) {
       this.userService.getProfile().subscribe(userData => {
         let userResponse: any = {};
         userResponse = userData;
-        this.user = userResponse.user;
-        this.debug.log(this.user);
+        this.user = Object.assign(new User(), userResponse.user); // Very handy!!!
+        this.debug.log(this.user.getMongoID());
       }, err => {
         this.debug.log(err);
         return false;
@@ -163,7 +165,7 @@ export class ProfileComponent implements OnInit {
 
   sendBio() {
     this.bioMode = false;
-    this.currentUser['bio'] = this.bioText;
+    this.currentUser.bio = this.bioText;
     this.userService.changeBio(this.bioText).subscribe(data => {
       const res: any = data;
       this.debug.log(res);
