@@ -5,7 +5,6 @@ export interface IUser {
   handle: string;
   email: string;
   phoneNumber: string;
-  password: string;
   profileImage: string;
   googleID: string;
   currentSources: Array<any>;

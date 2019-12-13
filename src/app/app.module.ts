@@ -73,6 +73,7 @@ import {
 } from 'angularx-social-login';
 
 import googleSocialConfig from './socialLoginConfig';
+import { ReportQuestionComponent } from './components/reportquestion/reportquestion.component';
 
 export function provideConfig() {
   return googleSocialConfig;
@@ -104,7 +105,8 @@ export function provideConfig() {
     UserSettingsComponent,
     GoogleCBComponent,
     QuestionEditComponent,
-    QuestionBoxComponent
+    QuestionBoxComponent,
+    ReportQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +147,7 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent],
+  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent, ReportQuestionComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
