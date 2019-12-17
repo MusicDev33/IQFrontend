@@ -30,6 +30,9 @@ import { LandingpageComponent } from '@components/landingpage/landingpage.compon
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 
+// Jobs Module
+import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
+
 // Dropins
 import { QuestionBoxComponent } from './components/dropins/questionbox/questionbox.component';
 
@@ -106,7 +109,8 @@ export function provideConfig() {
     GoogleCBComponent,
     QuestionEditComponent,
     QuestionBoxComponent,
-    ReportQuestionComponent
+    ReportQuestionComponent,
+    IQJobsComponent
   ],
   imports: [
     BrowserModule,
