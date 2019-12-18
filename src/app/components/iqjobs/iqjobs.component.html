@@ -17,18 +17,20 @@
     <div class="col-6">
       <div class="row justify-content-center card-container py-3">
         <div class="col-1 my-auto">
-          <i class="fas fa-chevron-left side-arrow disabled"></i>
+          <i class="fas fa-chevron-left side-arrow" (click)="decreaseJobIndex()"
+            [ngClass]="{'enabled': jobIndex > 0, 'disabled': jobIndex <= 0}"></i>
         </div>
         <div class="col-10 iq-card text-center px-3">
-          <h3>Content Management Agent</h3>
-          <input class="form-control iq-form mt-4" placeholder="Full Name">
+          <h3>{{ jobsList[jobIndex] }}</h3>
+          <input class="form-control iq-form mt-4" placeholder="Full Name" [(ngModel)]="fullNameField">
           <input class="form-control iq-form mt-2" placeholder="Email">
           <input class="form-control iq-form mt-2" placeholder="Phone Number">
           <textarea class="form-control iq-form mt-2 skills-input txtarea-scroll" placeholder="Optional - Do you have any other skills?"></textarea>
-          <button class="btn iq-btn-1 mt-3"><b>Apply</b></button>
+          <button class="btn iq-btn-1 mt-3" (click)="clickedOnApply()"><b>Apply</b></button>
         </div>
         <div class="col-1 my-auto">
-          <i class="fas fa-chevron-right side-arrow disabled"></i>
+          <i class="fas fa-chevron-right side-arrow disabled" (click)="increaseJobIndex()"
+            [ngClass]="{'enabled': jobIndex < jobsList.length - 1, 'disabled': jobIndex >= jobsList.length - 1}"></i>
         </div>
       </div>
     </div>
