@@ -59,6 +59,7 @@ import { SearchService } from '@services/search.service';
 import { UserService } from '@services/user.service';
 import { FeedbackService } from '@services/feedback.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
+import { JobAppsService } from '@services/backend/jobapps.service';
 
 // Services - UTILITY
 
@@ -146,6 +147,7 @@ export function provideConfig() {
     UserService,
     FeedbackService,
     IQAuthService,
+    JobAppsService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

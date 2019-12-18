@@ -7,7 +7,8 @@
       "@services/*": ["app/services/*"],
       "@guards/*": ["app/guards/*"],
       "@classes/*": ["app/classes/*"],
-      "@interfaces/*": ["app/interfaces/*"]
+      "@interfaces/*": ["app/interfaces/*"],
+      "@globals/*": ["app/globals/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
