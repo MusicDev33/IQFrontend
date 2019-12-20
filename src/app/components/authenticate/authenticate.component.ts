@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone, isDevMode } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import { toIUser } from '@interfaces/typeguards/IUserTest';
+
 import { ValidateService } from '@services/utility/validate.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { Router } from '@angular/router';
@@ -46,7 +48,8 @@ export class AuthenticateComponent implements OnInit {
         this.authService.authUserGoogle(user.id).subscribe(data => {
           const res: any = data;
           if (res.success) {
-            this.authService.storeUserData(res.token, res.user);
+            const saveUser = toIUser(res.user);
+            this.authService.storeUserData(res.token, saveUser);
             this.router.navigate(['/dashboard']);
           } else {
             const newUser = {

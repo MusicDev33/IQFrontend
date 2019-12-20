@@ -14,6 +14,8 @@ export interface IUser {
   profileHits: number;
   credentials: any; // FIX - No Any!
   customization: any;
+  paidProgram: boolean;
+  test: boolean;
 
-  getMongoID();
+  getMongoID(): string;
 }

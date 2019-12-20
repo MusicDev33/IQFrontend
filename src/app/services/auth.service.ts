@@ -1,6 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Headers } from '@angular/http';
+import { IUser } from '@interfaces/schemas/IUser';
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt';
 import { JwtHelper } from 'angular2-jwt';
@@ -42,7 +43,7 @@ export class AuthService {
       .pipe(map(res => res));
   }
 
-  storeUserData(token, user) {
+  storeUserData(token, user: IUser) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
 
