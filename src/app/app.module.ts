@@ -29,6 +29,8 @@ import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
+import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
+
 
 // Jobs Module
 import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
@@ -111,7 +113,8 @@ export function provideConfig() {
     QuestionEditComponent,
     QuestionBoxComponent,
     ReportQuestionComponent,
-    IQJobsComponent
+    IQJobsComponent,
+    CMDashboardComponent
   ],
   imports: [
     BrowserModule,
