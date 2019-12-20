@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { JobAppsService } from '@services/backend/jobapps.service';
 
 @Component({
   selector: 'app-iqjobs',
@@ -9,9 +11,16 @@ export class IQJobsComponent implements OnInit {
 
   jobsList: Array<string>;
   jobIndex = 0;
-  fullNameField = '';
 
-  constructor() { }
+  fullNameField = '';
+  email = '';
+  phoneNumber = '';
+  skills = '';
+
+  constructor(
+    public jobAppsService: JobAppsService,
+    public flashMsg: FlashMessagesService
+  ) { }
 
   ngOnInit() {
     this.jobsList = ['Content Management Agent'];
@@ -26,7 +35,6 @@ export class IQJobsComponent implements OnInit {
   }
 
   decreaseJobIndex() {
-    console.log("hi")
     if (this.jobIndex <= 0) {
       this.jobIndex = 0;
     } else {
@@ -35,6 +43,34 @@ export class IQJobsComponent implements OnInit {
   }
 
   clickedOnApply() {
-    
+    const jobApplication = {
+      phoneNumber: this.phoneNumber,
+      email: this.email,
+      name: this.fullNameField,
+      skills: this.skills,
+      job: this.jobsList[this.jobIndex],
+      jobType: 'Entry'
+    }
+
+    this.jobAppsService.sendJobApplication(jobApplication).subscribe(data => {
+      const res: any = data;
+      this.phoneNumber = '';
+      this.fullNameField = '';
+      this.email = '';
+      this.skills = '';
+      if (res.success) {
+        this.flashMsg.show(res.msg, { cssClass: 'alert-success', timeout: 3000 });
+      } else {
+        this.flashMsg.show(res.msg, { cssClass: 'alert-danger', timeout: 3000 });
+      }
+    });
+  }
+
+  allFieldsFilled(): boolean {
+    if (this.fullNameField.length && this.email.length && this.phoneNumber.length) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
