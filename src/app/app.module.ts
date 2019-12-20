@@ -34,6 +34,7 @@ import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.
 
 // Jobs Module
 import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
+import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
 
 // Dropins
 import { QuestionBoxComponent } from './components/dropins/questionbox/questionbox.component';
@@ -114,7 +115,8 @@ export function provideConfig() {
     QuestionBoxComponent,
     ReportQuestionComponent,
     IQJobsComponent,
-    CMDashboardComponent
+    CMDashboardComponent,
+    CMAgentMasterComponent
   ],
   imports: [
     BrowserModule,
