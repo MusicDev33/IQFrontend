@@ -91,7 +91,7 @@ export class UserService {
         .pipe(map(res => res));
     }
 
-    followSubject(subjectURL) {
+    followSubject(subjectURL: string) {
       const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', localStorage.getItem('id_token'));

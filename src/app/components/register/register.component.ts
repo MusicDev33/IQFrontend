@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSignIn(user) {
+  onSignIn(user: any) {
     // this.authService.setTempUser(user);
     console.log(user);
   }
