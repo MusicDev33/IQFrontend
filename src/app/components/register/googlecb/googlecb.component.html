@@ -10,12 +10,12 @@
       <div class="row justify-content-center">
         <input [(ngModel)]="usernameText"
               placeholder="Pick a username!"
-              class="form-control col-6"
+              class="form-control iq-form col-6"
               (keypress)="inputOnKeydown($event)"/>
       </div>
       <div class="row justify-content-center mt-3">
         <div class="col-4 text-center">
-          <button (click)="submitForm()" class="btn iq-button" [ngClass]="{'hidden': usernameText.length === 0}">Get Started</button>
+          <button (click)="submitForm()" class="btn iq-btn-1" [ngClass]="{'hidden': usernameText.length === 0}">Get Started</button>
         </div>
       </div>
     </div>

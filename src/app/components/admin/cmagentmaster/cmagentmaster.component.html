@@ -1,1 +1,25 @@
-<p>cmagentmaster works!</p>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-10 cmagent-ribbon py-3">
+      <div class="col-4 iq-card" *ngFor='let cmAgent of cmAgents' (click)="selectUser(cmAgent)">
+        <h5 class="text-center">{{ cmAgent.name }}</h5>
+        <h6>Monthly Posts</h6>
+        <h6>Weekly Posts</h6>
+        <h6>Daily Posts</h6>
+      </div>
+    </div>
+  </div>
+
+  <section class="row justify-content-center mt-2" *ngIf="selectedUser.name">
+    <h3>{{ selectedUser.name }}</h3>
+  </section>
+
+  <section class="row justify-content-center mt-2" *ngIf="selectedUser.name">
+    <div class="col-5 cmagent-ribbon py-1 px-2">
+      <div class="iq-card col-12 my-2" *ngFor="let editLog of editLogs">
+        <h5>{{ editLog.editType }}</h5>
+        <h5>Posted {{ getDateFromID(editLog._id) }}</h5>
+      </div>
+    </div>
+  </section>
+</div>
