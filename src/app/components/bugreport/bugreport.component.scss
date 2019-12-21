@@ -17,7 +17,7 @@
 textarea {
   resize: vertical;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   min-height: 80px;
   max-height: 320px;
 }
@@ -42,4 +42,28 @@ textarea {
 
 .selected {
   border-bottom: solid 3px $color-primary;
+}
+
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $scroll-bg;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scroll-thumb;
+  border-radius: 2px;
+  transition: $time-slow;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $scroll-hover;
 }
