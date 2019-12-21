@@ -18,6 +18,10 @@
   outline: none;
 }
 
+.cdk-global-scrollblock {
+  overflow-y: hidden!important;
+}
+
 /* These will all be Bootstrap overrides*/
 input {
   border-radius: 9px!important;
