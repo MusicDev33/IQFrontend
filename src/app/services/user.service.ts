@@ -16,6 +16,7 @@ export class UserService {
   authToken: any;
   user: User;
   routeBase = '';
+  tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
@@ -23,6 +24,7 @@ export class UserService {
     private http: HttpClient) {
       if (isDevMode()) {
         this.routeBase = devRoutes.routeBase;
+        this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
         this.routeBase = prodRoutes.routeBase;
       }
@@ -116,11 +118,11 @@ export class UserService {
     }
 
     changeBio(bio: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/bio';
+      const route = this.tsRouteBase + '/users/set/' + this.userMongoID() + '/bio';
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', localStorage.getItem('id_token'));
       // Shorthand...I'm not sure how I feel about it
-      return this.http.post(route, {bio}, {headers})
+      return this.http.post(route, {paramValue: bio}, {headers})
         .pipe(map(res => res));
     }
 }

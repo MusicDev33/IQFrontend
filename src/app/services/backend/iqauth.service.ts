@@ -14,6 +14,7 @@ export class IQAuthService {
   authToken: any;
   user: any;
   routeBase = '';
+  tsRouteBase = '';
 
   tempGoogleID = '';
   tempUser = {
@@ -30,6 +31,7 @@ export class IQAuthService {
     private http: HttpClient) {
       if (isDevMode()) {
         this.routeBase = devRoutes.routeBase;
+        this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
         this.routeBase = prodRoutes.routeBase;
       }
@@ -40,35 +42,36 @@ export class IQAuthService {
 
   registerUser(user) {
     const headers = this.headersTemplate;
-    return this.http.post(this.routeBase + '/users/register', user, {headers})
+    return this.http.post(this.tsRouteBase + '/users/register', user, {headers})
       .pipe(map(res => res));
   }
 
   registerUserWithGoogle(user: any) {
     const headers = this.headersTemplate;
-    return this.http.post(this.routeBase + '/users/g/register', user, {headers})
+    return this.http.post(this.tsRouteBase + '/users/g/register', user, {headers})
       .pipe(map(res => res));
   }
 
   authenticateUser(user) {
     const headers = this.headersTemplate;
-    return this.http.post(this.routeBase + '/users/authenticate', user, {headers})
+    return this.http.post(this.tsRouteBase + '/users/authenticate', user, {headers})
       .pipe(map(res => res));
   }
 
   authUserGoogle(googleID: string) {
     const headers = this.headersTemplate;
     const body = { googleID };
-    return this.http.post(this.routeBase + '/users/g/authenticate', body, {headers})
+    return this.http.post(this.tsRouteBase + '/users/g/authenticate', body, {headers})
       .pipe(map(res => res));
   }
 
-  addGoogleIDToUser(userid: string, googleID: string) {
-    const headers = this.headersTemplate;
-    const body = { googleID };
-    return this.http.put(this.routeBase + '/users/' + userid + '/googleid/add', body, {headers})
-      .pipe(map(res => res));
-  }
+  // Deprecated for now
+  // addGoogleIDToUser(userid: string, googleID: string) {
+  //   const headers = this.headersTemplate;
+  //   const body = { googleID };
+  //   return this.http.put(this.routeBase + '/users/' + userid + '/googleid/add', body, {headers})
+  //     .pipe(map(res => res));
+  // }
 
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
