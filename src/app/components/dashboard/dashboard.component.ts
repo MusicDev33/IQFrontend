@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  questionClicked(text) {
+  questionClicked(text: string) {
     const questionURL = this.qService.questionTextToURL(text);
     const routeURL = '/question/' + questionURL;
     this.router.navigate([routeURL]);
@@ -150,10 +150,7 @@ export class DashboardComponent implements OnInit {
     this.subjects.push(subject.name);
     this.userService.changeUserProperty('currentSubjects', this.subjects).subscribe((result: any) => {
 
-    })
-    // this.userService.followSubject(subject.subjectURL).subscribe(data => {
-    //   this.subjects.push(subject.name);
-    // });
+    });
   }
 
   leftArrowClicked() {
@@ -185,7 +182,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  nSubjects(n) {
+  nSubjects(n: number) {
     const end = this.arrayOfSubjects.length;
     if (this.arrayOfSubjects.length - (this.subjectOffset * n) < n) {
       return this.arrayOfSubjects.slice(this.subjectOffset * n, end);
