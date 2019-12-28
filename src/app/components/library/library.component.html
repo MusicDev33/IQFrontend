@@ -72,7 +72,7 @@
           <div class="row">
             <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
             <div class="col-sm-4 text-center subnav-item">
-              <span tooltip="Removes this source from your library" delay="300" class="delete-text">Remove</span>
+              <span tooltip="Removes this source from your library" delay="300" (click)="removeSourceFromUser(openedSourceObject.name)" class="delete-text">Remove</span>
             </div>
           </div>
 

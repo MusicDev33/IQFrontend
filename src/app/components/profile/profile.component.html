@@ -38,10 +38,10 @@
       (click)="onAnswersClick()" [ngClass]="{'selected': view === contentView.answers}">
       Answers
     </div>
-    <div class="col-md-2 col-sm-3 col-7 text-center qa-selectors"
+    <!--<div class="col-md-2 col-sm-3 col-7 text-center qa-selectors"
       (click)="onKnowledgeClick()" [ngClass]="{'selected': view === contentView.knowledge}">
       Knowledge
-    </div>
+    </div>-->
   </section>
 
   <section *ngIf="userQuestions && view === contentView.questions">
@@ -71,43 +71,6 @@
             <i class="fas fa-grip-lines fa-lg knowledge-grip"></i>
           </span>
         </div>
-      </div>
-    </div>
-
-    <div class="row justify-content-center" *ngIf="!addKnowledgeEnabled">
-      <input [(ngModel)]="knowledgeText"
-        class="form-control iq-form col-md-6 col-sm-8 col-10"
-        placeholder="Find a subject you know about!"
-        (keyup)="subjectKeyup()"
-        [typeahead]="subjectSearchResults"
-        typeaheadOptionField="name"
-        [typeaheadOptionsLimit]="5"
-        [typeaheadMinLength]="3"
-        (typeaheadOnSelect)="subjectSelected($event)">
-    </div>
-
-    <div class="row justify-content-center" *ngIf="addKnowledgeEnabled">
-      <div class="col-sm-6 text-center">
-        <font size="5" class="ml-2"><b>{{ selectedSubjectName }}</b></font>
-      </div>
-    </div>
-
-    <div class="row justify-content-center mt-2">
-      <div class="col-sm-6 text-center">
-        <button class="btn iq-btn-1"
-                (click)="addKnowledge()"
-                [disabled]="!addKnowledgeEnabled"
-                [ngClass]="{'enabled': addKnowledgeEnabled}">
-          I Know This!
-        </button>
-      </div>
-    </div>
-
-    <div class="row justify-content-center mt-2" *ngIf="addKnowledgeEnabled">
-      <div class="col-sm-6 text-center">
-        <button class="btn iq-btn-1" (click)="disableKnowledge()">
-          Clear
-        </button>
       </div>
     </div>
   </section>

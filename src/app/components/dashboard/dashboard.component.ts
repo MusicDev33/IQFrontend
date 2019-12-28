@@ -147,9 +147,13 @@ export class DashboardComponent implements OnInit {
   }
 
   followButtonClicked(subject) {
-    this.userService.followSubject(subject.subjectURL).subscribe(data => {
-      this.subjects.push(subject.name);
-    });
+    this.subjects.push(subject.name);
+    this.userService.changeUserProperty('currentSubjects', this.subjects).subscribe((result: any) => {
+
+    })
+    // this.userService.followSubject(subject.subjectURL).subscribe(data => {
+    //   this.subjects.push(subject.name);
+    // });
   }
 
   leftArrowClicked() {

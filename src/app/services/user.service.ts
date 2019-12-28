@@ -50,22 +50,17 @@ export class UserService {
       return '' + this.getUser()._id;
     }
 
+    getUserByURLParam(param: string, paramValue: string) {
+      let headers = this.headersTemplate;
+      headers = headers.set('Authorization', this.getToken());
+      return this.http.get(this.tsRouteBase + '/users/param/' + param + '/' + paramValue, {headers})
+        .pipe(map(res => res));
+    }
+
     getProfile() {
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', this.getToken());
       return this.http.get(this.routeBase + '/users/profile', {headers})
-        .pipe(map(res => res));
-    }
-
-    getUserByHandle(handle: string) {
-      const headers = this.headersTemplate;
-      return this.http.get(this.routeBase + '/users/profile/' + handle, {headers})
-        .pipe(map(res => res));
-    }
-
-    getIfHandleTaken(handle: string) {
-      const headers = this.headersTemplate;
-      return this.http.get(this.routeBase + '/users/check/handle/' + handle, {headers})
         .pipe(map(res => res));
     }
 
@@ -77,52 +72,11 @@ export class UserService {
         .pipe(map(res => res));
     }
 
-    addSourceToUser(sourceName: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
+    changeUserProperty(propertyName: string, propertyValue: any) {
+      const route = this.tsRouteBase + '/users/set/' + this.userMongoID() + '/' + propertyName;
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      return this.http.post(route, {}, {headers})
-        .pipe(map(res => res));
-    }
-
-    removeSourceFromUser(sourceName: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/sources/' + sourceName;
-      let headers = this.headersTemplate;
-      headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      return this.http.post(route, {}, {headers})
-        .pipe(map(res => res));
-    }
-
-    followSubject(subjectURL: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/subjects/' + subjectURL;
-      let headers = this.headersTemplate;
-      headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      return this.http.post(route, {}, {headers})
-        .pipe(map(res => res));
-    }
-
-    addKnowledge(subjectURL: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-      let headers = this.headersTemplate;
-      headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      return this.http.post(route, {}, {headers})
-        .pipe(map(res => res));
-    }
-
-    deleteKnowledge(subjectURL: string) {
-      const route = this.routeBase + '/users/' + this.userMongoID() + '/knowledge/' + subjectURL;
-      let headers = this.headersTemplate;
-      headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      return this.http.delete(route, {headers})
-        .pipe(map(res => res));
-    }
-
-    changeBio(bio: string) {
-      const route = this.tsRouteBase + '/users/set/' + this.userMongoID() + '/bio';
-      let headers = this.headersTemplate;
-      headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      // Shorthand...I'm not sure how I feel about it
-      return this.http.post(route, {paramValue: bio}, {headers})
+      return this.http.post(route, {paramValue: propertyValue}, {headers})
         .pipe(map(res => res));
     }
 }

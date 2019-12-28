@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
 
-    this.userService.getUserByHandle(this.userHandle).subscribe(userData => {
+    this.userService.getUserByURLParam('handle', this.userHandle).subscribe(userData => {
       let userResponse: any = {};
       userResponse = userData;
       this.currentUser = Object.assign(new User(), userResponse.user);
@@ -166,9 +166,8 @@ export class ProfileComponent implements OnInit {
   sendBio() {
     this.bioMode = false;
     this.currentUser.bio = this.bioText;
-    this.userService.changeBio(this.bioText).subscribe(data => {
-      const res: any = data;
-      this.debug.log(res);
+    this.userService.changeUserProperty('bio', this.bioText).subscribe((results: any) => {
+      this.debug.log(results);
     });
   }
 
@@ -191,24 +190,26 @@ export class ProfileComponent implements OnInit {
     this.knowledgeText = '';
   }
 
-  addKnowledge() {
-    this.userService.addKnowledge(this.selectedSubjectURL).subscribe(data => {
-      const res: any = data;
-      this.debug.log(res);
-      this.selectedSubjectURL = '';
-      this.selectedSubjectName = '';
-      this.addKnowledgeEnabled = false;
-    });
-  }
 
-  deleteKnowledge() {
-    this.userService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
-      const res: any = data;
-      this.debug.log(res);
-    });
-  }
-
-  disableKnowledge() {
-    this.addKnowledgeEnabled = false;
-  }
+  // UNUSED STUFF
+  // addKnowledge() {
+  //   this.userService.addKnowledge(this.selectedSubjectURL).subscribe(data => {
+  //     const res: any = data;
+  //     this.debug.log(res);
+  //     this.selectedSubjectURL = '';
+  //     this.selectedSubjectName = '';
+  //     this.addKnowledgeEnabled = false;
+  //   });
+  // }
+  //
+  // deleteKnowledge() {
+  //   this.userService.deleteKnowledge(this.selectedSubjectURL).subscribe(data => {
+  //     const res: any = data;
+  //     this.debug.log(res);
+  //   });
+  // }
+  //
+  // disableKnowledge() {
+  //   this.addKnowledgeEnabled = false;
+  // }
 }

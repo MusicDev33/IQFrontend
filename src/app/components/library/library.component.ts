@@ -87,22 +87,28 @@ export class LibraryComponent implements OnInit {
 
   addSourceToUser() {
     const source = this.selectedSource;
-    this.userService.addSourceToUser(this.selectedSource).subscribe(data => {
-      const res: any = data;
-      this.debug.log(data);
-      if (res.success) {
-        this.user.currentSources.push(source);
-      }
-    });
+    this.user.currentSources.push(source);
     this.findSourceText = '';
     this.selectedSource = '';
     this.selectedSourceID = '';
+    this.userService.changeUserProperty('currentSources', this.user.currentSources).subscribe((result: any) => {
+
+    });
   }
 
   removeSourceFromUser(sourceName: string) {
-    this.userService.removeSourceFromUser(sourceName).subscribe(data => {
-      this.debug.log(data);
-    });
+    this.selectedTag = '';
+    this.openedSource = '';
+    this.openedSourceObject = {};
+    this.questions = [];
+    this.currentQuestions = [];
+    const index = this.user.currentSources.indexOf(sourceName);
+    if (index > -1) {
+      this.user.currentSources.splice(index, 1);
+      this.userService.changeUserProperty('currentSources', this.user.currentSources).subscribe((results: any) => {
+
+      });
+    }
   }
 
   openSource(sourceName: string) {
