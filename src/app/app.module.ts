@@ -51,7 +51,6 @@ import { AdvintroComponent } from '@components/support/advintro/advintro.compone
 
 // Services - NETWORK
 import { ValidateService } from '@services/utility/validate.service';
-import { AuthService } from '@services/auth.service';
 import { QuestionService } from '@services/question.service';
 import { AnswerService } from '@services/answer.service';
 import { IpgenService } from '@services/ipgen.service';
@@ -138,7 +137,6 @@ export function provideConfig() {
   ],
   providers: [
     ValidateService,
-    AuthService,
     QuestionService,
     AnswerService,
     AuthGuard,

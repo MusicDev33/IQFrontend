@@ -32,7 +32,11 @@
         <div *ngFor="let subject of nSubjects(3)" class="col-4 text-center d-none d-md-block d-lg-none">
           <div class="col-11 iq-card mx-auto">
             <h4>{{ subject.name }}</h4>
-            <div class="btn btn iq-btn-1">Follow</div>
+            <div class="btn iq-btn-1"
+            *ngIf="!user.currentSubjects.includes(subject.name)"
+            (click)="followButtonClicked(subject)">Follow</div>
+
+            <div class="text-followed pt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -40,7 +44,11 @@
         <div *ngFor="let subject of nSubjects(2)" class="col-6 text-center d-none d-sm-block d-md-none">
           <div class="col-11 iq-card mx-auto">
             <h4>{{ subject.name }}</h4>
-            <div class="btn btn iq-btn-1">Follow</div>
+            <div class="btn iq-btn-1"
+            *ngIf="!user.currentSubjects.includes(subject.name)"
+            (click)="followButtonClicked(subject)">Follow</div>
+
+            <div class="text-followed pt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -48,7 +56,11 @@
         <div *ngFor="let subject of nSubjects(1)" class="col-12 text-center d-block d-sm-none">
           <div class="col-11 iq-card mx-auto">
             <h4>{{ subject.name }}</h4>
-            <div class="btn btn iq-btn-1">Follow</div>
+            <div class="btn iq-btn-1"
+            *ngIf="!user.currentSubjects.includes(subject.name)"
+            (click)="followButtonClicked(subject)">Follow</div>
+
+            <div class="text-followed pt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 

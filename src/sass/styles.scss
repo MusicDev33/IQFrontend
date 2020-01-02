@@ -157,3 +157,25 @@ body {
 .dialog-popup .mat-dialog-container {
   border-radius: 10px;
 }
+
+// Scrollbar
+// Width
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+// Track
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+// Handle
+::-webkit-scrollbar-thumb {
+  background: $color-primary-light;
+  border-radius: 10px;
+}
+
+// Handle - Hover
+::-webkit-scrollbar-thumb:hover {
+  background: $color-primary-very-light;
+}

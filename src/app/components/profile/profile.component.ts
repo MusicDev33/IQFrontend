@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 
     this.userHandle = this.activatedRoute.snapshot.paramMap.get('handle');
 
-    this.userService.getUserByURLParam('handle', this.userHandle).subscribe(userData => {
+    this.userService.publicGetUserByHandle(this.userHandle).subscribe(userData => {
       let userResponse: any = {};
       userResponse = userData;
       this.currentUser = Object.assign(new User(), userResponse.user);

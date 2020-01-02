@@ -64,7 +64,7 @@ export class QuestionComponent implements OnInit {
     this.setUpComponent();
 
     this.activatedRoute.url.subscribe(url => {
-       this.setUpComponent();
+      this.setUpComponent();
     });
   }
 
@@ -89,6 +89,22 @@ export class QuestionComponent implements OnInit {
         {name: 'robots', content: 'index, follow'}
       ]);
 
+      this.answerService.getAnswers(this.questionID).subscribe(data => {
+        let res: any = {};
+        let user: any;
+        res = data;
+        this.answers = res.answers;
+
+        user = this.userService.getUser();
+
+        this.answers.forEach( (answer) => {
+          this.debug.log(answer);
+          if (answer.poster === user.name) {
+            this.userHasAnswered = true;
+          }
+        });
+      });
+
       this.votesService.getVotes(this.question._id, this.userService.getUser().getMongoID()).subscribe(voteData => {
         let vResponse: any = {};
         vResponse = voteData;
@@ -96,7 +112,7 @@ export class QuestionComponent implements OnInit {
         if (vResponse.votes) {
           vResponse.votes.forEach((vote: Vote) => {
             if (vote.vote !== 0) {
-              this.votedAnswers[vote.answerid] = vote.vote;
+              this.votedAnswers[vote.answerID] = vote.vote;
             }
           });
           this.debug.log(this.votedAnswers);
@@ -106,22 +122,6 @@ export class QuestionComponent implements OnInit {
     }, err => {
       this.debug.log(err);
       return false;
-    });
-
-    this.answerService.getAnswers(this.questionURL).subscribe(data => {
-      let res: any = {};
-      let user: any;
-      res = data;
-      this.answers = res.answers;
-
-      user = this.userService.getUser();
-
-      this.answers.forEach( (answer) => {
-        this.debug.log(answer);
-        if (answer.poster === user.name) {
-          this.userHasAnswered = true;
-        }
-      });
     });
   }
 
@@ -145,7 +145,7 @@ export class QuestionComponent implements OnInit {
     };
     this.debug.log(answer);
 
-    this.answerService.sendAnswer(answer, this.questionURL).subscribe(data => {
+    this.answerService.sendAnswer(answer, this.question._id).subscribe(data => {
       const response: any = data;
       if (response.success) {
         this.flashMsg.show('Answer added.', {cssClass: 'alert-success', timeout: 1500});
@@ -174,8 +174,8 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  deleteAnswer(answerID) {
-    this.answerService.deleteAnswer(this.questionURL, answerID).subscribe(data => {
+  deleteAnswer(answerID: string) {
+    this.answerService.deleteAnswer(this.questionID, answerID).subscribe(data => {
       const res: any = data;
       this.answers = this.answers.filter((answer) => {
         return answer._id !== res.answer._id;
@@ -184,7 +184,7 @@ export class QuestionComponent implements OnInit {
   }
 
   // Still trying to figure out a good way to do this...
-  voteClicked(answer, castVote) {
+  voteClicked(answer, castVote: number) {
     const negCastVote = 0 - castVote;
     if (answer._id in this.votedAnswers) {
       const vote = this.votedAnswers[answer._id];
@@ -216,7 +216,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  sendVote(vote, answerid) {
+  sendVote(vote: number, answerid: string) {
     this.votesService.sendVote(this.question._id, this.userService.getUser().getMongoID(), answerid, vote).subscribe(data => {
       const response: any = {};
     });

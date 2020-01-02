@@ -1,9 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { tokenNotExpired } from 'angular2-jwt';
-import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
@@ -12,12 +9,14 @@ import * as prodRoutes from '../globals/prodroutes';
 })
 export class VotesService {
   routeBase = '';
+  tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
+      this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
@@ -29,8 +28,7 @@ export class VotesService {
   sendVote(questionid: string, userid: string, answerid: string, vote: number) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    const votes = vote.toString();
-    const urlString = this.routeBase + '/questions/' + '' + questionid + '/' + '' + userid + '/' + '' + answerid + '/vote';
+    const urlString = this.tsRouteBase + '/questions/' + questionid + '/' + userid + '/' + answerid + '/vote';
     return this.http.post(urlString, {vote}, {headers})
       .pipe(map(res => res));
   }
@@ -38,7 +36,7 @@ export class VotesService {
   getVotes(questionid: string, userid: string) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    const urlString = this.routeBase + '/questions/' + questionid + '/answers/votes/' + userid;
+    const urlString = this.tsRouteBase + '/questions/' + questionid + '/answers/' + userid + '/votes';
     return this.http.get(urlString, {headers})
       .pipe(map(res => res));
   }

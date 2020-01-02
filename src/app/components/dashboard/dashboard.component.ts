@@ -45,9 +45,9 @@ export class DashboardComponent implements OnInit {
     }
 
   @HostListener('window:resize', ['$event'])
-    getScreenSize(event?) {
-      this.screenHeight = window.innerHeight;
-      this.screenWidth = window.innerWidth;
+  getScreenSize(event?) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
   }
 
   ngOnInit() {

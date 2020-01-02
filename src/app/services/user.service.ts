@@ -57,6 +57,12 @@ export class UserService {
         .pipe(map(res => res));
     }
 
+    publicGetUserByHandle(handle: string) {
+      let headers = this.headersTemplate;
+      return this.http.get(this.tsRouteBase + '/users/public/handle/' + handle, {headers})
+        .pipe(map(res => res));
+    }
+
     getProfile() {
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', this.getToken());
