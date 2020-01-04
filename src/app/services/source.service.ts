@@ -11,12 +11,14 @@ import * as prodRoutes from '../globals/prodroutes';
 export class SourceService {
 
   routeBase = '';
+  tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
       this.routeBase = devRoutes.routeBase;
+      this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
       this.routeBase = prodRoutes.routeBase;
     }
@@ -27,41 +29,20 @@ export class SourceService {
 
   getAllSources() {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/sources/', {headers})
+    return this.http.get(this.tsRouteBase + '/sources/', {headers})
       .pipe(map(res => res));
   }
 
   addNewSource(name: string) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    return this.http.post(this.routeBase + '/sources/add', {name}, {headers})
+    return this.http.post(this.tsRouteBase + '/sources/add', {name}, {headers})
       .pipe(map(res => res));
   }
 
   getQuestionsFromSource(sourceId: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/sources/' + sourceId + '/questions', {headers})
-      .pipe(map(res => res));
-  }
-
-  getQuestionsFromSourceByName(sourceName: string) {
-    let urlText = '';
-    const specialChars = '!@#$%^&*()>< \'';
-
-    for (let i = 0; i < sourceName.length; i++) {
-      if (specialChars.indexOf(sourceName[i]) > -1) {
-        urlText += '-';
-      } else if (sourceName[i] === '?') {
-
-      } else {
-        urlText += sourceName[i];
-      }
-    }
-
-    const totalUrl = this.routeBase + '/sources/url/' + urlText + '/questions';
-
-    const headers = this.headersTemplate;
-    return this.http.get(totalUrl, {headers})
+    return this.http.get(this.tsRouteBase + '/sources/' + sourceId + '/questions', {headers})
       .pipe(map(res => res));
   }
 
@@ -80,7 +61,7 @@ export class SourceService {
     }
 
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/sources/name/' + urlText, {headers})
+    return this.http.get(this.tsRouteBase + '/sources/url/' + urlText, {headers})
       .pipe(map(res => res));
   }
 
@@ -100,7 +81,7 @@ export class SourceService {
 
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    return this.http.post(this.routeBase + '/sources/' + sourceId + '/tags/' + tagUrl, {}, {headers})
+    return this.http.post(this.tsRouteBase + '/sources/' + sourceId + '/tags/' + tagUrl, {}, {headers})
       .pipe(map(res => res));
   }
 }

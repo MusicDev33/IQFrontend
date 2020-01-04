@@ -66,12 +66,12 @@ export class UserService {
     getProfile() {
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', this.getToken());
-      return this.http.get(this.routeBase + '/users/profile', {headers})
+      return this.http.get(this.tsRouteBase + '/users/profile', {headers})
         .pipe(map(res => res));
     }
 
     getFeed() {
-      const route = this.routeBase + '/feed/' + this.userMongoID();
+      const route = this.tsRouteBase + '/feed/' + this.userMongoID();
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', localStorage.getItem('id_token'));
       return this.http.get(route, {headers})

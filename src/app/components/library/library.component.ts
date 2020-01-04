@@ -114,17 +114,18 @@ export class LibraryComponent implements OnInit {
   openSource(sourceName: string) {
     this.selectedTag = '';
     this.openedSource = sourceName;
-    this.sourceService.getQuestionsFromSourceByName(sourceName).subscribe(data => {
-      this.debug.log(data);
-      const res: any = data;
-      this.questions = res.questions;
-      this.currentQuestions = this.questions;
-    });
 
     this.sourceService.getSourceByName(sourceName).subscribe(data => {
       const res: any = data;
       this.openedSourceObject = res.source;
-      this.debug.log(this.openedSourceObject.tags);
+      console.log(res.source)
+      this.sourceService.getQuestionsFromSource(res.source._id).subscribe(sourceResults => {
+        this.debug.log(sourceResults);
+        const res: any = sourceResults;
+        this.questions = res.questions;
+        this.currentQuestions = this.questions;
+        console.log(this.currentQuestions)
+      });
     });
   }
 
