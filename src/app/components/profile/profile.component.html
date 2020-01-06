@@ -1,9 +1,10 @@
 <div class="container mt-3" *ngIf="userResponse && userResponse.success">
   <section class="row justify-content-center mb-3" *ngIf="currentUser">
     <div class="col-sm-12 text-center">
-      <div class="profile-circle">
+      <div class="profile-circle" *ngIf="!currentUser.profileImage.length">
         <i class="fas fa-user profile-icon"></i>
       </div>
+      <img class="profile-img" src="{{ currentUser.profileImage }}" alt="Your totally rad profile pic" *ngIf="currentUser.profileImage.length">
     </div>
 
     <div class="col-sm-12 text-center">

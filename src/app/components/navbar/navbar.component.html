@@ -1,5 +1,5 @@
 <ng-template #everythingSearch let-model="item" let-index="index" class="typeahead-container">
-  <span class="typeahead-item">{{model.name}}</span>
+  <span class="typeahead-item">{{model.name || model.questionText}}</span>
 </ng-template>
 
 <nav class="navbar navbar-large line fixed-top navbar-expand-md navbar-light bg-light nav-margins navbar-custom justify-content-center"

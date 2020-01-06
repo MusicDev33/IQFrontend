@@ -1,6 +1,5 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -28,13 +27,13 @@ export class SearchService {
     this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  subjectSearch(searchTerm) {
+  subjectSearch(searchTerm: string) {
     const headers = this.headersTemplate;
     return this.http.get(this.routeBase + '/subjects/search/' + searchTerm, {headers})
       .pipe(map(res => res));
   }
 
-  sourceSearch(searchTerm) {
+  sourceSearch(searchTerm: string) {
     const headers = this.headersTemplate;
     return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers})
       .pipe(map(res => res));
@@ -42,13 +41,13 @@ export class SearchService {
 
   // This is for the typeahead, it needs the observable so we have to
   // do things a little differently
-  searchEverythingTypeahead(searchTerm): Observable<any> {
+  searchEverythingTypeahead(searchTerm: string): Observable<any> {
     const headers = this.headersTemplate;
     // Turn spaces into dashes
     let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
     // Get rid of special characters
     sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
-    return this.http.get(this.routeBase + '/search/everything/' + sanitizedSearch, {headers})
+    return this.http.get(this.tsRouteBase + '/search/everything/' + sanitizedSearch, {headers})
       .pipe(map((res: any) => res.questions.concat(res.sources, res.subjects, res.users) ));
   }
 }

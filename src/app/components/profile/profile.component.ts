@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
 
   setUpComponent() {
     // Enum hax
-    this.view = ContentView.knowledge;
+    this.view = ContentView.questions;
     this.knowledgeArray = [];
 
 

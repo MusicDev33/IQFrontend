@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { NgForm } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { Observer } from 'rxjs/Observer';
-import { mergeMap } from 'rxjs/operators';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
@@ -110,7 +107,7 @@ export class NavbarComponent implements OnInit {
   }
 
   questionSelected(question: any) {
-    const questionURL = this.questionService.questionTextToURL(question.name);
+    const questionURL = this.questionService.questionTextToURL(question.questionText);
     const routeURL = '/question/' + questionURL;
     this.router.navigate([routeURL]);
   }

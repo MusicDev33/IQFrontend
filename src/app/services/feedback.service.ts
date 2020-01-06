@@ -1,6 +1,5 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -30,7 +29,7 @@ export class FeedbackService {
   sendFeedback(feedback: any) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    return this.http.post(this.routeBase + '/feedback/add', feedback, {headers})
+    return this.http.post(this.tsRouteBase + '/feedback/add', feedback, {headers})
       .pipe(map(res => res));
   }
 }
