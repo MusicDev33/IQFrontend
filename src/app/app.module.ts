@@ -53,7 +53,6 @@ import { AdvintroComponent } from '@components/support/advintro/advintro.compone
 import { ValidateService } from '@services/utility/validate.service';
 import { QuestionService } from '@services/question.service';
 import { AnswerService } from '@services/answer.service';
-import { IpgenService } from '@services/ipgen.service';
 import { VotesService } from '@services/votes.service';
 import { SubjectsService } from '@services/subjects.service';
 import { SourceService } from '@services/source.service';
@@ -143,7 +142,6 @@ export function provideConfig() {
     LoginGuard,
     ProductionGuard,
     GSigninGuard,
-    IpgenService,
     VotesService,
     SubjectsService,
     SearchService,
