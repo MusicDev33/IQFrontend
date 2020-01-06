@@ -27,6 +27,7 @@ export class UserService {
         this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
         this.routeBase = prodRoutes.routeBase;
+        this.tsRouteBase = prodRoutes.tsRouteBase;
       }
 
       this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
