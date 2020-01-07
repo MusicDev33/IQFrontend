@@ -6,6 +6,7 @@ import { QuestionService } from '@services/question.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
+import { ReportQuestionComponent } from '@components/reportquestion/reportquestion.component';
 
 @Component({
   selector: 'app-questionbox',
@@ -61,4 +62,23 @@ export class QuestionBoxComponent implements OnInit {
     });
   }
 
+  reportQuestionClicked(question: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+    dialogConfig.panelClass = 'dialog-popup';
+
+    dialogConfig.data = {
+      question
+    };
+
+    this.dialogOpen = true;
+    const dialogRef = this.dialog.open(ReportQuestionComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(editData => {
+      this.dialogOpen = false;
+    });
+  }
 }

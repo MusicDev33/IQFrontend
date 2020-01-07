@@ -1,10 +1,13 @@
 import { Component, OnInit, NgZone, isDevMode } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import { toIUser } from '@interfaces/typeguards/IUserTest';
+
 import { ValidateService } from '@services/utility/validate.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { Router } from '@angular/router';
 import { DebugService } from '@services/utility/debug.service';
+import { UserService } from '@services/user.service';
 
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AuthService } from 'angularx-social-login';
@@ -31,6 +34,7 @@ export class AuthenticateComponent implements OnInit {
     public router: Router,
     public debug: DebugService,
     public ngZone: NgZone,
+    public userService: UserService,
     public socialAuthService: AuthService) {
       if (isDevMode()) {
         this.isDevMode = true;
@@ -46,7 +50,11 @@ export class AuthenticateComponent implements OnInit {
         this.authService.authUserGoogle(user.id).subscribe(data => {
           const res: any = data;
           if (res.success) {
-            this.authService.storeUserData(res.token, res.user);
+            const saveUser = toIUser(res.user);
+            this.authService.storeUserData(res.token, saveUser);
+            this.userService.changeUserProperty('profileImage', user.photoUrl).subscribe(results => {
+              this.debug.log(results);
+            });
             this.router.navigate(['/dashboard']);
           } else {
             const newUser = {

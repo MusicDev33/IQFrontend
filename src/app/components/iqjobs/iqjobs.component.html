@@ -1,0 +1,38 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2 class="text-center">Welcome to Inquantir Jobs!</h2>
+      <p class="description">Currently, there is only one position we're offering, and it is only open to students at Utah State University.
+        You can apply via the forms to the right.<br>
+        You can expect the following as a Content Management Agent:</p>
+      <ul>
+        <li>$10/hr</li>
+        <li>A few hours a week (anywhere from 2-5)</li>
+        <li>The ability to work from anywhere. You need a laptop and an internet connection.</li>
+        <li>The ability to work at any time. Hours just need to be completed by the end of the week (Saturday).</li>
+        <li>Occasional meetings</li>
+      </ul>
+      If you have any other questions, send an email to <a href="mailto:itsme@shelbymccowan.com">itsme@shelbymccowan.com</a>
+    </div>
+    <div class="col-6">
+      <div class="row justify-content-center card-container py-3">
+        <div class="col-1 my-auto">
+          <i class="fas fa-chevron-left side-arrow" (click)="decreaseJobIndex()"
+            [ngClass]="{'enabled': jobIndex > 0, 'disabled': jobIndex <= 0}"></i>
+        </div>
+        <div class="col-10 iq-card text-center px-3">
+          <h3>{{ jobsList[jobIndex] }}</h3>
+          <input class="form-control iq-form mt-4" placeholder="Full Name" [(ngModel)]="fullNameField">
+          <input class="form-control iq-form mt-2" placeholder="Email" [(ngModel)]="email">
+          <input class="form-control iq-form mt-2" placeholder="Phone Number" [(ngModel)]="phoneNumber">
+          <textarea class="form-control iq-form mt-2 skills-input txtarea-scroll" [(ngModel)]="skills" placeholder="Optional - Do you have any other skills?"></textarea>
+          <button class="btn iq-btn-1 mt-3" (click)="clickedOnApply()" [disabled]="!allFieldsFilled()"><b>Apply</b></button>
+        </div>
+        <div class="col-1 my-auto">
+          <i class="fas fa-chevron-right side-arrow disabled" (click)="increaseJobIndex()"
+            [ngClass]="{'enabled': jobIndex < jobsList.length - 1, 'disabled': jobIndex >= jobsList.length - 1}"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

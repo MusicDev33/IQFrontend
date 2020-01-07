@@ -9,7 +9,7 @@ export class Question implements IServerResponse, IMongoObject {
   askerID: string;
   askerHandle: string;
   subject: string;
-  homeworkSource: string;
+  homeworkSource: string[];
   views: number;
   votes: number;
   details: string;

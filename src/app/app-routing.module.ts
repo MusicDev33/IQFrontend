@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '@components/home/home.component';
 import { RegisterComponent } from '@components/register/register.component';
 import { AuthenticateComponent } from '@components/authenticate/authenticate.component';
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
@@ -10,6 +9,8 @@ import { LibraryComponent } from '@components/library/library.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@components/usersettings/usersettings.component';
 import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
+import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
+import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
 
 import { AboutComponent } from '@components/about/about.component';
 import { PolicyComponent } from '@components/policy/policy.component';
@@ -52,7 +53,9 @@ const routes: Routes = [
   { path: 'policy', component: PolicyComponent},
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
-  { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]}
+  { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]},
+  // { path: 'jobs', component: IQJobsComponent},
+  // { path: 'admin/cmagent', component: CMAgentMasterComponent} // Add Admin guard to this!!!
 ];
 
 @NgModule({

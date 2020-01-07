@@ -29,6 +29,12 @@ import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
+import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
+
+
+// Jobs Module
+import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
+import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
 
 // Dropins
 import { QuestionBoxComponent } from './components/dropins/questionbox/questionbox.component';
@@ -45,10 +51,8 @@ import { AdvintroComponent } from '@components/support/advintro/advintro.compone
 
 // Services - NETWORK
 import { ValidateService } from '@services/utility/validate.service';
-import { AuthService } from '@services/auth.service';
 import { QuestionService } from '@services/question.service';
 import { AnswerService } from '@services/answer.service';
-import { IpgenService } from '@services/ipgen.service';
 import { VotesService } from '@services/votes.service';
 import { SubjectsService } from '@services/subjects.service';
 import { SourceService } from '@services/source.service';
@@ -56,6 +60,8 @@ import { SearchService } from '@services/search.service';
 import { UserService } from '@services/user.service';
 import { FeedbackService } from '@services/feedback.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
+import { JobAppsService } from '@services/backend/jobapps.service';
+import { CMAgentService } from '@services/backend/cmagent.service';
 
 // Services - UTILITY
 
@@ -73,6 +79,7 @@ import {
 } from 'angularx-social-login';
 
 import googleSocialConfig from './socialLoginConfig';
+import { ReportQuestionComponent } from './components/reportquestion/reportquestion.component';
 
 export function provideConfig() {
   return googleSocialConfig;
@@ -104,7 +111,11 @@ export function provideConfig() {
     UserSettingsComponent,
     GoogleCBComponent,
     QuestionEditComponent,
-    QuestionBoxComponent
+    QuestionBoxComponent,
+    ReportQuestionComponent,
+    IQJobsComponent,
+    CMDashboardComponent,
+    CMAgentMasterComponent
   ],
   imports: [
     BrowserModule,
@@ -125,14 +136,12 @@ export function provideConfig() {
   ],
   providers: [
     ValidateService,
-    AuthService,
     QuestionService,
     AnswerService,
     AuthGuard,
     LoginGuard,
     ProductionGuard,
     GSigninGuard,
-    IpgenService,
     VotesService,
     SubjectsService,
     SearchService,
@@ -140,12 +149,14 @@ export function provideConfig() {
     UserService,
     FeedbackService,
     IQAuthService,
+    JobAppsService,
+    CMAgentService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
     }
   ],
-  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent],
+  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent, ReportQuestionComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

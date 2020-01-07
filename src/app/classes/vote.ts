@@ -4,9 +4,9 @@ import { IServerResponse } from '../interfaces/IServerResponse';
 export class Vote implements IServerResponse, IMongoObject {
   _id: string;
   vote: number;
-  userid: string;
-  answerid: string;
-  questionid: string;
+  userID: string;
+  answerID: string;
+  questionID: string;
 
   success: boolean;
 }

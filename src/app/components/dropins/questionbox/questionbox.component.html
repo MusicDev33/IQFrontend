@@ -1,6 +1,6 @@
 <div class="question-box text-center">
 
-  <span class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</span>
+  <span><span><h4 class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</h4></span></span>
 
   <section class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
     <div>
@@ -27,7 +27,7 @@
         </span>
       </li>
       <li class="dropdown-row">
-        <span class="dropdown-text red pl-3">Report</span>
+        <span class="dropdown-text red pl-3" (click)="reportQuestionClicked(question)">Report</span>
       </li>
     </ul>
   </section>

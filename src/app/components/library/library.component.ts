@@ -87,38 +87,45 @@ export class LibraryComponent implements OnInit {
 
   addSourceToUser() {
     const source = this.selectedSource;
-    this.userService.addSourceToUser(this.selectedSource).subscribe(data => {
-      const res: any = data;
-      this.debug.log(data);
-      if (res.success) {
-        this.user.currentSources.push(source);
-      }
-    });
+    this.user.currentSources.push(source);
     this.findSourceText = '';
     this.selectedSource = '';
     this.selectedSourceID = '';
+    this.userService.changeUserProperty('currentSources', this.user.currentSources).subscribe((result: any) => {
+
+    });
   }
 
   removeSourceFromUser(sourceName: string) {
-    this.userService.removeSourceFromUser(sourceName).subscribe(data => {
-      this.debug.log(data);
-    });
+    this.selectedTag = '';
+    this.openedSource = '';
+    this.openedSourceObject = {};
+    this.questions = [];
+    this.currentQuestions = [];
+    const index = this.user.currentSources.indexOf(sourceName);
+    if (index > -1) {
+      this.user.currentSources.splice(index, 1);
+      this.userService.changeUserProperty('currentSources', this.user.currentSources).subscribe((results: any) => {
+
+      });
+    }
   }
 
   openSource(sourceName: string) {
     this.selectedTag = '';
     this.openedSource = sourceName;
-    this.sourceService.getQuestionsFromSourceByName(sourceName).subscribe(data => {
-      this.debug.log(data);
-      const res: any = data;
-      this.questions = res.questions;
-      this.currentQuestions = this.questions;
-    });
 
     this.sourceService.getSourceByName(sourceName).subscribe(data => {
       const res: any = data;
       this.openedSourceObject = res.source;
-      this.debug.log(this.openedSourceObject.tags);
+      console.log(res.source)
+      this.sourceService.getQuestionsFromSource(res.source._id).subscribe(sourceResults => {
+        this.debug.log(sourceResults);
+        const res: any = sourceResults;
+        this.questions = res.questions;
+        this.currentQuestions = this.questions;
+        console.log(this.currentQuestions)
+      });
     });
   }
 

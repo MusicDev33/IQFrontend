@@ -5,7 +5,6 @@ export interface IUser {
   handle: string;
   email: string;
   phoneNumber: string;
-  password: string;
   profileImage: string;
   googleID: string;
   currentSources: Array<any>;
@@ -15,6 +14,8 @@ export interface IUser {
   profileHits: number;
   credentials: any; // FIX - No Any!
   customization: any;
+  paidProgram: boolean;
+  test: boolean;
 
-  getMongoID();
+  getMongoID(): string;
 }

@@ -1,0 +1,32 @@
+@import '~sass/variables';
+
+.card-container {
+  border-radius: 15px;
+  background-color: $main-bg-color;
+}
+
+.side-arrow {
+  transition: all 0.2s;
+  font-size: 30px;
+}
+
+.side-arrow.disabled {
+  color: #cdcdcd;
+}
+
+.side-arrow.enabled:hover {
+  color: $color-primary;
+  cursor: pointer;
+}
+
+.skills-input {
+  resize: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.description {
+  font-size: 16px;
+}

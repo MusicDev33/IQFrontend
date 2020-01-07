@@ -1,9 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { tokenNotExpired } from 'angular2-jwt';
-import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
@@ -11,14 +8,14 @@ import * as prodRoutes from '../globals/prodroutes';
   providedIn: 'root'
 })
 export class QuestionService {
-  routeBase = '';
+  tsRouteBase = '';
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase;
+      this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
-      this.routeBase = prodRoutes.routeBase;
+      this.tsRouteBase = prodRoutes.tsRouteBase;
     }
 
     this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
@@ -44,31 +41,31 @@ export class QuestionService {
   askQuestion(question: any) {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
-    return this.http.post(this.routeBase + '/questions/add', question, {headers})
+    return this.http.post(this.tsRouteBase + '/questions/add', question, {headers})
       .pipe(map(res => res));
   }
 
   getQuestion(questionURL: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/questions/' + questionURL, {headers})
+    return this.http.get(this.tsRouteBase + '/questions/param/urlText/' + questionURL, {headers})
       .pipe(map(res => res));
   }
 
   getAllQuestions() {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/questions', {headers})
+    return this.http.get(this.tsRouteBase + '/questions', {headers})
       .pipe(map(res => res));
   }
 
   getSubjectQuestions(subject: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/subjects/' + subject + '/questions', {headers})
+    return this.http.get(this.tsRouteBase + '/subjects/' + subject + '/questions', {headers})
       .pipe(map(res => res));
   }
 
   getUserQuestions(userID: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/users/' + userID + '/questions', {headers})
+    return this.http.get(this.tsRouteBase + '/questions/params/askerID/' + userID, {headers})
       .pipe(map(res => res));
   }
 
@@ -77,9 +74,9 @@ export class QuestionService {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const body = {
-      tags: question.tags
+      paramValue: question.tags
     };
-    return this.http.put(this.routeBase + '/questions/' + question._id + '/tags', body, {headers})
+    return this.http.put(this.tsRouteBase + '/questions/set/' + question._id + '/tags', body, {headers})
       .pipe(map(res => res));
   }
 
@@ -87,9 +84,9 @@ export class QuestionService {
     let headers = this.headersTemplate;
     headers = headers.set('Authorization', localStorage.getItem('id_token'));
     const body = {
-      source: question.homeworkSource
+      paramValue: question.homeworkSource
     };
-    return this.http.put(this.routeBase + '/questions/' + question._id + '/source', body, {headers})
+    return this.http.put(this.tsRouteBase + '/questions/set/' + question._id + '/homeworkSource', body, {headers})
       .pipe(map(res => res));
   }
 }
