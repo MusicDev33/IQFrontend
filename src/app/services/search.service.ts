@@ -29,13 +29,21 @@ export class SearchService {
 
   subjectSearch(searchTerm: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/subjects/search/' + searchTerm, {headers})
+    // Turn spaces into dashes
+    let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
+    // Get rid of special characters
+    sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
+    return this.http.get(this.tsRouteBase + '/search/subjects/' + sanitizedSearch, {headers})
       .pipe(map(res => res));
   }
 
   sourceSearch(searchTerm: string) {
     const headers = this.headersTemplate;
-    return this.http.get(this.routeBase + '/sources/search/' + searchTerm, {headers})
+    // Turn spaces into dashes
+    let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
+    // Get rid of special characters
+    sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
+    return this.http.get(this.tsRouteBase + '/search/sources/' + sanitizedSearch, {headers})
       .pipe(map(res => res));
   }
 
