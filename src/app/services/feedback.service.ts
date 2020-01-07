@@ -8,17 +8,14 @@ import * as prodRoutes from '../globals/prodroutes';
   providedIn: 'root'
 })
 export class FeedbackService {
-  routeBase = '';
   tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase;
       this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
-      this.routeBase = prodRoutes.routeBase;
       this.tsRouteBase = prodRoutes.tsRouteBase;
     }
 

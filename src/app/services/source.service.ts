@@ -1,6 +1,5 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -9,18 +8,14 @@ import * as prodRoutes from '../globals/prodroutes';
   providedIn: 'root'
 })
 export class SourceService {
-
-  routeBase = '';
   tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase;
       this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
-      this.routeBase = prodRoutes.routeBase;
       this.tsRouteBase = prodRoutes.tsRouteBase;
     }
 

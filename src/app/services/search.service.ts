@@ -9,17 +9,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchService {
-  routeBase = '';
   tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase;
       this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
-      this.routeBase = prodRoutes.routeBase;
       this.tsRouteBase = prodRoutes.tsRouteBase;
     }
 

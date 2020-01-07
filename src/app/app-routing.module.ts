@@ -54,8 +54,8 @@ const routes: Routes = [
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
   { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]},
-  { path: 'jobs', component: IQJobsComponent},
-  { path: 'admin/cmagent', component: CMAgentMasterComponent} // Add Admin guard to this!!!
+  // { path: 'jobs', component: IQJobsComponent},
+  // { path: 'admin/cmagent', component: CMAgentMasterComponent} // Add Admin guard to this!!!
 ];
 
 @NgModule({

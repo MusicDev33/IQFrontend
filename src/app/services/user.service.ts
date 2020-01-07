@@ -1,8 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { tokenNotExpired } from 'angular2-jwt';
 import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
@@ -15,7 +13,6 @@ import { User } from '@classes/user';
 export class UserService {
   authToken: any;
   user: User;
-  routeBase = '';
   tsRouteBase = '';
 
   headersTemplate = new HttpHeaders();
@@ -23,10 +20,8 @@ export class UserService {
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
-        this.routeBase = devRoutes.routeBase;
         this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
-        this.routeBase = prodRoutes.routeBase;
         this.tsRouteBase = prodRoutes.tsRouteBase;
       }
 
@@ -59,7 +54,7 @@ export class UserService {
     }
 
     publicGetUserByHandle(handle: string) {
-      let headers = this.headersTemplate;
+      const headers = this.headersTemplate;
       return this.http.get(this.tsRouteBase + '/users/public/handle/' + handle, {headers})
         .pipe(map(res => res));
     }

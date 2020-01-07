@@ -1,9 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { tokenNotExpired } from 'angular2-jwt';
-import { JwtHelper } from 'angular2-jwt';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
@@ -11,16 +8,13 @@ import * as prodRoutes from '../globals/prodroutes';
   providedIn: 'root'
 })
 export class QuestionService {
-  routeBase = '';
   tsRouteBase = '';
   headersTemplate = new HttpHeaders();
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.routeBase = devRoutes.routeBase;
       this.tsRouteBase = devRoutes.tsRouteBase;
     } else {
-      this.routeBase = prodRoutes.routeBase;
       this.tsRouteBase = prodRoutes.tsRouteBase;
     }
 

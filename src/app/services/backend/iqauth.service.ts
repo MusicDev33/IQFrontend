@@ -13,7 +13,6 @@ import * as prodRoutes from '../../globals/prodroutes';
 export class IQAuthService {
   authToken: any;
   user: any;
-  routeBase = '';
   tsRouteBase = '';
 
   tempGoogleID = '';
@@ -30,10 +29,9 @@ export class IQAuthService {
   constructor(
     private http: HttpClient) {
       if (isDevMode()) {
-        this.routeBase = devRoutes.routeBase;
         this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
-        this.routeBase = prodRoutes.routeBase;
+        this.tsRouteBase = devRoutes.tsRouteBase;
       }
 
       this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
