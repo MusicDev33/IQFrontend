@@ -15,6 +15,9 @@ import { ReportQuestionComponent } from '@components/reportquestion/reportquesti
 })
 export class QuestionBoxComponent implements OnInit {
 
+  @Input() poster: string;
+  @Input() questionText: string;
+  @Input() answerText: string;
   @Input() question: any;
 
   dialogOpen = false;

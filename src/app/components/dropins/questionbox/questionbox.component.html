@@ -1,24 +1,28 @@
 <div class="question-box text-center">
 
-  <span><span><h4 class="question-url" (click)="questionClicked(question.questionText)">{{ question.questionText }}</h4></span></span>
+  <span>
+    <span>
+      <h4 class="question-url" (click)="questionClicked(questionText)">{{ questionText }}</h4>
+    </span>
+  </span>
 
-  <section class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
+  <section class="px-2 col-sm-12 text-left" *ngIf="poster">
     <div>
       <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
-        <b>{{question.previewAnswer.poster}}</b>
+        <b>{{ poster }}</b>
       </span>
     </div>
   </section>
 
-  <section class="px-2 col-sm-12 text-left" *ngIf="question.previewAnswer">
-    <div class="preview-text">{{question.previewAnswer.answerText}}</div>
+  <section class="px-2 col-sm-12 text-left" *ngIf="answerText">
+    <div class="preview-text">{{ answerText }}</div>
   </section>
 
-  <section class="col-sm-12 answernum-text" *ngIf="question.answerNum === 0">
+  <section class="col-sm-12 answernum-text" *ngIf="!answerText">
     No Answers
   </section>
 
-  <section class="col-12-sm px-2 mb-2 text-left">
+  <section class="col-12-sm px-2 mb-2 text-left" *ngIf="question">
     <i class="fas fa-ellipsis-h options-bar-icon" data-toggle="dropdown"></i>
     <ul class="dropdown-menu dropdown-box text-left">
       <li class="dropdown-row" (click)="editQuestionClicked(question)">

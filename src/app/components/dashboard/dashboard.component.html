@@ -99,7 +99,12 @@
         <div *ngFor="let question of questions" class="text-center">
           <div class="row">
             <div class="col-12">
-              <app-questionbox [question]="question"></app-questionbox>
+              <app-questionbox
+                [question]="question"
+                [questionText]="question.questionText"
+                [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
+                [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+              </app-questionbox>
             </div>
           </div>
         </div>
