@@ -3,9 +3,23 @@
     <h4>Report Question</h4>
   </div>
   <div class="row justify-content-center">
-    <div class="col-1">
-      <div class="circle">
+    <div *ngFor="let reason of reasonsArray" class="col-12">
+      <div class="row justify-content-center my-1">
+        <div class="col-1">
+          <div class="circle" [ngClass]="{'selected': selectedReason === reason}"
+            (click)="onReasonClicked(reason)">
+          </div>
+        </div>
+        <div class="col-5">
+          {{ reason }}
+        </div>
       </div>
     </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <input class="form-control iq-form" placeholder="Briefly explain" [(ngModel)]="explanationText">
+  </div>
+  <div class="row justify-content-center mt-3">
+    <button class="btn iq-btn-1 col-3" (click)="onSendClicked()">Send</button>
   </div>
 </article>

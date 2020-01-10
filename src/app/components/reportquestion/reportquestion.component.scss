@@ -11,6 +11,10 @@ $circle-size: 20px;
   height: $circle-size;
 }
 
+.circle.selected {
+  border: 6px solid $color-primary!important;
+}
+
 .circle:hover {
-  border: 6px solid $color-primary;
+  border: 1px solid $color-primary;
 }
