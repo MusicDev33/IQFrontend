@@ -31,6 +31,7 @@ import { UserSettingsComponent } from './components/usersettings/usersettings.co
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
 import { TopicComponent } from './modules/topic/topic/topic.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 // Jobs Module
@@ -117,7 +118,8 @@ export function provideConfig() {
     IQJobsComponent,
     CMDashboardComponent,
     CMAgentMasterComponent,
-    TopicComponent
+    TopicComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

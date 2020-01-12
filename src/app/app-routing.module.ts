@@ -11,6 +11,7 @@ import { UserSettingsComponent } from '@components/usersettings/usersettings.com
 import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
 import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
 import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { AboutComponent } from '@components/about/about.component';
 import { PolicyComponent } from '@components/policy/policy.component';
@@ -54,6 +55,8 @@ const routes: Routes = [
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
   { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]},
+  { path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
   // { path: 'jobs', component: IQJobsComponent},
   // { path: 'admin/cmagent', component: CMAgentMasterComponent} // Add Admin guard to this!!!
 ];
