@@ -12,6 +12,7 @@
 
 .ask-button:disabled {
   border-color: #ccc;
+  cursor: default;
 }
 
 .ask-button:hover.enabled {

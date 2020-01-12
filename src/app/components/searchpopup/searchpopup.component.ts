@@ -74,7 +74,7 @@ export class SearchpopupComponent implements OnInit {
     public subjectService: SubjectsService,
     public flashMsg: FlashMessagesService,
     public sourceService: SourceService,
-    @Inject(MAT_DIALOG_DATA) data // This is used to access the data PASSED IN from the previous component
+    @Inject(MAT_DIALOG_DATA) data: any // This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description;
       this.question = data.question;
@@ -199,6 +199,7 @@ export class SearchpopupComponent implements OnInit {
       this.topicText = res.subject.name;
       this.selectedSubject = res.subject.name;
       this.selectedSubjectURL = res.subject.subjectURL;
+      this.checkFormComplete();
     });
   }
 
@@ -251,7 +252,8 @@ export class SearchpopupComponent implements OnInit {
     }
   }
 
-  taSubjectSelected(subject) {
+  // WTF is TA?
+  taSubjectSelected(subject: any) {
     this.selectedSubjectURL = subject.item.subjectURL;
     this.selectedSubject = subject.item.name;
     this.checkFormComplete();
@@ -275,7 +277,7 @@ export class SearchpopupComponent implements OnInit {
     }
   }
 
-  taSourceSelected(source) {
+  taSourceSelected(source: any) {
     this.selectedSourceTags = source.item.tags;
     this.selectedSourceId = source.item._id;
     this.selectedSource = source.item.name;

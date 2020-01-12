@@ -1,0 +1,20 @@
+@import '~sass/variables';
+$circle-size: 20px;
+
+.circle {
+  transition: all 0.24s;
+  -webkit-border-radius: $circle-size;
+  -moz-border-radius: $circle-size;
+  border-radius: $circle-size;
+  border: 1px solid #ccc;
+  width: $circle-size;
+  height: $circle-size;
+}
+
+.circle.selected {
+  border: 6px solid $color-primary!important;
+}
+
+.circle:hover {
+  border: 1px solid $color-primary;
+}

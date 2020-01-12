@@ -5,7 +5,7 @@
     </div>
     <div class="row justify-content-center">
       <p class="text-center">Asked by <span class="profile-url">
-        <a (click)="toProfileWithHandle(question.askerHandle)">{{question.asker}}</a></span>
+        <a (click)="toProfileWithHandle(question.askerHandle)">{{ question.asker }}</a></span>
       </p>
     </div>
 
@@ -16,10 +16,18 @@
           <div class="row justify-content-center">
             <!--<i class="fas fa-bold fa-lg icon mr-2"></i>
             <i class="fas fa-italic fa-lg icon mr-2"></i>-->
-            <i class="fas fa-square-root-alt fa-lg icon mr-2 mt-1" (click)="toggleMathMode()"
-              [ngClass]="{'icon-activated': mathMode}" (mousedown)="preventFocusLoss($event)"></i>
-            <i class="far fa-eye fa-lg icon mr-2 mt-1" (click)="toggleAnswerPreview()"
-              [ngClass]="{'icon-activated': answerPreview}"></i>
+            <i class="fas fa-square-root-alt fa-lg icon mr-2 mt-1"
+              (click)="toggleMathMode()"
+              [ngClass]="{'icon-activated': mathMode}"
+              (mousedown)="preventFocusLoss($event)"
+              tooltip="Toggle symbol keyboards"
+              delay="700"></i>
+              
+            <i class="far fa-eye fa-lg icon mr-2 mt-1"
+              (click)="toggleAnswerPreview()"
+              [ngClass]="{'icon-activated': answerPreview}"
+              tooltip="Toggle answer preview"
+              delay="700"></i>
           </div>
         </div>
       </section>
@@ -43,7 +51,8 @@
       <app-formatbar *ngIf="mathMode" (letterClicked)="formatbarAddToText($event)" (backspaceClicked)="formatbarBackspace()">
       </app-formatbar>
       <div class="row justify-content-center mb-2" *ngIf="answerMode && !editMode">
-        <button class="btn iq-btn-1" (click)="sendAnswer()">Send Answer to the Gods</button>
+        <button class="btn iq-btn-1" (click)="sendAnswer()"
+          [disabled]="answerText.length < 3">Send Answer to the Gods</button>
       </div>
       <div class="row justify-content-center mb-2" *ngIf="answerMode && editMode">
         <button class="btn iq-btn-1" (click)="sendEditedAnswer()">Send Edited Answer</button>

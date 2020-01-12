@@ -30,6 +30,8 @@ import { LandingpageComponent } from '@components/landingpage/landingpage.compon
 import { UserSettingsComponent } from './components/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
+import { TopicComponent } from './modules/topic/topic/topic.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 // Jobs Module
@@ -115,7 +117,9 @@ export function provideConfig() {
     ReportQuestionComponent,
     IQJobsComponent,
     CMDashboardComponent,
-    CMAgentMasterComponent
+    CMAgentMasterComponent,
+    TopicComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

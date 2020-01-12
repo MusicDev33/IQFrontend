@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportQuestionComponent implements OnInit {
 
-  constructor() { }
+  reasonsArray = ['Harassment', 'Spam', 'Insincere', 'Poorly Written'];
+  selectedReason = '';
+  explanationText = '';
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit() {}
+
+  onReasonClicked(reason: string) {
+    this.selectedReason = reason;
+    console.log(reason);
+  }
+
+  onSendClicked() {
+    console.log(this.selectedReason);
+    console.log(this.explanationText);
   }
 
 }
