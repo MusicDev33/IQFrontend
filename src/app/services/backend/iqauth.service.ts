@@ -31,7 +31,7 @@ export class IQAuthService {
       if (isDevMode()) {
         this.tsRouteBase = devRoutes.tsRouteBase;
       } else {
-        this.tsRouteBase = devRoutes.tsRouteBase;
+        this.tsRouteBase = prodRoutes.tsRouteBase;
       }
 
       this.headersTemplate = this.headersTemplate.set('Content-Type', 'application/json');
