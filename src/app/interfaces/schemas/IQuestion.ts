@@ -6,14 +6,13 @@ export interface IQuestion {
   askerID: string;
   askerHandle: string;
   subject: string;
-  homeworkSource: string;
-  views: number;
-  votes: number;
   details: string;
   time: string;
-  tag: Array<string>;
+  type: string;
+  views: number;
+  votes: number;
   answerNum: number;
+  tags: string[];
+  homeworkSource: string[];
   previewAnswer: any;
-
-  getMongoID(): string;
 }

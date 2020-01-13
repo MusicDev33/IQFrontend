@@ -1,16 +1,15 @@
 export interface IAnswer {
   _id: string;
-
   answerText: string;
-  votes: number;
   poster: string;
   posterID: string;
   posterHandle: string;
-  views: number;
-  comments: Array<object>;
   questionURL: string;
+  questionID: string;
   questionText: string;
   time: string;
-
-  getMongoID();
+  type: string;
+  views: number;
+  votes: number;
+  comments: any[];
 }

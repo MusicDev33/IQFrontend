@@ -1,7 +1,7 @@
-import { IMongoObject } from '../interfaces/IMongoObject';
-import { IServerResponse } from '../interfaces/IServerResponse';
+import { IQuestion } from '@interfaces/schemas/IQuestion';
 
-export class Question implements IServerResponse, IMongoObject {
+
+export class Question implements IQuestion {
   _id: string;
   questionText: string;
   urlText: string;
@@ -14,9 +14,9 @@ export class Question implements IServerResponse, IMongoObject {
   votes: number;
   details: string;
   time: string;
-  tag: Array<string>;
+  tag: string[];
   answerNum: number;
   previewAnswer: any;
-
-  success: boolean;
+  type = 'question';
+  tags: string[] = [];
 }
