@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionService } from '@services/question.service';
+import { SubjectsService } from '@services/subjects.service';
 
 @Component({
   selector: 'app-topic',
@@ -7,9 +10,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicComponent implements OnInit {
 
-  constructor() { }
+  questions: any[];
+  topicName: string;
+  topicResponse: any;
+  topicResponseSuccess: boolean;
+
+  subject: any;
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public questionService: QuestionService,
+    public subjectService: SubjectsService
+  ) { }
 
   ngOnInit() {
+    this.setUpComponent();
+
+    this.activatedRoute.url.subscribe(url => {
+       this.setUpComponent();
+    });
   }
 
+  setUpComponent() {
+    this.topicName = this.activatedRoute.snapshot.paramMap.get('topic');
+
+    this.subjectService.getSubjectByURL(this.topicName).subscribe((subjectData: any) => {
+      this.topicResponse = subjectData;
+      this.topicResponseSuccess = subjectData.success;
+      console.log(subjectData);
+
+      if (subjectData) {
+        this.subject = subjectData.subject;
+      }
+
+      this.questionService.getSubjectQuestions(this.topicName).subscribe((questionData: any) => {
+        if (questionData) {
+          this.questions = questionData.questions;
+        }
+      });
+    });
+  }
 }

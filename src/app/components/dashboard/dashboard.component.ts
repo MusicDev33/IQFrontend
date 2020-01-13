@@ -223,4 +223,8 @@ export class DashboardComponent implements OnInit {
     }
     return this.helpString;
   }
+
+  onSubjectNameClicked(subjectURL: string) {
+    this.router.navigate(['/iqt/' + subjectURL]);
+  }
 }

@@ -13,6 +13,17 @@
   cursor: pointer;
 }
 
+.card-subject {
+  border-bottom: solid 3px rgb(0,0,0);
+  border-bottom: solid 3px rgba(0,0,0,0);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-subject:hover {
+  border-bottom: solid 3px $color-primary;
+}
+
 .follow-button {
   height: 36px;
   width: 90px;

@@ -11,7 +11,7 @@ import * as prodRoutes from '../../globals/prodroutes';
 })
 
 export class IQAuthService {
-  authToken: any;
+  authToken: string;
   user: any;
   tsRouteBase = '';
 
@@ -63,15 +63,7 @@ export class IQAuthService {
       .pipe(map(res => res));
   }
 
-  // Deprecated for now
-  // addGoogleIDToUser(userid: string, googleID: string) {
-  //   const headers = this.headersTemplate;
-  //   const body = { googleID };
-  //   return this.http.put(this.routeBase + '/users/' + userid + '/googleid/add', body, {headers})
-  //     .pipe(map(res => res));
-  // }
-
-  storeUserData(token, user) {
+  storeUserData(token: string, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
 

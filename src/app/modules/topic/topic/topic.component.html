@@ -1,1 +1,33 @@
-<p>topic works!</p>
+<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess">
+
+  <h2 class="text-center"><b>{{ subject.name }}</b></h2>
+
+  <div class="row justify-content-center" *ngFor="let question of questions">
+    <div class="col-6">
+      <app-questionbox
+        [question]="question"
+        [questionText]="question.questionText"
+        [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
+        [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+      </app-questionbox>
+    </div>
+  </div>
+</div>
+
+<article class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions.length === 0">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>Empty!</b></h3>
+      <h3>This subject seems to be empty! Maybe some new questions?</h3>
+    </div>
+  </div>
+</article>
+
+<article class="container mt-3" *ngIf="topicResponse && !topicResponseSuccess">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>404 Error</b></h3>
+      <h3>The topic you seek does not exist</h3>
+    </div>
+  </div>
+</article>
