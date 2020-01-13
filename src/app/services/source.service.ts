@@ -42,6 +42,12 @@ export class SourceService {
       .pipe(map(res => res));
   }
 
+  getSourceByURL(sourceURL: string) {
+    const headers = this.headersTemplate;
+    return this.http.get(this.tsRouteBase + '/sources/url/' + sourceURL, {headers})
+      .pipe(map(res => res));
+  }
+
   getSourceByName(sourceName: string) {
     let urlText = '';
     const specialChars = '!@#$%^&*()>< \'';

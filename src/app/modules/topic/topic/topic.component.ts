@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '@services/question.service';
 import { SubjectsService } from '@services/subjects.service';
+import { ISubject } from '@interfaces/schemas/ISubject';
 
 @Component({
   selector: 'app-topic',
@@ -15,7 +16,7 @@ export class TopicComponent implements OnInit {
   topicResponse: any;
   topicResponseSuccess: boolean;
 
-  subject: any;
+  subject: ISubject;
 
   constructor(
     public activatedRoute: ActivatedRoute,
