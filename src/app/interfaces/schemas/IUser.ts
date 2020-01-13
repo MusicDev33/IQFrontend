@@ -2,20 +2,19 @@ export interface IUser {
   _id: string;
   name: string;
   bio: string;
-  handle: string;
   email: string;
+  handle: string;
   phoneNumber: string;
-  profileImage: string;
-  googleID: string;
-  currentSources: Array<any>;
-  currentSubjects: Array<any>;
-  knowledge: any;
+  password: string;
   type: string;
-  profileHits: number;
-  credentials: any; // FIX - No Any!
+  googleID: string;
+  profileImage: string;
   customization: any;
+  knowledge: any;
+  credentials: any;
+  profileHits: number;
   paidProgram: boolean;
-  test: boolean;
-
-  getMongoID(): string;
+  fbTokens: string[];
+  currentSources: string[];
+  currentSubjects: string[];
 }

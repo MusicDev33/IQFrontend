@@ -1,12 +1,10 @@
-import { IMongoObject } from '../interfaces/IMongoObject';
-import { IServerResponse } from '../interfaces/IServerResponse';
+import { IVote } from '@interfaces/schemas/IVote';
 
-export class Vote implements IServerResponse, IMongoObject {
+export class Vote implements IVote {
   _id: string;
   vote: number;
   userID: string;
   answerID: string;
   questionID: string;
-
-  success: boolean;
+  type = 'vote';
 }

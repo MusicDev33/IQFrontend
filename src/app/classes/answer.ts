@@ -1,19 +1,18 @@
-import { IMongoObject } from '../interfaces/IMongoObject';
-import { IServerResponse } from '../interfaces/IServerResponse';
+import { IAnswer } from '@interfaces/schemas/IAnswer';
 
-export class Answer implements IServerResponse, IMongoObject {
+export class Answer implements IAnswer {
   _id: string;
 
   answerText: string;
+  questionID: string;
   votes: number;
   poster: string;
   posterID: string;
   posterHandle: string;
   views: number;
-  comments: Array<object>;
+  comments: any[];
   questionURL: string;
   questionText: string;
   time: string;
-
-  success: boolean;
+  type = 'answer';
 }

@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  searchResultSelected(selectedObject: any) {
+  searchResultSelected(selectedObject: any): void {
     this.searchText = '';
     switch (selectedObject.item.type) {
       case 'user':
@@ -103,7 +103,7 @@ export class NavbarComponent implements OnInit {
   }
 
   subjectSelected(subject: any) {
-
+    this.router.navigate(['/iqt/' + subject.subjectURL]);
   }
 
   questionSelected(question: any) {

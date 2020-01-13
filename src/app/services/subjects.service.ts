@@ -36,4 +36,10 @@ export class SubjectsService {
     return this.http.post(this.tsRouteBase + '/subjects/' + subject, {}, {headers})
       .pipe(map(res => res));
   }
+
+  getSubjectByURL(subjectURL: string) {
+    const headers = this.headersTemplate;
+    return this.http.get(this.tsRouteBase + '/subjects/' + subjectURL, {headers})
+      .pipe(map(res => res));
+  }
 }

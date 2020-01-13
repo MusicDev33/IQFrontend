@@ -12,6 +12,8 @@ import { GoogleCBComponent } from './components/register/googlecb/googlecb.compo
 import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
 import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { TopicComponent } from './modules/topic/topic/topic.component';
+import { SourceComponent } from './modules/source/source/source.component';
 
 import { AboutComponent } from '@components/about/about.component';
 import { PolicyComponent } from '@components/policy/policy.component';
@@ -55,6 +57,8 @@ const routes: Routes = [
   { path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   { path: 'landing', component: LandingpageComponent, canActivate: [ProductionGuard]},
   { path: 'gsignincb', component: GoogleCBComponent, canActivate: [GSigninGuard]},
+  { path: 'iqt/:topic', component: TopicComponent},
+  { path: 'iqs/:source', component: SourceComponent},
   { path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
   // { path: 'jobs', component: IQJobsComponent},
