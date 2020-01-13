@@ -99,7 +99,7 @@ export class NavbarComponent implements OnInit {
   }
 
   sourceSelected(source: any) {
-    // Do stuff here
+    this.router.navigate(['/iqs/' + source.sourceURL]);
   }
 
   subjectSelected(subject: any) {

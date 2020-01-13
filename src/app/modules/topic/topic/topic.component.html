@@ -1,4 +1,4 @@
-<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess">
+<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions">
 
   <h2 class="text-center"><b>{{ subject.name }}</b></h2>
 
@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<article class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions.length === 0">
+<article class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions && questions.length === 0">
   <div class="row justify-content-center mt-5">
     <div class="col-md-10 col-sm-12 col-12 text-center">
       <h3><b>Empty!</b></h3>
