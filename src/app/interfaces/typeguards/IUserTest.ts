@@ -4,7 +4,7 @@ import { User } from '@classes/user';
 // This is testing to see if I can automatically generate missing properties.
 // This is a possible alternative to schema versioning.
 
-function toIUser(user: any): IUser{
+function toIUser(user: any): IUser {
   if (propertyCheckIUser(user)) {
     return user;
   } else {
@@ -25,13 +25,13 @@ function propertyCheckIUser(user: any): boolean {
 
 function getMissingProperties(user: any) {
   const testProperties = Object.keys(new User());
-  let difference = testProperties.filter(x => Object.keys(user).indexOf(x) <= -1);
+  const difference = testProperties.filter(x => Object.keys(user).indexOf(x) <= -1);
   return difference;
 }
 
 function updateUser(user: any): IUser {
   const testUser: any = new User();
-  for (let property of getMissingProperties(user)) {
+  for (const property of getMissingProperties(user)) {
     user[property] = testUser[property];
   }
   return user;
