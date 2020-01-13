@@ -1,6 +1,5 @@
 import { IQuestion } from '@interfaces/schemas/IQuestion';
 
-
 export class Question implements IQuestion {
   _id: string;
   questionText: string;
