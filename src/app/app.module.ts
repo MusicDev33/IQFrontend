@@ -31,6 +31,7 @@ import { UserSettingsComponent } from './components/usersettings/usersettings.co
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
 import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
 import { TopicComponent } from './modules/topic/topic/topic.component';
+import { SourceComponent } from './modules/source/source/source.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
@@ -119,7 +120,8 @@ export function provideConfig() {
     CMDashboardComponent,
     CMAgentMasterComponent,
     TopicComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SourceComponent
   ],
   imports: [
     BrowserModule,
