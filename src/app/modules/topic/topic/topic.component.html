@@ -1,6 +1,16 @@
 <div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions">
 
-  <h2 class="text-center"><b>{{ subject.name }}</b></h2>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center"><b>{{ subject.name }}</b></h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 text-center">
+      <button class="btn iq-btn-1">Follow</button>
+    </div>
+  </div>
 
   <div class="row justify-content-center" *ngFor="let question of questions">
     <div class="col-6">
