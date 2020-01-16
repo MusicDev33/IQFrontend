@@ -1,4 +1,4 @@
-<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions">
+<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions && user">
 
   <div class="row justify-content-center">
     <div class="col-12">
@@ -8,7 +8,11 @@
 
   <div class="row justify-content-center mb-4">
     <div class="col-12 text-center">
-      <button class="btn iq-btn-1">Follow</button>
+      <div class="btn iq-btn-1 mt-2"
+        *ngIf="!user.currentSubjects.includes(subject.name)"
+        (click)="followButtonClicked()">Follow</div>
+
+      <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
     </div>
   </div>
 

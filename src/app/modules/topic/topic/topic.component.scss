@@ -1,1 +1,13 @@
 @import '~sass/variables';
+
+.follow-button {
+  height: 36px;
+  width: 90px;
+}
+
+.text-followed {
+  color: rgb(186,186,186);
+  cursor: default;
+  height: 36px;
+  box-sizing: border-box;
+}
