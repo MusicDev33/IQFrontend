@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '@services/question.service';
 import { SubjectsService } from '@services/subjects.service';
+import { UserService } from '@services/user.service';
+import { ISubject } from '@interfaces/schemas/ISubject';
+import { IUser } from '@interfaces/schemas/IUser';
 
 @Component({
   selector: 'app-topic',
@@ -15,12 +18,15 @@ export class TopicComponent implements OnInit {
   topicResponse: any;
   topicResponseSuccess: boolean;
 
-  subject: any;
+  subject: ISubject;
+  user: IUser;
+  userSubjects: string[];
 
   constructor(
     public activatedRoute: ActivatedRoute,
     public questionService: QuestionService,
-    public subjectService: SubjectsService
+    public subjectService: SubjectsService,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
@@ -28,6 +34,13 @@ export class TopicComponent implements OnInit {
 
     this.activatedRoute.url.subscribe(url => {
        this.setUpComponent();
+    });
+  }
+
+  followButtonClicked() {
+    this.userSubjects.push(this.subject.name);
+    this.userService.changeUserProperty('currentSubjects', this.userSubjects).subscribe((result: any) => {
+
     });
   }
 
@@ -48,6 +61,13 @@ export class TopicComponent implements OnInit {
           this.questions = questionData.questions;
         }
       });
+    });
+
+    this.userService.getProfile().subscribe((userData: any) => {
+      this.user = userData.user;
+      this.userSubjects = this.user.currentSubjects;
+    }, err => {
+      return false;
     });
   }
 }

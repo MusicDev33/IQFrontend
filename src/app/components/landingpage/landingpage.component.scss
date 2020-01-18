@@ -5,7 +5,6 @@
   border-radius: 15px;
 }
 
-
 .account-button {
   border-radius: 19px;
   color: #FFF;
@@ -14,13 +13,18 @@
 }
 
 .gradient-bg {
-  background: linear-gradient(0deg, rgba(2, 173, 241, 0.8) 0%, rgba(224, 85, 201, 0.8) 51%, rgba(209, 2, 168, 0.8) 100%);
+  background: linear-gradient(70deg, rgba(2, 173, 241, 0.8) 0%, rgba(224, 85, 201, 0.8) 51%, rgba(209, 2, 168, 0.8) 100%);
 }
 
-.gradient-buffer {
-  background: linear-gradient(0deg, rgba(225, 255,255,255) 0%, 51%, rgba(0, 0, 0, 0) 100%);
+.round-row {
+  margin-left: 0px !important; 
+  width: 100vw;
 }
 
 .white-text {
   color: #FFF;
+}
+
+.flavor-text-icon {
+  color: $color-primary;
 }

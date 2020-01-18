@@ -1,1 +1,37 @@
-<p>source works!</p>
+<div class="container mt-3" *ngIf="sourceResponse && sourceResponseSuccess && questions">
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center"><b>{{ source.name }}</b></h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5" *ngFor="let question of questions">
+    <div class="col-6">
+      <app-questionbox
+        [question]="question"
+        [questionText]="question.questionText"
+        [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
+        [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+      </app-questionbox>
+    </div>
+  </div>
+</div>
+
+<article class="container mt-3" *ngIf="sourceResponse && sourceResponseSuccess && questions && questions.length === 0">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>Empty!</b></h3>
+      <h3>This subject seems to be empty! Maybe ask some new questions?</h3>
+    </div>
+  </div>
+</article>
+
+<article class="container mt-3" *ngIf="sourceResponse && !sourceResponseSuccess">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-sm-12 col-12 text-center">
+      <h3><b>404 Error</b></h3>
+      <h3>The topic you seek does not exist</h3>
+    </div>
+  </div>
+</article>

@@ -1,6 +1,20 @@
-<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess">
+<div class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions && user">
 
-  <h2 class="text-center"><b>{{ subject.name }}</b></h2>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center"><b>{{ subject.name }}</b></h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 text-center">
+      <div class="btn iq-btn-1 mt-2"
+        *ngIf="!user.currentSubjects.includes(subject.name)"
+        (click)="followButtonClicked()">Follow</div>
+
+      <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+    </div>
+  </div>
 
   <div class="row justify-content-center" *ngFor="let question of questions">
     <div class="col-6">
@@ -14,7 +28,7 @@
   </div>
 </div>
 
-<article class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions.length === 0">
+<article class="container mt-3" *ngIf="topicResponse && topicResponseSuccess && questions && questions.length === 0">
   <div class="row justify-content-center mt-5">
     <div class="col-md-10 col-sm-12 col-12 text-center">
       <h3><b>Empty!</b></h3>
