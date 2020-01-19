@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'ang-src';
   currentRoute = '';
   showNavBar = false;
+  showLandingNav = false;
 
   noNavbarUrls = ['/', '/register', '/login', '/authenticate', '/gsignincb'];
 
@@ -30,6 +31,13 @@ export class AppComponent implements OnInit {
         this.showNavBar = false;
       } else {
         this.showNavBar = true;
+      }
+
+      if (url === '/landing') {
+        this.showNavBar = false;
+        this.showLandingNav = true;
+      } else {
+        this.showLandingNav = false;
       }
     }
   }
