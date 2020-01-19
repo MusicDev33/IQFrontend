@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
@@ -12,6 +11,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
+import { ISubject } from '@interfaces/schemas/ISubject';
 
 @Component({
   selector: 'app-dashboard',
@@ -148,7 +148,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([routeURL]);
   }
 
-  followButtonClicked(subject) {
+  followButtonClicked(subject: ISubject) {
     this.subjects.push(subject.name);
     this.userService.changeUserProperty('currentSubjects', this.subjects).subscribe((result: any) => {
 

@@ -8,8 +8,6 @@ import { SourceService } from '@services/source.service';
 import { SearchService } from '@services/search.service';
 import { QuestionService } from '@services/question.service';
 
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-
 import { User } from '@classes/user';
 
 @Component({
@@ -75,7 +73,7 @@ export class LibraryComponent implements OnInit {
     if (this.findSourceText.length > minLength && this.sourceSearchResults.length === 0) {
       this.search.sourceSearch(this.findSourceText).subscribe(data => {
         const res: any = data;
-        this.sourceSearchResults = res.sources.filter(filterSource => {
+        this.sourceSearchResults = res.sources.filter((filterSource: string) => {
           return !this.user.currentSources.includes(filterSource);
         });
       });
