@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -46,6 +45,8 @@ export class QuestionComponent implements OnInit {
   // 5d1ea3de81e1ef53f657baf7: 0 is no vote, only for when the user cancels a vote.
   votedAnswers: any = {};
 
+  undoStack: string[] = [];
+
   constructor(
     public questionService: QuestionService,
     public activatedRoute: ActivatedRoute,
@@ -66,6 +67,14 @@ export class QuestionComponent implements OnInit {
     this.activatedRoute.url.subscribe(url => {
       this.setUpComponent();
     });
+  }
+
+  // Listener for CTRL-Z
+  @HostListener('document:keydown', ['$event'])
+  undo(event: KeyboardEvent) {
+    if (event.keyCode === 90 && (event.ctrlKey || event.metaKey)) {
+      this.debug.log('CTRL-Z or Mac equivalent pressed.');
+    }
   }
 
   setUpComponent() {

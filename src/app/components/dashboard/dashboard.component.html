@@ -80,21 +80,27 @@
   <div class="container">
     <div class="row">
 
-      <div *ngIf="subjects && user.currentSubjects.length" class="col-lg-2">
-        <div *ngFor="let subject of subjects">
-          <div>
-            <span (click)="subjectClicked(subject)"><h3 class="subject-url">{{ subject }}</h3></span>
-            <div class="detail-view">
+      <div *ngIf="user" class="col-lg-3">
+        <div>
+          <h2 class="library-url" [routerLink]="['/library']">Library</h2>
+        </div>
+        <div *ngIf="user.currentSources.length">
+          <div *ngFor="let source of user.currentSources" class="mb-2">
+            <div>
+              <span (click)="onSourceClicked(source)"><h4 class="subject-url">{{ source }}</h4></span>
+              <div class="detail-view">
 
+              </div>
             </div>
           </div>
         </div>
+        <div *ngIf="!user.currentSources.length" class="lib-info-text">
+          It looks like your library is empty! You can change that
+            <a class="lib-info-anchor" href=""[routerLink]="['/library']">here</a>
+        </div>
       </div>
-      <div *ngIf="!user.currentSubjects.length" class="col-lg-2">
 
-      </div>
-
-      <article *ngIf="questions" class='col-lg-6 offset-lg-1 justify-content-center'>
+      <article *ngIf="questions" class='col-lg-6 justify-content-center'>
         <h2 class="text-center">Questions For You</h2>
         <div *ngFor="let question of questions" class="text-center">
           <div class="row">
@@ -109,6 +115,21 @@
           </div>
         </div>
       </article>
+
+      <div *ngIf="user && user.currentSubjects.length" class="col-lg-3">
+        <div *ngFor="let subject of user.currentSubjects" class="mb-2">
+          <div>
+            <span (click)="onSubjectNameClicked(subject)"><h4 class="subject-url">{{ subject }}</h4></span>
+            <div class="detail-view">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!user.currentSubjects.length" class="col-lg-3">
+
+      </div>
 
     </div>
   </div>
