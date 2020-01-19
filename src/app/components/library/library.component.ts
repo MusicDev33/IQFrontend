@@ -53,6 +53,9 @@ export class LibraryComponent implements OnInit {
     this.userService.getProfile().subscribe(data => {
       const res: any = data;
       this.user = Object.assign(new User(), res.user);
+      if (localStorage.getItem('lib-key')) {
+        this.openSource(localStorage.getItem('lib-key'));
+      }
     });
   }
 
@@ -118,13 +121,9 @@ export class LibraryComponent implements OnInit {
     this.sourceService.getSourceByName(sourceName).subscribe(data => {
       const res: any = data;
       this.openedSourceObject = res.source;
-      console.log(res.source)
-      this.sourceService.getQuestionsFromSource(res.source._id).subscribe(sourceResults => {
-        this.debug.log(sourceResults);
-        const res: any = sourceResults;
-        this.questions = res.questions;
+      this.sourceService.getQuestionsFromSource(res.source._id).subscribe((sourceResults: any) => {
+        this.questions = sourceResults.questions;
         this.currentQuestions = this.questions;
-        console.log(this.currentQuestions)
       });
     });
   }

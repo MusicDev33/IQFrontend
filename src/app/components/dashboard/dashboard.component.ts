@@ -11,13 +11,15 @@ import { DebugService } from '@services/utility/debug.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
 
+import { IUser } from '@interfaces/schemas/IUser';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  user: any;
+  user: IUser;
   questions: Array<object>;
   subjects: Array<string>;
   subject: string;
@@ -165,7 +167,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  calcMaxOffset() {
+  calcMaxOffset(): number {
     const screen = this.returnScreenBreakpoint();
 
     switch (screen) {
@@ -182,7 +184,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  nSubjects(n: number) {
+  nSubjects(n: number): string[] {
     const end = this.arrayOfSubjects.length;
     if (this.arrayOfSubjects.length - (this.subjectOffset * n) < n) {
       return this.arrayOfSubjects.slice(this.subjectOffset * n, end);
@@ -191,7 +193,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  returnScreenBreakpoint() {
+  returnScreenBreakpoint(): string {
     if (this.screenWidth < 576) {
       return 'xs';
     } else if (this.screenWidth >= 576 && this.screenWidth < 768) {
@@ -205,19 +207,19 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  hasUserFilledProfile(user: any) {
-    if (user.currentSubjects && user.currentSubjects.length >= 3 && Object.keys(user.knowledge).length >= 1) {
+  hasUserFilledProfile(user: IUser): boolean {
+    if (user.currentSubjects && user.currentSubjects.length >= 3) {
       return true;
     } else {
       return false;
     }
   }
 
-  createHelpText(user: any) {
+  createHelpText(user: IUser): string {
     this.helpString = 'You\'ve created an account! ';
     // If user has followed 3 subjects but hasn't added knowledgeable topics
-    if (user.currentSubjects && user.currentSubjects.length >= 3 && Object.keys(user.knowledge).length < 1) {
-      this.helpString += 'You can now add knowledgeable topics and show the world what you know!';
+    if (user.currentSubjects && user.currentSubjects.length < 3) {
+      this.helpString += 'Follow some topics and customize your profile to really make Inquantir feel like home!';
     } else {
       this.helpString += 'Follow some topics and customize your profile to really make Inquantir feel like home!';
     }
@@ -225,6 +227,13 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubjectNameClicked(subjectURL: string) {
-    this.router.navigate(['/iqt/' + subjectURL]);
+    // Spaces are turned into dashes
+    const url = subjectURL.trim().replace(/[ ]+/ig, '-');
+    this.router.navigate(['/iqt/' + url]);
+  }
+
+  onSourceClicked(sourceName: string) {
+    localStorage.setItem('lib-key', sourceName);
+    this.router.navigate(['/library']);
   }
 }

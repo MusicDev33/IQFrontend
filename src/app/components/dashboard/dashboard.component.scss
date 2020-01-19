@@ -1,5 +1,23 @@
 @import '~sass/variables';
 
+.library-url {
+  transition: all 0.3s;
+  cursor: pointer;
+  color: $font-main;
+}
+
+.library-url:hover {
+  color: $color-primary;
+}
+
+.lib-info-text {
+  color: #7c7c7c;
+}
+
+.lib-info-anchor {
+  color: #1072b0;
+}
+
 .subject-url {
   border-bottom: solid 3px rgb(0,0,0);
   border-bottom: solid 3px rgba(0,0,0,0);
