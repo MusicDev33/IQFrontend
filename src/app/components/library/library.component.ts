@@ -55,6 +55,7 @@ export class LibraryComponent implements OnInit {
       this.user = Object.assign(new User(), res.user);
       if (localStorage.getItem('lib-key')) {
         this.openSource(localStorage.getItem('lib-key'));
+        localStorage.removeItem('lib-key');
       }
     });
   }
