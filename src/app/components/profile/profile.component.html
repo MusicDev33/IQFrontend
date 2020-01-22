@@ -45,28 +45,32 @@
     </div>-->
   </section>
 
-  <section *ngIf="userQuestions && view === contentView.questions">
-    <div *ngFor="let question of userQuestions" class="row justify-content-center">
-      <div class="col-md-6 col-sm-10 col-11 text-center">
-        <app-questionbox
-          [question]="question"
-          [questionText]="question.questionText"
-          [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
-          [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
-        </app-questionbox>
+  <section *ngIf="userQuestions && view === contentView.questions" class="row justify-content-center">
+    <div class="question-column col-md-6 col-sm-10 col-11 py-2">
+      <div *ngFor="let question of userQuestions" class="row justify-content-center">
+        <div class="col-12 text-center">
+          <app-questioncard
+            [question]="question"
+            [questionText]="question.questionText"
+            [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
+            [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+          </app-questioncard>
+        </div>
       </div>
     </div>
   </section>
 
-  <section *ngIf="userAnswers && view === contentView.answers">
-    <div *ngFor="let answer of userAnswers" class="row justify-content-center">
-      <div class="col-md-6 col-sm-10 col-11 text-center">
-        <app-questionbox
-          [question]=""
-          [questionText]="answer.questionText"
-          [poster]="answer.poster"
-          [answerText]="answer.answerText">
-        </app-questionbox>
+  <section *ngIf="userAnswers && view === contentView.answers" class="row justify-content-center">
+    <div class="question-column col-md-6 col-sm-10 col-11 py-2">
+      <div *ngFor="let answer of userAnswers" class="row justify-content-center">
+        <div class="col-12 text-center">
+          <app-questioncard
+            [question]=""
+            [questionText]="answer.questionText"
+            [poster]="answer.poster"
+            [answerText]="answer.answerText">
+          </app-questioncard>
+        </div>
       </div>
     </div>
   </section>

@@ -77,24 +77,24 @@
           </div>
 
           <article class="row" *ngIf="questions.length && selectedTag.length === 0">
-            <div class="col-sm-8">
-              <app-questionbox *ngFor="let question of questions"
+            <div class="question-column col-sm-8 py-2">
+              <app-questioncard *ngFor="let question of questions"
                 [question]="question"
                 [questionText]="question.questionText"
                 [poster]=""
                 [answerText]="">
-              </app-questionbox>
+              </app-questioncard>
             </div>
           </article>
 
           <article class="row" *ngIf="questions.length && selectedTag.length > 0">
-            <div class="col-sm-8">
-              <app-questionbox *ngFor="let question of currentQuestions"
+            <div class="question-column col-sm-8 py-2">
+              <app-questioncard *ngFor="let question of currentQuestions"
                 [question]="question"
                 [questionText]="question.questionText"
                 [poster]=""
                 [answerText]="">
-              </app-questionbox>
+              </app-questioncard>
             </div>
           </article>
 
