@@ -32,7 +32,6 @@ import { QuestionEditComponent } from './components/questionedit/questionedit.co
 import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
 import { TopicComponent } from './modules/topic/topic/topic.component';
 import { SourceComponent } from './modules/source/source/source.component';
-import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
 import { LandingNavComponent } from './components/landingnav/landingnav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
@@ -42,7 +41,7 @@ import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
 import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
 
 // Dropins
-import { QuestionBoxComponent } from './components/dropins/questionbox/questionbox.component';
+import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
 
 // Support
 import { SupportComponent } from '@components/support/support.component';
@@ -117,7 +116,6 @@ export function provideConfig() {
     UserSettingsComponent,
     GoogleCBComponent,
     QuestionEditComponent,
-    QuestionBoxComponent,
     ReportQuestionComponent,
     IQJobsComponent,
     CMDashboardComponent,

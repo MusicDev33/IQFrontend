@@ -6,14 +6,18 @@
     </div>
   </div>
 
-  <div class="row justify-content-center mt-5" *ngFor="let question of questions">
-    <div class="col-6">
-      <app-questionbox
-        [question]="question"
-        [questionText]="question.questionText"
-        [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
-        [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
-      </app-questionbox>
+  <div class="row justify-content-center mt-5">
+    <div class="col-6 question-column py-2">
+      <div class="row justify-content-center" *ngFor="let question of questions">
+        <div class="col-12">
+          <app-questioncard
+            [question]="question"
+            [questionText]="question.questionText"
+            [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
+            [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+          </app-questioncard>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -21,6 +21,11 @@
   overflow-y: hidden!important;
 }
 
+.question-column {
+  background-color: $main-bg-color;
+  border-radius: 19px;
+}
+
 /* These will all be Bootstrap overrides*/
 input {
   border-radius: 9px!important;
@@ -128,7 +133,7 @@ body {
 
 .dropdown-row {
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 999px;
   margin-right: 5px;
   margin-left: 5px;
   transition: all 0.3s;
