@@ -1,5 +1,11 @@
 @import '~sass/variables';
 
+.question-col {
+  background-color: $main-bg-color;
+  border-radius: 19px;
+  overflow-y: auto;
+}
+
 .library-url {
   transition: all 0.3s;
   cursor: pointer;
@@ -55,7 +61,7 @@
 }
 
 .subject-ribbon {
-  background-color: #f5f5f5;
+  background-color: $main-bg-color;
 }
 
 .side-arrow {
