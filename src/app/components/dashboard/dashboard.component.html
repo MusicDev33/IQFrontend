@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="row subject-ribbon justify-content-center py-2 mb-2" *ngIf="arrayOfSubjects">
+  <div class="row subject-ribbon justify-content-center py-3 mb-2" *ngIf="arrayOfSubjects">
     <div class="col-1 text-center my-auto">
       <i class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
         [ngClass]="{'disabled': subjectOffset === 0, 'enabled': !(subjectOffset === 0)}"></i>
