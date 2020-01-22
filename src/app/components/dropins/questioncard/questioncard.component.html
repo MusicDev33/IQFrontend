@@ -9,7 +9,8 @@
   <section class="px-2 col-sm-12 text-left" *ngIf="poster">
     <div>
       <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
-        <b>{{ poster }}</b>
+        <img *ngIf="user" src="{{ user.profileImage }}" class="poster-img"/>
+        <b> {{ poster }}</b>
       </span>
     </div>
   </section>
