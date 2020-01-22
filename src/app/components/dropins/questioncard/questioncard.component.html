@@ -12,11 +12,9 @@
     </section>
 
     <section class="col-sm-10 text-left pl-0" *ngIf="poster">
-      <div>
-        <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
-          <b> {{ poster }}</b>
-        </span>
-      </div>
+      <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
+        <b> {{ poster }}</b>
+      </span>
     </section>
   </div>
 
