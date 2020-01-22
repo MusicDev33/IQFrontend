@@ -80,7 +80,7 @@
   <div class="container">
     <div class="row">
 
-      <div *ngIf="user" class="col-lg-3">
+      <div *ngIf="user" class="col-md-3 d-none d-md-block">
         <div>
           <h2 class="library-url" [routerLink]="['/library']">Library</h2>
         </div>
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <article *ngIf="questions" class='col-lg-6 justify-content-center'>
+      <article *ngIf="questions" class='col-md-9 col-lg-6 col-sm-12 justify-content-center'>
         <h2 class="text-center">Questions For You</h2>
         <div class="text-center question-col py-2 col-12">
           <div class="row" *ngFor="let question of questions">
@@ -116,7 +116,7 @@
         </div>
       </article>
 
-      <div *ngIf="user && user.currentSubjects.length" class="col-lg-3">
+      <div *ngIf="user && user.currentSubjects.length" class="col-lg-3 d-none d-lg-block">
         <div *ngFor="let subject of user.currentSubjects" class="mb-2">
           <div>
             <span (click)="onSubjectNameClicked(subject)"><h4 class="subject-url">{{ subject }}</h4></span>
