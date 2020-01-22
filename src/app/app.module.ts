@@ -66,6 +66,7 @@ import { FeedbackService } from '@services/feedback.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { JobAppsService } from '@services/backend/jobapps.service';
 import { CMAgentService } from '@services/backend/cmagent.service';
+import { PricingComponent } from './components/pricing/pricing.component';
 
 // Services - UTILITY
 
@@ -123,7 +124,8 @@ export function provideConfig() {
     TopicComponent,
     NotFoundComponent,
     SourceComponent,
-    LandingNavComponent
+    LandingNavComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,

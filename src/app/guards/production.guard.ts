@@ -11,7 +11,7 @@ export class ProductionGuard implements CanActivate {
     if (isDevMode()) {
       return true;
     } else {
-      this.router.navigate(['/authenticate']);
+      this.router.navigate(['/404']);
       return false;
     }
   }
