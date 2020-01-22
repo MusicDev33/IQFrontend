@@ -32,6 +32,8 @@ import { QuestionEditComponent } from './components/questionedit/questionedit.co
 import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
 import { TopicComponent } from './modules/topic/topic/topic.component';
 import { SourceComponent } from './modules/source/source/source.component';
+import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
+import { LandingNavComponent } from './components/landingnav/landingnav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
@@ -65,6 +67,7 @@ import { FeedbackService } from '@services/feedback.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { JobAppsService } from '@services/backend/jobapps.service';
 import { CMAgentService } from '@services/backend/cmagent.service';
+import { PricingComponent } from './components/pricing/pricing.component';
 
 // Services - UTILITY
 
@@ -121,7 +124,10 @@ export function provideConfig() {
     CMAgentMasterComponent,
     TopicComponent,
     NotFoundComponent,
-    SourceComponent
+    SourceComponent,
+    LandingNavComponent,
+    PricingComponent,
+    QuestionCardComponent
   ],
   imports: [
     BrowserModule,
