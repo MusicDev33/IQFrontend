@@ -3,8 +3,12 @@
 // Typeahead model
 ::ng-deep .dropdown-menu {
   border-radius: 15px!important;
+}
+
+::ng-deep .dropdown-menu:not(.profile) {
   padding-left: 5px;
 }
+
 ::ng-deep .dropdown-item {
   height: auto;
   word-wrap: break-word;
