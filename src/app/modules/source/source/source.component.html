@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center mt-5">
+  <div class="row justify-content-center mt-5" *ngIf="questions && questions.length">
     <div class="col-6 question-column py-2">
       <div class="row justify-content-center" *ngFor="let question of questions">
         <div class="col-12">
@@ -25,7 +25,7 @@
 <article class="container mt-3" *ngIf="sourceResponse && sourceResponseSuccess && questions && questions.length === 0">
   <div class="row justify-content-center mt-5">
     <div class="col-md-10 col-sm-12 col-12 text-center">
-      <h3><b>Ah beans! This subject seems to be empty...</b></h3>
+      <h3><b>Ah beans, this subject seems to be empty!</b></h3>
       <h3>Maybe ask some new questions?</h3>
     </div>
   </div>
