@@ -3,10 +3,14 @@ import { Router } from '@angular/router';
 
 import { DebugService } from '@services/utility/debug.service';
 import { QuestionService } from '@services/question.service';
+import { UserService } from '@services/user.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
 import { ReportQuestionComponent } from '@components/reportquestion/reportquestion.component';
+
+import { IUser } from '@interfaces/schemas/IUser';
+import { IQuestion } from '@interfaces/schemas/IQuestion';
 
 @Component({
   selector: 'app-questioncard',
@@ -18,7 +22,10 @@ export class QuestionCardComponent implements OnInit {
   @Input() poster: string;
   @Input() questionText: string;
   @Input() answerText: string;
-  @Input() question: any;
+  @Input() question: IQuestion;
+  @Input() cardType ? = 'single';
+
+  user: IUser;
 
   dialogOpen = false;
 
@@ -26,10 +33,16 @@ export class QuestionCardComponent implements OnInit {
     public router: Router,
     public debug: DebugService,
     public qService: QuestionService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
+    if (this.question && this.question.previewAnswer) {
+      this.userService.publicGetUserByHandle(this.question.previewAnswer.posterHandle).subscribe((userRes: any) => {
+        this.user = userRes.user;
+      });
+    }
   }
 
   questionClicked(text: string) {
@@ -45,7 +58,7 @@ export class QuestionCardComponent implements OnInit {
   }
 
   // TODO: Create types for everything...
-  editQuestionClicked(question: any) {
+  editQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
@@ -65,7 +78,7 @@ export class QuestionCardComponent implements OnInit {
     });
   }
 
-  reportQuestionClicked(question: any) {
+  reportQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';

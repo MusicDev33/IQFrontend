@@ -57,8 +57,8 @@
           <div class="col-11 iq-card mx-auto py-2">
             <div><h4 (click)="onSubjectNameClicked(subject.subjectURL)" class="subject-url">{{ subject.name }}</h4></div>
             <div class="btn iq-btn-1 mt-2"
-            *ngIf="!user.currentSubjects.includes(subject.name)"
-            (click)="followButtonClicked(subject)">Follow</div>
+              *ngIf="!user.currentSubjects.includes(subject.name)"
+              (click)="followButtonClicked(subject)">Follow</div>
 
             <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
@@ -80,7 +80,7 @@
   <div class="container">
     <div class="row">
 
-      <div *ngIf="user" class="col-md-3 d-none d-md-block">
+      <article *ngIf="user" class="col-md-3 d-none d-md-block">
         <div>
           <h2 class="library-url" [routerLink]="['/library']">Library</h2>
         </div>
@@ -98,10 +98,10 @@
           It looks like your library is empty! You can change that
             <a class="lib-info-anchor" href=""[routerLink]="['/library']">here</a>
         </div>
-      </div>
+      </article>
 
-      <article *ngIf="questions" class='col-md-9 col-lg-6 col-sm-12 justify-content-center'>
-        <h2 class="text-center">Questions For You</h2>
+      <article *ngIf="questions" class='col-sm-12 col-md-9 col-lg-6 justify-content-center'>
+        <h2 class="text-center">Your Feed</h2>
         <div class="text-center question-column py-2 col-12">
           <div class="row" *ngFor="let question of questions">
             <div class="col-12">
@@ -109,7 +109,8 @@
                 [question]="question"
                 [questionText]="question.questionText"
                 [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
-                [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''">
+                [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''"
+                [cardType]="calculateCardType(question.questionText, question.subject)">
               </app-questioncard>
             </div>
           </div>

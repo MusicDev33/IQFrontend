@@ -1,4 +1,10 @@
-<div class="iq-card no-float text-center my-2 py-2">
+<div class="no-float pl-4 py-2 mt-2 text-left iq-card-top" *ngIf="cardType === 'header' && question.subject">
+  <h3>{{ question.subject }}</h3>
+</div>
+
+<div class="no-float text-center py-2 px-2"
+  [ngClass]="{'iq-card my-2': cardType === 'single',
+    'iq-card-mid': cardType === 'mid' || cardType === 'header', 'iq-card-bottom mb-2': cardType === 'bottom'}">
 
   <span>
     <span>
@@ -6,13 +12,17 @@
     </span>
   </span>
 
-  <section class="px-2 col-sm-12 text-left" *ngIf="poster">
-    <div>
+  <div class="row">
+    <section class="col-2 text-left" *ngIf="poster">
+      <img *ngIf="user" src="{{ user.profileImage }}" class="poster-img img-fluid pl-2"/>
+    </section>
+
+    <section class="col-10 text-left pl-0" *ngIf="poster">
       <span (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
-        <b>{{ poster }}</b>
+        <b> {{ poster }}</b>
       </span>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <section class="px-2 col-sm-12 text-left" *ngIf="answerText">
     <div class="preview-text">{{ answerText }}</div>

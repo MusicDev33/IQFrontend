@@ -1,7 +1,10 @@
 // This is all SCSS for the responsive NavBar and dropdown...
 
 // Typeahead model
-::ng-deep .dropdown-menu { border-radius: 9px!important; }
+::ng-deep .dropdown-menu {
+  border-radius: 15px!important;
+  padding-left: 5px;
+}
 ::ng-deep .dropdown-item {
   height: auto;
   word-wrap: break-word;
@@ -34,27 +37,28 @@
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .navbar-searchbar {
-    width: 5vw!important;
+    width: 6vw!important;
   }
 
   .typeahead-item {
     width: 5vw!important;
   }
 
-  ::ng-deep .dropdown-menu { width: 5vw!important; }
+  ::ng-deep .dropdown-menu { width: 6vw!important; }
+  ::ng-deep .dropdown-item { width: 5vw!important; }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .navbar-searchbar {
-    width: 8vw!important;
+    width: 9vw!important;
   }
 
   .typeahead-item {
     width: 8vw!important;
   }
 
-  ::ng-deep .dropdown-menu { width: 8vw!important; }
+  ::ng-deep .dropdown-menu { width: 9vw!important; }
   ::ng-deep .dropdown-item { width: 8vw!important; }
 }
 
@@ -65,24 +69,24 @@
   }
 
   .typeahead-item {
-    width: 14vw!important;
+    width: 13vw!important;
   }
 
   ::ng-deep .dropdown-menu { width: 14vw!important; }
-  ::ng-deep .dropdown-item { width: 14vw!important; }
+  ::ng-deep .dropdown-item { width: 13vw!important; }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .navbar-searchbar {
-    width: 16vw!important;
+    width: 17vw!important;
   }
 
   .typeahead-item {
     width: 16vw!important;
   }
 
-  ::ng-deep .dropdown-menu { width: 16vw!important; }
+  ::ng-deep .dropdown-menu { width: 17vw!important; }
   ::ng-deep .dropdown-item { width: 16vw!important; }
 }
 
