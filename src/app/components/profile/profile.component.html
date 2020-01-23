@@ -13,7 +13,8 @@
 
     <div class="col-sm-8 text-center bio" *ngIf="currentUser.bio && !bioMode">
       <h6>{{ this.currentUser.bio }}
-        <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i></h6>
+        <i *ngIf="user && user._id == currentUser._id" class="fas fa-pencil-alt bio-icon" (click)="editBio()"></i>
+      </h6>
     </div>
     <div class="col-sm-8 text-center bio" *ngIf="!currentUser.bio && user && user._id == currentUser._id && !bioMode">
       <h6>You don't currently have a bio
@@ -45,7 +46,8 @@
     </div>-->
   </section>
 
-  <section *ngIf="userQuestions && view === contentView.questions" class="row justify-content-center">
+  <section *ngIf="userQuestions && userQuestions.length && view === contentView.questions"
+    class="row justify-content-center">
     <div class="question-column col-md-6 col-sm-10 col-11 py-2">
       <div *ngFor="let question of userQuestions" class="row justify-content-center">
         <div class="col-12 text-center">
@@ -60,7 +62,8 @@
     </div>
   </section>
 
-  <section *ngIf="userAnswers && view === contentView.answers" class="row justify-content-center">
+  <section *ngIf="userAnswers && userAnswers.length && view === contentView.answers" 
+    class="row justify-content-center">
     <div class="question-column col-md-6 col-sm-10 col-11 py-2">
       <div *ngFor="let answer of userAnswers" class="row justify-content-center">
         <div class="col-12 text-center">
