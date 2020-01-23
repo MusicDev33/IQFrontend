@@ -23,6 +23,7 @@ export class QuestionCardComponent implements OnInit {
   @Input() questionText: string;
   @Input() answerText: string;
   @Input() question: IQuestion;
+  @Input() cardType ? = 'single';
 
   user: IUser;
 
@@ -37,6 +38,9 @@ export class QuestionCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('NEW');
+    console.log(this.question.subject);
+    console.log(this.cardType);
     if (this.question && this.question.previewAnswer) {
       this.userService.publicGetUserByHandle(this.question.previewAnswer.posterHandle).subscribe((userRes: any) => {
         this.user = userRes.user;
@@ -57,7 +61,7 @@ export class QuestionCardComponent implements OnInit {
   }
 
   // TODO: Create types for everything...
-  editQuestionClicked(question: any) {
+  editQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
@@ -77,7 +81,7 @@ export class QuestionCardComponent implements OnInit {
     });
   }
 
-  reportQuestionClicked(question: any) {
+  reportQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';

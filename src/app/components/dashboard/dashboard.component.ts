@@ -12,6 +12,7 @@ import { QuestionEditComponent } from '@components/questionedit/questionedit.com
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { ISubject } from '@interfaces/schemas/ISubject';
+import { IQuestion } from '@interfaces/schemas/IQuestion';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ import { ISubject } from '@interfaces/schemas/ISubject';
 })
 export class DashboardComponent implements OnInit {
   user: IUser;
-  questions: Array<object>;
+  questions: Array<IQuestion>;
   subjects: Array<string>;
   subject: string;
 
@@ -235,5 +236,35 @@ export class DashboardComponent implements OnInit {
   onSourceClicked(sourceName: string) {
     localStorage.setItem('lib-key', sourceName);
     this.router.navigate(['/library']);
+  }
+
+  // Currently don't have a decent way of doing this.
+  // Basically, the problem is that the client shouldn't be handling this code.
+  // The server has the means to do this logic and give it to the client in a
+  // much more efficient manner, but for the sake getting it done now,
+  // here's a terrible way of doing this.
+  calculateCardType(questionText: string, subject: string) {
+    const index = this.questions.map(e => e.questionText).indexOf(questionText);
+    if (index >= this.questions.length - 1) {
+      return 'single';
+    }
+
+    if (index === 0 && this.questions[index + 1].subject === subject) {
+      return 'header';
+    }
+
+    if (index === 0 && this.questions[index + 1].subject !== subject) {
+      return 'single';
+    }
+
+    if (this.questions[index + 1].subject === subject && this.questions[index - 1].subject === subject) {
+      return 'mid';
+    }
+
+    if (this.questions[index + 1].subject !== subject && this.questions[index - 1].subject === subject) {
+      return 'bottom';
+    }
+
+    return 'single';
   }
 }
