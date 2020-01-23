@@ -115,30 +115,28 @@ body {
 }
 
 // Bootstrap
+// dropdown for search
 ::ng-deep .dropdown-menu {
-  border-radius: 9px!important;
-  padding-left: 5px!important;
-  padding-right: 5px!important;
+  border-radius: 12px!important;
 }
 
 ::ng-deep .dropdown {
-  border-radius: 9px!important;
-  padding-left: 5px!important;
-  padding-right: 5px!important;
+  border-radius: 12px!important;
 }
 
+// Dropdown for profile button
 .dropdown-item {
-  border-radius: 999px!important;
+  border-radius: 15px!important;
 }
 
 .dropdown-box {
-  border-radius: 9px;
+  border-radius: 12px;
   background-color: #fff;
 }
 
 .dropdown-row {
   cursor: pointer;
-  border-radius: 999px;
+  border-radius: 15px;
   margin-right: 5px;
   margin-left: 5px;
   transition: all 0.3s;
