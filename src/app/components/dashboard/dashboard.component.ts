@@ -257,6 +257,10 @@ export class DashboardComponent implements OnInit {
       return 'single';
     }
 
+    if (this.questions[index - 1].subject !== subject && this.questions[index + 1].subject === subject) {
+      return 'header';
+    }
+
     if (this.questions[index + 1].subject === subject && this.questions[index - 1].subject === subject) {
       return 'mid';
     }
