@@ -1,5 +1,5 @@
 <div class="no-float pl-4 py-2 mt-2 text-left iq-card-top" *ngIf="cardType === 'header' && question.subject">
-  <h3>{{ question.subject }}</h3>
+  <h4>{{ question.subject }}</h4>
 </div>
 
 <div class="no-float text-center py-2 px-2"
@@ -13,8 +13,12 @@
   </span>
 
   <div class="row">
-    <section class="col-2 text-left" *ngIf="poster">
-      <img *ngIf="user" src="{{ user.profileImage }}" class="poster-img img-fluid pl-2"/>
+    <section class="col-2 text-left" *ngIf="poster && user">
+      <img src="{{ user.profileImage }}" class="poster-img img-fluid pl-2"/>
+    </section>
+
+    <section class="col-2 text-left" *ngIf="poster && profileImageUrl && profileImageUrl.length">
+      <img src="{{ profileImageUrl }}" class="poster-img img-fluid pl-2"/>
     </section>
 
     <section class="col-10 text-left pl-0" *ngIf="poster">

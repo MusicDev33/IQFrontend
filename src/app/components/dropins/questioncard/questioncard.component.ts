@@ -24,6 +24,7 @@ export class QuestionCardComponent implements OnInit {
   @Input() answerText: string;
   @Input() question: IQuestion;
   @Input() cardType ? = 'single';
+  @Input() profileImageUrl: string;
 
   user: IUser;
 

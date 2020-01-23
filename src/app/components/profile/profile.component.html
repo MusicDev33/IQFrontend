@@ -62,7 +62,7 @@
     </div>
   </section>
 
-  <section *ngIf="userAnswers && userAnswers.length && view === contentView.answers" 
+  <section *ngIf="userAnswers && userAnswers.length && view === contentView.answers"
     class="row justify-content-center">
     <div class="question-column col-md-6 col-sm-10 col-11 py-2">
       <div *ngFor="let answer of userAnswers" class="row justify-content-center">
@@ -71,7 +71,8 @@
             [question]=""
             [questionText]="answer.questionText"
             [poster]="answer.poster"
-            [answerText]="answer.answerText">
+            [answerText]="answer.answerText"
+            [profileImageUrl]="user.profileImage">
           </app-questioncard>
         </div>
       </div>
