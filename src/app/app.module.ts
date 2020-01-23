@@ -42,6 +42,7 @@ import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagent
 
 // Dropins
 import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
+import { AnswerBoxComponent } from './components/dropins/answerbox/answerbox.component';
 
 // Support
 import { SupportComponent } from '@components/support/support.component';
@@ -125,7 +126,8 @@ export function provideConfig() {
     SourceComponent,
     LandingNavComponent,
     PricingComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    AnswerBoxComponent
   ],
   imports: [
     BrowserModule,
