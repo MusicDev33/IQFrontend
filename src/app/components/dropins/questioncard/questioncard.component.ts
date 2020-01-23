@@ -38,9 +38,6 @@ export class QuestionCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('NEW');
-    console.log(this.question.subject);
-    console.log(this.cardType);
     if (this.question && this.question.previewAnswer) {
       this.userService.publicGetUserByHandle(this.question.previewAnswer.posterHandle).subscribe((userRes: any) => {
         this.user = userRes.user;
