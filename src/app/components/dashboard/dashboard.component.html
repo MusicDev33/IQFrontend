@@ -10,8 +10,9 @@
   <div class="row subject-ribbon justify-content-center py-3"
     *ngIf="arrayOfSubjects && user && user.currentSubjects.length < 3">
     <div class="col-1 text-center my-auto pl-4 pl-lg-2">
-      <i class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === 0, 'enabled': !(subjectOffset === 0)}"></i>
+      <button [disabled]="subjectOffset === 0" class="btn side-arrow">
+        <i class="fas fa-chevron-left" (click)="leftArrowClicked()"></i>
+      </button>
     </div>
 
     <div class="col-10 justify-content-center">
@@ -77,8 +78,9 @@
     </div>
 
     <div class="col-1 text-center my-auto pr-4 pr-lg-2">
-      <i class="fas fa-chevron-right side-arrow disabled" (click)="rightArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === calcMaxOffset() - 1, 'enabled': !(subjectOffset === calcMaxOffset() - 1)}"></i>
+      <button [disabled]="subjectOffset === calcMaxOffset() - 1" class="btn side-arrow">
+        <i class="fas fa-chevron-right" (click)="rightArrowClicked()"></i>
+      </button>
     </div>
   </div>
 
