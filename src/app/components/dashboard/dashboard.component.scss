@@ -90,15 +90,6 @@
   color: $color-primary;
 }
 
-.side-arrow.disabled {
-  color: #cdcdcd;
-}
-
-.side-arrow.enabled:hover {
-  color: $color-primary;
-  cursor: pointer;
-}
-
 .profile-alert {
   background-color: #eee;
   color: #666;
