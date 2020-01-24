@@ -71,6 +71,9 @@ import { PricingComponent } from './components/pricing/pricing.component';
 
 // Services - UTILITY
 
+// Interactivity Lab
+import { InteractLabComponent } from './modules/interactlab/interactlab.component';
+
 // Guards
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -127,7 +130,8 @@ export function provideConfig() {
     LandingNavComponent,
     PricingComponent,
     QuestionCardComponent,
-    AnswerBoxComponent
+    AnswerBoxComponent,
+    InteractLabComponent
   ],
   imports: [
     BrowserModule,
