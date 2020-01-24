@@ -62,7 +62,7 @@ const routes: Routes = [
   { path: 'iqt/:topic', component: TopicComponent},
   { path: 'iqs/:source', component: SourceComponent},
   { path: 'pricing', component: PricingComponent, canActivate: [ProductionGuard]},
-  { path: 'interactlab', component: InteractLabComponent, canActivate: [ProductionGuard]},
+  { path: 'ilab', component: InteractLabComponent, canActivate: [ProductionGuard]},
   { path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
   // { path: 'jobs', component: IQJobsComponent},

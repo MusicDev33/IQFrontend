@@ -48,15 +48,27 @@
 }
 
 .text-followed {
-  color: rgb(186,186,186);
-  cursor: default;
+  color: rgb(164,164,164);
+  cursor: pointer;
   height: 36px;
   box-sizing: border-box;
+  border-radius: 999px;
+  transition: all 0.3s;
+}
+
+.text-followed:hover {
+  background-color: rgb(244,244,244);
 }
 
 .discover-followed {
-  color: rgb(186,186,186);
-  cursor: default;
+  color: rgb(164,164,164);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.3s;
+}
+
+.discover-followed:hover {
+  background-color: rgb(244,244,244);
 }
 
 .subject-ribbon {

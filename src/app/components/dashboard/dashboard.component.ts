@@ -152,7 +152,13 @@ export class DashboardComponent implements OnInit {
   }
 
   followButtonClicked(subject: ISubject) {
-    this.subjects.push(subject.name);
+    const index = this.subjects.indexOf(subject.name);
+    if (index <= -1) {
+      this.subjects.push(subject.name);
+    } else if (index > -1) {
+      this.subjects.splice(index, 1);
+    }
+
     this.userService.changeUserProperty('currentSubjects', this.subjects).subscribe((result: any) => {
 
     });
