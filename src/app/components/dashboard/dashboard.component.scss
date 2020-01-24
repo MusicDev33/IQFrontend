@@ -54,13 +54,28 @@
   box-sizing: border-box;
 }
 
+.discover-followed {
+  color: rgb(186,186,186);
+  cursor: default;
+}
+
 .subject-ribbon {
   background-color: $main-bg-color;
 }
 
 .side-arrow {
-  transition: all 0.43s;
+  transition: all 0.3s;
   font-size: 30px;
+  cursor: pointer;
+}
+
+.side-arrow:disabled {
+  pointer-events: none;
+  color: #cdcdcd;
+}
+
+.side-arrow:hover {
+  color: $color-primary;
 }
 
 .side-arrow.disabled {

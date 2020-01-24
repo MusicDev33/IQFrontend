@@ -10,6 +10,9 @@
 
 
 // IQ Button
+.btn {
+  box-shadow: none!important;
+}
 .iq-btn-1 {
   border: 1px solid $color-primary;
   border-radius: 19px;

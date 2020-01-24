@@ -21,11 +21,11 @@ import { IQuestion } from '@interfaces/schemas/IQuestion';
 })
 export class DashboardComponent implements OnInit {
   user: IUser;
-  questions: Array<IQuestion>;
-  subjects: Array<string>;
+  questions: IQuestion[];
+  subjects: string[];
   subject: string;
 
-  arrayOfSubjects: Array<string>;
+  arrayOfSubjects: ISubject[];
   subjectOffset = 0;
 
   screenHeight: number;
@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
   // The string that tells a user what to do after they create a profile
   helpString = '';
   dialogOpen = false;
+
+  currentDiscoverSubjectIndex = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -97,7 +99,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // TODO: Create types for everything...
-  editQuestionClicked(question: any) {
+  editQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
@@ -168,6 +170,16 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  discoverArrowClicked(arrow: string) {
+    if (arrow === 'right' && this.currentDiscoverSubjectIndex < this.arrayOfSubjects.length - 1) {
+      this.currentDiscoverSubjectIndex += 1;
+    }
+
+    if (arrow === 'left' && this.currentDiscoverSubjectIndex > 0) {
+      this.currentDiscoverSubjectIndex -= 1;
+    }
+  }
+
   calcMaxOffset(): number {
     const screen = this.returnScreenBreakpoint();
 
@@ -185,7 +197,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  nSubjects(n: number): string[] {
+  nSubjects(n: number): ISubject[] {
     const end = this.arrayOfSubjects.length;
     if (this.arrayOfSubjects.length - (this.subjectOffset * n) < n) {
       return this.arrayOfSubjects.slice(this.subjectOffset * n, end);
@@ -241,7 +253,7 @@ export class DashboardComponent implements OnInit {
   // Currently don't have a decent way of doing this.
   // Basically, the problem is that the client shouldn't be handling this code.
   // The server has the means to do this logic and give it to the client in a
-  // much more efficient manner, but for the sake getting it done now,
+  // much more efficient manner, but for the sake of getting it done now,
   // here's a terrible way of doing this.
   calculateCardType(questionText: string, subject: string) {
     const index = this.questions.map(e => e.questionText).indexOf(questionText);

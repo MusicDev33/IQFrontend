@@ -99,7 +99,8 @@
             <a class="lib-info-anchor" href=""[routerLink]="['/library']">here</a>
         </div>
 
-        <div class="question-column p-2">
+        <!-- Discover Section -->
+        <div class="question-column p-2" *ngIf="arrayOfSubjects && arrayOfSubjects.length">
           <div class="row justify-content-center">
             <div class="col-10 iq-card-top no-float text-center p-2">
               <h2><i class="far fa-lightbulb float-left"></i> Discover</h2>
@@ -108,19 +109,41 @@
 
           <div class="row justify-content-center">
             <div class="col-10 iq-card-mid no-float text-center py-2">
-              <h4>Physics</h4>
+              <h4>{{ arrayOfSubjects[currentDiscoverSubjectIndex].name }}</h4>
             </div>
           </div>
 
           <div class="row justify-content-center">
             <div class="col-10 iq-card-bottom no-float text-center pb-2">
-              <i class="fas fa-chevron-left side-arrow float-left pt-2"></i>
-              <div class="btn iq-btn-1 mt-2"
-              *ngIf="!user.currentSubjects.includes('Physics')"
-              (click)="followButtonClicked('subject')">Follow</div>
+              <div class="row justify-content-center">
 
-              <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes('Physics')">Followed</div>
-              <i class="fas fa-chevron-right side-arrow float-right pt-2"></i>
+                <div class="col-3 no-padding noselect">
+                  <button class="btn side-arrow pt-2 my-auto mx-auto"
+                    [disabled]="currentDiscoverSubjectIndex <= 0">
+                      <i class="fas fa-chevron-left"
+                      (click)="discoverArrowClicked('left')"></i>
+                  </button>
+                </div>
+
+                <div class="col-6 pt-2"
+                  *ngIf="!user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)"
+                  (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex].name)">
+                  <button class="btn iq-btn-1 my-auto">Follow</button>
+                </div>
+
+                <div class="col-6 pt-2"
+                  *ngIf="user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)">
+                    <button class="discover-followed btn my-auto">Followed</button>
+                </div>
+                <div class="col-3 no-padding noselect">
+                  <button class="btn side-arrow pt-2 my-auto mx-auto"
+                    [disabled]="currentDiscoverSubjectIndex >= arrayOfSubjects.length - 1">
+                      <i class="fas fa-chevron-right"
+                      (click)="discoverArrowClicked('right')"></i>
+                  </button>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
