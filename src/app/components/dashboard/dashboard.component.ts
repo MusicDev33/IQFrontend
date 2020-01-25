@@ -263,7 +263,11 @@ export class DashboardComponent implements OnInit {
   // here's a terrible way of doing this.
   calculateCardType(questionText: string, subject: string) {
     const index = this.questions.map(e => e.questionText).indexOf(questionText);
-    if (index >= this.questions.length - 1) {
+    if (index >= this.questions.length - 1 && this.questions[index - 1].subject === subject) {
+      return 'bottom';
+    }
+
+    if (index >= this.questions.length - 1 && this.questions[index - 1].subject !== subject) {
       return 'single';
     }
 
