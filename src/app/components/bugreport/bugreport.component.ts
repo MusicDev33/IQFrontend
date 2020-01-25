@@ -55,9 +55,8 @@ export class BugReportComponent implements OnInit {
       type: this.selectedMode
     };
 
-    this.feedbackService.sendFeedback(feedback).subscribe( data => {
-      const res: any = data;
-      this.close(res.msg);
+    this.feedbackService.sendFeedback(feedback).subscribe((data: any) => {
+      this.close(data.msg);
     });
   }
 }

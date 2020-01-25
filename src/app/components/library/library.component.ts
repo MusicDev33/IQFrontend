@@ -9,6 +9,8 @@ import { SearchService } from '@services/search.service';
 import { QuestionService } from '@services/question.service';
 
 import { User } from '@classes/user';
+import { ISource } from '@interfaces/schemas/ISource';
+import { IQuestion } from '@interfaces/schemas/IQuestion';
 
 @Component({
   selector: 'app-library',
@@ -21,18 +23,18 @@ export class LibraryComponent implements OnInit {
 
   findSourceMode = false;
   findSourceText = '';
-  sourceSearchResults = [];
+  sourceSearchResults: ISource[] = [];
 
   selectedSource = '';
   selectedSourceID = '';
 
   // A result of poor planning
   openedSource = '';
-  openedSourceObject: any = {};
+  openedSourceObject: ISource;
 
-  questions = [];
+  questions: IQuestion[] = [];
   // Questions that are currently visible
-  currentQuestions = [];
+  currentQuestions: IQuestion[] = [];
 
   addTagMode = false;
   tagText = '';
@@ -104,7 +106,7 @@ export class LibraryComponent implements OnInit {
   removeSourceFromUser(sourceName: string) {
     this.selectedTag = '';
     this.openedSource = '';
-    this.openedSourceObject = {};
+    delete this.openedSourceObject;
     this.questions = [];
     this.currentQuestions = [];
     const index = this.user.currentSources.indexOf(sourceName);
@@ -119,6 +121,8 @@ export class LibraryComponent implements OnInit {
   openSource(sourceName: string) {
     this.selectedTag = '';
     this.openedSource = sourceName;
+    this.questions = [];
+    this.currentQuestions = [];
 
     this.sourceService.getSourceByName(sourceName).subscribe(data => {
       const res: any = data;

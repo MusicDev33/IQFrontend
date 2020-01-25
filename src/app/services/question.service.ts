@@ -1,6 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
@@ -22,7 +23,7 @@ export class QuestionService {
     this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  questionTextToURL(questionText: string) {
+  questionTextToURL(questionText: string): string {
     let urlText = '';
     const specialChars = '!@#$%^&*()>< \'/\\';
 
