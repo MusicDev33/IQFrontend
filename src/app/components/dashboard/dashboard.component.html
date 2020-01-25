@@ -7,10 +7,12 @@
     </div>
   </div>
 
-  <div class="row subject-ribbon justify-content-center py-3 mb-2" *ngIf="arrayOfSubjects">
+  <div class="row subject-ribbon justify-content-center py-3"
+    *ngIf="arrayOfSubjects && user && user.currentSubjects.length < 3">
     <div class="col-1 text-center my-auto pl-4 pl-lg-2">
-      <i class="fas fa-chevron-left side-arrow disabled" (click)="leftArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === 0, 'enabled': !(subjectOffset === 0)}"></i>
+      <button [disabled]="subjectOffset === 0" class="btn side-arrow">
+        <i class="fas fa-chevron-left" (click)="leftArrowClicked()"></i>
+      </button>
     </div>
 
     <div class="col-10 justify-content-center">
@@ -24,7 +26,9 @@
             *ngIf="!user.currentSubjects.includes(subject.name)"
             (click)="followButtonClicked(subject)">Follow</div>
 
-            <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+            <div class="text-followed pt-2 mt-2"
+              (click)="followButtonClicked(subject)"
+              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -36,7 +40,9 @@
             *ngIf="!user.currentSubjects.includes(subject.name)"
             (click)="followButtonClicked(subject)">Follow</div>
 
-            <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+            <div class="text-followed pt-2 mt-2"
+              (click)="followButtonClicked(subject)"
+              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -48,7 +54,9 @@
             *ngIf="!user.currentSubjects.includes(subject.name)"
             (click)="followButtonClicked(subject)">Follow</div>
 
-            <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+            <div class="text-followed pt-2 mt-2"
+              (click)="followButtonClicked(subject)"
+              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -60,7 +68,9 @@
               *ngIf="!user.currentSubjects.includes(subject.name)"
               (click)="followButtonClicked(subject)">Follow</div>
 
-            <div class="text-followed pt-2 mt-2" *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
+            <div class="text-followed pt-2 mt-2"
+              (click)="followButtonClicked(subject)"
+              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
           </div>
         </div>
 
@@ -68,12 +78,17 @@
     </div>
 
     <div class="col-1 text-center my-auto pr-4 pr-lg-2">
-      <i class="fas fa-chevron-right side-arrow disabled" (click)="rightArrowClicked()"
-        [ngClass]="{'disabled': subjectOffset === calcMaxOffset() - 1, 'enabled': !(subjectOffset === calcMaxOffset() - 1)}"></i>
+      <button [disabled]="subjectOffset === calcMaxOffset() - 1" class="btn side-arrow">
+        <i class="fas fa-chevron-right" (click)="rightArrowClicked()"></i>
+      </button>
     </div>
   </div>
 
 </section>
+
+<div class="pt-2" *ngIf="arrayOfSubjects && user">
+  <h2 class="text-center">Your Feed</h2>
+</div>
 
 <!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
 <section *ngIf="user">
@@ -81,13 +96,67 @@
     <div class="row">
 
       <article *ngIf="user" class="col-md-3 d-none d-md-block">
-        <div>
-          <h2 class="library-url" [routerLink]="['/library']">Library</h2>
+        <!-- Discover Section -->
+        <div class="question-column p-2 mb-3"
+          *ngIf="arrayOfSubjects && arrayOfSubjects.length && user && user.currentSubjects.length >= 3">
+          <div class="row justify-content-center mt-1">
+            <div class="col-10 iq-card-top no-float text-center p-2">
+              <h2><i class="far fa-lightbulb float-left"></i>Discover</h2>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-10 iq-card-mid no-float text-center py-2">
+              <h4>{{ arrayOfSubjects[currentDiscoverSubjectIndex].name }}</h4>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-1">
+            <div class="col-10 iq-card-bottom no-float text-center pb-2">
+              <div class="row justify-content-center">
+
+                <div class="col-3 no-padding noselect">
+                  <button class="btn side-arrow pt-2 my-auto mx-auto"
+                    [disabled]="currentDiscoverSubjectIndex <= 0">
+                      <i class="fas fa-chevron-left"
+                      (click)="discoverArrowClicked('left')"></i>
+                  </button>
+                </div>
+
+                <div class="col-6 pt-3"
+                  *ngIf="!user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)"
+                  (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
+                  <button class="btn iq-btn-1 my-auto">Follow</button>
+                </div>
+
+                <div class="col-6 pt-3"
+                  *ngIf="user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)">
+                    <button class="discover-followed btn my-auto"
+                      (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
+                        Followed
+                    </button>
+                </div>
+                <div class="col-3 no-padding noselect">
+                  <button class="btn side-arrow pt-2 my-auto mx-auto"
+                    [disabled]="currentDiscoverSubjectIndex >= arrayOfSubjects.length - 1">
+                      <i class="fas fa-chevron-right"
+                      (click)="discoverArrowClicked('right')"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="user.currentSources.length">
+
+        <!-- Library -->
+        <div class="ml-2">
+          <h2 class="library-url" [routerLink]="['/library']">Your Library</h2>
+        </div>
+        <div *ngIf="user.currentSources.length" class="ml-2">
           <div *ngFor="let source of user.currentSources" class="mb-2">
             <div>
-              <span (click)="onSourceClicked(source)"><h4 class="subject-url">{{ source }}</h4></span>
+              <span (click)="onSourceClicked(source)"><h5 class="subject-url">{{ source }}</h5></span>
               <div class="detail-view">
 
               </div>
@@ -101,7 +170,6 @@
       </article>
 
       <article *ngIf="questions" class='col-sm-12 col-md-9 col-lg-6 justify-content-center'>
-        <h2 class="text-center">Your Feed</h2>
         <div class="text-center question-column py-2 col-12">
           <div class="row" *ngFor="let question of questions">
             <div class="col-12">
@@ -120,7 +188,7 @@
       <div *ngIf="user && user.currentSubjects.length" class="col-lg-3 d-none d-lg-block">
         <div *ngFor="let subject of user.currentSubjects" class="mb-2">
           <div>
-            <span (click)="onSubjectNameClicked(subject)"><h4 class="subject-url">{{ subject }}</h4></span>
+            <span (click)="onSubjectNameClicked(subject)"><h5 class="subject-url">{{ subject }}</h5></span>
             <div class="detail-view">
 
             </div>

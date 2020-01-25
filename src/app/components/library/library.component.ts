@@ -51,6 +51,9 @@ export class LibraryComponent implements OnInit {
     this.userService.getProfile().subscribe(data => {
       const res: any = data;
       this.user = Object.assign(new User(), res.user);
+      if (this.user.currentSources.length) {
+        this.openSource(this.user.currentSources[0]);
+      }
       if (localStorage.getItem('lib-key')) {
         this.openSource(localStorage.getItem('lib-key'));
         localStorage.removeItem('lib-key');
