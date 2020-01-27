@@ -42,3 +42,17 @@
   background: $main-bg-color;
   border-radius: 15px;
 }
+
+.tab-circle {
+  display: inline-block;
+  border-radius: 50%;
+  height: 13px;
+  width: 13px;
+  background: #d7d7d7;
+  cursor: pointer;
+}
+
+.tab-circle.selected {
+  background: $color-primary;
+  pointer-events: none;
+}

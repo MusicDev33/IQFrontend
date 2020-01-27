@@ -1,7 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import * as devRoutes from '../globals/devroutes';
 import * as prodRoutes from '../globals/prodroutes';
 
@@ -88,6 +87,12 @@ export class QuestionService {
       paramValue: question.homeworkSource
     };
     return this.http.put(this.tsRouteBase + '/questions/set/' + question._id + '/homeworkSource', body, {headers})
+      .pipe(map(res => res));
+  }
+
+  getTrendingQuestions() {
+    const headers = this.headersTemplate;
+    return this.http.get(this.tsRouteBase + '/questions/questions/today', {headers})
       .pipe(map(res => res));
   }
 }

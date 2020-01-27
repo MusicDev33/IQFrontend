@@ -10,20 +10,25 @@
         </div>
       </section>
 
-      <section class="row justify-content-center">
-        <app-questioncard class="col-12"
-          [question]="question"
-          [questionText]="question.questionText"
-          [poster]="question.previewAnswer ? question.previewAnswer.poster : ''"
-          [answerText]="question.previewAnswer ? question.previewAnswer.answerText : ''"
-          [cardType]="'mid'">
-        </app-questioncard>
+      <section *ngIf="topQuestions">
+        <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
+          <app-questioncard class="col-12" *ngIf="topQuestion"
+            [question]="topQuestion"
+            [questionText]="topQuestion.questionText"
+            [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
+            [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
+            [cardType]="'mid'">
+          </app-questioncard>
+        </div>
       </section>
 
       <section class="row justify-content-center">
         <div class="col-12">
           <section class="iq-card-bottom no-float p-2 text-center">
-            <h2>Questions of the Day</h2>
+            <div class="tab-circle mr-2" (click)="currentSplice = 0"
+              [ngClass]="{'selected': currentSplice === 0}"></div>
+            <div class="tab-circle ml-2" (click)="currentSplice = 2"
+              [ngClass]="{'selected': currentSplice === 2}"></div>
           </section>
         </div>
       </section>

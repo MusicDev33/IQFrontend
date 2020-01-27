@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { QuestionService } from '@services/question.service';
+
 import { IQuestion } from '@interfaces/schemas/IQuestion';
 
 @Component({
@@ -10,28 +12,21 @@ import { IQuestion } from '@interfaces/schemas/IQuestion';
 })
 export class LandingpageComponent implements OnInit {
 
-  question: IQuestion = {
-    _id: '5e1892a2d5f7587d4125d9b0',
-    askerID: '5e189210d5f7587d4125d9af',
-    type: 'question',
-    questionText: 'What is a Lewis acid?',
-    urlText: 'What-is-a-Lewis-acid',
-    subject: 'Chemistry',
-    views: 1,
-    votes: 1,
-    askerHandle: 'shelby',
-    asker: 'Shelby McCowen',
-    answerNum: 0,
-    tags: [''],
-    homeworkSource: [''],
-    details: '',
-    time: '',
-    previewAnswer: {}
-  };
+  currentSplice = 0;
 
-  constructor(public router: Router) { }
+  topQuestions: IQuestion[] = [];
+
+  constructor(
+    public router: Router,
+    public questionService: QuestionService
+  ) { }
 
   ngOnInit() {
+    this.questionService.getTrendingQuestions().subscribe((questionData: any) => {
+      if (questionData.success) {
+        this.topQuestions = questionData.questions;
+      }
+    });
   }
 
   onLoginClicked() {
@@ -40,5 +35,9 @@ export class LandingpageComponent implements OnInit {
 
   signInWithGoogle() {
     // stuff
+  }
+
+  topQuestionSlice(slice: number) {
+    return [this.topQuestions[slice], this.topQuestions[slice + 1]];
   }
 }
