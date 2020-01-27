@@ -25,7 +25,8 @@ export class LandingpageComponent implements OnInit {
     tags: [''],
     homeworkSource: [''],
     details: '',
-    time: ''
+    time: '',
+    previewAnswer: {}
   };
 
   constructor(public router: Router) { }
