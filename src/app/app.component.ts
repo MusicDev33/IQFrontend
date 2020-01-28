@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Router, NavigationEnd} from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,23 @@ export class AppComponent implements OnInit {
 
   noNavbarUrls = ['/', '/register', '/login', '/authenticate', '/gsignincb'];
 
-  constructor(public activatedRoute: ActivatedRoute, public router: Router) {
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
+    public swUpdate: SwUpdate
+  ) {
 
   }
 
   ngOnInit() {
      this.router.events.subscribe(this.onUrlChange.bind(this));
+     if (this.swUpdate.isEnabled) {
+        this.swUpdate.available.subscribe(() => {
+          if (confirm('New version of Inquantir available. Load new version?')) {
+              window.location.reload();
+          }
+        });
+    }
   }
 
   onUrlChange(ev) {
