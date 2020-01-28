@@ -89,6 +89,8 @@ import {
 
 import googleSocialConfig from './socialLoginConfig';
 import { ReportQuestionComponent } from './components/reportquestion/reportquestion.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function provideConfig() {
   return googleSocialConfig;
@@ -148,7 +150,8 @@ export function provideConfig() {
     TypeaheadModule.forRoot(),
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
-    SocialLoginModule
+    SocialLoginModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ValidateService,
