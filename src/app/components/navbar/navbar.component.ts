@@ -14,6 +14,11 @@ import { AuthService } from 'angularx-social-login';
 import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
 import { BugReportComponent } from '@components/bugreport/bugreport.component';
 
+import { IUser } from '@interfaces/schemas/IUser';
+import { ISource } from '@interfaces/schemas/ISource';
+import { ISubject } from '@interfaces/schemas/ISubject';
+import { IQuestion } from '@interfaces/schemas/IQuestion';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -93,20 +98,20 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  userSelected(user: any) {
+  userSelected(user: IUser) {
     const profileURL = '/profile/' + user.handle;
     this.router.navigate([profileURL]);
   }
 
-  sourceSelected(source: any) {
+  sourceSelected(source: ISource) {
     this.router.navigate(['/iqs/' + source.sourceURL]);
   }
 
-  subjectSelected(subject: any) {
+  subjectSelected(subject: ISubject) {
     this.router.navigate(['/iqt/' + subject.subjectURL]);
   }
 
-  questionSelected(question: any) {
+  questionSelected(question: IQuestion) {
     const questionURL = this.questionService.questionTextToURL(question.questionText);
     const routeURL = '/question/' + questionURL;
     this.router.navigate([routeURL]);

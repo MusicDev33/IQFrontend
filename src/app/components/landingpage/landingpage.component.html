@@ -1,62 +1,91 @@
 <article class='container'>
-  <div class="row mt-4 py-2 justify-content-center">
+  <div class="row mt-4 px-2 py-3 card-bg">
 
     <div class="col-6">
-        <section class="col-sm-12 justify-content-center">
-          <section class="card px-4 justify-content-center">
+      <section class="row justify-content-center">
+        <div class="col-12">
+          <section class="iq-card-top no-float p-2 text-center">
+            <h2>Questions of the Day</h2>
+          </section>
+        </div>
+      </section>
 
-            <div class="row my-3 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <h2><b>Intelligent learning starts now</b></h2>
-              </div>
+      <section *ngIf="topQuestions">
+        <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
+          <app-questioncard class="col-12" *ngIf="topQuestion"
+            [question]="topQuestion"
+            [questionText]="topQuestion.questionText"
+            [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
+            [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
+            [cardType]="'mid'">
+          </app-questioncard>
+        </div>
+      </section>
+
+      <section class="row justify-content-center">
+        <div class="col-12">
+          <section class="iq-card-bottom no-float p-2 text-center">
+            <div class="tab-circle mr-2" (click)="currentSplice = 0"
+              [ngClass]="{'selected': currentSplice === 0}"></div>
+            <div class="tab-circle ml-2" (click)="currentSplice = 2"
+              [ngClass]="{'selected': currentSplice === 2}"></div>
+          </section>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="col-6">
+      <section class="iq-card no-float py-2 justify-content-center landing-page-row">
+        <section class="px-4">
+
+          <div class="row my-1 justify-content-center">
+            <div class="col-sm-12 text-center">
+              <h3><b>Sign Up Today!</b></h3>
             </div>
+          </div>
 
-            <div class="row my-1 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <h6><b>Sign up</b></h6>
-              </div>
+          <div class="row mt-3 justify-content-center">
+            <div class="col-sm-12 text-center">
+              <input placeholder="Full name" class="form-control iq-form" />
             </div>
+          </div>
 
-            <div class="row mt-3 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <input placeholder="Full name" class="form-control iq-form" />
-              </div>
+          <div class="row mt-3 justify-content-center">
+            <div class="col-sm-12 text-center">
+              <input placeholder="Email address" class="form-control iq-form" />
             </div>
+          </div>
 
-            <div class="row mt-3 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <input placeholder="Email address" class="form-control iq-form" />
-              </div>
+          <div class="row mt-3 justify-content-center">
+            <div class="col-sm-12 text-center">
+              <input placeholder="Create Password" class="form-control iq-form" />
             </div>
+          </div>
 
-            <div class="row mt-3 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <input placeholder="Create Password" class="form-control iq-form" />
-              </div>
+          <div class="row mt-3 justify-content-center">
+            <div class="col-sm-12 text-center">
+              <button class="btn account-button">Create your account</button>
             </div>
+          </div>
 
-            <div class="row mt-3 justify-content-center">
-              <div class="col-sm-12 text-center">
-                <button class="btn account-button">Create your account</button>
-              </div>
+          <div class="row mt-1 justify-content-center">
+            <div class="col-sm-12 text-center">
+              Or sign up with
             </div>
+          </div>
 
-            <div class="row mt-1 justify-content-center">
-              <div class="col-sm-12 text-center">
-                Or sign up with
-              </div>
+          <div class="row mt-3 justify-content-center mb-3">
+
+            <div class="col-sm-6 text-center">
+              <img class="google-btn" src="assets/google_signin_buttons/web/1x/btn_google_signin_light_normal_web.png"
+                    (click)="signInWithGoogle()">
             </div>
-
-            <div class="row mt-3 justify-content-center mb-3">
-
-              <div class="col-sm-6 text-center">
-                <button class="btn iq-btn-1 col-12" (click)="onLoginClicked()">Google</button>
-              </div>
-            </div>
+          </div>
 
         </section>
       </section>
-      </div>
+    </div>
 
   </div>
 

@@ -22,7 +22,7 @@ export class QuestionService {
     this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  questionTextToURL(questionText: string) {
+  questionTextToURL(questionText: string): string {
     let urlText = '';
     const specialChars = '!@#$%^&*()>< \'/\\';
 
@@ -87,6 +87,12 @@ export class QuestionService {
       paramValue: question.homeworkSource
     };
     return this.http.put(this.tsRouteBase + '/questions/set/' + question._id + '/homeworkSource', body, {headers})
+      .pipe(map(res => res));
+  }
+
+  getTrendingQuestions() {
+    const headers = this.headersTemplate;
+    return this.http.get(this.tsRouteBase + '/questions/questions/today', {headers})
       .pipe(map(res => res));
   }
 }
