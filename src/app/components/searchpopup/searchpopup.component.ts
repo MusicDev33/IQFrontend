@@ -132,6 +132,8 @@ export class SearchpopupComponent implements OnInit {
   }
 
   topicModeToggle() {
+    this.sourceMode = false;
+    this.selectTagMode = false;
     this.topicMode = !this.topicMode;
     this.topicText = '';
     this.selectedSubject = '';
@@ -139,6 +141,8 @@ export class SearchpopupComponent implements OnInit {
   }
 
   sourceModeToggle() {
+    this.topicMode = false;
+    this.selectTagMode = false;
     this.sourceMode = !this.sourceMode;
     this.sourceText = '';
     this.selectedSource = '';
@@ -146,8 +150,16 @@ export class SearchpopupComponent implements OnInit {
   }
 
   tagModeToggle() {
+    this.sourceMode = false;
+    this.topicMode = false;
     this.addedTags = [];
     this.selectTagMode = !this.selectTagMode;
+  }
+
+  disableAllModes() {
+    this.sourceMode = false;
+    this.topicMode = false;
+    this.selectTagMode = false;
   }
 
   setSubjectDropdown(mode: number) {

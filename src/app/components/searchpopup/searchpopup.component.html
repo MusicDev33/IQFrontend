@@ -5,23 +5,43 @@
         <h4>New Question</h4>
       </div>
     </div>
-    <div class="row">
+
+    <section class="row">
       <textarea type="text" [(ngModel)]="questionText"
         class="form-control iq-form col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
       </textarea>
-      <div class="col-sm-12 line mt-2 mb-2"></div>
-    </div>
+      <div class="col-sm-12 line my-2"></div>
+    </section>
 
-    <div class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
+    <!-- Bubble Buttons -->
+    <section class="row justify-content-center mb-3">
+      <div class="col-sm-4" (click)="topicModeToggle()">
+        <div class="bubble" [ngClass]="{'bubble-selected': topicMode}">
+          Add Subject
+        </div>
+      </div>
+      <div class="col-sm-4" (click)="sourceModeToggle()">
+        <div class="bubble" [ngClass]="{'bubble-selected': sourceMode}">
+          Add Source
+        </div>
+      </div>
+      <div class="col-sm-4" (click)="tagModeToggle()">
+        <div class="bubble">
+          Add Tags
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Subject Field -->
+    <section class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend iq-prepend">
           <button class="iq-prepend" (click)="addSubject()"
             tooltip="Don't see your subject? Click here to add it to Inquantir!"
-            [disabled]="topicText.length < 3 || selectedSubject"
-            [ngClass]="{'enabled': topicText.length > 2 && !selectedSubject, 'disabled': topicText.length < 3 || selectedSubject}">
+            [disabled]="topicText.length < 3 || selectedSubject">
             {{ subjectDropdownText }}
           </button>
         </div>
@@ -38,15 +58,15 @@
           (typeaheadOnSelect)="taSubjectSelected($event)"
           (typeaheadNoResults)="subjectNoResults($event)">
       </div>
-    </div>
+    </section>
 
-    <div class="row mb-2" [ngClass]="{'hide-element': !sourceMode}">
+    <!-- Add Source Field -->
+    <section class="row" [ngClass]="{'hide-element': !sourceMode}">
       <div class="input-group col-sm-12">
         <div class="input-group-prepend">
           <button class="iq-prepend" (click)="addSource()"
             tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
-            [disabled]="sourceText.length < 3 || selectedSource"
-            [ngClass]="{'enabled': sourceText.length > 2 && !selectedSource, 'disabled': sourceText.length < 3 || selectedSource}">
+            [disabled]="sourceText.length < 3 || selectedSource">
             {{ sourceDropdownText }}
           </button>
         </div>
@@ -64,34 +84,15 @@
           (typeaheadOnSelect)="taSourceSelected($event)"
           (typeaheadNoResults)="sourceNoResults($event)">
       </div>
-    </div>
-
-    <div class="row justify-content-center mb-3">
-      <div class="col-sm-4" (click)="topicModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': topicMode}">
-          Add Subject
-        </div>
-      </div>
-      <div class="col-sm-4" (click)="sourceModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': sourceMode}">
-          Add Source
-        </div>
-      </div>
-      <div class="col-sm-4" (click)="tagModeToggle()">
-        <div class="bubble">
-          Add Tags
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
 
-  <div *ngIf="selectTagMode" class="container">
-
+  <!-- Add Tag Section -->
+  <section *ngIf="selectTagMode" class="container">
     <div class="row">
       <section class="input-group col-sm-12 mb-3">
         <div class="input-group-prepend">
           <button class="iq-prepend" [disabled]="tagText.length < 3"
-            [ngClass]="{'enabled': tagText.length > 2, 'disabled': tagText.length < 3}"
             (click)="addTagToCreatedTags(tagText)">
             Add Tag
           </button>
@@ -122,10 +123,9 @@
         </section>
       </div>
     </div>
+  </section>
 
-  </div>
-
-  <div style="position:relative;">
+  <section style="position:relative;">
     <i class="fas fa-times fa-2x close-button" (click)="close()"></i>
     <div>
       <button class="btn btn-secondary ask-button" (click)="askQuestion()" [ngClass]="{'enabled': formComplete}"
@@ -133,5 +133,5 @@
         Ask
       </button>
     </div>
-  </div>
+  </section>
 </div>

@@ -69,20 +69,17 @@ body {
   outline: none;
   border-width: 1px;
   background-color: $white;
-}
-
-.iq-prepend.enabled {
   color: $color-primary;
 }
 
-.iq-prepend.disabled {
-  color: #ccc;
-  pointer-events: none;
-}
-
-.iq-prepend:hover.enabled {
+.iq-prepend:hover {
   background-color: $color-primary;
   color: #fff;
+}
+
+.iq-prepend:disabled {
+  color: #ccc;
+  pointer-events: none;
 }
 
 .btn-primary {
