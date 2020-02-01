@@ -19,6 +19,27 @@
   background-color: #eee;
 }
 
+.plus-icon {
+  font-size: 22px;
+  cursor: pointer;
+  color: $color-primary;
+  transition: all 0.25s;
+}
+
+// Temporary Interaction until I come up with a real animation
+.plus-icon:hover {
+
+}
+
+.btn:disabled .plus-icon {
+  pointer-events: none;
+  color: #eee;
+}
+
+.btn:disabled {
+  pointer-events: none;
+}
+
 .close-button {
   border-radius: 50%;
   width: 20px;

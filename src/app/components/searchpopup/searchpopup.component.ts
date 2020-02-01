@@ -50,8 +50,8 @@ export class SearchpopupComponent implements OnInit {
   subjectDropdownText = 'Add Subject';
   sourceDropdownText = 'Add Source';
 
-  subjectPlaceholder = 'Enter a subject name';
-  sourcePlaceholder = 'Enter a source name';
+  subjectPlaceholder = 'Enter subject name';
+  sourcePlaceholder = 'Enter source name';
 
   addedTags = [];
   selectedSourceTags = [];

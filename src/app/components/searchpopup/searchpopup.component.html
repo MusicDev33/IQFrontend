@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
-        <div class="bubble">
+        <div class="bubble" [ngClass]="{'bubble-selected': selectTagMode}">
           Add Tags
         </div>
       </div>
@@ -39,27 +39,23 @@
     <section class="row mb-2" *ngIf="topicMode">
       <div class="col-12">
         <div class="row px-2">
-          <div class="input-group">
-            <div class="input-group-prepend iq-prepend">
-              <button class="iq-prepend" (click)="addSubject()"
-                tooltip="Don't see your subject? Click here to add it to Inquantir!"
-                [disabled]="topicText.length < 3 || selectedSubject">
-                {{ subjectDropdownText }}
-              </button>
-            </div>
-            <input #subjectField
-              [(ngModel)]="topicText"
-              class="form-control iq-form iq-append"
-              formControlName="topic"
-              placeholder="{{ subjectPlaceholder }}"
-              (keyup)="subjectKeyup()"
-              [typeahead]="subjectSearchResults"
-              typeaheadOptionField="name"
-              [typeaheadOptionsLimit]="5"
-              [typeaheadMinLength]="3"
-              (typeaheadOnSelect)="taSubjectSelected($event)"
-              (typeaheadNoResults)="subjectNoResults($event)">
-          </div>
+          <input #subjectField
+            [(ngModel)]="topicText"
+            class="form-control iq-form col-11"
+            formControlName="topic"
+            placeholder="{{ subjectPlaceholder }}"
+            (keyup)="subjectKeyup()"
+            [typeahead]="subjectSearchResults"
+            typeaheadOptionField="name"
+            [typeaheadOptionsLimit]="5"
+            [typeaheadMinLength]="3"
+            (typeaheadOnSelect)="taSubjectSelected($event)"
+            (typeaheadNoResults)="subjectNoResults($event)">
+          <button class="btn text-center col-1 my-auto" (click)="addSubject()"
+            tooltip="Don't see your subject? Click here to add it to Inquantir!"
+            [disabled]="topicText.length < 3 || selectedSubject">
+            <i class="fas fa-plus-circle plus-icon"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -68,27 +64,23 @@
     <section class="row" *ngIf="sourceMode">
       <div class="col-12">
         <div class="row px-2">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <button class="iq-prepend" (click)="addSource()"
-                tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
-                [disabled]="sourceText.length < 3 || selectedSource">
-                {{ sourceDropdownText }}
-              </button>
-            </div>
-            <input #sourceField
-              [(ngModel)]="sourceText"
-              class="form-control iq-form iq-append col-sm-12"
-              formControlName="source"
-              placeholder="{{ sourcePlaceholder }}"
-              (keyup)="sourceKeyup()"
-              [typeahead]="sourceSearchResults"
-              typeaheadOptionField="name"
-              [typeaheadOptionsLimit]="5"
-              [typeaheadMinLength]="3"
-              (typeaheadOnSelect)="taSourceSelected($event)"
-              (typeaheadNoResults)="sourceNoResults($event)">
-          </div>
+          <input #sourceField
+            [(ngModel)]="sourceText"
+            class="form-control iq-form col-sm-11"
+            formControlName="source"
+            placeholder="{{ sourcePlaceholder }}"
+            (keyup)="sourceKeyup()"
+            [typeahead]="sourceSearchResults"
+            typeaheadOptionField="name"
+            [typeaheadOptionsLimit]="5"
+            [typeaheadMinLength]="3"
+            (typeaheadOnSelect)="taSourceSelected($event)"
+            (typeaheadNoResults)="sourceNoResults($event)">
+          <button class="btn text-center col-1 my-auto" (click)="addSource()"
+            tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
+            [disabled]="sourceText.length < 3 || selectedSource">
+            <i class="fas fa-plus-circle plus-icon"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -97,18 +89,14 @@
     <section *ngIf="selectTagMode" class="row">
       <div class="col-12">
         <div class="row px-2">
-          <section class="input-group">
-            <div class="input-group-prepend">
-              <button class="iq-prepend" [disabled]="tagText.length < 3"
-                (click)="addTagToCreatedTags(tagText)">
-                Add Tag
-              </button>
-            </div>
-            <input [(ngModel)]="tagText" formControlName="tagName"
-              (keydown.enter)="addTagToCreatedTags(tagText)"
-              class="form-control iq-form iq-append col-sm-12"
-              placeholder="Add some tags here!">
-          </section>
+          <input [(ngModel)]="tagText" formControlName="tagName"
+            (keydown.enter)="addTagToCreatedTags(tagText)"
+            class="form-control iq-form col-sm-11"
+            placeholder="Add some tags here!">
+          <button class="btn text-center col-1 my-auto" (click)="addTagToCreatedTags(tagText)"
+            [disabled]="tagText.length < 3">
+            <i class="fas fa-plus-circle plus-icon"></i>
+          </button>
         </div>
         <div class="row justify-content-center">
           <div class="tag-container">
