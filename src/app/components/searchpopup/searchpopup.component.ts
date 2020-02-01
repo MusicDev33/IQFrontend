@@ -1,11 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { DebugService } from '@services/utility/debug.service';
 import { SearchService } from '@services/search.service';
@@ -23,6 +20,7 @@ export class SearchpopupComponent implements OnInit {
   question: string;
   topic: string;
   source: string;
+  tagName: string;
   form: FormGroup;
 
   questionMode = false;
@@ -49,8 +47,8 @@ export class SearchpopupComponent implements OnInit {
   subjectDropdownText = 'Add Subject';
   sourceDropdownText = 'Add Source';
 
-  subjectPlaceholder = 'Enter a subject name';
-  sourcePlaceholder = 'Enter a source name';
+  subjectPlaceholder = 'Enter subject name';
+  sourcePlaceholder = 'Enter source name';
 
   addedTags = [];
   selectedSourceTags = [];
@@ -91,6 +89,7 @@ export class SearchpopupComponent implements OnInit {
       question: [this.questionText, []],
       topic: [this.topicText, []],
       source: [this.sourceText, []],
+      tagName: [this.tagName, []],
       tags: [this.addedTagsString, []]
     });
 
@@ -106,11 +105,6 @@ export class SearchpopupComponent implements OnInit {
   askQuestion() {
     this.addedTagsString.setValue(this.addedTags.concat(this.createdTags).join('&'));
     this.dialogRef.close(this.form.value);
-  }
-
-  autoGrow(element) {
-    element.style.height = '5px';
-    element.style.height = (element.scrollHeight) + 'px';
   }
 
   questionModeOn() {
@@ -132,6 +126,8 @@ export class SearchpopupComponent implements OnInit {
   }
 
   topicModeToggle() {
+    this.sourceMode = false;
+    this.selectTagMode = false;
     this.topicMode = !this.topicMode;
     this.topicText = '';
     this.selectedSubject = '';
@@ -139,6 +135,8 @@ export class SearchpopupComponent implements OnInit {
   }
 
   sourceModeToggle() {
+    this.topicMode = false;
+    this.selectTagMode = false;
     this.sourceMode = !this.sourceMode;
     this.sourceText = '';
     this.selectedSource = '';
@@ -146,8 +144,16 @@ export class SearchpopupComponent implements OnInit {
   }
 
   tagModeToggle() {
+    this.sourceMode = false;
+    this.topicMode = false;
     this.addedTags = [];
     this.selectTagMode = !this.selectTagMode;
+  }
+
+  disableAllModes() {
+    this.sourceMode = false;
+    this.topicMode = false;
+    this.selectTagMode = false;
   }
 
   setSubjectDropdown(mode: number) {

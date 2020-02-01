@@ -5,133 +5,132 @@
         <h4>New Question</h4>
       </div>
     </div>
-    <div class="row">
+
+    <section class="row">
       <textarea type="text" [(ngModel)]="questionText"
         class="form-control iq-form col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
       </textarea>
-      <div class="col-sm-12 line mt-2 mb-2"></div>
-    </div>
+    </section>
 
-    <div class="row mb-2" [ngClass]="{'hide-element': !topicMode}">
-      <div class="input-group col-sm-12">
-        <div class="input-group-prepend iq-prepend">
-          <button class="iq-prepend" (click)="addSubject()"
-            tooltip="Don't see your subject? Click here to add it to Inquantir!"
-            [disabled]="topicText.length < 3 || selectedSubject"
-            [ngClass]="{'enabled': topicText.length > 2 && !selectedSubject, 'disabled': topicText.length < 3 || selectedSubject}">
-            {{ subjectDropdownText }}
-          </button>
-        </div>
-        <input #subjectField
-          [(ngModel)]="topicText"
-          class="form-control iq-form iq-append"
-          formControlName="topic"
-          placeholder="{{ subjectPlaceholder }}"
-          (keyup)="subjectKeyup()"
-          [typeahead]="subjectSearchResults"
-          typeaheadOptionField="name"
-          [typeaheadOptionsLimit]="5"
-          [typeaheadMinLength]="3"
-          (typeaheadOnSelect)="taSubjectSelected($event)"
-          (typeaheadNoResults)="subjectNoResults($event)">
-      </div>
-    </div>
-
-    <div class="row mb-2" [ngClass]="{'hide-element': !sourceMode}">
-      <div class="input-group col-sm-12">
-        <div class="input-group-prepend">
-          <button class="iq-prepend" (click)="addSource()"
-            tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
-            [disabled]="sourceText.length < 3 || selectedSource"
-            [ngClass]="{'enabled': sourceText.length > 2 && !selectedSource, 'disabled': sourceText.length < 3 || selectedSource}">
-            {{ sourceDropdownText }}
-          </button>
-        </div>
-        <input #sourceField
-          [ngClass]="{'hide-element': !sourceMode}"
-          [(ngModel)]="sourceText"
-          class="form-control iq-form iq-append col-sm-12"
-          formControlName="source"
-          placeholder="{{ sourcePlaceholder }}"
-          (keyup)="sourceKeyup()"
-          [typeahead]="sourceSearchResults"
-          typeaheadOptionField="name"
-          [typeaheadOptionsLimit]="5"
-          [typeaheadMinLength]="3"
-          (typeaheadOnSelect)="taSourceSelected($event)"
-          (typeaheadNoResults)="sourceNoResults($event)">
-      </div>
-    </div>
-
-    <div class="row justify-content-center mb-3">
+    <!-- Bubble Buttons -->
+    <section class="row justify-content-center mb-1">
       <div class="col-sm-4" (click)="topicModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': topicMode}">
-          Add Subject
+        <div class="mode" [ngClass]="{'selected': topicMode}">
+          <b>Add Subject</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="sourceModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': sourceMode}">
-          Add Source
+        <div class="mode" [ngClass]="{'selected': sourceMode}">
+          <b>Add Source</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
-        <div class="bubble">
-          Add Tags
+        <div class="mode" [ngClass]="{'selected': selectTagMode}">
+          <b>Add Tags</b>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="col-sm-12 line my-2"></div>
+    </section>
 
-  <div *ngIf="selectTagMode" class="container">
-
-    <div class="row">
-      <section class="input-group col-sm-12 mb-3">
-        <div class="input-group-prepend">
-          <button class="iq-prepend" [disabled]="tagText.length < 3"
-            [ngClass]="{'enabled': tagText.length > 2, 'disabled': tagText.length < 3}"
-            (click)="addTagToCreatedTags(tagText)">
-            Add Tag
+    <!-- Add Subject Field -->
+    <section class="row mb-2" *ngIf="topicMode">
+      <div class="col-12">
+        <div class="row px-2">
+          <input #subjectField
+            [(ngModel)]="topicText"
+            class="form-control iq-form col-11"
+            formControlName="topic"
+            placeholder="{{ subjectPlaceholder }}"
+            (keyup)="subjectKeyup()"
+            [typeahead]="subjectSearchResults"
+            typeaheadOptionField="name"
+            [typeaheadOptionsLimit]="5"
+            [typeaheadMinLength]="3"
+            (typeaheadOnSelect)="taSubjectSelected($event)"
+            (typeaheadNoResults)="subjectNoResults($event)">
+          <button class="btn text-center col-1 my-auto" (click)="addSubject()"
+            tooltip="Don't see your subject? Click here to add it to Inquantir!"
+            [disabled]="topicText.length < 3 || selectedSubject">
+            <i class="fas fa-plus-circle plus-icon"></i>
           </button>
         </div>
-        <input [(ngModel)]="tagText" (keydown.enter)="addTagToCreatedTags(tagText)"
-          class="form-control iq-form iq-append col-sm-12"
-          placeholder="Add some tags here!">
-      </section>
-    </div>
-    <div class="row justify-content-center">
-      <div class="tag-container">
-        <section class="col-sm-12 text-center" *ngIf="createdTags.length">
-          <h4>Created Tags</h4>
-          <div *ngFor="let tag of createdTags">
-            <h5>
-              <span class="tag created text-center" (click)="deleteTagFromCreatedTags(tag)">{{ tag }}</span>
-            </h5>
-          </div>
-        </section>
-
-        <section class="col-sm-12 text-center" *ngIf="selectedSourceTags.length">
-          <h4>Tags from Source</h4>
-          <div *ngFor="let tag of selectedSourceTags">
-            <h5>
-              <span class="tag text-center" (click)="addTag(tag)" [ngClass]="{'selected': addedTags.indexOf(tag) > -1}">{{ tag }}</span>
-            </h5>
-          </div>
-        </section>
       </div>
-    </div>
+    </section>
 
+    <!-- Add Source Field -->
+    <section class="row" *ngIf="sourceMode">
+      <div class="col-12">
+        <div class="row px-2">
+          <input #sourceField
+            [(ngModel)]="sourceText"
+            class="form-control iq-form col-sm-11"
+            formControlName="source"
+            placeholder="{{ sourcePlaceholder }}"
+            (keyup)="sourceKeyup()"
+            [typeahead]="sourceSearchResults"
+            typeaheadOptionField="name"
+            [typeaheadOptionsLimit]="5"
+            [typeaheadMinLength]="3"
+            (typeaheadOnSelect)="taSourceSelected($event)"
+            (typeaheadNoResults)="sourceNoResults($event)">
+          <button class="btn text-center col-1 my-auto" (click)="addSource()"
+            tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
+            [disabled]="sourceText.length < 3 || selectedSource">
+            <i class="fas fa-plus-circle plus-icon"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Tag Section -->
+    <section *ngIf="selectTagMode" class="row">
+      <div class="col-12">
+        <div class="row px-2">
+          <input [(ngModel)]="tagText" formControlName="tagName"
+            (keydown.enter)="addTagToCreatedTags(tagText)"
+            class="form-control iq-form col-sm-11"
+            placeholder="Add some tags here!">
+          <button class="btn text-center col-1 my-auto" (click)="addTagToCreatedTags(tagText)"
+            [disabled]="tagText.length < 3">
+            <i class="fas fa-plus-circle plus-icon"></i>
+          </button>
+        </div>
+        <div class="row justify-content-center">
+          <div class="tag-container">
+            <section class="col-sm-12 text-center" *ngIf="createdTags.length">
+              <h4>Created Tags</h4>
+              <div *ngFor="let tag of createdTags">
+                <h5>
+                  <span class="tag created text-center" (click)="deleteTagFromCreatedTags(tag)">{{ tag }}</span>
+                </h5>
+              </div>
+            </section>
+
+            <section class="col-sm-12 text-center" *ngIf="selectedSourceTags.length">
+              <h4>Tags from Source</h4>
+              <div *ngFor="let tag of selectedSourceTags">
+                <h5>
+                  <span class="tag text-center" (click)="addTag(tag)" [ngClass]="{'selected': addedTags.indexOf(tag) > -1}">{{ tag }}</span>
+                </h5>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div style="position:relative;">
+  <section style="position:relative;">
     <i class="fas fa-times fa-2x close-button" (click)="close()"></i>
     <div>
-      <button class="btn btn-secondary ask-button" (click)="askQuestion()" [ngClass]="{'enabled': formComplete}"
+      <button class="btn iq-btn-1 ask-button"
+        (click)="askQuestion()"
         [disabled]="!formComplete">
         Ask
       </button>
     </div>
-  </div>
+  </section>
 </div>

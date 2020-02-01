@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
@@ -120,7 +120,7 @@ export class NavbarComponent implements OnInit {
   onAskSubmit() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '500px';
+    dialogConfig.width = '550px';
     dialogConfig.position = {
       top: '80px'
     };
