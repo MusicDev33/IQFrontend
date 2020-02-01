@@ -13,26 +13,26 @@
         formControlName="question"
         (keyup)="checkFormComplete()">
       </textarea>
-      <div class="col-sm-12 line my-2"></div>
     </section>
 
     <!-- Bubble Buttons -->
-    <section class="row justify-content-center mb-3">
+    <section class="row justify-content-center mb-1">
       <div class="col-sm-4" (click)="topicModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': topicMode}">
-          Add Subject
+        <div class="mode" [ngClass]="{'selected': topicMode}">
+          <b>Add Subject</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="sourceModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': sourceMode}">
-          Add Source
+        <div class="mode" [ngClass]="{'selected': sourceMode}">
+          <b>Add Source</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
-        <div class="bubble" [ngClass]="{'bubble-selected': selectTagMode}">
-          Add Tags
+        <div class="mode" [ngClass]="{'selected': selectTagMode}">
+          <b>Add Tags</b>
         </div>
       </div>
+      <div class="col-sm-12 line my-2"></div>
     </section>
 
     <!-- Add Subject Field -->

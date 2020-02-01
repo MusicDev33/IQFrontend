@@ -10,7 +10,7 @@
   font-size: 22px;
   cursor: pointer;
   color: $color-primary;
-  transition: all 0.25s;
+  transition: all $time-fast;
 }
 
 // Temporary Interaction until I come up with a real animation
@@ -33,7 +33,7 @@
   height: 20px;
   cursor: pointer;
   color: $color-primary;
-  transition: 0.25s;
+  transition: $time-fast;
 }
 
 .close-button:hover {
@@ -59,19 +59,20 @@ textarea {
   color: #fff;
 }
 
-.bubble {
-  border-radius: 9px;
-  background-color: $color-primary-grey;
+.mode {
+  border-bottom: solid 3px rgba(255, 255, 255, 0);
+  transition: all $time-fast;
   cursor: pointer;
   color: $font-main;
+  font-size: 16px;
 }
 
-.bubble-selected {
-  background-color: $color-primary-grey-highlighted;
+.mode.selected {
+  border-bottom: solid 3px $color-primary;
 }
 
-.bubble:hover {
-  background-color: $color-primary-grey-highlighted;
+.mode:hover:not(.selected) {
+  border-bottom: solid 3px $color-primary-grey-highlighted;
 }
 
 .line {
@@ -86,7 +87,7 @@ textarea {
 .tag {
   color: #aaa;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all $time-fast;
 }
 
 .tag.created:hover {
@@ -94,7 +95,7 @@ textarea {
 }
 
 .tag.selected {
-  transition: all 0.2s;
+  transition: all $time-fast;
   color: $color-primary;
 }
 

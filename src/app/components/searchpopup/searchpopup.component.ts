@@ -1,11 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { DebugService } from '@services/utility/debug.service';
 import { SearchService } from '@services/search.service';
