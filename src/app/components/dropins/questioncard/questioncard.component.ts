@@ -27,6 +27,7 @@ export class QuestionCardComponent implements OnInit {
   @Input() profileImageUrl: string;
 
   user: IUser;
+  imageLoaded = false;
 
   dialogOpen = false;
 
