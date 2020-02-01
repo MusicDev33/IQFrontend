@@ -23,6 +23,7 @@ export class SearchpopupComponent implements OnInit {
   question: string;
   topic: string;
   source: string;
+  tagName: string;
   form: FormGroup;
 
   questionMode = false;
@@ -91,6 +92,7 @@ export class SearchpopupComponent implements OnInit {
       question: [this.questionText, []],
       topic: [this.topicText, []],
       source: [this.sourceText, []],
+      tagName: [this.tagName, []],
       tags: [this.addedTagsString, []]
     });
 
@@ -106,11 +108,6 @@ export class SearchpopupComponent implements OnInit {
   askQuestion() {
     this.addedTagsString.setValue(this.addedTags.concat(this.createdTags).join('&'));
     this.dialogRef.close(this.form.value);
-  }
-
-  autoGrow(element) {
-    element.style.height = '5px';
-    element.style.height = (element.scrollHeight) + 'px';
   }
 
   questionModeOn() {
