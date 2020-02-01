@@ -126,7 +126,8 @@
   <section style="position:relative;">
     <i class="fas fa-times fa-2x close-button" (click)="close()"></i>
     <div>
-      <button class="btn btn-secondary ask-button" (click)="askQuestion()" [ngClass]="{'enabled': formComplete}"
+      <button class="btn iq-btn-1 ask-button"
+        (click)="askQuestion()"
         [disabled]="!formComplete">
         Ask
       </button>

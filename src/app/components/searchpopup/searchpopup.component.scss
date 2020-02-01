@@ -4,19 +4,6 @@
   position: absolute;
   right:    0;
   bottom:   0;
-  border-color: $color-primary;
-  border-radius: 19px;
-  color: #525559;
-  background-color: #fff;
-}
-
-.ask-button:disabled {
-  border-color: #ccc;
-  cursor: default;
-}
-
-.ask-button:hover.enabled {
-  background-color: #eee;
 }
 
 .plus-icon {
