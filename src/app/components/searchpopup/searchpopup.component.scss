@@ -99,6 +99,15 @@ textarea {
   color: $color-primary;
 }
 
+.selected-object {
+  transition: all $time-fast;
+  cursor: pointer;
+}
+
+.selected-object:hover {
+  color: $iq-red;
+}
+
 // Scrollbar
 /* width */
 ::-webkit-scrollbar {
