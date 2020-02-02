@@ -18,15 +18,21 @@
     <!-- Bubble Buttons -->
     <section class="row justify-content-center mb-1">
       <div class="col-sm-4" (click)="topicModeToggle()">
-        <div class="mode" [ngClass]="{'selected': topicMode}">
-          <b *ngIf="!selectedSubject">Add Subject</b>
-          <b *ngIf="selectedSubject" delay="600" tooltip="{{ selectedSubject }}">{{ selectedSubject }}</b>
+        <div class="mode" [ngClass]="{'selected': topicMode}" *ngIf="!selectedSubject">
+          <b>Add Subject</b>
+        </div>
+        <div class="mode" [ngClass]="{'selected': topicMode}"
+          *ngIf="selectedSubject" delay="600" tooltip="{{ selectedSubject }}" placement="bottom">
+          <b>{{ selectedSubject }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="sourceModeToggle()">
-        <div class="mode" [ngClass]="{'selected': sourceMode}">
-          <b *ngIf="!selectedSource">Add Source</b>
-          <b *ngIf="selectedSource" delay="600" tooltip="{{ selectedSource }}">{{ selectedSource }}</b>
+        <div class="mode" [ngClass]="{'selected': sourceMode}" *ngIf="!selectedSource">
+          <b>Add Source</b>
+        </div>
+        <div class="mode" [ngClass]="{'selected': sourceMode}"
+          *ngIf="selectedSource" delay="600" tooltip="{{ selectedSource }}" placement="bottom">
+          <b>{{ selectedSource }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
