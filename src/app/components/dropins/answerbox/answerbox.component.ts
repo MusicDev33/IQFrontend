@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { UserService } from '@services/user.service';
+
+import { IAnswer } from '@interfaces/schemas/IAnswer';
+import { IUser } from '@interfaces/schemas/IUser';
 
 @Component({
   selector: 'app-answerbox',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnswerBoxComponent implements OnInit {
 
-  constructor() { }
+  @Input() answer: IAnswer;
+
+  user: IUser;
+  imageLoaded = false;
+
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+    if (this.answer.posterHandle.length) {
+      this.userService.publicGetUserByHandle(this.answer.posterHandle).subscribe((getUserData: any) => {
+        this.user = getUserData.user;
+      });
+    }
   }
 
 }

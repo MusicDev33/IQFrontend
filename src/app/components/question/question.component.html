@@ -75,6 +75,12 @@
     </div>
 
     <div *ngFor="let answer of answers" class="row justify-content-center">
+      <div class="col-sm-6">
+        <app-answerbox [answer]="answer">
+
+        </app-answerbox>
+      </div>
+      <!--
       <div class="answer-box px-3 pt-2 col-sm-5 mb-2">
         <div class="row mb-2">
           <span class="profile-circle ml-3"></span>
@@ -91,7 +97,7 @@
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
         </div>
-        <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
+        <div class="row my-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
           <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
@@ -115,7 +121,8 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div>-->
+
     </div>
   </section>
 </article>

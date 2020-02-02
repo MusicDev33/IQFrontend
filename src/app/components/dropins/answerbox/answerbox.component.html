@@ -1,1 +1,30 @@
-<p>answerbox works!</p>
+<article class="iq-card-top no-float p-1">
+  <section class="row">
+    <div class="col-2" *ngIf="user">
+      <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
+      <a [routerLink]="'/profile/' + answer.posterHandle">
+        <img [src]="user.profileImage"
+          (load)="imageLoaded = true"
+          class="poster-img img-fluid" [hidden]="!imageLoaded"/>
+      </a>
+    </div>
+    <div class="col-10 text-left pl-0">
+      <a [routerLink]="'/profile/' + answer.posterHandle" class="poster-link"><b>{{ answer.poster }}</b></a>
+    </div>
+  </section>
+</article>
+
+<article class="iq-card-mid no-float p-3">
+
+  <section>
+    <div class="answer-text">{{ answer.answerText }}</div>
+  </section>
+
+</article>
+
+<article class="iq-card-bottom no-float p-3">
+  <i class="fas fa-chevron-circle-up fa-lg"></i>
+  <b> 0 </b>
+  <i class="fas fa-chevron-circle-down fa-lg"></i>
+  <i class="fas fa-share-alt fa-lg"></i>
+</article>
