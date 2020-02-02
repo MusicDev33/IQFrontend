@@ -62,3 +62,18 @@
   border-color: $color-primary !important;
   box-shadow: none !important;
 }
+
+// Tooltip
+.tooltip-inner {
+  border-radius: 10px;
+  color: #FFF!important;
+  background: $color-primary!important;
+}
+
+.tooltip-arrow {
+  display: none;
+}
+
+.tooltip-arrow.arrow {
+  display: none;
+}

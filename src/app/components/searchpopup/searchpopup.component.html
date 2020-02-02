@@ -19,12 +19,14 @@
     <section class="row justify-content-center mb-1">
       <div class="col-sm-4" (click)="topicModeToggle()">
         <div class="mode" [ngClass]="{'selected': topicMode}">
-          <b>Add Subject</b>
+          <b *ngIf="!selectedSubject">Add Subject</b>
+          <b *ngIf="selectedSubject" delay="600" tooltip="{{ selectedSubject }}">{{ selectedSubject }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="sourceModeToggle()">
         <div class="mode" [ngClass]="{'selected': sourceMode}">
-          <b>Add Source</b>
+          <b *ngIf="!selectedSource">Add Source</b>
+          <b *ngIf="selectedSource" delay="600" tooltip="{{ selectedSource }}">{{ selectedSource }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
@@ -53,19 +55,13 @@
               (typeaheadOnSelect)="taSubjectSelected($event)"
               (typeaheadNoResults)="subjectNoResults($event)">
             <button class="btn text-center col-1 my-auto" (click)="addSubject()"
+              placement="left"
+              containerClass="iq-tooltip"
               tooltip="Don't see your subject? Click here to add it to Inquantir!"
               [disabled]="topicText.length < 3 || selectedSubject">
               <i class="fas fa-plus-circle plus-icon"></i>
             </button>
           </div>
-        </div>
-      </section>
-
-      <section class="row mb-2" *ngIf="selectedSubject">
-        <div class="col-12">
-          <h4>Subject:
-            <span class="selected-object" (click)="onCancelSubject()">{{ selectedSubject }}</span>
-          </h4>
         </div>
       </section>
     </section>
@@ -88,19 +84,13 @@
               (typeaheadOnSelect)="taSourceSelected($event)"
               (typeaheadNoResults)="sourceNoResults($event)">
             <button class="btn text-center col-1 my-auto" (click)="addSource()"
+              placement="left"
+              containerClass="iq-tooltip"
               tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
               [disabled]="sourceText.length < 3 || selectedSource">
               <i class="fas fa-plus-circle plus-icon"></i>
             </button>
           </div>
-        </div>
-      </section>
-
-      <section class="row mb-2" *ngIf="selectedSource">
-        <div class="col-12">
-          <h4>Source:
-            <span class="selected-object" (click)="onCancelSource()">{{ selectedSource }}</span>
-          </h4>
         </div>
       </section>
     </section>
