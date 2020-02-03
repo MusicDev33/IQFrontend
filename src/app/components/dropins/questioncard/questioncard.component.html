@@ -8,29 +8,38 @@
 
   <div class="mt-1">
     <span>
-      <h4 class="question-url" (click)="questionClicked(questionText)">{{ questionText }}</h4>
+      <a [routerLink]="'/question/' + qService.questionTextToURL(questionText)">
+        <h4 class="question-url">
+          {{ questionText }}
+        </h4>
+      </a>
     </span>
   </div>
 
   <div class="row">
     <section class="col-2 text-left" *ngIf="poster && user">
-      <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
-      <img [src]="user.profileImage"
+      <a [routerLink]="'/profile/' + userHandle">
+        <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
+      </a>
+      <a [routerLink]="'/profile/' + user.handle"><img [src]="user.profileImage"
           (load)="imageLoaded = true"
-          class="poster-img img-fluid" [hidden]="!imageLoaded"/>
+          class="poster-img img-fluid" [hidden]="!imageLoaded"/></a>
     </section>
 
     <section class="col-2 text-left" *ngIf="poster && profileImageUrl && profileImageUrl.length">
-      <img src="assets/library.jpeg" class="poster-img img-fluid pl-2" [hidden]="imageLoaded"/>
-      <img [src]="profileImageUrl"
+      <img [routerLink]="'/profile/' + posterHandle"
+          src="assets/library.jpeg" class="poster-img img-fluid pl-2" [hidden]="imageLoaded"/>
+      <img [routerLink]="'/profile/' + posterHandle" [src]="profileImageUrl"
           (load)="imageLoaded = true"
           class="poster-img img-fluid pl-2" [hidden]="!imageLoaded"/>
     </section>
 
     <section class="col-10 text-left pl-0" *ngIf="poster">
       <span [ngClass]="{'pl-3': !imageLoaded}"
-          (click)="userClicked(question.previewAnswer.posterHandle)" class="poster-text">
-        <b> {{ poster }}</b>
+          (click)="userClicked(question.previewAnswer.posterHandle)">
+        <a [routerLink]="'/profile/' + question.previewAnswer.posterHandle" class="poster-text">
+          <b> {{ poster }}</b>
+        </a>
       </span>
     </section>
   </div>
