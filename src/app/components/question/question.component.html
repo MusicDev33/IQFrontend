@@ -1,13 +1,17 @@
 <article class="container mt-4" *ngIf="questionSuccess && questionResponse">
   <section *ngIf="question">
     <div class="row justify-content-center">
-      <h2>{{ question.questionText }}</h2>
+      <div class="col-md-8 col-12 text-center">
+        <h2>{{ question.questionText }}</h2>
+      </div>
     </div>
+    <!--
     <div class="row justify-content-center">
       <p class="text-center">Asked by <span class="profile-url">
         <a (click)="toProfileWithHandle(question.askerHandle)">{{ question.asker }}</a></span>
       </p>
     </div>
+    -->
 
     <!-- Answer Box -->
     <div *ngIf="answerMode && answers && authService.loggedIn()">
@@ -76,8 +80,8 @@
 
     <div *ngFor="let answer of answers" class="row justify-content-center">
       <div class="col-sm-6">
-        <app-answerbox [answer]="answer">
-
+        <app-answerbox [answer]="answer" [userVote]="getVoteForAnswer(answer._id)"
+          (sendVote)="voteFromAnswer($event)">
         </app-answerbox>
       </div>
       <!--

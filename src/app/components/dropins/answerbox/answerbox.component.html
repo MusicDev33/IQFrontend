@@ -3,8 +3,7 @@
     <div class="col-2" *ngIf="user">
       <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
       <a [routerLink]="'/profile/' + answer.posterHandle">
-        <img [src]="user.profileImage"
-          (load)="imageLoaded = true"
+        <img [src]="user.profileImage" (load)="imageLoaded = true"
           class="poster-img img-fluid" [hidden]="!imageLoaded"/>
       </a>
     </div>
@@ -22,9 +21,24 @@
 
 </article>
 
-<article class="iq-card-bottom no-float p-3">
-  <i class="fas fa-chevron-circle-up fa-lg"></i>
-  <b> 0 </b>
-  <i class="fas fa-chevron-circle-down fa-lg"></i>
-  <i class="fas fa-share-alt fa-lg"></i>
+<article class="iq-card-bottom no-float px-3 py-0 mb-3">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn vote-button" (click)="voteClicked(1)"
+          [ngClass]="{'highlighted': userVote === 1}" [disabled]="answer.posterID === userService.userMongoID()">
+        <i class="fas fa-chevron-circle-up fa-lg"></i>
+      </button>
+      <b class="no-select">{{ answer.votes }}</b>
+      <button class="btn vote-button"  (click)="voteClicked(-1)"
+          [ngClass]="{'highlighted': userVote === -1}" [disabled]="answer.posterID === userService.userMongoID()">
+        <i class="fas fa-chevron-circle-down fa-lg"></i>
+      </button>
+      <button class="btn float-right right-icon">
+        <i class="fas fa-ellipsis-h fa-lg ml-2 my-auto"></i>
+      </button>
+      <button class="btn float-right right-icon">
+        <i class="fas fa-share-alt fa-lg my-auto"></i>
+      </button>
+    </div>
+  </div>
 </article>

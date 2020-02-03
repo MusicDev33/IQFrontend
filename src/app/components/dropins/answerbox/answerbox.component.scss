@@ -32,3 +32,29 @@
 .answer-text {
   font-size: 16px;
 }
+
+.right-icon {
+  cursor: pointer;
+  transition: all $time-fast;
+  font-size: 15px;
+}
+
+.right-icon:hover {
+  color: $color-primary;
+}
+
+.vote-button {
+  cursor: pointer;
+}
+
+.vote-button:disabled {
+  pointer-events: none;
+}
+
+.vote-button:hover:not(.highlighted) {
+  color: $color-primary-light;
+}
+
+.highlighted {
+  color: $color-primary;
+}

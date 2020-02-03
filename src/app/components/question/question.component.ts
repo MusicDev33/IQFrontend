@@ -15,6 +15,11 @@ import { Answer } from '@classes/answer';
 import { Vote } from '@classes/vote';
 import { IServerResponse } from '@interfaces/IServerResponse';
 
+interface IChildVote {
+  vote: number;
+  answerID: string;
+}
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -134,6 +139,13 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  getVoteForAnswer(answerID: string) {
+    if (this.votedAnswers[answerID]) {
+      return this.votedAnswers[answerID];
+    }
+    return 0;
+  }
+
   toProfileWithHandle(handle: string) {
     const profileURL = '/profile/' + handle;
     this.router.navigate([profileURL]);
@@ -192,52 +204,15 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  // Still trying to figure out a good way to do this...
-  voteClicked(answer, castVote: number) {
-    const negCastVote = 0 - castVote;
-    if (answer._id in this.votedAnswers) {
-      const vote = this.votedAnswers[answer._id];
-      switch (vote) {
-        case castVote: {
-          // Cancelling upvote
-          answer.votes -= castVote;
-          delete this.votedAnswers[answer._id];
-          this.sendVote(0, answer._id);
-          break;
-        }
-        case negCastVote: {
-          answer.votes += 2 * castVote;
-          this.votedAnswers[answer._id] = castVote;
-          this.sendVote(castVote, answer._id);
-          break;
-        }
-        default: {
-          this.debug.log('Voting got broken somehow...');
-          this.debug.log(vote);
-          break;
-        }
-      }
-    } else {
-      // Send upvote
-      answer.votes += castVote;
-      this.votedAnswers[answer._id] = castVote;
-      this.sendVote(castVote, answer._id);
-    }
-  }
+  voteFromAnswer(response: IChildVote) {
+    console.log(response);
+    const answerID = response.answerID;
+    const vote = response.vote;
+    this.votedAnswers[answerID] = vote;
 
-  sendVote(vote: number, answerid: string) {
-    this.votesService.sendVote(this.question._id, this.userService.getUser().getMongoID(), answerid, vote).subscribe(data => {
-      const response: any = {};
+    this.votesService.sendVote(this.question._id, this.userService.getUser().getMongoID(), answerID, vote).subscribe(data => {
+      this.debug.log(data);
     });
-  }
-
-  getVote(answer) {
-    if (answer._id in this.votedAnswers) {
-      this.debug.log(this.votedAnswers);
-      return this.votedAnswers[answer._id];
-    } else {
-      return 0;
-    }
   }
 
   toggleMathMode() {
