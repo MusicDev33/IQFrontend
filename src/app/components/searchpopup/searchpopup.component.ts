@@ -9,6 +9,9 @@ import { SearchService } from '@services/search.service';
 import { SubjectsService } from '@services/subjects.service';
 import { SourceService } from '@services/source.service';
 
+import { ISubject } from '@interfaces/schemas/ISubject';
+import { ISource } from '@interfaces/schemas/ISource';
+
 @Component({
   selector: 'app-searchpopup',
   templateUrl: './searchpopup.component.html',
@@ -130,8 +133,6 @@ export class SearchpopupComponent implements OnInit {
     this.selectTagMode = false;
     this.topicMode = !this.topicMode;
     this.topicText = '';
-    this.selectedSubject = '';
-    this.selectedSubjectURL = '';
   }
 
   sourceModeToggle() {
@@ -139,8 +140,6 @@ export class SearchpopupComponent implements OnInit {
     this.selectTagMode = false;
     this.sourceMode = !this.sourceMode;
     this.sourceText = '';
-    this.selectedSource = '';
-    this.selectedSourceId = '';
   }
 
   tagModeToggle() {
@@ -148,6 +147,17 @@ export class SearchpopupComponent implements OnInit {
     this.topicMode = false;
     this.addedTags = [];
     this.selectTagMode = !this.selectTagMode;
+  }
+
+  onCancelSubject() {
+    this.selectedSubject = '';
+    this.selectedSubjectURL = '';
+  }
+
+  onCancelSource() {
+    this.selectedSource = '';
+    this.selectedSourceId = '';
+    this.selectedSourceTags = [];
   }
 
   disableAllModes() {
@@ -240,7 +250,7 @@ export class SearchpopupComponent implements OnInit {
   }
 
   // Search stuff
-  subjectKeyup() {
+  subjectKeyup(event: KeyboardEvent) {
     const minLength = 1;
     this.checkFormComplete();
     if (this.topicText.length > minLength && this.subjectSearchResults.length === 0) {
@@ -252,20 +262,22 @@ export class SearchpopupComponent implements OnInit {
       this.subjectSearchResults = [];
     }
 
-    if (this.selectedSubject !== this.topicText) {
+    if (this.selectedSubject !== this.topicText && event.key !== 'Enter') {
       this.selectedSubject = '';
       this.selectedSubjectURL = '';
     }
   }
 
   // WTF is TA?
-  taSubjectSelected(subject: any) {
-    this.selectedSubjectURL = subject.item.subjectURL;
-    this.selectedSubject = subject.item.name;
+  taSubjectSelected(subjectResult: any) {
+    const subject: ISubject = subjectResult.item;
+    this.selectedSubjectURL = subject.subjectURL;
+    this.selectedSubject = subject.name;
     this.checkFormComplete();
+    this.topicText = '';
   }
 
-  sourceKeyup() {
+  sourceKeyup(event: KeyboardEvent) {
     const minLength = 1;
     this.checkFormComplete();
     if (this.sourceText.length > minLength && this.sourceSearchResults.length === 0) {
@@ -276,18 +288,20 @@ export class SearchpopupComponent implements OnInit {
     } else if (this.sourceText.length <= minLength) {
       this.sourceSearchResults = [];
     }
-    if (this.sourceText !== this.selectedSource) {
+    if (this.sourceText !== this.selectedSource && event.key !== 'Enter') {
       this.selectedSource = '';
       this.selectedSourceId = '';
       this.selectedSourceTags = [];
     }
   }
 
-  taSourceSelected(source: any) {
-    this.selectedSourceTags = source.item.tags;
-    this.selectedSourceId = source.item._id;
-    this.selectedSource = source.item.name;
+  taSourceSelected(sourceResult: any) {
+    const source: ISource = sourceResult.item;
+    this.selectedSourceTags = source.tags;
+    this.selectedSourceId = source._id;
+    this.selectedSource = source.name;
     this.checkFormComplete();
+    this.sourceText = '';
   }
 
   subjectNoResults(noResults: boolean) {

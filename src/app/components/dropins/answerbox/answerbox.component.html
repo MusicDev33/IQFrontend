@@ -1,1 +1,105 @@
-<p>answerbox works!</p>
+<article class="iq-card-top no-float p-1">
+  <section class="row">
+    <div class="col-2" *ngIf="user">
+      <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
+      <a [routerLink]="'/profile/' + answer.posterHandle">
+        <img [src]="user.profileImage" (load)="imageLoaded = true"
+          class="poster-img img-fluid" [hidden]="!imageLoaded"/>
+      </a>
+    </div>
+    <div class="col-10 text-left pl-0">
+      <a [routerLink]="'/profile/' + answer.posterHandle" class="poster-link"><b>{{ answer.poster }}</b></a>
+    </div>
+  </section>
+</article>
+
+<article class="iq-card-mid no-float p-3">
+
+  <section>
+    <div class="answer-text">{{ answer.answerText }}</div>
+  </section>
+
+</article>
+
+<article class="iq-card-bottom no-float px-3 py-0 mb-3">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn vote-button" (click)="voteClicked(1)"
+          [ngClass]="{'highlighted': userVote === 1}" [disabled]="answer.posterID === userService.userMongoID()">
+        <i class="fas fa-chevron-circle-up fa-lg"></i>
+      </button>
+      <b class="no-select">{{ answer.votes }}</b>
+      <button class="btn vote-button"  (click)="voteClicked(-1)"
+          [ngClass]="{'highlighted': userVote === -1}" [disabled]="answer.posterID === userService.userMongoID()">
+        <i class="fas fa-chevron-circle-down fa-lg"></i>
+      </button>
+
+      <div style="display: inline;">
+        <button class="btn float-right right-icon" data-toggle="dropdown">
+          <i class="fas fa-ellipsis-h fa-lg ml-2 my-auto"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-box text-left">
+          <li class="dropdown-row" (click)="editAnswerClicked()"
+              *ngIf="userService.userMongoID() === answer.posterID">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text normal pl-3">Edit Answer</span>
+              </li>
+            </span>
+          </li>
+          <li class="dropdown-row" *ngIf="userService.userMongoID() === answer.posterID"
+              (click)="deleteAnswerClicked()">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text red pl-3">Delete</span>
+              </li>
+            </span>
+          </li>
+          <li class="dropdown-row" *ngIf="userService.userMongoID() !== answer.posterID">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text red pl-3">Report</span>
+              </li>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div style="display: inline;">
+        <button class="btn float-right right-icon" data-toggle="dropdown">
+          <i class="fas fa-share-alt fa-lg my-auto"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-box text-left">
+          <li class="dropdown-row">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text normal pl-3">
+                  <i class="fab fa-twitter icon-twitter"></i> Twitter
+                </span>
+              </li>
+            </span>
+          </li>
+          <li class="dropdown-row">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text normal pl-3">
+                  <i class="fab fa-facebook-f icon-facebook"></i> Facebook
+                </span>
+              </li>
+            </span>
+          </li>
+          <li class="dropdown-row" (click)="copyLink()">
+            <span class="dropdown-text normal">
+              <li class="dropdown-row">
+                <span class="dropdown-text normal pl-3">
+                  <i class="fas fa-link"></i> Copy Link
+                </span>
+              </li>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</article>

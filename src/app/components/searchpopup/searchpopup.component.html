@@ -18,13 +18,21 @@
     <!-- Bubble Buttons -->
     <section class="row justify-content-center mb-1">
       <div class="col-sm-4" (click)="topicModeToggle()">
-        <div class="mode" [ngClass]="{'selected': topicMode}">
+        <div class="mode" [ngClass]="{'selected': topicMode}" *ngIf="!selectedSubject">
           <b>Add Subject</b>
+        </div>
+        <div class="mode" [ngClass]="{'selected': topicMode}"
+          *ngIf="selectedSubject" delay="600" tooltip="{{ selectedSubject }}" placement="bottom">
+          <b>{{ selectedSubject }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="sourceModeToggle()">
-        <div class="mode" [ngClass]="{'selected': sourceMode}">
+        <div class="mode" [ngClass]="{'selected': sourceMode}" *ngIf="!selectedSource">
           <b>Add Source</b>
+        </div>
+        <div class="mode" [ngClass]="{'selected': sourceMode}"
+          *ngIf="selectedSource" delay="600" tooltip="{{ selectedSource }}" placement="bottom">
+          <b>{{ selectedSource }}</b>
         </div>
       </div>
       <div class="col-sm-4" (click)="tagModeToggle()">
@@ -36,53 +44,61 @@
     </section>
 
     <!-- Add Subject Field -->
-    <section class="row mb-2" *ngIf="topicMode">
-      <div class="col-12">
-        <div class="row px-2">
-          <input #subjectField
-            [(ngModel)]="topicText"
-            class="form-control iq-form col-11"
-            formControlName="topic"
-            placeholder="{{ subjectPlaceholder }}"
-            (keyup)="subjectKeyup()"
-            [typeahead]="subjectSearchResults"
-            typeaheadOptionField="name"
-            [typeaheadOptionsLimit]="5"
-            [typeaheadMinLength]="3"
-            (typeaheadOnSelect)="taSubjectSelected($event)"
-            (typeaheadNoResults)="subjectNoResults($event)">
-          <button class="btn text-center col-1 my-auto" (click)="addSubject()"
-            tooltip="Don't see your subject? Click here to add it to Inquantir!"
-            [disabled]="topicText.length < 3 || selectedSubject">
-            <i class="fas fa-plus-circle plus-icon"></i>
-          </button>
+    <section *ngIf="topicMode">
+      <section class="row mb-2">
+        <div class="col-12">
+          <div class="row px-2">
+            <input #subjectField
+              [(ngModel)]="topicText"
+              class="form-control iq-form col-11"
+              formControlName="topic"
+              placeholder="{{ subjectPlaceholder }}"
+              (keyup)="subjectKeyup($event)"
+              [typeahead]="subjectSearchResults"
+              typeaheadOptionField="name"
+              [typeaheadOptionsLimit]="5"
+              [typeaheadMinLength]="3"
+              (typeaheadOnSelect)="taSubjectSelected($event)"
+              (typeaheadNoResults)="subjectNoResults($event)">
+            <button class="btn text-center col-1 my-auto" (click)="addSubject()"
+              placement="left"
+              containerClass="iq-tooltip"
+              tooltip="Don't see your subject? Click here to add it to Inquantir!"
+              [disabled]="topicText.length < 3 || selectedSubject">
+              <i class="fas fa-plus-circle plus-icon"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
 
     <!-- Add Source Field -->
-    <section class="row" *ngIf="sourceMode">
-      <div class="col-12">
-        <div class="row px-2">
-          <input #sourceField
-            [(ngModel)]="sourceText"
-            class="form-control iq-form col-sm-11"
-            formControlName="source"
-            placeholder="{{ sourcePlaceholder }}"
-            (keyup)="sourceKeyup()"
-            [typeahead]="sourceSearchResults"
-            typeaheadOptionField="name"
-            [typeaheadOptionsLimit]="5"
-            [typeaheadMinLength]="3"
-            (typeaheadOnSelect)="taSourceSelected($event)"
-            (typeaheadNoResults)="sourceNoResults($event)">
-          <button class="btn text-center col-1 my-auto" (click)="addSource()"
-            tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
-            [disabled]="sourceText.length < 3 || selectedSource">
-            <i class="fas fa-plus-circle plus-icon"></i>
-          </button>
+    <section *ngIf="sourceMode">
+      <section class="row mb-2">
+        <div class="col-12">
+          <div class="row px-2">
+            <input #sourceField
+              [(ngModel)]="sourceText"
+              class="form-control iq-form col-sm-11"
+              formControlName="source"
+              placeholder="{{ sourcePlaceholder }}"
+              (keyup)="sourceKeyup($event)"
+              [typeahead]="sourceSearchResults"
+              typeaheadOptionField="name"
+              [typeaheadOptionsLimit]="5"
+              [typeaheadMinLength]="3"
+              (typeaheadOnSelect)="taSourceSelected($event)"
+              (typeaheadNoResults)="sourceNoResults($event)">
+            <button class="btn text-center col-1 my-auto" (click)="addSource()"
+              placement="left"
+              containerClass="iq-tooltip"
+              tooltip="Don't see your textbook/homework software? Click here to add it to Inquantir!"
+              [disabled]="sourceText.length < 3 || selectedSource">
+              <i class="fas fa-plus-circle plus-icon"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
 
     <!-- Add Tag Section -->

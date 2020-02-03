@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div class="row mb-1">
+    <div class="col-12">
+      <h2 class="text-center">{{ title }}</h2>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12 text-center">
+      <h5>{{ msg }}</h5>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <button class="btn iq-btn-cancel col-5" (click)="cancelButtonClicked()"><b>{{ cancelText }}</b></button>
+    <div class="col-2"></div>
+    <button class="btn iq-btn-1 col-5" (click)="confirmButtonClicked()"><b>{{ confirmText }}</b></button>
+  </div>
+
+</div>

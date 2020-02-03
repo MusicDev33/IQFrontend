@@ -5,6 +5,15 @@ textarea {
   caret-color: $color-primary;
 }
 
+.cancel-button {
+  font-size: 15px;
+  transition: all $time-fast;
+}
+
+.cancel-button:hover {
+  color: $iq-red;
+}
+
 // This is because MathJax doesn't render display: none (you have to make a render call)
 .fake-hide {
   height: 0px!important;

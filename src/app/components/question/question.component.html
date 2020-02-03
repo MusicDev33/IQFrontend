@@ -1,13 +1,17 @@
 <article class="container mt-4" *ngIf="questionSuccess && questionResponse">
   <section *ngIf="question">
     <div class="row justify-content-center">
-      <h2>{{ question.questionText }}</h2>
+      <div class="col-md-8 col-12 text-center">
+        <h2>{{ question.questionText }}</h2>
+      </div>
     </div>
+    <!--
     <div class="row justify-content-center">
       <p class="text-center">Asked by <span class="profile-url">
         <a (click)="toProfileWithHandle(question.askerHandle)">{{ question.asker }}</a></span>
       </p>
     </div>
+    -->
 
     <!-- Answer Box -->
     <div *ngIf="answerMode && answers && authService.loggedIn()">
@@ -57,6 +61,9 @@
       <div class="row justify-content-center mb-2" *ngIf="answerMode && editMode">
         <button class="btn iq-btn-1" (click)="sendEditedAnswer()">Send Edited Answer</button>
       </div>
+      <div class="row justify-content-center mb-2" *ngIf="answerMode || editMode">
+        <button class="btn cancel-button" (click)="cancelWriting()"><b>Cancel</b></button>
+      </div>
     </div>
 
     <div class="row justify-content-center">
@@ -75,6 +82,13 @@
     </div>
 
     <div *ngFor="let answer of answers" class="row justify-content-center">
+      <div class="col-sm-6">
+        <app-answerbox [answer]="answer" [userVote]="getVoteForAnswer(answer._id)"
+          (sendVote)="voteFromAnswer($event)" (sendEditAnswer)="editAnswer($event)"
+          (sendDeleteAnswer)="openConfirmDelete($event)">
+        </app-answerbox>
+      </div>
+      <!--
       <div class="answer-box px-3 pt-2 col-sm-5 mb-2">
         <div class="row mb-2">
           <span class="profile-circle ml-3"></span>
@@ -91,7 +105,7 @@
           <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
           <span class="view-text noselect">{{ answer.views }} views </span>
         </div>
-        <div class="row mb-2 mt-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
+        <div class="row my-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
           <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
           <b>{{ answer.votes }}</b>
           <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
@@ -115,7 +129,8 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div>-->
+
     </div>
   </section>
 </article>

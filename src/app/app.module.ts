@@ -11,6 +11,7 @@ import { CollapseModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap';
 import { KatexModule } from 'ng-katex';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { TopicComponent } from './modules/topic/topic/topic.component';
 import { SourceComponent } from './modules/source/source/source.component';
 import { LandingNavComponent } from './components/landingnav/landingnav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 
 
 // Jobs Module
@@ -133,7 +135,8 @@ export function provideConfig() {
     PricingComponent,
     QuestionCardComponent,
     AnswerBoxComponent,
-    InteractLabComponent
+    InteractLabComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -151,6 +154,7 @@ export function provideConfig() {
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     SocialLoginModule,
+    ClipboardModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
@@ -175,7 +179,13 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  entryComponents: [SearchpopupComponent, BugReportComponent, QuestionEditComponent, ReportQuestionComponent],
+  entryComponents: [
+    SearchpopupComponent,
+    BugReportComponent,
+    QuestionEditComponent,
+    ReportQuestionComponent,
+    ConfirmationComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
