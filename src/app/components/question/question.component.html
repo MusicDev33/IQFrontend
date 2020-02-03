@@ -88,48 +88,6 @@
           (sendDeleteAnswer)="openConfirmDelete($event)">
         </app-answerbox>
       </div>
-      <!--
-      <div class="answer-box px-3 pt-2 col-sm-5 mb-2">
-        <div class="row mb-2">
-          <span class="profile-circle ml-3"></span>
-          <span class="poster-name profile-url"><b>
-            <a (click)="toProfileWithHandle(answer.posterHandle)">{{answer.poster}}</a></b>
-          </span>
-        </div>
-        <div class="row">
-          <p class="answer-text text-left mb-2 mx-3">{{answer.answerText}}</p>
-        </div>
-        <div class="row my-2" *ngIf="authService.loggedIn() && answer.posterID !== userService.userMongoID()">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button noselect ml-3" [ngClass]="{'highlighted': getVote(answer) === 1}" (click)="voteClicked(answer, 1)"></i>
-          <b>{{ answer.votes }}</b>
-          <i class="fas fa-chevron-circle-down fa-lg vote-button noselect" [ngClass]="{'highlighted': getVote(answer) === -1}" (click)="voteClicked(answer, -1)"></i>
-          <span class="view-text noselect">{{ answer.views }} views </span>
-        </div>
-        <div class="row my-2" *ngIf="!authService.loggedIn() || answer.posterID === userService.userMongoID()">
-          <i class="fas fa-chevron-circle-up fa-lg vote-button inactive noselect ml-3"></i>
-          <b>{{ answer.votes }}</b>
-          <i class="fas fa-chevron-circle-down fa-lg vote-button inactive noselect"></i>
-          <span class="view-text noselect">{{ answer.views }} views </span>
-          <i class="fas fa-ellipsis-h fa-lg icon ml-auto mr-2" data-toggle="dropdown"
-            *ngIf="answer.posterID === userService.userMongoID()"></i>
-          <ul class="dropdown-menu dropdown-box text-left">
-            <li class="dropdown-row">
-              <span class="dropdown-text normal" (click)="editAnswer(answer.answerText, answer._id)">
-                <li class="dropdown-row">
-                  <span class="dropdown-text normal pl-3">Edit Answer</span>
-                </li>
-              </span>
-            </li>
-            <li class="dropdown-row">
-              <span class="dropdown-text normal" (click)="deleteAnswer('' + answer._id)">
-                <li class="dropdown-row">
-                  <span class="dropdown-text red pl-3">Delete</span>
-                </li>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>-->
 
     </div>
   </section>
