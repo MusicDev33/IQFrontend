@@ -14,10 +14,10 @@
 
   <div class="row">
     <section class="col-2 text-left" *ngIf="poster && user">
-      <img src="assets/library.jpeg" class="poster-img img-fluid pl-2" [hidden]="imageLoaded"/>
+      <img src="assets/library.jpeg" class="poster-img img-fluid" [hidden]="imageLoaded"/>
       <img [src]="user.profileImage"
           (load)="imageLoaded = true"
-          class="poster-img img-fluid pl-2" [hidden]="!imageLoaded"/>
+          class="poster-img img-fluid" [hidden]="!imageLoaded"/>
     </section>
 
     <section class="col-2 text-left" *ngIf="poster && profileImageUrl && profileImageUrl.length">
