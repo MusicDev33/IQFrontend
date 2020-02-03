@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
@@ -14,6 +15,8 @@ import { Question } from '@classes/question';
 import { Answer } from '@classes/answer';
 import { Vote } from '@classes/vote';
 import { IServerResponse } from '@interfaces/IServerResponse';
+
+import { ConfirmationComponent } from '@dialogs/confirmation/confirmation.component';
 
 interface IChildVote {
   vote: number;
@@ -63,7 +66,8 @@ export class QuestionComponent implements OnInit {
     public debug: DebugService,
     public votesService: VotesService,
     public titleService: Title,
-    public metaService: Meta
+    public metaService: Meta,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -144,11 +148,6 @@ export class QuestionComponent implements OnInit {
       return this.votedAnswers[answerID];
     }
     return 0;
-  }
-
-  toProfileWithHandle(handle: string) {
-    const profileURL = '/profile/' + handle;
-    this.router.navigate([profileURL]);
   }
 
   sendAnswer() {
@@ -242,10 +241,41 @@ export class QuestionComponent implements OnInit {
     this.answerText = this.answerText.slice(0, -1);
   }
 
-  editAnswer(answerText: string, answerID: string) {
-    this.editAnswerID = '' + answerID;
-    this.answerText = answerText;
+  editAnswer(response: {answerText: string, answerID: string}) {
+    this.editAnswerID = '' + response.answerID;
+    this.answerText = response.answerText;
     this.answerMode = true;
     this.editMode = true;
+  }
+
+  cancelWriting() {
+    this.editMode = false;
+    this.answerText = '';
+    this.answerMode = false;
+    this.editAnswerID = '';
+  }
+
+  openConfirmDelete(response: {title: string, msg: string, confirm: string, cancel: string, answerID: string}) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '550px';
+    dialogConfig.position = {
+      top: '160px'
+    };
+    dialogConfig.panelClass = 'dialog-popup';
+
+    dialogConfig.data = response;
+
+    const dialogRef = this.dialog.open(ConfirmationComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( (action: boolean) => {
+      if (action) {
+        this.answerService.deleteAnswer(this.questionID, response.answerID).subscribe(data => {
+          const res: any = data;
+          this.answers = this.answers.filter((answer) => {
+            return answer._id !== res.answer._id;
+          });
+        });
+      }
+    });
   }
 }

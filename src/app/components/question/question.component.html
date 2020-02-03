@@ -61,6 +61,9 @@
       <div class="row justify-content-center mb-2" *ngIf="answerMode && editMode">
         <button class="btn iq-btn-1" (click)="sendEditedAnswer()">Send Edited Answer</button>
       </div>
+      <div class="row justify-content-center mb-2" *ngIf="answerMode || editMode">
+        <button class="btn cancel-button" (click)="cancelWriting()"><b>Cancel</b></button>
+      </div>
     </div>
 
     <div class="row justify-content-center">
@@ -81,7 +84,8 @@
     <div *ngFor="let answer of answers" class="row justify-content-center">
       <div class="col-sm-6">
         <app-answerbox [answer]="answer" [userVote]="getVoteForAnswer(answer._id)"
-          (sendVote)="voteFromAnswer($event)">
+          (sendVote)="voteFromAnswer($event)" (sendEditAnswer)="editAnswer($event)"
+          (sendDeleteAnswer)="openConfirmDelete($event)">
         </app-answerbox>
       </div>
       <!--

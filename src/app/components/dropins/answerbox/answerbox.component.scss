@@ -49,6 +49,7 @@
 
 .vote-button:disabled {
   pointer-events: none;
+  color: #d6d6d6;
 }
 
 .vote-button:hover:not(.highlighted) {
@@ -57,4 +58,12 @@
 
 .highlighted {
   color: $color-primary;
+}
+
+.icon-twitter {
+  color: #00acee!important;
+}
+
+.icon-facebook {
+  color: #3b5998!important;
 }

@@ -13,6 +13,7 @@
 .btn {
   box-shadow: none!important;
 }
+
 .iq-btn-1 {
   border: 1px solid $color-primary;
   border-radius: 19px;
@@ -32,6 +33,24 @@
   color: $font-disabled;
 }
 
+.iq-btn-cancel {
+  border: 1px solid $iq-red;
+  border-radius: 19px;
+  box-shadow: none!important;
+  color: $font-main;
+  transition: all $time-fast;
+}
+
+.iq-btn-cancel:hover {
+  color: $white;
+  background-color: $iq-red;
+}
+
+.iq-btn-cancel:disabled {
+  cursor: default;
+  pointer-events: none;
+  color: $font-disabled;
+}
 
 // For compatibility
 .iq-button {

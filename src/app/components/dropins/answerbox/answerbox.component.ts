@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
 
 import { UserService } from '@services/user.service';
 import { VotesService } from '@services/votes.service';
@@ -24,6 +25,8 @@ export class AnswerBoxComponent implements OnInit {
   @Input() userVote: number;
 
   @Output() sendVote: EventEmitter<IChildVote> = new EventEmitter<IChildVote>();
+  @Output() sendEditAnswer = new EventEmitter<{answerText: string, answerID: string}>();
+  @Output() sendDeleteAnswer = new EventEmitter<{title: string, msg: string, confirm: string, cancel: string, answerID: string}>();
 
   user: IUser;
   imageLoaded = false;
@@ -32,7 +35,8 @@ export class AnswerBoxComponent implements OnInit {
     public userService: UserService,
     public voteService: VotesService,
     public answerService: AnswerService,
-    public debug: DebugService
+    public debug: DebugService,
+    public cbService: ClipboardService
   ) { }
 
   ngOnInit() {
@@ -43,6 +47,10 @@ export class AnswerBoxComponent implements OnInit {
     }
 
     console.log(this.userVote);
+  }
+
+  copyLink() {
+    this.cbService.copyFromContent(window.location.href);
   }
 
   // Still trying to figure out a good way to do this...
@@ -78,21 +86,16 @@ export class AnswerBoxComponent implements OnInit {
       this.sendVote.emit(res);
     }
   }
-  /*
 
-  sendVote(vote: number, answerid: string) {
-    this.votesService.sendVote(this.question._id, this.userService.getUser().getMongoID(), answerid, vote).subscribe(data => {
-      const response: any = {};
-    });
+  editAnswerClicked() {
+    this.sendEditAnswer.emit({answerText: this.answer.answerText, answerID: this.answer._id});
   }
 
-  getVote(answer: IAnswer) {
-    if (answer._id in this.votedAnswers) {
-      this.debug.log(this.votedAnswers);
-      return this.votedAnswers[answer._id];
-    } else {
-      return 0;
-    }
-  }*/
-
+  deleteAnswerClicked() {
+    const title = 'Are you sure?';
+    const msg = 'This answer will be lost forever!';
+    const confirm = 'Delete my answer!';
+    const cancel = 'Don\'t delete my answer!';
+    this.sendDeleteAnswer.emit({title, msg, confirm, cancel, answerID: this.answer._id});
+  }
 }
