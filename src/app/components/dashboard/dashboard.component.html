@@ -151,12 +151,14 @@
 
         <!-- Library -->
         <div class="ml-2">
-          <h2 class="library-url" [routerLink]="['/library']">Your Library</h2>
+          <a [routerLink]="['/library']"><h2 class="library-url">Your Library</h2></a>
         </div>
         <div *ngIf="user.currentSources.length" class="ml-2">
           <div *ngFor="let source of user.currentSources" class="mb-2">
             <div>
-              <span (click)="onSourceClicked(source)"><h5 class="subject-url">{{ source }}</h5></span>
+              <span (click)="onSourceClicked(source)">
+                <h5 class="subject-url">{{ source }}</h5>
+              </span>
               <div class="detail-view">
 
               </div>
@@ -188,7 +190,11 @@
       <div *ngIf="user && user.currentSubjects.length" class="col-lg-3 d-none d-lg-block">
         <div *ngFor="let subject of user.currentSubjects" class="mb-2">
           <div>
-            <span (click)="onSubjectNameClicked(subject)"><h5 class="subject-url">{{ subject }}</h5></span>
+            <span>
+              <a [routerLink]="'/iqt/' + toSubjectURL(subject)">
+                <h5 class="subject-url">{{ subject }}</h5>
+              </a>
+            </span>
             <div class="detail-view">
 
             </div>

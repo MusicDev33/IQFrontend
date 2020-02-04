@@ -1,5 +1,9 @@
 @import '~sass/variables';
 
+a:hover {
+  text-decoration: none;
+}
+
 .library-url {
   transition: all 0.3s;
   cursor: pointer;
@@ -8,6 +12,7 @@
 
 .library-url:hover {
   color: $color-primary;
+  text-decoration: none;
 }
 
 .lib-info-text {
@@ -24,11 +29,13 @@
   display: inline;
   line-height: 1.5em;
   transition: 0.3s;
+  color: $font-main;
 }
 
 .subject-url:hover {
   border-bottom: solid 3px $color-primary;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .card-subject {

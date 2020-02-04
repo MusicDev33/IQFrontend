@@ -251,6 +251,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/iqt/' + url]);
   }
 
+  toSubjectURL(subjectName: string) {
+    return subjectName.trim().replace(/[ ]+/ig, '-');
+  }
+
   onSourceClicked(sourceName: string) {
     localStorage.setItem('lib-key', sourceName);
     this.router.navigate(['/library']);
