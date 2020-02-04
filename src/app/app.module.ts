@@ -36,6 +36,9 @@ import { SourceComponent } from './modules/source/source/source.component';
 import { LandingNavComponent } from './components/landingnav/landingnav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { SubjectListComponent } from './components/subjectlist/subjectlist.component';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { LibraryListComponent } from './components/librarylist/librarylist.component';
 
 
 // Jobs Module
@@ -136,7 +139,10 @@ export function provideConfig() {
     QuestionCardComponent,
     AnswerBoxComponent,
     InteractLabComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    SubjectListComponent,
+    DiscoverComponent,
+    LibraryListComponent
   ],
   imports: [
     BrowserModule,
