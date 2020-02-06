@@ -1,17 +1,39 @@
 @import '~sass/variables';
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .poster-text {
   font-size: 1.1em;
   cursor: pointer;
   transition: all 0.3s;
+  border-bottom: solid 2px rgba(255, 255, 255, 0);
+  color: $font-main;
 }
 
 .poster-text:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  border-color: $color-primary;
 }
 
 .poster-img {
-  border-radius: 999px;
+  border-radius: 50%;
+  border: solid 2px rgba(255, 255, 255, 0);
+  cursor: pointer;
+  transition: all $time-fast;
+}
+
+.poster-img:hover {
+  border-color: $color-primary-very-light;
+}
+
+.poster-img-inactive {
+  border-radius: 50%;
 }
 
 .placeholder-img {
@@ -36,10 +58,13 @@
   font-size: 1.3em;
   transition: 0.3s;
   display: inline;
+  border-bottom: solid 1px rgba(255, 255, 255, 0);
+  color: $font-main;
 }
 
 .question-url:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  border-color: $font-main;
 }
 
 .preview-text {

@@ -97,66 +97,24 @@
 
       <article *ngIf="user" class="col-md-3 d-none d-md-block">
         <!-- Discover Section -->
-        <div class="question-column p-2 mb-3"
-          *ngIf="arrayOfSubjects && arrayOfSubjects.length && user && user.currentSubjects.length >= 3">
-          <div class="row justify-content-center mt-1">
-            <div class="col-10 iq-card-top no-float text-center p-2">
-              <h2><i class="far fa-lightbulb float-left"></i>Discover</h2>
-            </div>
-          </div>
+        <app-discover *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
+          [subjects]="arrayOfSubjects"
+          [userSubjects]="user.currentSubjects"
+          (sendFollow)="followButtonClicked($event)"
+          (sendUnfollow)="followButtonClicked($event)">
 
-          <div class="row justify-content-center">
-            <div class="col-10 iq-card-mid no-float text-center py-2">
-              <h4>{{ arrayOfSubjects[currentDiscoverSubjectIndex].name }}</h4>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mb-1">
-            <div class="col-10 iq-card-bottom no-float text-center pb-2">
-              <div class="row justify-content-center">
-
-                <div class="col-3 no-padding noselect">
-                  <button class="btn side-arrow pt-2 my-auto mx-auto"
-                    [disabled]="currentDiscoverSubjectIndex <= 0">
-                      <i class="fas fa-chevron-left"
-                      (click)="discoverArrowClicked('left')"></i>
-                  </button>
-                </div>
-
-                <div class="col-6 pt-3"
-                  *ngIf="!user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)"
-                  (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
-                  <button class="btn iq-btn-1 my-auto">Follow</button>
-                </div>
-
-                <div class="col-6 pt-3"
-                  *ngIf="user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)">
-                    <button class="discover-followed btn my-auto"
-                      (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
-                        Followed
-                    </button>
-                </div>
-                <div class="col-3 no-padding noselect">
-                  <button class="btn side-arrow pt-2 my-auto mx-auto"
-                    [disabled]="currentDiscoverSubjectIndex >= arrayOfSubjects.length - 1">
-                      <i class="fas fa-chevron-right"
-                      (click)="discoverArrowClicked('right')"></i>
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
+        </app-discover>
 
         <!-- Library -->
-        <div class="ml-2">
-          <h2 class="library-url" [routerLink]="['/library']">Your Library</h2>
+        <div class="ml-2 mt-2">
+          <a [routerLink]="['/library']"><h2 class="library-url no-select">Your Library</h2></a>
         </div>
         <div *ngIf="user.currentSources.length" class="ml-2">
           <div *ngFor="let source of user.currentSources" class="mb-2">
             <div>
-              <span (click)="onSourceClicked(source)"><h5 class="subject-url">{{ source }}</h5></span>
+              <span (click)="onSourceClicked(source)">
+                <h5 class="subject-url no-select">{{ source }}</h5>
+              </span>
               <div class="detail-view">
 
               </div>
@@ -188,7 +146,11 @@
       <div *ngIf="user && user.currentSubjects.length" class="col-lg-3 d-none d-lg-block">
         <div *ngFor="let subject of user.currentSubjects" class="mb-2">
           <div>
-            <span (click)="onSubjectNameClicked(subject)"><h5 class="subject-url">{{ subject }}</h5></span>
+            <span>
+              <a [routerLink]="'/iqt/' + toSubjectURL(subject)">
+                <h5 class="subject-url">{{ subject }}</h5>
+              </a>
+            </span>
             <div class="detail-view">
 
             </div>

@@ -176,16 +176,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  discoverArrowClicked(arrow: string) {
-    if (arrow === 'right' && this.currentDiscoverSubjectIndex < this.arrayOfSubjects.length - 1) {
-      this.currentDiscoverSubjectIndex += 1;
-    }
-
-    if (arrow === 'left' && this.currentDiscoverSubjectIndex > 0) {
-      this.currentDiscoverSubjectIndex -= 1;
-    }
-  }
-
   calcMaxOffset(): number {
     const screen = this.returnScreenBreakpoint();
 
@@ -249,6 +239,10 @@ export class DashboardComponent implements OnInit {
     // Spaces are turned into dashes
     const url = subjectURL.trim().replace(/[ ]+/ig, '-');
     this.router.navigate(['/iqt/' + url]);
+  }
+
+  toSubjectURL(subjectName: string) {
+    return subjectName.trim().replace(/[ ]+/ig, '-');
   }
 
   onSourceClicked(sourceName: string) {

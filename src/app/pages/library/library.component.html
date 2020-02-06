@@ -55,7 +55,7 @@
               Add Tag
             </button>
           </div>
-          <div *ngIf="openedSourceObject.tags && openedSourceObject.tags.length">
+          <div *ngIf="openedSourceObject && openedSourceObject.tags && openedSourceObject.tags.length">
             <div *ngFor="let tag of openedSourceObject.tags" class="mb-1">
               <h6>
                 <span class="tag-text"

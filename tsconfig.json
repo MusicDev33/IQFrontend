@@ -9,7 +9,8 @@
       "@classes/*": ["app/classes/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@globals/*": ["app/globals/*"],
-      "@dialogs/*": ["app/dialogs/*"]
+      "@dialogs/*": ["app/dialogs/*"],
+      "@pages/*": ["app/pages/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
