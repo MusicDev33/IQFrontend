@@ -11,8 +11,8 @@ import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 import { AuthService } from 'angularx-social-login';
 
-import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
-import { BugReportComponent } from '@components/bugreport/bugreport.component';
+import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
+import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { ISource } from '@interfaces/schemas/ISource';

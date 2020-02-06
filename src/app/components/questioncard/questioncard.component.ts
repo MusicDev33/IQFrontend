@@ -6,8 +6,8 @@ import { QuestionService } from '@services/question.service';
 import { UserService } from '@services/user.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
-import { ReportQuestionComponent } from '@components/reportquestion/reportquestion.component';
+import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
+import { ReportQuestionComponent } from '@dialogs/reportquestion/reportquestion.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { IQuestion } from '@interfaces/schemas/IQuestion';
