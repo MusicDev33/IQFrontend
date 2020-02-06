@@ -1,1 +1,44 @@
-<p>discover works!</p>
+<div class="question-column p-2">
+  <section class="row iq-card-top no-float text-center mx-2 mt-1">
+    <div class="col-12 p-2">
+      <h2><i class="far fa-lightbulb float-left my-auto"></i>Discover</h2>
+    </div>
+  </section>
+
+  <section class="row iq-card-mid no-float mx-2 py-2">
+    <div class="col-12 text-center py-2 no-padding">
+      <h4>{{ subjects[subjectIndex].name }}</h4>
+    </div>
+  </section>
+
+  <section class="row justify-content-center iq-card-bottom no-float mx-2 mb-1 py-1">
+
+    <div class="col-3 no-padding text-center">
+      <button class="btn side-arrow" (click)="leftArrowClicked()" [disabled]="subjectIndex <= 0">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </div>
+
+    <div class="col-6 text-center" *ngIf="!userSubjects.includes(subjects[subjectIndex].name)">
+      <div class="pt-2">
+        <button class="btn iq-btn-1" (click)="followButtonClicked(subjects[subjectIndex])">Follow</button>
+      </div>
+    </div>
+
+    <div class="col-6 text-center" *ngIf="userSubjects.includes(subjects[subjectIndex].name)">
+      <div class="pt-2">
+        <button class="btn discover-followed"
+                (click)="unfollowButtonClicked(subjects[subjectIndex])">
+          Followed
+        </button>
+      </div>
+    </div>
+
+    <div class="col-3 no-padding text-center">
+      <button class="btn side-arrow" (click)="rightArrowClicked()" [disabled]="subjectIndex === subjects.length - 1">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+  </section>
+</div>

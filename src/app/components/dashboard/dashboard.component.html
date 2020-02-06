@@ -97,6 +97,14 @@
 
       <article *ngIf="user" class="col-md-3 d-none d-md-block">
         <!-- Discover Section -->
+        <app-discover *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
+          [subjects]="arrayOfSubjects"
+          [userSubjects]="user.currentSubjects"
+          (sendFollow)="followButtonClicked($event)"
+          (sendUnfollow)="followButtonClicked($event)">
+
+        </app-discover>
+        <!--
         <div class="question-column p-2 mb-3"
           *ngIf="arrayOfSubjects && arrayOfSubjects.length && user && user.currentSubjects.length >= 3">
           <div class="row justify-content-center mt-1">
@@ -147,17 +155,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Library -->
         <div class="ml-2">
-          <a [routerLink]="['/library']"><h2 class="library-url">Your Library</h2></a>
+          <a [routerLink]="['/library']"><h2 class="library-url no-select">Your Library</h2></a>
         </div>
         <div *ngIf="user.currentSources.length" class="ml-2">
           <div *ngFor="let source of user.currentSources" class="mb-2">
             <div>
               <span (click)="onSourceClicked(source)">
-                <h5 class="subject-url">{{ source }}</h5>
+                <h5 class="subject-url no-select">{{ source }}</h5>
               </span>
               <div class="detail-view">
 

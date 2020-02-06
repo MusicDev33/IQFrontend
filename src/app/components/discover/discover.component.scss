@@ -1,0 +1,27 @@
+@import '~sass/variables';
+
+.side-arrow {
+  transition: all 0.3s;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.side-arrow:disabled {
+  pointer-events: none;
+  color: #cdcdcd;
+}
+
+.side-arrow:hover {
+  color: $color-primary;
+}
+
+.discover-followed {
+  color: rgb(164,164,164);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.3s;
+}
+
+.discover-followed:hover {
+  background-color: rgb(244,244,244);
+}
