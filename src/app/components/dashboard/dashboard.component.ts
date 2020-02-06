@@ -176,16 +176,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  discoverArrowClicked(arrow: string) {
-    if (arrow === 'right' && this.currentDiscoverSubjectIndex < this.arrayOfSubjects.length - 1) {
-      this.currentDiscoverSubjectIndex += 1;
-    }
-
-    if (arrow === 'left' && this.currentDiscoverSubjectIndex > 0) {
-      this.currentDiscoverSubjectIndex -= 1;
-    }
-  }
-
   calcMaxOffset(): number {
     const screen = this.returnScreenBreakpoint();
 
