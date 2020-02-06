@@ -104,58 +104,6 @@
           (sendUnfollow)="followButtonClicked($event)">
 
         </app-discover>
-        <!--
-        <div class="question-column p-2 mb-3"
-          *ngIf="arrayOfSubjects && arrayOfSubjects.length && user && user.currentSubjects.length >= 3">
-          <div class="row justify-content-center mt-1">
-            <div class="col-10 iq-card-top no-float text-center p-2">
-              <h2><i class="far fa-lightbulb float-left"></i>Discover</h2>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="col-10 iq-card-mid no-float text-center py-2">
-              <h4>{{ arrayOfSubjects[currentDiscoverSubjectIndex].name }}</h4>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mb-1">
-            <div class="col-10 iq-card-bottom no-float text-center pb-2">
-              <div class="row justify-content-center">
-
-                <div class="col-3 no-padding noselect">
-                  <button class="btn side-arrow pt-2 my-auto mx-auto"
-                    [disabled]="currentDiscoverSubjectIndex <= 0">
-                      <i class="fas fa-chevron-left"
-                      (click)="discoverArrowClicked('left')"></i>
-                  </button>
-                </div>
-
-                <div class="col-6 pt-3"
-                  *ngIf="!user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)"
-                  (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
-                  <button class="btn iq-btn-1 my-auto">Follow</button>
-                </div>
-
-                <div class="col-6 pt-3"
-                  *ngIf="user.currentSubjects.includes(arrayOfSubjects[currentDiscoverSubjectIndex].name)">
-                    <button class="discover-followed btn my-auto"
-                      (click)="followButtonClicked(arrayOfSubjects[currentDiscoverSubjectIndex])">
-                        Followed
-                    </button>
-                </div>
-                <div class="col-3 no-padding noselect">
-                  <button class="btn side-arrow pt-2 my-auto mx-auto"
-                    [disabled]="currentDiscoverSubjectIndex >= arrayOfSubjects.length - 1">
-                      <i class="fas fa-chevron-right"
-                      (click)="discoverArrowClicked('right')"></i>
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div> -->
 
         <!-- Library -->
         <div class="ml-2">
