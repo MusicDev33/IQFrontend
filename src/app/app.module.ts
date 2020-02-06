@@ -16,48 +16,49 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from '@components/navbar/navbar.component';
-import { HomeComponent } from '@components/home/home.component';
-import { RegisterComponent } from '@components/register/register.component';
-import { GoogleCBComponent } from './components/register/googlecb/googlecb.component';
-import { DashboardComponent } from '@components/dashboard/dashboard.component';
-import { AuthenticateComponent } from '@components/authenticate/authenticate.component';
-import { ProfileComponent } from '@components/profile/profile.component';
-import { QuestionComponent } from '@components/question/question.component';
+import { HomeComponent } from '@pages/home/home.component';
+import { RegisterComponent } from '@pages/register/register.component';
+import { GoogleCBComponent } from '@pages/register/googlecb/googlecb.component';
+import { DashboardComponent } from '@pages/dashboard/dashboard.component';
+import { AuthenticateComponent } from '@pages/authenticate/authenticate.component';
+import { ProfileComponent } from '@pages/profile/profile.component';
+import { QuestionComponent } from '@pages/question/question.component';
 import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
-import { LibraryComponent } from '@components/library/library.component';
+import { LibraryComponent } from '@pages/library/library.component';
 import { BugReportComponent } from '@components/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@components/landingpage/landingpage.component';
-import { UserSettingsComponent } from './components/usersettings/usersettings.component';
+import { UserSettingsComponent } from '@pages/usersettings/usersettings.component';
 import { QuestionEditComponent } from './components/questionedit/questionedit.component';
-import { CMDashboardComponent } from './modules/cmagent/cmdashboard/cmdashboard.component';
-import { TopicComponent } from './modules/topic/topic/topic.component';
-import { SourceComponent } from './modules/source/source/source.component';
+import { CMDashboardComponent } from '@pages/cmagent/cmdashboard/cmdashboard.component';
+import { TopicComponent } from '@pages/topic/topic/topic.component';
+import { SourceComponent } from '@pages/source/source/source.component';
 import { LandingNavComponent } from './components/landingnav/landingnav.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 import { SubjectListComponent } from './components/subjectlist/subjectlist.component';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { LibraryListComponent } from './components/librarylist/librarylist.component';
+import { PricingComponent } from '@pages/pricing/pricing.component';
 
 
 // Jobs Module
-import { IQJobsComponent } from './components/iqjobs/iqjobs.component';
-import { CMAgentMasterComponent } from './components/admin/cmagentmaster/cmagentmaster.component';
+import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
+import { CMAgentMasterComponent } from '@pages/admin/cmagentmaster/cmagentmaster.component';
 
 // Dropins
 import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
 import { AnswerBoxComponent } from './components/dropins/answerbox/answerbox.component';
 
 // Support
-import { SupportComponent } from '@components/support/support.component';
-import { AboutComponent } from '@components/about/about.component';
-import { IntroComponent } from '@components/support/intro/intro.component';
-import { HowtoComponent } from '@components/support/howto/howto.component';
-import { PolicyComponent } from '@components/policy/policy.component';
-import { MathComponent } from '@components/support/math/math.component';
-import { HonorCodeComponent } from '@components/support/honorcode/honorcode.component';
-import { AdvintroComponent } from '@components/support/advintro/advintro.component';
+import { SupportComponent } from '@pages/support/support.component';
+import { AboutComponent } from '@pages/about/about.component';
+import { IntroComponent } from '@pages/support/intro/intro.component';
+import { HowtoComponent } from '@pages/support/howto/howto.component';
+import { PolicyComponent } from '@pages/policy/policy.component';
+import { MathComponent } from '@pages/support/math/math.component';
+import { HonorCodeComponent } from '@pages/support/honorcode/honorcode.component';
+import { AdvintroComponent } from '@pages/support/advintro/advintro.component';
 
 // Services - NETWORK
 import { ValidateService } from '@services/utility/validate.service';
@@ -72,12 +73,11 @@ import { FeedbackService } from '@services/feedback.service';
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { JobAppsService } from '@services/backend/jobapps.service';
 import { CMAgentService } from '@services/backend/cmagent.service';
-import { PricingComponent } from './components/pricing/pricing.component';
 
 // Services - UTILITY
 
 // Interactivity Lab
-import { InteractLabComponent } from './modules/interactlab/interactlab.component';
+import { InteractLabComponent } from '@pages/interactlab/interactlab.component';
 
 // Guards
 import { AuthGuard } from './guards/auth.guard';
