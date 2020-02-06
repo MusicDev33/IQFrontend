@@ -8,7 +8,7 @@ import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { QuestionEditComponent } from '@components/questionedit/questionedit.component';
+import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { ISubject } from '@interfaces/schemas/ISubject';
