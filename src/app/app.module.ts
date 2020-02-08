@@ -27,7 +27,7 @@ import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component
 import { LibraryComponent } from '@pages/library/library.component';
 import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
-import { LandingpageComponent } from '@components/landingpage/landingpage.component';
+import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@pages/usersettings/usersettings.component';
 import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 import { CMDashboardComponent } from '@pages/cmagent/cmdashboard/cmdashboard.component';

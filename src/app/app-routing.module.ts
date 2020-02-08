@@ -6,7 +6,7 @@ import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { QuestionComponent } from '@pages/question/question.component';
 import { ProfileComponent } from '@pages/profile/profile.component';
 import { LibraryComponent } from '@pages/library/library.component';
-import { LandingpageComponent } from '@components/landingpage/landingpage.component';
+import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@pages/usersettings/usersettings.component';
 import { GoogleCBComponent } from '@pages/register/googlecb/googlecb.component';
 import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
