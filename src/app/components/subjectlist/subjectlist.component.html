@@ -1,9 +1,11 @@
 <div *ngIf="subjects.length">
   <div class="row justify-content-center" *ngFor="let subject of subjects">
     <div class="col-12">
-      <a [routerLink]="'/iqt/' + toSubjectURL(subject)">
-        <h5><span class="subject-link">{{ subject }}</span></h5>
-      </a>
+      <h5>
+        <a [routerLink]="'/iqt/' + toSubjectURL(subject)" class="subject-link no-select">
+          {{ subject }}
+        </a>
+      </h5>
     </div>
   </div>
 </div>

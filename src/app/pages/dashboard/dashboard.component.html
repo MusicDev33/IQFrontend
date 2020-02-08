@@ -15,12 +15,13 @@
 
 <!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
 <section *ngIf="user">
-  <div class="container">
+  <div class="container" (dblclick)="onDoubleClick($event)">
     <div class="row">
 
       <article *ngIf="user" class="col-md-3 d-none d-md-block">
         <!-- Discover Section -->
-        <app-discover *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
+        <app-discover (dblclick)="$event.stopPropagation()"
+          *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
           [subjects]="arrayOfSubjects"
           [userSubjects]="user.currentSubjects"
           (sendFollow)="followButtonClicked($event)"

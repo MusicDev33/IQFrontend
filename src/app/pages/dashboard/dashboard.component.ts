@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
 import { UserService } from '@services/user.service';
@@ -9,6 +10,8 @@ import { DebugService } from '@services/utility/debug.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
+import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
+import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { ISubject } from '@interfaces/schemas/ISubject';
@@ -42,9 +45,17 @@ export class DashboardComponent implements OnInit {
     public qService: QuestionService,
     public activatedRoute: ActivatedRoute,
     public debug: DebugService,
-    public subjectsService: SubjectsService) {
+    public subjectsService: SubjectsService,
+    public flashMsg: FlashMessagesService
+  ) {
 
     }
+
+  @HostListener('document:keydown.space', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    event.preventDefault();
+    this.onSpacePressed();
+  }
 
   ngOnInit() {
     this.userService.getFeed().subscribe(data => {
@@ -75,7 +86,25 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // TODO: Create types for everything...
+  onDoubleClick(event: Event) {
+    event.preventDefault();
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+    dialogConfig.panelClass = 'dialog-popup';
+
+    const dialogRef = this.dialog.open(BugReportComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( feedback => {
+      if (feedback) {
+        this.flashMsg.show(feedback, {cssClass: 'alert-success', timeout: 1500});
+      }
+    });
+  }
+
   editQuestionClicked(question: IQuestion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -164,5 +193,55 @@ export class DashboardComponent implements OnInit {
     }
 
     return 'single';
+  }
+
+
+  // DUPLICATED CODE FROM THE NAVBAR
+  onSpacePressed() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '550px';
+    dialogConfig.position = {
+      top: '80px'
+    };
+    dialogConfig.panelClass = 'dialog-popup';
+
+    dialogConfig.data = {
+      description: '',
+      question: '',
+    };
+
+    this.dialogOpen = true;
+    const dialogRef = this.dialog.open(SearchpopupComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe( data => {
+      this.dialogOpen = false;
+      // Lol this isn't a request response but oh well
+      if (data) {
+        let res: any = {};
+        res = data;
+        this.debug.log('Dialog output: ' + res);
+        const question = {
+          question: res.question,
+          subject: res.topic,
+          source: res.source,
+          asker: this.userService.getUser().name,
+          askerID: this.userService.getUser().getMongoID(),
+          askerHandle: this.userService.getUser().handle,
+          tags: res.tags.value.split('&')
+        };
+        this.debug.log(question);
+
+        this.qService.askQuestion(question).subscribe(questionData => {
+          let response: any = {};
+          response = questionData;
+          if (response.success) {
+            this.flashMsg.show('Question added.', {cssClass: 'alert-success', timeout: 1500});
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.flashMsg.show('Something went wrong. Try asking again.', {cssClass: 'alert-danger', timeout: 1500});
+          }
+        });
+      }
+    });
   }
 }
