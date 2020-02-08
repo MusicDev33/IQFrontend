@@ -1,1 +1,16 @@
 @import '~sass/variables';
+
+a:hover {
+  text-decoration: none;
+}
+
+.subject-link {
+  color: $font-main;
+  border-bottom: solid 2px rgba(255, 255, 255, 0);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.subject-link:hover {
+  border-color: $color-primary;
+}

@@ -7,83 +7,6 @@
     </div>
   </div>
 
-  <div class="row subject-ribbon justify-content-center py-3"
-    *ngIf="arrayOfSubjects && user && user.currentSubjects.length < 3">
-    <div class="col-1 text-center my-auto pl-4 pl-lg-2">
-      <button [disabled]="subjectOffset === 0" class="btn side-arrow">
-        <i class="fas fa-chevron-left" (click)="leftArrowClicked()"></i>
-      </button>
-    </div>
-
-    <div class="col-10 justify-content-center">
-      <div class="row">
-
-        <!-- LAPTOPS AND LARGE SCREENS -->
-        <div *ngFor="let subject of nSubjects(4)" class="col-3 text-center d-none d-lg-block">
-          <div class="col-11 iq-card mx-auto text-center py-2">
-            <div><h4 (click)="onSubjectNameClicked(subject.subjectURL)" class="subject-url">{{ subject.name }}</h4></div>
-            <div class="btn iq-btn-1 mt-2"
-            *ngIf="!user.currentSubjects.includes(subject.name)"
-            (click)="followButtonClicked(subject)">Follow</div>
-
-            <div class="text-followed pt-2 mt-2"
-              (click)="followButtonClicked(subject)"
-              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
-          </div>
-        </div>
-
-        <!-- MEDIUM SCREENS -->
-        <div *ngFor="let subject of nSubjects(3)" class="col-4 text-center d-none d-md-block d-lg-none">
-          <div class="col-11 iq-card mx-auto py-2">
-            <div><h4 (click)="onSubjectNameClicked(subject.subjectURL)" class="subject-url">{{ subject.name }}</h4></div>
-            <div class="btn iq-btn-1 mt-2"
-            *ngIf="!user.currentSubjects.includes(subject.name)"
-            (click)="followButtonClicked(subject)">Follow</div>
-
-            <div class="text-followed pt-2 mt-2"
-              (click)="followButtonClicked(subject)"
-              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
-          </div>
-        </div>
-
-        <!-- SMALL SCREENS -->
-        <div *ngFor="let subject of nSubjects(2)" class="col-6 text-center d-none d-sm-block d-md-none">
-          <div class="col-11 iq-card mx-auto py-2">
-            <div><h4 (click)="onSubjectNameClicked(subject.subjectURL)" class="subject-url">{{ subject.name }}</h4></div>
-            <div class="btn iq-btn-1 mt-2"
-            *ngIf="!user.currentSubjects.includes(subject.name)"
-            (click)="followButtonClicked(subject)">Follow</div>
-
-            <div class="text-followed pt-2 mt-2"
-              (click)="followButtonClicked(subject)"
-              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
-          </div>
-        </div>
-
-        <!-- EXTRA SMALL SCREENS -->
-        <div *ngFor="let subject of nSubjects(1)" class="col-12 text-center d-block d-sm-none">
-          <div class="col-11 iq-card mx-auto py-2">
-            <div><h4 (click)="onSubjectNameClicked(subject.subjectURL)" class="subject-url">{{ subject.name }}</h4></div>
-            <div class="btn iq-btn-1 mt-2"
-              *ngIf="!user.currentSubjects.includes(subject.name)"
-              (click)="followButtonClicked(subject)">Follow</div>
-
-            <div class="text-followed pt-2 mt-2"
-              (click)="followButtonClicked(subject)"
-              *ngIf="user.currentSubjects.includes(subject.name)">Followed</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="col-1 text-center my-auto pr-4 pr-lg-2">
-      <button [disabled]="subjectOffset === calcMaxOffset() - 1" class="btn side-arrow">
-        <i class="fas fa-chevron-right" (click)="rightArrowClicked()"></i>
-      </button>
-    </div>
-  </div>
-
 </section>
 
 <div class="pt-2" *ngIf="arrayOfSubjects && user">
@@ -125,25 +48,10 @@
         </div>
       </article>
 
-      <div *ngIf="user && user.currentSubjects.length" class="col-lg-3 d-none d-lg-block">
-        <div *ngFor="let subject of user.currentSubjects" class="mb-2">
-          <div>
-            <span>
-              <a [routerLink]="'/iqt/' + toSubjectURL(subject)">
-                <h5 class="subject-url">{{ subject }}</h5>
-              </a>
-            </span>
-            <div class="detail-view">
-
-            </div>
-          </div>
-        </div>
+      <div *ngIf="user" class="col-lg-3 d-none d-lg-block">
+        <app-subjectlist [subjects]="user.currentSubjects">
+        </app-subjectlist>
       </div>
-
-      <div *ngIf="!user.currentSubjects.length" class="col-lg-3">
-
-      </div>
-
     </div>
   </div>
 </section>
