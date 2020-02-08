@@ -1,1 +1,17 @@
-<p>librarylist works!</p>
+<div>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <a [routerLink]="['/library']"><h2 class="library-url no-select">Your Library</h2></a>
+    </div>
+  </div>
+
+  <div *ngIf="sourceArray.length">
+    <div class="row justify-content-center" *ngFor="let source of sourceArray">
+      <div class="col-12">
+        <h5 (click)="onSourceClicked(source)">
+          <span class="source-link">{{ source }}</span>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

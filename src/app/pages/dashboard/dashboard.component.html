@@ -105,26 +105,8 @@
 
         </app-discover>
 
-        <!-- Library -->
-        <div class="ml-2 mt-2">
-          <a [routerLink]="['/library']"><h2 class="library-url no-select">Your Library</h2></a>
-        </div>
-        <div *ngIf="user.currentSources.length" class="ml-2">
-          <div *ngFor="let source of user.currentSources" class="mb-2">
-            <div>
-              <span (click)="onSourceClicked(source)">
-                <h5 class="subject-url no-select">{{ source }}</h5>
-              </span>
-              <div class="detail-view">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="!user.currentSources.length" class="lib-info-text">
-          It looks like your library is empty! You can change that
-            <a class="lib-info-anchor" href=""[routerLink]="['/library']">here</a>
-        </div>
+        <app-librarylist [sourceArray]="user.currentSources">
+        </app-librarylist>
       </article>
 
       <article *ngIf="questions" class='col-sm-12 col-md-9 col-lg-6 justify-content-center'>

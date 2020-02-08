@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ISource } from '@interfaces/schemas/ISource';
 
 @Component({
   selector: 'app-librarylist',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryListComponent implements OnInit {
 
-  constructor() { }
+  @Input() sourceArray: ISource[];
+
+  constructor(public router: Router) { }
 
   ngOnInit() {
+  }
+
+  onSourceClicked(sourceName: string) {
+    localStorage.setItem('lib-key', sourceName);
+    this.router.navigate(['/library']);
   }
 
 }
