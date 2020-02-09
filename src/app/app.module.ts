@@ -40,7 +40,7 @@ import { SubjectListComponent } from '@components/subjectlist/subjectlist.compon
 import { DiscoverComponent } from '@components/discover/discover.component';
 import { LibraryListComponent } from '@components/librarylist/librarylist.component';
 import { PricingComponent } from '@pages/pricing/pricing.component';
-
+import { AdsLandingComponent } from '@pages/adslanding/adslanding.component';
 
 // Jobs Module
 import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
@@ -142,7 +142,8 @@ export function provideConfig() {
     ConfirmationComponent,
     SubjectListComponent,
     DiscoverComponent,
-    LibraryListComponent
+    LibraryListComponent,
+    AdsLandingComponent
   ],
   imports: [
     BrowserModule,
