@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '@services/question.service';
 import { SourceService } from '@services/source.service';
+import { UserService } from '@services/user.service';
 import { ISource } from '@interfaces/schemas/ISource';
 import { IQuestion } from '@interfaces/schemas/IQuestion';
+import { IUser } from '@interfaces/schemas/IUser';
 
 @Component({
   selector: 'app-source',
@@ -19,10 +21,13 @@ export class SourceComponent implements OnInit {
 
   source: ISource;
 
+  user: IUser;
+
   constructor(
     public activatedRoute: ActivatedRoute,
     public sourceService: SourceService,
-    public questionService: QuestionService
+    public questionService: QuestionService,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
@@ -30,6 +35,10 @@ export class SourceComponent implements OnInit {
 
     this.activatedRoute.url.subscribe(url => {
        this.setUpComponent();
+    });
+
+    this.userService.getProfile().subscribe((userData: any) => {
+      this.user = userData.user;
     });
   }
 
