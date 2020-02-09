@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
@@ -103,6 +103,12 @@ export class SearchpopupComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  onSpacePressed(event: Event) {
+    if (this.questionText.length <= 0) {
+      this.close();
+    }
   }
 
   askQuestion() {

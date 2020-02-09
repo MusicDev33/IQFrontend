@@ -1,4 +1,5 @@
-<div class="text-center justify-content-center">
+<div class="text-center justify-content-center"
+  (keydown.escape)="onSpacePressed($event); $event.stopPropagation(); false">
   <div [formGroup]="form" class="mb-4 container">
     <div class="row mb-2 justify-content-center">
       <div class="col-12-sm text-center">
@@ -8,6 +9,7 @@
 
     <section class="row">
       <textarea type="text" [(ngModel)]="questionText"
+        (keydown.space)="onSpacePressed($event); $event.stopPropagation();"
         class="form-control iq-form col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
