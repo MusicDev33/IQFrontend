@@ -16,6 +16,7 @@ import { TopicComponent } from '@pages/topic/topic/topic.component';
 import { SourceComponent } from '@pages/source/source/source.component';
 import { PricingComponent } from '@pages/pricing/pricing.component';
 import { InteractLabComponent } from '@pages/interactlab/interactlab.component';
+import { AdsLandingComponent } from '@pages/adslanding/adslanding.component';
 
 import { AboutComponent } from '@pages/about/about.component';
 import { PolicyComponent } from '@pages/policy/policy.component';
@@ -63,6 +64,7 @@ const routes: Routes = [
   { path: 'iqs/:source', component: SourceComponent},
   { path: 'pricing', component: PricingComponent, canActivate: [ProductionGuard]},
   { path: 'ilab', component: InteractLabComponent, canActivate: [ProductionGuard]},
+  { path: 'business/iqads', component: AdsLandingComponent, canActivate: [ProductionGuard]},
   { path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
   // { path: 'jobs', component: IQJobsComponent},
