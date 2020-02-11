@@ -1,0 +1,10 @@
+@import '~sass/variables';
+
+.beta-header {
+  color: $color-primary;
+}
+
+// Can't put 'ad' in front of anything because ad blockers will block it
+.icon {
+  color: $color-primary;
+}
