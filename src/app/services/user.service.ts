@@ -49,12 +49,14 @@ export class UserService {
     getUserByURLParam(param: string, paramValue: string) {
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', this.getToken());
+      headers = headers.set('Cache-Control', 'max-age=600');
       return this.http.get(this.tsRouteBase + '/users/param/' + param + '/' + paramValue, {headers})
         .pipe(map(res => res));
     }
 
     publicGetUserByHandle(handle: string) {
-      const headers = this.headersTemplate;
+      let headers = this.headersTemplate;
+      headers = headers.set('Cache-Control', 'max-age=3600');
       return this.http.get(this.tsRouteBase + '/users/public/handle/' + handle, {headers})
         .pipe(map(res => res));
     }
@@ -62,6 +64,7 @@ export class UserService {
     getProfile() {
       let headers = this.headersTemplate;
       headers = headers.set('Authorization', this.getToken());
+      headers = headers.set('Cache-Control', 'max-age=600');
       return this.http.get(this.tsRouteBase + '/users/profile', {headers})
         .pipe(map(res => res));
     }

@@ -38,7 +38,8 @@ export class SubjectsService {
   }
 
   getSubjectByURL(subjectURL: string) {
-    const headers = this.headersTemplate;
+    let headers = this.headersTemplate;
+    headers = headers.set('Cache-Control', 'max-age=3600');
     return this.http.get(this.tsRouteBase + '/subjects/' + subjectURL, {headers})
       .pipe(map(res => res));
   }
