@@ -16,8 +16,8 @@
     </div>
   </div>
 
-  <section class="row justify-content-center" *ngIf="questions && questions.length">
-    <app-librarylist class="col-3" *ngIf="user" [sourceArray]="user.currentSources">
+  <section class="row justify-content-center pb-5" *ngIf="questions && questions.length && user">
+    <app-librarylist class="col-3" [sourceArray]="user.currentSources">
     </app-librarylist>
 
     <div class="col-6 question-column py-2">
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <app-subjectlist class="col-3" *ngIf="user" [subjects]="user.currentSubjects">
+    <app-subjectlist class="col-3" [subjects]="user.currentSubjects">
     </app-subjectlist>
   </section>
 </div>
