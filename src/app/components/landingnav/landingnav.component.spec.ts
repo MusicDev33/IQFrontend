@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingnavComponent } from './landingnav.component';
+import { LandingNavComponent } from './landingnav.component';
 
 describe('LandingnavComponent', () => {
-  let component: LandingnavComponent;
-  let fixture: ComponentFixture<LandingnavComponent>;
+  let component: LandingNavComponent;
+  let fixture: ComponentFixture<LandingNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingnavComponent ]
+      declarations: [ LandingNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingnavComponent);
+    fixture = TestBed.createComponent(LandingNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

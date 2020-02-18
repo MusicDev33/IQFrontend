@@ -16,9 +16,12 @@
  */
 
 import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
 
 import * as express from 'express';
 import {join} from 'path';
+
+import { enableProdMode } from '@angular/core';
 
 // Express server
 const app = express();
@@ -28,6 +31,8 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
+
+enableProdMode();
 
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({

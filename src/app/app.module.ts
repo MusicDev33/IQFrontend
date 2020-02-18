@@ -146,7 +146,7 @@ export function provideConfig() {
     AdsLandingComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     KatexModule,
     AppRoutingModule,
     FormsModule,
