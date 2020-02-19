@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CmdashboardComponent } from './cmdashboard.component';
+import { CMDashboardComponent } from './cmdashboard.component';
 
 describe('CmdashboardComponent', () => {
-  let component: CmdashboardComponent;
-  let fixture: ComponentFixture<CmdashboardComponent>;
+  let component: CMDashboardComponent;
+  let fixture: ComponentFixture<CMDashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CmdashboardComponent ]
+      declarations: [ CMDashboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CmdashboardComponent);
+    fixture = TestBed.createComponent(CMDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

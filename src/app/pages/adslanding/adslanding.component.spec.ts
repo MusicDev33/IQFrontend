@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingNavComponent } from './landingnav.component';
+import { AdsLandingComponent } from './adslanding.component';
 
-describe('LandingnavComponent', () => {
-  let component: LandingNavComponent;
-  let fixture: ComponentFixture<LandingNavComponent>;
+describe('AdslandingComponent', () => {
+  let component: AdsLandingComponent;
+  let fixture: ComponentFixture<AdsLandingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingNavComponent ]
+      declarations: [ AdsLandingComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingNavComponent);
+    fixture = TestBed.createComponent(AdsLandingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

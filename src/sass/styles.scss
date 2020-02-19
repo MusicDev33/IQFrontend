@@ -41,6 +41,10 @@ textarea {
   display: none;
 }
 
+html {
+  overflow-y: overlay!important;
+}
+
 body {
   overflow-x: hidden;
   padding-top: 70px;

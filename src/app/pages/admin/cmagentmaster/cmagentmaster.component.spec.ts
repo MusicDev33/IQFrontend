@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CmagentmasterComponent } from './cmagentmaster.component';
+import { CMAgentMasterComponent } from './cmagentmaster.component';
 
 describe('CmagentmasterComponent', () => {
-  let component: CmagentmasterComponent;
-  let fixture: ComponentFixture<CmagentmasterComponent>;
+  let component: CMAgentMasterComponent;
+  let fixture: ComponentFixture<CMAgentMasterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CmagentmasterComponent ]
+      declarations: [ CMAgentMasterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CmagentmasterComponent);
+    fixture = TestBed.createComponent(CMAgentMasterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -30,7 +30,7 @@ interface IChildVote {
 })
 export class QuestionComponent implements OnInit {
   question: Question;
-  answers: Array<Answer>;
+  answers: Answer[];
   questionID: string;
   questionURL: string;
   answerText = '';

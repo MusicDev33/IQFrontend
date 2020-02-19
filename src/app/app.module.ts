@@ -23,32 +23,32 @@ import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { AuthenticateComponent } from '@pages/authenticate/authenticate.component';
 import { ProfileComponent } from '@pages/profile/profile.component';
 import { QuestionComponent } from '@pages/question/question.component';
-import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
+import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
 import { LibraryComponent } from '@pages/library/library.component';
-import { BugReportComponent } from '@components/bugreport/bugreport.component';
+import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
-import { LandingpageComponent } from '@components/landingpage/landingpage.component';
+import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
 import { UserSettingsComponent } from '@pages/usersettings/usersettings.component';
-import { QuestionEditComponent } from './components/questionedit/questionedit.component';
+import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 import { CMDashboardComponent } from '@pages/cmagent/cmdashboard/cmdashboard.component';
 import { TopicComponent } from '@pages/topic/topic/topic.component';
 import { SourceComponent } from '@pages/source/source/source.component';
 import { LandingNavComponent } from './components/landingnav/landingnav.component';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
-import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
-import { SubjectListComponent } from './components/subjectlist/subjectlist.component';
-import { DiscoverComponent } from './components/discover/discover.component';
-import { LibraryListComponent } from './components/librarylist/librarylist.component';
+import { ConfirmationComponent } from '@dialogs/confirmation/confirmation.component';
+import { SubjectListComponent } from '@components/subjectlist/subjectlist.component';
+import { DiscoverComponent } from '@components/discover/discover.component';
+import { LibraryListComponent } from '@components/librarylist/librarylist.component';
 import { PricingComponent } from '@pages/pricing/pricing.component';
-
+import { AdsLandingComponent } from '@pages/adslanding/adslanding.component';
 
 // Jobs Module
 import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
 import { CMAgentMasterComponent } from '@pages/admin/cmagentmaster/cmagentmaster.component';
 
 // Dropins
-import { QuestionCardComponent } from './components/dropins/questioncard/questioncard.component';
-import { AnswerBoxComponent } from './components/dropins/answerbox/answerbox.component';
+import { QuestionCardComponent } from '@components/questioncard/questioncard.component';
+import { AnswerBoxComponent } from '@components/answerbox/answerbox.component';
 
 // Support
 import { SupportComponent } from '@pages/support/support.component';
@@ -93,7 +93,7 @@ import {
 } from 'angularx-social-login';
 
 import googleSocialConfig from './socialLoginConfig';
-import { ReportQuestionComponent } from './components/reportquestion/reportquestion.component';
+import { ReportQuestionComponent } from '@dialogs/reportquestion/reportquestion.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -142,10 +142,11 @@ export function provideConfig() {
     ConfirmationComponent,
     SubjectListComponent,
     DiscoverComponent,
-    LibraryListComponent
+    LibraryListComponent,
+    AdsLandingComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     KatexModule,
     AppRoutingModule,
     FormsModule,

@@ -33,7 +33,7 @@
   height: 20px;
   cursor: pointer;
   color: $color-primary;
-  transition: $time-fast;
+  transition: $time-slow;
 }
 
 .close-button:hover {
@@ -133,4 +133,53 @@ textarea {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $scroll-hover;
+}
+
+// Custom file upload
+input[type="file"] {
+  display: none;
+}
+
+.input-label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.iq-pill {
+  border-radius: 999px;
+  background: $color-primary-grey;
+  color: $font-main;
+  transition: all $time-fast;
+  cursor: pointer;
+}
+
+.iq-pill:hover {
+  background: $color-primary-grey-highlighted;
+}
+
+.fake-underline {
+  border-bottom: solid 3px $underline-grey;
+  border-bottom: solid 3px $underline-grey;
+  margin-bottom: 5px;
+}
+
+.iq-underline {
+  border-bottom: solid 3px $underline-grey;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.iq-underline:hover {
+  border-color: $color-primary;
+}
+
+.cancel-upload {
+  color: $color-primary;
+  cursor: pointer;
+  transition: all $time-slow;
+}
+
+.cancel-upload:hover {
+  color: $iq-red;
 }

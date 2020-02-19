@@ -11,8 +11,8 @@ import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 import { AuthService } from 'angularx-social-login';
 
-import { SearchpopupComponent } from '@components/searchpopup/searchpopup.component';
-import { BugReportComponent } from '@components/bugreport/bugreport.component';
+import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
+import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 
 import { IUser } from '@interfaces/schemas/IUser';
 import { ISource } from '@interfaces/schemas/ISource';
@@ -139,7 +139,8 @@ export class NavbarComponent implements OnInit {
       if (data) {
         let res: any = {};
         res = data;
-        this.debug.log('Dialog output: ' + res);
+        this.debug.log('Dialog output: ');
+        this.debug.log(res);
         const question = {
           question: res.question,
           subject: res.topic,
@@ -147,7 +148,8 @@ export class NavbarComponent implements OnInit {
           asker: this.userService.getUser().name,
           askerID: this.userService.getUser().getMongoID(),
           askerHandle: this.userService.getUser().handle,
-          tags: res.tags.value.split('&')
+          tags: res.tags.value.split('&'),
+          details: res.details
         };
         this.debug.log(question);
 

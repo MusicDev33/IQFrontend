@@ -1,18 +1,70 @@
-<div class="text-center justify-content-center">
+<div class="text-center justify-content-center"
+  (keydown.escape)="onSpacePressed($event); $event.stopPropagation(); false">
   <div [formGroup]="form" class="mb-4 container">
-    <div class="row mb-2 justify-content-center">
+    <section class="row mb-2 justify-content-center">
       <div class="col-12-sm text-center">
-        <h4>New Question</h4>
+        <h2>
+          New Question
+        </h2>
       </div>
-    </div>
+    </section>
 
     <section class="row">
       <textarea type="text" [(ngModel)]="questionText"
+        (keydown.space)="onSpacePressed($event); $event.stopPropagation();"
         class="form-control iq-form col-sm-12 mb-2 txtarea-scroll"
         placeholder="Ask a question!"
         formControlName="question"
         (keyup)="checkFormComplete()">
       </textarea>
+    </section>
+
+    <section class="row justify-content-center mt-2"
+      *ngIf="currentFileName === defaultFileName && !addLinkMode">
+      <div class="col-4">
+        <h5>
+          <label>
+            <input type="file" multiple accept='image/*' name="upload"
+              (change)="createFileData($event.target.files)"/>
+            <span class="iq-pill p-2">
+              <i class="far fa-image"></i> {{ currentFileName }}
+            </span>
+          </label>
+        </h5>
+      </div>
+      <div class="col-1">
+        <h5 class="no-select">or</h5>
+      </div>
+      <div class="col-4">
+        <h5>
+          <span class="iq-pill p-2" (click)="addLinkMode = true"><i class="fas fa-link"></i> Link</span>
+        </h5>
+      </div>
+    </section>
+
+    <section class="row" *ngIf="currentFileName !== defaultFileName">
+      <div class="col-6 offset-3">
+        <h4 class="text-truncate"
+          delay="600" tooltip="{{ currentFileName }}" placement="top">
+          <span>{{ currentFileName }}</span>
+        </h4>
+      </div>
+      <div class="col-1">
+        <i class="fas fa-times cancel-upload fa-lg" (click)="cancelFileUpload()"></i>
+      </div>
+    </section>
+
+    <section class="row mb-1" *ngIf="addLinkMode">
+      <div class="col-11">
+        <input class="form-control iq-form" formControlName="details" placeholder="Add link here" [(ngModel)]="linkText"/>
+      </div>
+      <div class="col-1 my-auto">
+        <i class="fas fa-times cancel-upload fa-2x" (click)="cancelFileUpload()"></i>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="col-sm-12 line mb-2"></div>
     </section>
 
     <!-- Bubble Buttons -->

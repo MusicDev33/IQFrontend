@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InteractlabComponent } from './interactlab.component';
+import { InteractLabComponent } from './interactlab.component';
 
 describe('InteractlabComponent', () => {
-  let component: InteractlabComponent;
-  let fixture: ComponentFixture<InteractlabComponent>;
+  let component: InteractLabComponent;
+  let fixture: ComponentFixture<InteractLabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InteractlabComponent ]
+      declarations: [ InteractLabComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InteractlabComponent);
+    fixture = TestBed.createComponent(InteractLabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

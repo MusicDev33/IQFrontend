@@ -9,9 +9,12 @@
     <h4 class="mx-auto">
       This is Neumorphism. Look it up, it's a new UI trend for 2020 and it's awful.
       There's no good way to convey hovering, and that alone kills our very interactive
-      UI goal. It's too sotft as well,making it hard to see. UI needs to be easily seen
+      UI goal. It's too soft as well, making it hard to see. UI needs to be easily seen
       by all, there has to be contrast. Neumorphism seems to lack that. This will <b>not</b>
       be used in Inquantir.
     </h4>
   </div>
 </div>
+
+<input type="file" multiple accept='image/*' name="upload" (change)="createFileData($event.target.files)">
+<button (click)="upload()" class="button">Upload</button>
