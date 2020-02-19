@@ -141,7 +141,7 @@ export class SearchpopupComponent implements OnInit {
       const headersTemplate = new HttpHeaders();
       let headers = headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
       headers = headers.set('Authorization', localStorage.getItem('id_token'));
-      this.http.post('https://inquantir.com/tsapi/v1/upload/img', this.fileFormData, {headers})
+      this.http.post('https://inquantir.com/tsapi/v1/upload/question/img', this.fileFormData, {headers})
       .subscribe( (result: any) => {
         this.details = result.fileURL;
         console.log(result);
