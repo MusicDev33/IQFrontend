@@ -67,6 +67,12 @@ export class SearchpopupComponent implements OnInit {
 
   createdTags = [];
 
+  fileFormData = new FormData();
+  defaultFileName = 'Upload';
+  currentFileName = this.defaultFileName;
+  addLinkMode = false;
+  linkText = '';
+
   constructor(
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SearchpopupComponent>,
@@ -316,5 +322,16 @@ export class SearchpopupComponent implements OnInit {
 
   sourceNoResults(noResults: boolean) {
     this.sourceHasNoResults = noResults;
+  }
+
+  createFileData(files: FileList) {
+    const selectedFile = files.item(0);
+    this.fileFormData.append('upload', selectedFile, selectedFile.name);
+    this.currentFileName = selectedFile.name;
+  }
+
+  cancelFileUpload() {
+    this.currentFileName = this.defaultFileName;
+    this.addLinkMode = false;
   }
 }

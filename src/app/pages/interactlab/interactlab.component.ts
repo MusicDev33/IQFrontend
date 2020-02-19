@@ -22,8 +22,9 @@ export class InteractLabComponent implements OnInit {
 
   upload() {
     const headersTemplate = new HttpHeaders();
-    const headers = headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
-    this.http.post('https://inquantir.com/tsapi/v1/upload/upload', this.formData, {headers})
+    let headers = headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
+    headers = headers.set('Authorization', localStorage.getItem('id_token'));
+    this.http.post('https://inquantir.com/tsapi/v1/upload/img', this.formData, {headers})
     .subscribe( result => {
       console.log(result);
     });
