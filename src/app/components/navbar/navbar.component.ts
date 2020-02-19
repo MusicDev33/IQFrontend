@@ -139,7 +139,8 @@ export class NavbarComponent implements OnInit {
       if (data) {
         let res: any = {};
         res = data;
-        this.debug.log('Dialog output: ' + res);
+        this.debug.log('Dialog output: ');
+        this.debug.log(res);
         const question = {
           question: res.question,
           subject: res.topic,
@@ -147,7 +148,8 @@ export class NavbarComponent implements OnInit {
           asker: this.userService.getUser().name,
           askerID: this.userService.getUser().getMongoID(),
           askerHandle: this.userService.getUser().handle,
-          tags: res.tags.value.split('&')
+          tags: res.tags.value.split('&'),
+          details: res.details
         };
         this.debug.log(question);
 

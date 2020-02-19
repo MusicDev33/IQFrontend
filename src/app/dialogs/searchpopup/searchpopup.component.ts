@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -70,6 +71,7 @@ export class SearchpopupComponent implements OnInit {
   fileFormData = new FormData();
   defaultFileName = 'Upload';
   currentFileName = this.defaultFileName;
+  details = '';
   addLinkMode = false;
   linkText = '';
 
@@ -81,6 +83,7 @@ export class SearchpopupComponent implements OnInit {
     public subjectService: SubjectsService,
     public flashMsg: FlashMessagesService,
     public sourceService: SourceService,
+    public http: HttpClient,
     @Inject(MAT_DIALOG_DATA) data: any // This is used to access the data PASSED IN from the previous component
     ) {
       this.description = data.description;
@@ -99,7 +102,8 @@ export class SearchpopupComponent implements OnInit {
       topic: [this.topicText, []],
       source: [this.sourceText, []],
       tagName: [this.tagName, []],
-      tags: [this.addedTagsString, []]
+      tags: [this.addedTagsString, []],
+      details: [this.details, []]
     });
 
     this.questionText = this.question;
@@ -119,7 +123,53 @@ export class SearchpopupComponent implements OnInit {
 
   askQuestion() {
     this.addedTagsString.setValue(this.addedTags.concat(this.createdTags).join('&'));
-    this.dialogRef.close(this.form.value);
+    if (this.addLinkMode) {
+      this.details = this.linkText;
+      console.log(this.linkText);
+      this.form = this.fb.group({
+        description: [this.description, []],
+        question: [this.questionText, []],
+        topic: [this.topicText, []],
+        source: [this.sourceText, []],
+        tagName: [this.tagName, []],
+        tags: [this.addedTagsString, []],
+        details: [this.details, []]
+      });
+      this.dialogRef.close(this.form.value);
+    }
+    if (this.currentFileName !== this.defaultFileName) {
+      const headersTemplate = new HttpHeaders();
+      let headers = headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
+      headers = headers.set('Authorization', localStorage.getItem('id_token'));
+      this.http.post('https://inquantir.com/tsapi/v1/upload/img', this.fileFormData, {headers})
+      .subscribe( (result: any) => {
+        this.details = result.fileURL;
+        console.log(result);
+        this.form = this.fb.group({
+          description: [this.description, []],
+          question: [this.questionText, []],
+          topic: [this.topicText, []],
+          source: [this.sourceText, []],
+          tagName: [this.tagName, []],
+          tags: [this.addedTagsString, []],
+          details: [this.details, []]
+        });
+        this.dialogRef.close(this.form.value);
+      });
+    }
+
+    if (this.currentFileName === this.defaultFileName && !this.addLinkMode) {
+      this.form = this.fb.group({
+        description: [this.description, []],
+        question: [this.questionText, []],
+        topic: [this.topicText, []],
+        source: [this.sourceText, []],
+        tagName: [this.tagName, []],
+        tags: [this.addedTagsString, []],
+        details: [this.details, []]
+      });
+      this.dialogRef.close(this.form.value);
+    }
   }
 
   questionModeOn() {
@@ -326,8 +376,10 @@ export class SearchpopupComponent implements OnInit {
 
   createFileData(files: FileList) {
     const selectedFile = files.item(0);
+    this.fileFormData = new FormData();
     this.fileFormData.append('upload', selectedFile, selectedFile.name);
     this.currentFileName = selectedFile.name;
+    this.details = this.currentFileName;
   }
 
   cancelFileUpload() {
