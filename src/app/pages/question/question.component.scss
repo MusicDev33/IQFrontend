@@ -141,3 +141,16 @@ textarea {
   background-color: #fff;
   color: $color-primary;
 }
+
+.detail-anchor {
+  color: $font-light;
+  border-bottom: solid 2px rgb(255, 255, 255);
+  border-bottom: solid 2px rgba(255, 255, 255, 0);
+  transition: all $time-fast;
+}
+
+.detail-anchor:hover {
+  color: $font-main;
+  text-decoration: none;
+  border-color: $color-primary;
+}

@@ -51,12 +51,6 @@ export class DashboardComponent implements OnInit {
 
     }
 
-  @HostListener('document:keydown.space', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    event.preventDefault();
-    this.onSpacePressed();
-  }
-
   ngOnInit() {
     this.userService.getFeed().subscribe(data => {
       let res: any = {};

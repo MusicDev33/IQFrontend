@@ -5,6 +5,7 @@
         <h2>{{ question.questionText }}</h2>
       </div>
     </div>
+
     <!--
     <div class="row justify-content-center">
       <p class="text-center">Asked by <span class="profile-url">
@@ -12,6 +13,13 @@
       </p>
     </div>
     -->
+    <div *ngIf="question.details.length" class="row justify-content-center mb-2">
+      <div class="col-6 text-center">
+        <a href="{{ question.details }}" target="_blank" rel="noopener noreferrer" class="detail-anchor">
+          {{ question.details }} <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
 
     <!-- Answer Box -->
     <div *ngIf="answerMode && answers && authService.loggedIn()">
