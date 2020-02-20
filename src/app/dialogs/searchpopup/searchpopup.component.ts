@@ -99,8 +99,8 @@ export class SearchpopupComponent implements OnInit {
     this.form = this.fb.group({
       description: [this.description, []],
       question: [this.questionText, []],
-      topic: [this.topicText, []],
-      source: [this.sourceText, []],
+      topic: [this.selectedSubject, []],
+      source: [this.selectedSource, []],
       tagName: [this.tagName, []],
       tags: [this.addedTagsString, []],
       details: [this.details, []]
@@ -129,8 +129,8 @@ export class SearchpopupComponent implements OnInit {
       this.form = this.fb.group({
         description: [this.description, []],
         question: [this.questionText, []],
-        topic: [this.topicText, []],
-        source: [this.sourceText, []],
+        topic: [this.selectedSubject, []],
+        source: [this.selectedSource, []],
         tagName: [this.tagName, []],
         tags: [this.addedTagsString, []],
         details: [this.details, []]
@@ -145,11 +145,12 @@ export class SearchpopupComponent implements OnInit {
       .subscribe( (result: any) => {
         this.details = result.fileURL;
         console.log(result);
+        console.log(this.topicText);
         this.form = this.fb.group({
           description: [this.description, []],
           question: [this.questionText, []],
-          topic: [this.topicText, []],
-          source: [this.sourceText, []],
+          topic: [this.selectedSubject, []],
+          source: [this.selectedSource, []],
           tagName: [this.tagName, []],
           tags: [this.addedTagsString, []],
           details: [this.details, []]
@@ -162,8 +163,8 @@ export class SearchpopupComponent implements OnInit {
       this.form = this.fb.group({
         description: [this.description, []],
         question: [this.questionText, []],
-        topic: [this.topicText, []],
-        source: [this.sourceText, []],
+        topic: [this.selectedSubject, []],
+        source: [this.selectedSource, []],
         tagName: [this.tagName, []],
         tags: [this.addedTagsString, []],
         details: [this.details, []]
