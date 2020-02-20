@@ -75,6 +75,8 @@ export class QuestionComponent implements OnInit {
 
     this.activatedRoute.url.subscribe(url => {
       this.setUpComponent();
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     });
   }
 

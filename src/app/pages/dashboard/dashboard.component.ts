@@ -57,6 +57,8 @@ export class DashboardComponent implements OnInit {
       res = data;
       this.debug.log(res);
       this.questions = res.feed;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     }, err => {
       this.debug.log(err);
       return false;
