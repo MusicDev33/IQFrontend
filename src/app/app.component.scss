@@ -24,3 +24,15 @@
 .apply-bg {
   background-color: $main-bg-color;
 }
+
+.navbar-scroll {
+  overflow-y: hidden;
+}
+
+.body-scroll {
+  overflow-y: auto;
+}
+
+body {
+  overflow-y: hidden;
+}

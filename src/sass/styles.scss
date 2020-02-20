@@ -50,6 +50,15 @@ body {
   padding-top: 70px;
 }
 
+.main {
+  position: fixed;
+  top: 76px;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: auto;
+}
+
 .no-padding {
   padding: 0 !important;
   margin: 0 !important;
