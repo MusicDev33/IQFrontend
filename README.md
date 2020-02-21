@@ -29,5 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Developer Note:
 To run the Angular server/frontend, type in `ng serve --ssl false`
 
+To build the frontend, use `ng build --prod --output-hash none`
+
 ## Sitemap Stuff
 To update the sitemap, go to the frontend folder in the server and type `curl -XGET -H 'IQ-User-Agent: IQAPIv1' 'https://inquantir.com/api/v1/questions/developer/sitemapdata' > sitemapdata.txt` then `npx sitemap < sitemapdata.txt > sitemap.xml`
