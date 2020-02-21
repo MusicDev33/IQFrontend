@@ -14,7 +14,7 @@
     </div>
     -->
     <div *ngIf="question.details.length" class="row justify-content-center mb-2">
-      <div class="col-6 text-center">
+      <div class="col-md-6 col-12 text-center">
         <a href="{{ question.details }}" target="_blank" rel="noopener noreferrer" class="detail-anchor">
           {{ question.details }} <i class="fas fa-external-link-alt"></i>
         </a>
@@ -90,7 +90,7 @@
     </div>
 
     <div *ngFor="let answer of answers" class="row justify-content-center">
-      <div class="col-sm-6">
+      <div class="col-12 col-md-8 col-lg-6">
         <app-answerbox [answer]="answer" [userVote]="getVoteForAnswer(answer._id)"
           (sendVote)="voteFromAnswer($event)" (sendEditAnswer)="editAnswer($event)"
           (sendDeleteAnswer)="openConfirmDelete($event)">
