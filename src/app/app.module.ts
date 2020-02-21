@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { KatexModule } from 'ng-katex';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ScrollEventModule } from 'ngx-scroll-event';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -162,7 +163,8 @@ export function provideConfig() {
     TooltipModule.forRoot(),
     SocialLoginModule,
     ClipboardModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ScrollEventModule
   ],
   providers: [
     ValidateService,

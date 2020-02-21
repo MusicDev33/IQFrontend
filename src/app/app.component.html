@@ -3,6 +3,6 @@
 <app-landingnav [ngClass]="{'hide-element': !showLandingNav}" class="navbar-scroll"></app-landingnav>
 
 
-<div class="container-fluid main">
+<div class="container-fluid main" detect-scroll (onScroll)="onScroll($event)">
   <router-outlet><flash-messages class="flash"></flash-messages></router-outlet>
 </div>

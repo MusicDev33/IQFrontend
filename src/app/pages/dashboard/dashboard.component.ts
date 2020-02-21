@@ -51,6 +51,19 @@ export class DashboardComponent implements OnInit {
 
     }
 
+  onWindowScroll(event: Event) {
+    // In chrome and some browser scroll is given to body tag
+    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    const max = document.documentElement.scrollHeight;
+    console.log('Test');
+    console.log(pos);
+    console.log(max);
+    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+    if (pos === max )   {
+      console.log('Testing');
+    }
+  }
+
   ngOnInit() {
     this.userService.getFeed().subscribe(data => {
       let res: any = {};
