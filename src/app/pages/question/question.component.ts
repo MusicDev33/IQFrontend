@@ -123,6 +123,8 @@ export class QuestionComponent implements OnInit {
             this.userHasAnswered = true;
           }
         });
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
       });
 
       this.votesService.getVotes(this.question._id, this.userService.getUser().getMongoID()).subscribe(voteData => {
