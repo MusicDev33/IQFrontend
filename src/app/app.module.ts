@@ -26,6 +26,7 @@ import { ProfileComponent } from '@pages/profile/profile.component';
 import { QuestionComponent } from '@pages/question/question.component';
 import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
 import { LibraryComponent } from '@pages/library/library.component';
+import { LibMobileComponent } from './pages/lib-mobile/lib-mobile.component';
 import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
@@ -144,7 +145,8 @@ export function provideConfig() {
     SubjectListComponent,
     DiscoverComponent,
     LibraryListComponent,
-    AdsLandingComponent
+    AdsLandingComponent,
+    LibMobileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
