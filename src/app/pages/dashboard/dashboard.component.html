@@ -9,15 +9,21 @@
 
 </section>
 
-<div class="pt-2" *ngIf="arrayOfSubjects && user">
-  <h2 class="text-center">Your Feed</h2>
-</div>
+<section class="container">
+  <section class="row">
+    <div class="col-6 col-md-9 col-lg-6 offset-3">
+      <div class="pt-2" *ngIf="arrayOfSubjects && user">
+        <h2 class="text-center">Your Feed</h2>
+      </div>
+    </div>
+  </section>
+</section>
 
 <!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
 <section *ngIf="user">
   <div class="container" (dblclick)="onDoubleClick($event)">
     <div class="row pb-4">
-      <article *ngIf="user" class="col-md-3">
+      <article class="col-md-3">
         <!-- Discover Section -->
         <div class="row justify-content-center d-none d-lg-block">
           <div class="col-12">
