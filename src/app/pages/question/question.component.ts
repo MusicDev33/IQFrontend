@@ -116,30 +116,33 @@ export class QuestionComponent implements OnInit {
         this.answers = res.answers;
 
         user = this.userService.getUser();
-
-        this.answers.forEach( (answer) => {
-          this.debug.log(answer);
-          if (answer.poster === user.name) {
-            this.userHasAnswered = true;
-          }
-        });
-        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-      });
-
-      this.votesService.getVotes(this.question._id, this.userService.getUser().getMongoID()).subscribe(voteData => {
-        let vResponse: any = {};
-        vResponse = voteData;
-        this.debug.log(voteData);
-        if (vResponse.votes) {
-          vResponse.votes.forEach((vote: Vote) => {
-            if (vote.vote !== 0) {
-              this.votedAnswers[vote.answerID] = vote.vote;
+        if (user) {
+          this.answers.forEach( (answer) => {
+            this.debug.log(answer);
+            if (answer.poster === user.name) {
+              this.userHasAnswered = true;
             }
           });
-          this.debug.log(this.votedAnswers);
         }
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
       });
+
+      if (this.userService.getUser()) {
+        this.votesService.getVotes(this.question._id, this.userService.getUser().getMongoID()).subscribe(voteData => {
+          let vResponse: any = {};
+          vResponse = voteData;
+          this.debug.log(voteData);
+          if (vResponse.votes) {
+            vResponse.votes.forEach((vote: Vote) => {
+              if (vote.vote !== 0) {
+                this.votedAnswers[vote.answerID] = vote.vote;
+              }
+            });
+            this.debug.log(this.votedAnswers);
+          }
+        });
+      }
 
     }, err => {
       this.debug.log(err);

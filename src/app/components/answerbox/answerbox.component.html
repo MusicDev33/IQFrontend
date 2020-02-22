@@ -21,16 +21,18 @@
 
 </article>
 
-<article class="iq-card-bottom no-float px-3 py-0 mb-3">
+<article class="iq-card-bottom no-float px-3 py-0 mb-3" *ngIf="userService.getUser()">
   <div class="row">
     <div class="col-12">
       <button class="btn vote-button" (click)="voteClicked(1)"
-          [ngClass]="{'highlighted': userVote === 1}" [disabled]="answer.posterID === userService.userMongoID()">
+          [ngClass]="{'highlighted': userVote === 1}"
+          [disabled]="!userService.getUser() || answer.posterID === userService.userMongoID()">
         <i class="fas fa-chevron-circle-up fa-lg"></i>
       </button>
       <b class="no-select">{{ answer.votes }}</b>
       <button class="btn vote-button"  (click)="voteClicked(-1)"
-          [ngClass]="{'highlighted': userVote === -1}" [disabled]="answer.posterID === userService.userMongoID()">
+          [ngClass]="{'highlighted': userVote === -1}"
+          [disabled]="!userService.getUser() || answer.posterID === userService.userMongoID()">
         <i class="fas fa-chevron-circle-down fa-lg"></i>
       </button>
 
@@ -40,14 +42,15 @@
         </button>
         <ul class="dropdown-menu dropdown-box text-left">
           <li class="dropdown-row" (click)="editAnswerClicked()"
-              *ngIf="userService.userMongoID() === answer.posterID">
+              *ngIf="userService.getUser() && userService.userMongoID() === answer.posterID">
             <span class="dropdown-text normal">
               <li class="dropdown-row">
                 <span class="dropdown-text normal pl-3">Edit Answer</span>
               </li>
             </span>
           </li>
-          <li class="dropdown-row" *ngIf="userService.userMongoID() === answer.posterID"
+          <li class="dropdown-row"
+              *ngIf="userService.getUser() && userService.userMongoID() === answer.posterID"
               (click)="deleteAnswerClicked()">
             <span class="dropdown-text normal">
               <li class="dropdown-row">
@@ -55,7 +58,8 @@
               </li>
             </span>
           </li>
-          <li class="dropdown-row" *ngIf="userService.userMongoID() !== answer.posterID">
+          <li class="dropdown-row"
+              *ngIf="userService.getUser() && userService.userMongoID() !== answer.posterID">
             <span class="dropdown-text normal">
               <li class="dropdown-row">
                 <span class="dropdown-text red pl-3">Report</span>

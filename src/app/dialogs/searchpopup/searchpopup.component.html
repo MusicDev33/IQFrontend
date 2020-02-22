@@ -27,7 +27,7 @@
             <input type="file" multiple accept='image/*' name="upload"
               (change)="createFileData($event.target.files)"/>
             <span class="iq-pill py-2 px-4">
-              <i class="far fa-image"></i> {{ currentFileName }}
+              <i class="far fa-image d-none d-md-block"></i> {{ currentFileName }}
             </span>
           </label>
         </h5>
@@ -37,7 +37,9 @@
       </div>
       <div class="col-4">
         <h5>
-          <span class="iq-pill py-2 px-4" (click)="addLinkMode = true"><i class="fas fa-link"></i> Link</span>
+          <span class="iq-pill py-2 px-4" (click)="addLinkMode = true">
+            <i class="fas fa-link d-none d-md-block"></i> Link
+          </span>
         </h5>
       </div>
     </section>
