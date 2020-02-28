@@ -43,6 +43,7 @@ import { DiscoverComponent } from '@components/discover/discover.component';
 import { LibraryListComponent } from '@components/librarylist/librarylist.component';
 import { PricingComponent } from '@pages/pricing/pricing.component';
 import { AdsLandingComponent } from '@pages/adslanding/adslanding.component';
+import { LandingMobileComponent } from './pages/landing-mobile/landing-mobile.component';
 
 // Jobs Module
 import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
@@ -146,7 +147,8 @@ export function provideConfig() {
     DiscoverComponent,
     LibraryListComponent,
     AdsLandingComponent,
-    LibMobileComponent
+    LibMobileComponent,
+    LandingMobileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
