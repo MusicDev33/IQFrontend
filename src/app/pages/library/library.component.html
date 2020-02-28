@@ -1,6 +1,6 @@
-<section *ngIf="user" class="container mt-3">
+<section *ngIf="user" class="container mt-3 d-none d-md-block">
   <div class="row">
-    <section class="col-4 col-sm-4">
+    <section class="col-md-3">
       <div class="underline mb-2">
         <h3 class="hvr-icon-rotate pl-md-2">Sources
           <i class="fas fa-plus fa-sm source-plus ml-md-2"
@@ -37,7 +37,7 @@
       </div>
     </section>
 
-    <section class="col-4 col-sm-3" *ngIf="openedSource">
+    <section class="col-md-3" *ngIf="openedSource">
       <h4 class="hvr-icon-rotate pl-1">
         Tags <i class="fas fa-plus fa-sm source-plus"
         (click)="addTagMode = !addTagMode"
@@ -65,7 +65,7 @@
       </div>
     </section>
 
-    <section class="col-4 col-sm-5 col-md-6" *ngIf="openedSource">
+    <section class="col-md-6" *ngIf="openedSource">
       <div class="row">
         <div class="col-sm-12 text-center subnav-item mb-1"><b>{{ openedSource }}</b></div>
         <div class="col-sm-12 text-center subnav-item">
@@ -99,4 +99,8 @@
       </article>
     </section>
   </div>
+</section>
+
+<section class="d-block d-md-none">
+  <app-lib-mobile></app-lib-mobile>
 </section>
