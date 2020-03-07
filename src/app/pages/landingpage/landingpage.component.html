@@ -1,115 +1,131 @@
-<article class='container'>
+<ng-template #questionSearch let-model="item" let-index="index" class="typeahead-container">
+  <span class="typeahead-item">{{ model.questionText }}</span>
+</ng-template>
 
-<div class="row mt-3">
-    <div class="col-12 text-center">
-      <h2>Here at Inquantir we have a database full of questions and answers</h2>
+<div class="d-none d-md-block">
+
+  <article class='container'>
+
+  <div class="row mt-3">
+      <div class="col-12 text-center">
+        <h2>Here at Inquantir we have a database full of questions and answers</h2>
+      </div>
+  </div>
+
+    <div class="row my-5">
+
+        <div class="col-6 offset-3">
+          <input type="text" [(ngModel)]="searchText" placeholder="Find your question today!"
+            class="form-control iq-form" (keyup)="onSearchKeyUp()" [typeaheadAsync]="true"
+            [typeahead]="searchDataSource" typeaheadOptionField="questionText"
+            [typeaheadOptionsLimit]="10" [typeaheadItemTemplate]="questionSearch"
+            [typeaheadMinLength]="5" (typeaheadOnSelected)="searchResultSelected($event)"
+            (typeaheadNoResults)="searchNoResults($event)">
+        </div>
+
+        <div class="col-1 text-center">
+          <button class="btn account-button">Search</button>
+        </div>
+
     </div>
+
+    <div class="row mt-4 px-2 py-3 card-bg">
+
+      <div class="col-12 col-lg-6 my-auto px-5 text-center">
+          <h4>question flavor text</h4>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <section class="row justify-content-center">
+          <div class="col-12">
+            <section class="iq-card-top no-float p-2 text-center">
+              <h2>Questions of the Day</h2>
+            </section>
+          </div>
+        </section>
+
+        <section *ngIf="topQuestions">
+          <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
+            <app-questioncard class="col-12" *ngIf="topQuestion"
+              [question]="topQuestion"
+              [questionText]="topQuestion.questionText"
+              [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
+              [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
+              [cardType]="'mid'">
+            </app-questioncard>
+          </div>
+        </section>
+
+        <section class="row justify-content-center">
+          <div class="col-12">
+            <section class="iq-card-bottom no-float p-2 text-center">
+              <div class="tab-circle mr-2" (click)="currentSplice = 0"
+                [ngClass]="{'selected': currentSplice === 0}"></div>
+              <div class="tab-circle ml-2" (click)="currentSplice = 2"
+                [ngClass]="{'selected': currentSplice === 2}"></div>
+            </section>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+    <div class="row mt-5">
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Drugs</h2>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Computer Science</h2>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Criminal Justice</h2>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row my-3 justify-content-center">
+      <h3>About Us</h3>
+    </div>
+
+  </article>
+
+  <div class="row my-3 py-3 justify-content-center gradient-bg round-row">
+
+      <section class="col-md-4 col-12 mt-md-0">
+        <section class="iq-card px-4 py-2 hvr-icon-forward">
+
+          <h4><i class="fas fa-bullseye flavor-text-icon"></i> Our Goal</h4>
+          Inquantir is a question and answer platfrom that aims to create an environment that is designed for the individual student
+        </section>
+      </section>
+
+      <section class="col-md-4 col-12 mt-md-0 mt-3">
+        <section class="iq-card px-4 py-2 hvr-icon-forward">
+          <h4><i class="fas fa-map-signs flavor-text-icon"></i> How?</h4>
+          Using specific and friendly tools asking questions is easierthan ever. And with Inquantir's staff constantly viewing content we bring you only the best, most helpful answers to your questions.
+        </section>
+      </section>
+
+      <section class="col-md-4 col-12 mt-md-0 mt-3">
+        <section class="iq-card px-4 py-2 hvr-icon-forward">
+          <h4><i class="fas fa-user-check flavor-text-icon"></i> User Friendly</h4>
+          Inquantir usues many different methods, such as an array of keyboards, to make your account personal and unique to you.
+        </section>
+      </section>
+
+
+  </div>
+
 </div>
-
-  <div class="row my-5">
-
-      <div class="col-11">
-        <input type="text" placeholder="Find your question today!" class="form-control iq-form">
-      </div>
-
-      <div class="col-1 text-center">
-        <button class="btn account-button">Search</button>
-      </div>
-
-  </div>
-
-  <div class="row mt-4 px-2 py-3 card-bg">
-
-    <div class="col-12 col-lg-6 my-auto px-5 text-center">
-        <h4>question flavor text</h4>
-    </div>
-
-    <div class="col-12 col-lg-6">
-      <section class="row justify-content-center">
-        <div class="col-12">
-          <section class="iq-card-top no-float p-2 text-center">
-            <h2>Questions of the Day</h2>
-          </section>
-        </div>
-      </section>
-
-      <section *ngIf="topQuestions">
-        <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
-          <app-questioncard class="col-12" *ngIf="topQuestion"
-            [question]="topQuestion"
-            [questionText]="topQuestion.questionText"
-            [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
-            [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
-            [cardType]="'mid'">
-          </app-questioncard>
-        </div>
-      </section>
-
-      <section class="row justify-content-center">
-        <div class="col-12">
-          <section class="iq-card-bottom no-float p-2 text-center">
-            <div class="tab-circle mr-2" (click)="currentSplice = 0"
-              [ngClass]="{'selected': currentSplice === 0}"></div>
-            <div class="tab-circle ml-2" (click)="currentSplice = 2"
-              [ngClass]="{'selected': currentSplice === 2}"></div>
-          </section>
-        </div>
-      </section>
-    </div>
-
-  </div>
-
-  <div class="row mt-5">
-
-    <div class="col-12 col-sm-6 col-md-4">
-      <div class="iq-card text-center py-3">
-        <h2>Drugs</h2>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6 col-md-4">
-      <div class="iq-card text-center py-3">
-        <h2>Computer Science</h2>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6 col-md-4">
-      <div class="iq-card text-center py-3">
-        <h2>Criminal Justice</h2>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row my-3 justify-content-center">
-    <h3>About Us</h3>
-  </div>
-
-</article>
-
-<div class="row my-3 py-3 justify-content-center gradient-bg round-row">
-
-    <section class="col-md-4 col-12 mt-md-0">
-      <section class="iq-card px-4 py-2 hvr-icon-forward">
-
-        <h4><i class="fas fa-bullseye flavor-text-icon"></i> Our Goal</h4>
-        Inquantir is a question and answer platfrom that aims to create an environment that is designed for the individual student
-      </section>
-    </section>
-
-    <section class="col-md-4 col-12 mt-md-0 mt-3">
-      <section class="iq-card px-4 py-2 hvr-icon-forward">
-        <h4><i class="fas fa-map-signs flavor-text-icon"></i> How?</h4>
-        Using specific and friendly tools asking questions is easierthan ever. And with Inquantir's staff constantly viewing content we bring you only the best, most helpful answers to your questions.
-      </section>
-    </section>
-
-    <section class="col-md-4 col-12 mt-md-0 mt-3">
-      <section class="iq-card px-4 py-2 hvr-icon-forward">
-        <h4><i class="fas fa-user-check flavor-text-icon"></i> User Friendly</h4>
-        Inquantir usues many different methods, such as an array of keyboards, to make your account personal and unique to you.
-      </section>
-    </section>
-
-
+<div class="d-block d-md-none">
+  <app-landing-mobile></app-landing-mobile>
 </div>
