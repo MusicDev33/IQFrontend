@@ -17,3 +17,15 @@
 .icon-disabled {
   color: $font-disabled;
 }
+
+@media screen and (max-width: 600px) {
+  .navbar.center .navbar-inner {
+    text-align: center;
+  }
+
+  .navbar.center .navbar-inner .nav {
+      display:inline-block;
+      float: none;
+      vertical-align: top;
+  }
+}

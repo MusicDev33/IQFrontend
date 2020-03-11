@@ -20,8 +20,7 @@ export class DiscoverComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.userSubjects);
-    console.log(this.subjects);
+    
   }
 
   leftArrowClicked() {

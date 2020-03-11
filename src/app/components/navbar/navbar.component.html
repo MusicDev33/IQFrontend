@@ -65,16 +65,16 @@
 
 <!-- MOBILE NAVBAR -->
 <nav class="navbar navbar-small line fixed-top navbar-expand-md navbar-light bg-light justify-content-center">
-  <a class="mobile-nav-icon"><i [routerLink]="['/']" class="fas fa-home fa-2x mr-5"></i></a>
+  <a class="mobile-nav-icon"><i [routerLink]="['/']" class="fas fa-home fa-2x mx-4"></i></a>
 
-  <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i [routerLink]="['/library']" class="fas fa-book fa-2x mr-5"></i></a>
-  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-book fa-2x mr-5 icon-disabled"></i></a>
+  <a class="mobile-nav-icon" *ngIf="authService.loggedIn()"><i [routerLink]="['/library']" class="fas fa-book fa-2x mx-4"></i></a>
+  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-book fa-2x mx-4 icon-disabled"></i></a>
 
-  <a class="mobile-nav-icon text-center" *ngIf="authService.loggedIn()"><i (click)="onAskSubmit()" class="fas fa-question fa-2x mr-5"></i></a>
-  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-question fa-2x mr-5 icon-disabled"></i></a>
+  <a class="mobile-nav-icon text-center" *ngIf="authService.loggedIn()"><i (click)="onAskSubmit()" class="fas fa-question fa-2x mx-4"></i></a>
+  <a class="mobile-nav-icon" *ngIf="!authService.loggedIn()"><i class="fas fa-question fa-2x mx-4 icon-disabled"></i></a>
   <div class="dropdown">
-    <i class="fas fa-user fa-2x mr-5" data-toggle="dropdown" *ngIf="authService.loggedIn()" style="cursor:pointer;"></i>
-    <i class="fas fa-user fa-2x mr-5 icon-disabled" *ngIf="!authService.loggedIn()"></i>
+    <i class="fas fa-user fa-2x mx-4" data-toggle="dropdown" *ngIf="authService.loggedIn()" style="cursor:pointer;"></i>
+    <i class="fas fa-user fa-2x mx-4 icon-disabled" *ngIf="!authService.loggedIn()"></i>
     <ul class="dropdown-menu dropdown-box text-left" *ngIf="authService.loggedIn()">
       <li class="dropdown-row" (click)="onProfileClick()"><span class="dropdown-text normal">
         <i class="fas fa-user pl-3 mr-1 mt-3 mb-3"></i> {{ this.userService.getUser().name.split(" ")[0] }}
