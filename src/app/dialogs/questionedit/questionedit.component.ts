@@ -16,8 +16,8 @@ export class QuestionEditComponent implements OnInit {
   sourceName = '';
   newTagName = '';
 
-  addTagOpen = false;
-  addTagText = '';
+  addTagOpen = true;
+  addTagText = 'Add Tag';
 
   sourceSearchResults = [];
   sourceSelected = false;

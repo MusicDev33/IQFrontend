@@ -41,14 +41,12 @@
 
   <section class="col-12 input-group">
     <div class="input-group-prepend iq-prepend">
-      <button class="hvr-icon-rotate-90" (click)="addTag(newTagName)"
-      [ngClass]="{'enabled': newTagName.length,
-                  'disabled': newTagName === '',
-                  'iq-prepend': addTagOpen,
-                  'add-tag-plus': !addTagOpen,
-                  'p-2': !addTagOpen,
-                  'bg-white': newTagName === ''
-                }">
+      <button class="hvr-icon-rotate-90" (click)="addTag(newTagName)" [disabled]="newTagName === ''"
+        [ngClass]="{'iq-prepend': addTagOpen,
+                    'add-tag-plus': !addTagOpen,
+                    'p-2': !addTagOpen,
+                    'bg-white': newTagName === ''
+                  }">
         <i class="fas fa-plus fa-lg hvr-icon animate-plus" (click)="toggleOpenTag()"
         [ngClass]="{'hvr-icon': addTagOpen, 'no-events': addTagOpen}"></i> {{ addTagText }}
       </button>
