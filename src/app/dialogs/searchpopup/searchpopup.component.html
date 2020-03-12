@@ -21,23 +21,23 @@
 
     <section class="row justify-content-center mt-2"
       *ngIf="currentFileName === defaultFileName && !addLinkMode">
-      <div class="col-4">
+      <div class="col-sm-4 col-5">
         <h5>
           <label>
             <input type="file" multiple accept='image/*' name="upload"
               (change)="createFileData($event.target.files)"/>
-            <span class="iq-pill py-2 px-4">
+            <span class="iq-pill py-2 px-sm-4 px-3">
               <i class="far fa-image d-none d-md-inline"></i> {{ currentFileName }}
             </span>
           </label>
         </h5>
       </div>
-      <div class="col-1">
-        <h5 class="no-select">or</h5>
+      <div class="col-sm-1 col-2">
+        <h5 class="no-select text-center">or</h5>
       </div>
-      <div class="col-4">
+      <div class="col-sm-4 col-5">
         <h5>
-          <span class="iq-pill py-2 px-4" (click)="addLinkMode = true">
+          <span class="iq-pill py-2 px-sm-4 px-3" (click)="addLinkMode = true">
             <i class="fas fa-link d-none d-md-inline"></i> Link
           </span>
         </h5>
