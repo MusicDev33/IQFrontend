@@ -1,3 +1,4 @@
+<!--
 <section *ngIf="user" class="container mt-3 d-none d-md-block">
   <div class="row">
     <section class="col-md-3">
@@ -99,7 +100,46 @@
       </article>
     </section>
   </div>
-</section>
+</section>-->
+
+<article class="sidebar-wrapper">
+  <nav class="sidebar">
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="#sourceSubmenu" class="dropdown-toggle" data-toggle="collapse">
+          <i class="fas fa-chalkboard"></i>
+          Sources
+        </a>
+        <ul class="collapse list-unstyled" id="sourceSubmenu">
+          <li *ngFor="let source of user.currentSources">
+            <a href="#">{{ source }}</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="active">
+        <a href="#tagSubmenu" class="dropdown-toggle" data-toggle="collapse">
+          <i class="fas fa-tags"></i>
+          Tags
+        </a>
+        <ul class="collapse list-unstyled" id="tagSubmenu">
+          <li>
+              <a href="#">Home 1</a>
+          </li>
+          <li>
+              <a href="#">Home 2</a>
+          </li>
+          <li>
+              <a href="#">Home 3</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+
+  </div>
+</article>
 
 <section class="d-block d-md-none">
   <app-lib-mobile></app-lib-mobile>
