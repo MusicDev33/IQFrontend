@@ -8,7 +8,7 @@ import { SubjectsService } from '@services/subjects.service';
 import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
