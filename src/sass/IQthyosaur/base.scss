@@ -138,6 +138,10 @@
   transition: all $time-fast;
 }
 
-.iq-text-select:hover {
+.iq-text-select:not(.selected):hover {
+  border-color: $color-primary-very-light;
+}
+
+.iq-text-select.selected {
   border-color: $color-primary;
 }
