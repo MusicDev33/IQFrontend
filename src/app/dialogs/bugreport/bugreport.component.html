@@ -6,13 +6,13 @@
   </div>
 
   <div class="row justify-content-center mb-3">
-    <div class="col-sm-5 col-12 text-center mode-selector mx-3"
+    <div class="col-sm-5 col-12 text-center iq-text-select mode-selector mx-3"
         [ngClass]="{'selected': selectedMode === 'Suggestion'}"
         (click)="changeMode('Suggestion')">
       Suggestion
     </div>
 
-    <div class="col-sm-5 col-12 mt-sm-0 mt-2 text-center mode-selector mx-3"
+    <div class="col-sm-5 col-12 mt-sm-0 mt-2 text-center iq-text-select mode-selector mx-3"
         [ngClass]="{'selected': selectedMode === 'Bug Report'}"
         (click)="changeMode('Bug Report')">
       Bug Report

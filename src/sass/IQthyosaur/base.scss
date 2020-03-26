@@ -131,17 +131,44 @@
 }
 
 // Text Select
-.iq-text-select {
-  border-bottom: solid rgb(255, 255, 255) 3px;
-  border-bottom: solid rgba(255, 255, 255, 0) 3px;
+@mixin iq-anchor($border-width, $anim-time) {
+  border-bottom: solid rgb(255, 255, 255) $border-width;
+  border-bottom: solid rgba(255, 255, 255, 0) $border-width;
   cursor: pointer;
-  transition: all $time-fast;
+  transition: all $anim-time;
+  text-decoration: none;
+  color: $font-main;
+}
+
+.iq-text-select {
+  @include iq-anchor(3px, $time-fast);
 }
 
 .iq-text-select:not(.selected):hover {
   border-color: $color-primary-very-light;
+  color: $font-main;
 }
 
 .iq-text-select.selected {
   border-color: $color-primary;
+}
+
+// IQ Links
+.iq-anchor {
+  @include iq-anchor(2px, $time-fast);
+}
+
+.iq-anchor:hover {
+  border-color: $color-primary;
+  color: $font-main;
+}
+
+.iq-text-anchor {
+  @include iq-anchor(1px, $time-fast);
+  color: $font-main;
+}
+
+.iq-text-anchor:hover {
+  border-color: $font-main;
+  color: $font-main;
 }

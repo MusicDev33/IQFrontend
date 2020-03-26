@@ -9,16 +9,8 @@ a:hover {
 }
 
 .poster-text {
-  font-size: 1.1em;
-  cursor: pointer;
-  transition: all 0.3s;
-  border-bottom: solid 2px rgba(255, 255, 255, 0);
-  color: $font-main;
-}
-
-.poster-text:hover {
-  text-decoration: none;
-  border-color: $color-primary;
+  font-size: 105%;
+  font-weight: 500;
 }
 
 .poster-img {
@@ -54,17 +46,8 @@ a:hover {
 }
 
 .question-url {
-  cursor: pointer;
-  font-size: 1.3em;
-  transition: 0.3s;
-  display: inline;
-  border-bottom: solid 1px rgba(255, 255, 255, 0);
-  color: $font-main;
-}
-
-.question-url:hover {
-  text-decoration: none;
-  border-color: $font-main;
+  font-weight: 700;
+  font-size: 140%;
 }
 
 .preview-text::before {

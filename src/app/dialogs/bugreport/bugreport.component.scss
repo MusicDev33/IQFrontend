@@ -23,25 +23,8 @@ textarea {
 }
 
 .mode-selector {
-  transition: all 0.3s;
-  font-family: sans-serif;
-  font-size: 20px;
-  cursor: pointer;
-
-  border-bottom: solid 3px rgb(0,0,0);
-  border-bottom: solid 3px rgba(0,0,0,0);
-}
-
-.mode-selector:hover {
-  border-bottom: solid 3px rgba(252, 166, 255, 0.7);
-}
-
-.mode-selector.selected:hover {
-  border-bottom: solid 3px $color-primary;
-}
-
-.selected {
-  border-bottom: solid 3px $color-primary;
+  font-size: 140%;
+  font-weight: 600;
 }
 
 // Scrollbar

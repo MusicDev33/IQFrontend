@@ -9,9 +9,9 @@
   <div class="my-1">
     <span>
       <a [routerLink]="'/question/' + qService.questionTextToURL(questionText)">
-        <h4 class="question-url">
+        <span class="iq-text-anchor question-url">
           {{ questionText }}
-        </h4>
+        </span>
       </a>
     </span>
   </div>
@@ -34,10 +34,9 @@
 
     <section class="col-10 text-left pl-0" *ngIf="poster">
       <span [ngClass]="{'pl-3': !imageLoaded}">
-        <b *ngIf="!question"> {{ poster }}</b>
-        <a [routerLink]="'/profile/' + question.previewAnswer.posterHandle" *ngIf="question"
-          class="poster-text">
-          <b> {{ poster }}</b>
+        <a [routerLink]="'/profile/' + question.previewAnswer.posterHandle"
+          class="iq-text-anchor poster-text">
+          {{ poster }}
         </a>
       </span>
     </section>
