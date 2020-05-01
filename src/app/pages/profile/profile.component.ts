@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { IQAuthService } from '@services/backend/iqauth.service';
@@ -66,6 +66,8 @@ export class ProfileComponent implements OnInit {
 
     this.activatedRoute.url.subscribe(url => {
        this.setUpComponent();
+       MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+       MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     });
   }
 
@@ -131,6 +133,8 @@ export class ProfileComponent implements OnInit {
     this.debug.log('Answers');
     if (this.view !== ContentView.answers) {
       this.view = ContentView.answers;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     }
   }
 
@@ -138,6 +142,8 @@ export class ProfileComponent implements OnInit {
     this.debug.log('Questions');
     if (this.view !== ContentView.questions) {
       this.view = ContentView.questions;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     }
   }
 

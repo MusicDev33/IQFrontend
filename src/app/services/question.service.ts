@@ -26,7 +26,8 @@ export class QuestionService {
     let urlText = '';
     const specialChars = '!@#$%^&*()>< \'/\\';
 
-    for (var i = 0; i < questionText.length; i++) {
+    // tslint:disable-next-line
+    for (let i = 0; i < questionText.length; i++) {
       if (specialChars.indexOf(questionText[i]) > -1) {
         urlText += '-';
       } else if (questionText[i] === '?') {

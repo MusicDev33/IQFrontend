@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -54,6 +54,9 @@ export class NavbarComponent implements OnInit {
     }
 
   ngOnInit() {
+    if (localStorage.getItem('id_token') && !this.authService.loggedIn()) {
+      this.router.navigate(['/login']);
+    }
   }
 
   onLogoutClick() {

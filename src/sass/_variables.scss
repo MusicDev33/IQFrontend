@@ -14,12 +14,15 @@ $underline-grey: #d0d0d0;
 
 $main-bg-color: #f3f3f3;
 
+$navbar-bottom-color: rgba(181, 0, 189, .3);
+
 $iq-red: #fa4d14;
 
 // Dropdown colors
 $dropdown-row-bg: #e0e0e0;
 
 // Pure colors
+// Edit: why the hell did I do this? This is literally so pointless
 $white: #fff;
 $black: #000;
 
@@ -37,3 +40,6 @@ $time-fast: 0.23s;
 $scroll-bg: #fdcfff;
 $scroll-thumb: #f953ff;
 $scroll-hover: #f98cff;
+
+// Button Radius
+$button-radius: 19px;

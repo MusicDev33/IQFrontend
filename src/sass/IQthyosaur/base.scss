@@ -8,6 +8,11 @@
 // I'd also like to pull away from Bootstrap as much as possible, eventually using it only
 // for spacing (rows, columns, responsiveness, and such).
 
+@mixin iq-button($brdr-rad, $border-color, $txt-color) {
+  border: 1px solid $border-color;
+  border-radius: $brdr-rad;
+  color: $txt-color;
+}
 
 // IQ Button
 .btn {
@@ -15,10 +20,8 @@
 }
 
 .iq-btn-1 {
-  border: 1px solid $color-primary;
-  border-radius: 19px;
+  @include iq-button($button-radius, $color-primary, $font-main);
   box-shadow: none!important;
-  color: $font-main;
   transition: all $time-fast;
 }
 
@@ -34,10 +37,8 @@
 }
 
 .iq-btn-cancel {
-  border: 1px solid $iq-red;
-  border-radius: 19px;
+  @include iq-button($button-radius, $iq-red, $font-main);
   box-shadow: none!important;
-  color: $font-main;
   transition: all $time-fast;
 }
 
@@ -54,8 +55,7 @@
 
 // For compatibility
 .iq-button {
-  border-radius: 19px;
-  border: 1px solid $color-primary;
+  @include iq-button($button-radius, $color-primary, $font-main);
   transition: all $time-slow;
 }
 
@@ -82,6 +82,38 @@
   box-shadow: none !important;
 }
 
+// IQ Prepends
+.iq-append {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  border-top-right-radius: 11px!important;
+  border-bottom-right-radius: 11px!important;
+  border-left-color: $color-primary;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.iq-prepend {
+  transition: all 0.4s;
+  border-top-left-radius: 11px!important;
+  border-bottom-left-radius: 11px!important;
+  border-color: $color-primary;
+  outline: none;
+  border-width: 1px;
+  background-color: $white;
+  color: $color-primary;
+}
+
+.iq-prepend:hover {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.iq-prepend:disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
 // Tooltip
 .tooltip-inner {
   border-radius: 10px;
@@ -96,4 +128,47 @@
 
 .tooltip-arrow.arrow {
   display: none;
+}
+
+// Text Select
+@mixin iq-anchor($border-width, $anim-time) {
+  border-bottom: solid rgb(255, 255, 255) $border-width;
+  border-bottom: solid rgba(255, 255, 255, 0) $border-width;
+  cursor: pointer;
+  transition: all $anim-time;
+  text-decoration: none;
+  color: $font-main;
+}
+
+.iq-text-select {
+  @include iq-anchor(3px, $time-fast);
+}
+
+.iq-text-select:not(.selected):hover {
+  border-color: $color-primary-very-light;
+  color: $font-main;
+}
+
+.iq-text-select.selected {
+  border-color: $color-primary;
+}
+
+// IQ Links
+.iq-anchor {
+  @include iq-anchor(2px, $time-fast);
+}
+
+.iq-anchor:hover {
+  border-color: $color-primary;
+  color: $font-main;
+}
+
+.iq-text-anchor {
+  @include iq-anchor(1px, $time-fast);
+  color: $font-main;
+}
+
+.iq-text-anchor:hover {
+  border-color: $font-main;
+  color: $font-main;
 }

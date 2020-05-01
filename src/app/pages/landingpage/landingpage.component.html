@@ -1,107 +1,110 @@
-<article class='container'>
-  <div class="row mt-4 px-2 py-3 card-bg">
+<ng-template #questionSearch let-model="item" let-index="index" class="typeahead-container">
+  <span class="typeahead-item">{{ model.questionText }}</span>
+</ng-template>
 
-    <div class="col-12 col-lg-6">
-      <section class="row justify-content-center">
-        <div class="col-12">
-          <section class="iq-card-top no-float p-2 text-center">
-            <h2>Questions of the Day</h2>
-          </section>
-        </div>
-      </section>
+<div class="d-none d-md-block wrapper">
 
-      <section *ngIf="topQuestions">
-        <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
-          <app-questioncard class="col-12" *ngIf="topQuestion"
-            [question]="topQuestion"
-            [questionText]="topQuestion.questionText"
-            [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
-            [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
-            [cardType]="'mid'">
-          </app-questioncard>
-        </div>
-      </section>
+  <article class='container'>
 
-      <section class="row justify-content-center">
-        <div class="col-12">
-          <section class="iq-card-bottom no-float p-2 text-center">
-            <div class="tab-circle mr-2" (click)="currentSplice = 0"
-              [ngClass]="{'selected': currentSplice === 0}"></div>
-            <div class="tab-circle ml-2" (click)="currentSplice = 2"
-              [ngClass]="{'selected': currentSplice === 2}"></div>
-          </section>
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+          <h2>Here at Inquantir we have a database full of questions and answers</h2>
         </div>
-      </section>
+    </div>
+
+    <div class="row my-5">
+
+        <div class="col-6 offset-3">
+          <input type="text" [(ngModel)]="searchText" placeholder="Find your question today!"
+            class="form-control iq-form" (keyup)="onSearchKeyUp()" [typeaheadAsync]="true"
+            [typeahead]="searchDataSource" typeaheadOptionField="questionText"
+            [typeaheadOptionsLimit]="10" [typeaheadItemTemplate]="questionSearch"
+            [typeaheadMinLength]="5" (typeaheadOnSelected)="searchResultSelected($event)"
+            (typeaheadNoResults)="searchNoResults($event)">
+        </div>
+
+        <div class="col-1 text-center">
+          <button class="btn account-button">Search</button>
+        </div>
 
     </div>
 
-    <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-      <section class="iq-card no-float py-2 justify-content-center landing-page-row">
-        <section class="px-4">
+    <div class="row mt-4 px-2 py-3 card-bg">
 
-          <div class="row my-1 justify-content-center">
-            <div class="col-sm-12 text-center">
-              <h3><b>Sign Up Today!</b></h3>
-            </div>
+      <div class="col-12 col-lg-6 my-auto px-5 text-center">
+          <h4>question flavor text</h4>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <section class="row justify-content-center">
+          <div class="col-12">
+            <section class="iq-card-top no-float p-2 text-center">
+              <h2>Questions of the Day</h2>
+            </section>
           </div>
-
-          <div class="row mt-3 justify-content-center">
-            <div class="col-sm-12 text-center">
-              <input placeholder="Full name" class="form-control iq-form" />
-            </div>
-          </div>
-
-          <div class="row mt-3 justify-content-center">
-            <div class="col-sm-12 text-center">
-              <input placeholder="Email address" class="form-control iq-form" />
-            </div>
-          </div>
-
-          <div class="row mt-3 justify-content-center">
-            <div class="col-sm-12 text-center">
-              <input placeholder="Create Password" class="form-control iq-form" />
-            </div>
-          </div>
-
-          <div class="row mt-3 justify-content-center">
-            <div class="col-sm-12 text-center">
-              <button class="btn account-button">Create your account</button>
-            </div>
-          </div>
-
-          <div class="row mt-1 justify-content-center">
-            <div class="col-sm-12 text-center">
-              Or sign up with
-            </div>
-          </div>
-
-          <div class="row mt-3 justify-content-center mb-3">
-
-            <div class="col-sm-6 text-center">
-              <img class="google-btn" src="assets/google_signin_buttons/web/1x/btn_google_signin_light_normal_web.png"
-                    (click)="signInWithGoogle()">
-            </div>
-          </div>
-
         </section>
-      </section>
+
+        <section *ngIf="topQuestions">
+          <div class="row justify-content-center" *ngFor="let topQuestion of topQuestionSlice(currentSplice)">
+            <app-questioncard class="col-12" *ngIf="topQuestion"
+              [question]="topQuestion"
+              [questionText]="topQuestion.questionText"
+              [poster]="topQuestion.previewAnswer ? topQuestion.previewAnswer.poster : ''"
+              [answerText]="topQuestion.previewAnswer ? topQuestion.previewAnswer.answerText : ''"
+              [cardType]="'mid'">
+            </app-questioncard>
+          </div>
+        </section>
+
+        <section class="row justify-content-center">
+          <div class="col-12">
+            <section class="iq-card-bottom no-float p-2 text-center">
+              <div class="tab-circle mr-2" (click)="currentSplice = 0"
+                [ngClass]="{'selected': currentSplice === 0}"></div>
+              <div class="tab-circle ml-2" (click)="currentSplice = 2"
+                [ngClass]="{'selected': currentSplice === 2}"></div>
+            </section>
+          </div>
+        </section>
+      </div>
+
     </div>
 
-  </div>
+    <div class="row mt-5">
 
-  <div class="row my-3 justify-content-center">
-    <h3>About Us</h3>
-  </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Drugs</h2>
+        </div>
+      </div>
 
-</article>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Computer Science</h2>
+        </div>
+      </div>
 
-<div class="row my-3 py-3 justify-content-center gradient-bg round-row">
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="iq-card text-center py-3">
+          <h2>Criminal Justice</h2>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row my-3 justify-content-center">
+      <h3>About Us</h3>
+    </div>
+
+  </article>
+
+  <div class="row my-3 py-3 justify-content-center gradient-bg round-row wrapper">
 
     <section class="col-md-4 col-12 mt-md-0">
       <section class="iq-card px-4 py-2 hvr-icon-forward">
 
         <h4><i class="fas fa-bullseye flavor-text-icon"></i> Our Goal</h4>
-        Inquantir is a question and answer platfrom that aims to create an environment that is designed for the individual student
+        Inquantir is a question and answer platform that aims to create an environment that is designed for the individual student
       </section>
     </section>
 
@@ -120,4 +123,9 @@
     </section>
 
 
+  </div>
+
+</div>
+<div class="d-block d-md-none">
+  <app-landing-mobile></app-landing-mobile>
 </div>

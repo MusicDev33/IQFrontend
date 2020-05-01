@@ -28,11 +28,11 @@
 
 /* These will all be Bootstrap overrides*/
 input {
-  border-radius: 9px!important;
+  border-radius: 19px!important;
 }
 
 textarea {
-  border-radius: 9px!important;
+  border-radius: 19px!important;
   overflow-x: auto;
   resize: vertical;
 }
@@ -48,42 +48,45 @@ html {
 body {
   overflow-x: hidden;
   padding-top: 70px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1 {
+  color: $font-main;
+}
+
+h2 {
+  color: $font-main;
+}
+
+h3 {
+  color: $font-main;
+}
+
+h4 {
+  color: $font-main;
+}
+
+h5 {
+  color: $font-main;
+}
+
+h6 {
+  color: $font-main;
+}
+
+.main {
+  position: fixed;
+  top: 76px;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: auto;
 }
 
 .no-padding {
   padding: 0 !important;
   margin: 0 !important;
-}
-
-.iq-append {
-  border-top-left-radius: 0px!important;
-  border-bottom-left-radius: 0px!important;
-  border-top-right-radius: 9px!important;
-  border-bottom-right-radius: 9px!important;
-  border-left-color: $color-primary;
-  transition: all 0.3s;
-  outline: none;
-}
-
-.iq-prepend {
-  transition: all 0.4s;
-  border-top-left-radius: 9px!important;
-  border-bottom-left-radius: 9px!important;
-  border-color: $color-primary;
-  outline: none;
-  border-width: 1px;
-  background-color: $white;
-  color: $color-primary;
-}
-
-.iq-prepend:hover {
-  background-color: $color-primary;
-  color: #fff;
-}
-
-.iq-prepend:disabled {
-  color: #ccc;
-  pointer-events: none;
 }
 
 .btn-primary {

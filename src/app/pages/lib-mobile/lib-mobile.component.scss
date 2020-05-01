@@ -1,0 +1,28 @@
+@import '~sass/variables';
+
+/* Source Plus */
+.source-plus {
+  cursor: pointer;
+  transition: all 0.4s;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+          transition:         transform .2s ease-in-out;
+}
+
+.source-header {
+  text-overflow: ellipsis;
+}
+
+.iq-underline-btn-1 {
+  cursor: pointer;
+  border-bottom: solid 3px #fff;
+  border-bottom: solid 3px rgba(255, 255, 255, 0);
+  transition: all $time-fast;
+}
+
+.iq-underline-btn-1.selected {
+  border-bottom: solid 3px $color-primary;
+}
+
+.iq-underline-btn-1:hover:not(.selected) {
+  border-color: $color-primary-grey-highlighted;
+}

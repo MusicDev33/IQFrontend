@@ -2,41 +2,51 @@
 <section *ngIf="user">
 
   <div class="row" *ngIf="!hasUserFilledProfile(user)">
-    <div class="col-12 pt-3 pb-3 text-center profile-alert">
+    <div class="col-12 py-3 text-center profile-alert">
       {{ createHelpText(this.user) }}
     </div>
   </div>
 
 </section>
 
-<div class="pt-2" *ngIf="arrayOfSubjects && user">
-  <h2 class="text-center">Your Feed</h2>
-</div>
+<section class="container">
+  <section class="row">
+    <div class="col-6 col-md-9 col-lg-6 offset-3">
+      <div class="pt-2" *ngIf="arrayOfSubjects && user">
+        <h2 class="text-center">Your Feed</h2>
+      </div>
+    </div>
+  </section>
+</section>
 
 <!-- IF USER HAS ALREADY FOLLOWED A SUBJECT -->
 <section *ngIf="user">
   <div class="container" (dblclick)="onDoubleClick($event)">
     <div class="row pb-4">
-
-      <article *ngIf="user" class="col-md-3 d-none d-md-block">
+      <article class="col-md-3">
         <!-- Discover Section -->
-        <app-discover (dblclick)="$event.stopPropagation()"
-          *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
-          [subjects]="arrayOfSubjects"
-          [userSubjects]="user.currentSubjects"
-          (sendFollow)="followButtonClicked($event)"
-          (sendUnfollow)="followButtonClicked($event)">
-
-        </app-discover>
-        <div class="row justify-content-center mt-2 pl-2">
+        <div class="row justify-content-center d-none d-lg-block">
+          <div class="col-12">
+            <app-discover
+              (dblclick)="$event.stopPropagation()"
+              *ngIf="arrayOfSubjects && arrayOfSubjects.length && user.currentSubjects.length"
+              [subjects]="arrayOfSubjects"
+              [userSubjects]="user.currentSubjects"
+              (sendFollow)="followButtonClicked($event)"
+              (sendUnfollow)="followButtonClicked($event)">
+            </app-discover>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-2 pl-2 d-none d-md-block">
           <div class="col-12">
             <app-librarylist [sourceArray]="user.currentSources">
             </app-librarylist>
           </div>
         </div>
+
       </article>
 
-      <article *ngIf="questions" class='col-sm-12 col-md-9 col-lg-6 justify-content-center'>
+      <article *ngIf="questions" class='col-12 col-md-9 col-lg-6 justify-content-center'>
         <div class="text-center question-column py-2 col-12">
           <div class="row" *ngFor="let question of questions">
             <div class="col-12">
@@ -52,7 +62,7 @@
         </div>
       </article>
 
-      <div *ngIf="user" class="col-lg-3 d-none d-lg-block">
+      <div class="col-lg-3 d-none d-lg-block">
         <app-subjectlist [subjects]="user.currentSubjects">
         </app-subjectlist>
       </div>

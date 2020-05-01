@@ -5,7 +5,7 @@ import { DebugService } from '@services/utility/debug.service';
 import { QuestionService } from '@services/question.service';
 import { UserService } from '@services/user.service';
 
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 import { ReportQuestionComponent } from '@dialogs/reportquestion/reportquestion.component';
 

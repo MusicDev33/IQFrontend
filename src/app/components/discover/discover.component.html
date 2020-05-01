@@ -20,17 +20,17 @@
       </button>
     </div>
 
-    <div class="col-6 text-center" *ngIf="!userSubjects.includes(subjects[subjectIndex])">
+    <div class="col-6 text-center" *ngIf="userSubjects.indexOf(subjects[subjectIndex].name) <= -1">
       <div class="pt-2">
         <button class="btn iq-btn-1"
         (click)="followButtonClicked(subjects[subjectIndex])">Follow</button>
       </div>
     </div>
 
-    <div class="col-6 text-center" *ngIf="userSubjects.includes(subjects[subjectIndex])">
+    <div class="col-6 text-center" *ngIf="userSubjects.indexOf(subjects[subjectIndex].name) >= 0">
       <div class="pt-2">
         <button class="btn discover-followed"
-                (click)="unfollowButtonClicked(subjects[subjectIndex])">
+                (click)="unfollowButtonClicked(subjects[subjectIndex].name)">
           Followed
         </button>
       </div>

@@ -10,7 +10,7 @@ import { ISubject } from '@interfaces/schemas/ISubject';
 export class DiscoverComponent implements OnInit {
 
   @Input() subjects: ISubject[] = [];
-  @Input() userSubjects: ISubject[] = [];
+  @Input() userSubjects: string[] = [];
 
   @Output() sendFollow = new EventEmitter<ISubject>();
   @Output() sendUnfollow = new EventEmitter<ISubject>();
@@ -20,6 +20,7 @@ export class DiscoverComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
   leftArrowClicked() {

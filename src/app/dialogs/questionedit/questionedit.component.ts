@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { DebugService } from '@services/utility/debug.service';
 import { QuestionService } from '@services/question.service';
@@ -16,8 +16,8 @@ export class QuestionEditComponent implements OnInit {
   sourceName = '';
   newTagName = '';
 
-  addTagOpen = false;
-  addTagText = '';
+  addTagOpen = true;
+  addTagText = 'Add Tag';
 
   sourceSearchResults = [];
   sourceSelected = false;

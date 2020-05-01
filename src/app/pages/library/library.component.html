@@ -1,9 +1,10 @@
-<section *ngIf="user" class="container mt-3">
+<!--
+<section *ngIf="user" class="container mt-3 d-none d-md-block">
   <div class="row">
-    <div class="col-sm-3">
+    <section class="col-md-3">
       <div class="underline mb-2">
-        <h3 class="hvr-icon-rotate pl-2">Sources
-          <i class="fas fa-plus fa-sm source-plus ml-2"
+        <h3 class="hvr-icon-rotate pl-md-2">Sources
+          <i class="fas fa-plus fa-sm source-plus ml-md-2"
             (click)="findSourceMode = !findSourceMode"
             [ngClass]="{'hvr-icon red': findSourceMode, 'color-primary': !findSourceMode}"></i>
         </h3>
@@ -35,73 +36,111 @@
           </h5>
         </div>
       </div>
-    </div>
+    </section>
 
-    <section class="col-sm-9" *ngIf="openedSource">
-
-      <div class="row justify-content-center">
-        <div class="col-sm-3">
-          <h4 class="hvr-icon-rotate pl-1">
-            Tags <i class="fas fa-plus fa-sm source-plus"
-            (click)="addTagMode = !addTagMode"
-            [ngClass]="{'hvr-icon red': addTagMode, 'color-primary': !addTagMode}"></i>
-          </h4>
-          <div [collapse]="!addTagMode" [isAnimated]="true" class="p-1 text-center">
-            <input [(ngModel)]="tagText"
-              class="form-control iq-form"
-              placeholder="Add a tag">
-            <button class="btn iq-btn-1 mt-2" (click)="addTagToSource()"
-              [disabled]="!tagText.length || openedSource !== openedSourceObject.name">
-              Add Tag
-            </button>
-          </div>
-          <div *ngIf="openedSourceObject && openedSourceObject.tags && openedSourceObject.tags.length">
-            <div *ngFor="let tag of openedSourceObject.tags" class="mb-1">
-              <h6>
-                <span class="tag-text"
-                  [ngClass]="{'blank-underline-1': tag !== selectedTag, 'purple-underline-1': tag === selectedTag}"
-                  (click)="selectTag(tag)">
-                  {{ tag }}
-                </span>
-              </h6>
-            </div>
-          </div>
+    <section class="col-md-3" *ngIf="openedSource">
+      <h4 class="hvr-icon-rotate pl-1">
+        Tags <i class="fas fa-plus fa-sm source-plus"
+        (click)="addTagMode = !addTagMode"
+        [ngClass]="{'hvr-icon red': addTagMode, 'color-primary': !addTagMode}"></i>
+      </h4>
+      <div [collapse]="!addTagMode" [isAnimated]="true" class="p-1 text-center">
+        <input [(ngModel)]="tagText"
+          class="form-control iq-form"
+          placeholder="Add a tag">
+        <button class="btn iq-btn-1 mt-2" (click)="addTagToSource()"
+          [disabled]="!tagText.length || openedSource !== openedSourceObject.name">
+          Add Tag
+        </button>
+      </div>
+      <div *ngIf="openedSourceObject && openedSourceObject.tags && openedSourceObject.tags.length">
+        <div *ngFor="let tag of openedSourceObject.tags" class="mb-1">
+          <h6>
+            <span class="tag-text"
+              [ngClass]="{'blank-underline-1': tag !== selectedTag, 'purple-underline-1': tag === selectedTag}"
+              (click)="selectTag(tag)">
+              {{ tag }}
+            </span>
+          </h6>
         </div>
+      </div>
+    </section>
 
-        <div class="col">
-          <div class="row">
-            <div class="col-sm-8 text-center subnav-item mb-3"><b>{{ openedSource }}</b></div>
-            <div class="col-sm-4 text-center subnav-item">
-              <span tooltip="Removes this source from your library" delay="300" (click)="removeSourceFromUser(openedSourceObject.name)" class="delete-text">Remove</span>
-            </div>
-          </div>
-
-          <article class="row" *ngIf="questions.length && selectedTag.length === 0">
-            <div class="question-column col-sm-8 py-2">
-              <app-questioncard *ngFor="let question of questions"
-                [question]="question"
-                [questionText]="question.questionText"
-                [poster]=""
-                [answerText]="">
-              </app-questioncard>
-            </div>
-          </article>
-
-          <article class="row" *ngIf="questions.length && selectedTag.length > 0">
-            <div class="question-column col-sm-8 py-2">
-              <app-questioncard *ngFor="let question of currentQuestions"
-                [question]="question"
-                [questionText]="question.questionText"
-                [poster]=""
-                [answerText]="">
-              </app-questioncard>
-            </div>
-          </article>
-
+    <section class="col-md-6" *ngIf="openedSource">
+      <div class="row">
+        <div class="col-sm-12 text-center subnav-item mb-1"><b>{{ openedSource }}</b></div>
+        <div class="col-sm-12 text-center subnav-item">
+          <span tooltip="Removes this source from your library"
+                delay="300" (click)="removeSourceFromUser(openedSourceObject.name)"
+                class="delete-text">Remove
+          </span>
         </div>
-
       </div>
 
+      <article class="row" *ngIf="questions.length && selectedTag.length === 0">
+        <div class="question-column col-sm-12 py-2">
+          <app-questioncard *ngFor="let question of questions"
+            [question]="question"
+            [questionText]="question.questionText"
+            [poster]=""
+            [answerText]="">
+          </app-questioncard>
+        </div>
+      </article>
+
+      <article class="row" *ngIf="questions.length && selectedTag.length > 0">
+        <div class="question-column col-sm-12 py-2">
+          <app-questioncard *ngFor="let question of currentQuestions"
+            [question]="question"
+            [questionText]="question.questionText"
+            [poster]=""
+            [answerText]="">
+          </app-questioncard>
+        </div>
+      </article>
     </section>
   </div>
+</section>-->
+
+<article class="sidebar-wrapper">
+  <nav class="sidebar">
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="#sourceSubmenu" class="dropdown-toggle" data-toggle="collapse">
+          <i class="fas fa-chalkboard"></i>
+          Sources
+        </a>
+        <ul class="collapse list-unstyled" id="sourceSubmenu">
+          <li *ngFor="let source of user.currentSources">
+            <a href="#">{{ source }}</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="active">
+        <a href="#tagSubmenu" class="dropdown-toggle" data-toggle="collapse">
+          <i class="fas fa-tags"></i>
+          Tags
+        </a>
+        <ul class="collapse list-unstyled" id="tagSubmenu">
+          <li>
+              <a href="#">Home 1</a>
+          </li>
+          <li>
+              <a href="#">Home 2</a>
+          </li>
+          <li>
+              <a href="#">Home 3</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+
+  </div>
+</article>
+
+<section class="d-block d-md-none">
+  <app-lib-mobile></app-lib-mobile>
 </section>

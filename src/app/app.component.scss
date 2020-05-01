@@ -6,6 +6,13 @@
   padding: 0;
 }
 
+.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .hide-element{
   display:none;
 }
@@ -23,4 +30,16 @@
 
 .apply-bg {
   background-color: $main-bg-color;
+}
+
+.navbar-scroll {
+  overflow-y: hidden;
+}
+
+.body-scroll {
+  overflow-y: auto;
+}
+
+body {
+  overflow-y: hidden;
 }

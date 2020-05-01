@@ -1,0 +1,37 @@
+<article class="container mt-2 px-4 px-sm-0" *ngIf="user">
+  <section class="row">
+    <section class="col-4 iq-underline-btn-1 text-center"
+              [ngClass]="{'selected': currentMode === contentMode.Sources}"
+              (click)="currentMode = contentMode.Sources">
+      <h4>Sources</h4>
+    </section>
+    <section class="col-4 iq-underline-btn-1 text-center"
+              [ngClass]="{'selected': currentMode === contentMode.Tags}"
+              (click)="currentMode = contentMode.Tags">
+      <h4>Tags</h4>
+    </section>
+    <section class="col-4 my-auto iq-underline-btn-1 text-center"
+              [ngClass]="{'selected': currentMode === contentMode.Questions}"
+              (click)="currentMode = contentMode.Questions">
+      <h4 class="text-truncate mb-2">{{ currentSourceName }}</h4>
+    </section>
+  </section>
+
+  <section class="row justify-content-center mt-2" *ngIf="currentMode === contentMode.Sources">
+    <div *ngFor="let source of user.currentSources">
+      <h5>{{ source }}</h5>
+    </div>
+  </section>
+
+  <section class="row justify-content-center mt-3"
+            *ngIf="currentMode === contentMode.Questions && sourceQuestions">
+    <div class="col-12 question-column py-2">
+      <app-questioncard *ngFor="let question of sourceQuestions"
+        [question]="question"
+        [questionText]="question.questionText"
+        [poster]=""
+        [answerText]="">
+      </app-questioncard>
+    </div>
+  </section>
+</article>

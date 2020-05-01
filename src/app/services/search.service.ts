@@ -1,9 +1,13 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import * as devRoutes from '../globals/devroutes';
-import * as prodRoutes from '../globals/prodroutes';
+import * as devRoutes from '@globals/devroutes';
+import * as prodRoutes from '@globals/prodroutes';
 import { Observable } from 'rxjs';
+
+import { IQuestion } from '@interfaces/schemas/IQuestion';
+import { ISubject } from '@interfaces/schemas/ISubject';
+import { ISource } from '@interfaces/schemas/ISource';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +28,7 @@ export class SearchService {
     this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
   }
 
-  subjectSearch(searchTerm: string) {
+  subjectSearch(searchTerm: string): Observable<any> {
     const headers = this.headersTemplate;
     // Turn spaces into dashes
     let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
@@ -34,13 +38,23 @@ export class SearchService {
       .pipe(map(res => res));
   }
 
-  sourceSearch(searchTerm: string) {
+  sourceSearch(searchTerm: string): Observable<any> {
     const headers = this.headersTemplate;
     // Turn spaces into dashes
     let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
     // Get rid of special characters
     sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
     return this.http.get(this.tsRouteBase + '/search/sources/' + sanitizedSearch, {headers})
+      .pipe(map(res => res));
+  }
+
+  questionSearch(searchTerm: string): Observable<any> {
+    const headers = this.headersTemplate;
+    // Turn spaces into dashes
+    let sanitizedSearch = searchTerm.trim().replace(/[ ]+/ig, '-');
+    // Get rid of special characters
+    sanitizedSearch = sanitizedSearch.replace(/[?:;'",.!@#^&*()_]+/ig, '');
+    return this.http.get(this.tsRouteBase + '/search/questions/' + sanitizedSearch, {headers})
       .pipe(map(res => res));
   }
 

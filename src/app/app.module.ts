@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material';
-import { MatCardModule } from '@angular/material';
-import { MatButtonModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { KatexModule } from 'ng-katex';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ScrollEventModule } from 'ngx-scroll-event';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { ProfileComponent } from '@pages/profile/profile.component';
 import { QuestionComponent } from '@pages/question/question.component';
 import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
 import { LibraryComponent } from '@pages/library/library.component';
+import { LibMobileComponent } from './pages/lib-mobile/lib-mobile.component';
 import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { FormatbarComponent } from '@components/formatbar/formatbar.component';
 import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
@@ -41,6 +43,7 @@ import { DiscoverComponent } from '@components/discover/discover.component';
 import { LibraryListComponent } from '@components/librarylist/librarylist.component';
 import { PricingComponent } from '@pages/pricing/pricing.component';
 import { AdsLandingComponent } from '@pages/adslanding/adslanding.component';
+import { LandingMobileComponent } from './pages/landing-mobile/landing-mobile.component';
 
 // Jobs Module
 import { IQJobsComponent } from '@pages/iqjobs/iqjobs.component';
@@ -143,7 +146,9 @@ export function provideConfig() {
     SubjectListComponent,
     DiscoverComponent,
     LibraryListComponent,
-    AdsLandingComponent
+    AdsLandingComponent,
+    LibMobileComponent,
+    LandingMobileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -162,7 +167,8 @@ export function provideConfig() {
     TooltipModule.forRoot(),
     SocialLoginModule,
     ClipboardModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ScrollEventModule
   ],
   providers: [
     ValidateService,

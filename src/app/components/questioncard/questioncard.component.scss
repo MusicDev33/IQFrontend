@@ -9,16 +9,8 @@ a:hover {
 }
 
 .poster-text {
-  font-size: 1.1em;
-  cursor: pointer;
-  transition: all 0.3s;
-  border-bottom: solid 2px rgba(255, 255, 255, 0);
-  color: $font-main;
-}
-
-.poster-text:hover {
-  text-decoration: none;
-  border-color: $color-primary;
+  font-size: 105%;
+  font-weight: 500;
 }
 
 .poster-img {
@@ -54,21 +46,36 @@ a:hover {
 }
 
 .question-url {
-  cursor: pointer;
-  font-size: 1.3em;
-  transition: 0.3s;
-  display: inline;
-  border-bottom: solid 1px rgba(255, 255, 255, 0);
-  color: $font-main;
+  font-weight: 700;
+  font-size: 140%;
 }
 
-.question-url:hover {
-  text-decoration: none;
-  border-color: $font-main;
+.preview-text::before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .preview-text {
   font-size: 1.1em;
+  line-height: 1.2em;
+  position: relative;
+  max-height: 3.6em;
+  text-align: justify;
+  padding-right: 1em!important;
+  margin-right: -1em!important;
+  overflow: hidden;
+}
+
+.preview-text::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
 }
 
 .options-bar-icon {

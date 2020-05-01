@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
+import { ScrollEvent } from 'ngx-scroll-event';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,15 @@ export class AppComponent implements OnInit {
               window.location.reload();
           }
         });
+    }
+  }
+
+  onScroll(event: ScrollEvent) {
+    if (this.currentRoute !== '/dashboard') {
+      return;
+    }
+    if (event.isReachingBottom) {
+      console.log('bottom');
     }
   }
 

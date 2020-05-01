@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -8,7 +8,7 @@ import { SubjectsService } from '@services/subjects.service';
 import { QuestionService } from '@services/question.service';
 import { DebugService } from '@services/utility/debug.service';
 
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { QuestionEditComponent } from '@dialogs/questionedit/questionedit.component';
 import { BugReportComponent } from '@dialogs/bugreport/bugreport.component';
 import { SearchpopupComponent } from '@dialogs/searchpopup/searchpopup.component';
@@ -51,12 +51,27 @@ export class DashboardComponent implements OnInit {
 
     }
 
+  onWindowScroll(event: Event) {
+    // In chrome and some browser scroll is given to body tag
+    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    const max = document.documentElement.scrollHeight;
+    console.log('Test');
+    console.log(pos);
+    console.log(max);
+    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+    if (pos === max )   {
+      console.log('Testing');
+    }
+  }
+
   ngOnInit() {
     this.userService.getFeed().subscribe(data => {
       let res: any = {};
       res = data;
       this.debug.log(res);
       this.questions = res.feed;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     }, err => {
       this.debug.log(err);
       return false;

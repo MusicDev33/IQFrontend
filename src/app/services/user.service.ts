@@ -29,11 +29,15 @@ export class UserService {
       this.headersTemplate = this.headersTemplate.set('IQ-User-Agent', 'IQAPIv1');
     }
 
-    getUser(): User {
+    getUser(): User | null {
       let user: User;
       const jwtHelper: JwtHelper = new JwtHelper();
-      user = Object.assign(new User(), jwtHelper.decodeToken(localStorage.getItem('id_token')) );
-      return user;
+      const token = localStorage.getItem('id_token');
+      if (token) {
+        user = Object.assign(new User(), jwtHelper.decodeToken(localStorage.getItem('id_token')) );
+        return user;
+      }
+      return null;
     }
 
     getToken() {
